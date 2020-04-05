@@ -1,15 +1,12 @@
 {
   "name": "video-converter",
   "version": "0.1.0",
+  "productName": "Online Video Converter",
+  "description": "Applicaton to convert and download YouTube/Dailymotion/Vim videos as MP3s",
+  "author": "Youssef Benhessou",
+  "license": "MIT",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
-  },
+  "homepage": "https://github.com/Youssef-ben/video-converter",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -30,5 +27,28 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "ffmpeg-static": "^4.0.1",
+    "fluent-ffmpeg": "^2.1.2",
+    "fs-extra": "^9.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1",
+    "sanitize-filename": "^1.6.3",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.88.2",
+    "ytdl-core": "^2.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "html-webpack-plugin": "^4.0.4",
+    "node-sass": "^4.13.1"
   }
 }

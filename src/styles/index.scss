@@ -1,0 +1,24 @@
+@import "./Variables.scss";
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: $font-family;
+  background: linear-gradient(135deg, $bg-left-color 0%, $bg-right-color 100%);
+}
+
+.root {
+  height: 100%;
+  align-items: center;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
