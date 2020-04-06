@@ -16,7 +16,7 @@ const Footer = props => {
             <Row>
                 <Col md={12} className="text-center">
                 <p className="mb-5 mt-5">
-                    <span className="small">© {new Date().getFullYear()} - {title}</span>
+                    <span className="small text-secondary">© {new Date().getFullYear()} - {title}</span>
                 </p>
                 </Col>
             </Row>
