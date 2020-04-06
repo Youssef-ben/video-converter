@@ -9,8 +9,8 @@ const LanguageSwitcher = () => (
     {({ switchToEnglish, switchToFrench, locale }) => (
       <React.Fragment>
           {locale === LANGUAGES.ENGLISH
-             ? <Nav.Link onClick={switchToFrench}> {LANGUAGES.FRENCH.toUpperCase()} </Nav.Link>
-             : <Nav.Link onClick={switchToEnglish}> {LANGUAGES.ENGLISH.toUpperCase()} </Nav.Link>
+             ? <Nav.Link className="text-secondary" onClick={switchToFrench}> {LANGUAGES.FRENCH.toUpperCase()} </Nav.Link>
+             : <Nav.Link className="text-secondary" onClick={switchToEnglish}> {LANGUAGES.ENGLISH.toUpperCase()} </Nav.Link>
           }
           
       </React.Fragment>

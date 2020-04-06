@@ -17,7 +17,7 @@ const SectionPresentation= props => {
     const question = (
         <FormattedMessage 
             id={"app.sections.presentation.question"}
-            defaultMessage={"Need to download and convert [Youtube or Dailymotion] videos in mp3 format?"}
+            defaultMessage={"Need to download and convert a [Youtube or Dailymotion] videos in mp3 format?"}
         />
     )
 
@@ -29,12 +29,12 @@ const SectionPresentation= props => {
         />
     )
     return (
-      <section className="container mb-4">
+      <section className="container section-prensentation mb-4">
         <Row>
           <Col xs={12} sm={12} md={12} lg={12}>
             <h2 className=" mt-2 mb-1 text-primary">{appName}</h2>
-            <h5 className="text-secondary">{question}</h5>
-            <p>{description}</p>
+            <h5 className="text-secondary text-justify mb-2">{question}</h5>
+            <p className="text-justify">{description}</p>
           </Col>
         </Row>
       </section>

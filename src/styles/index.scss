@@ -24,10 +24,20 @@ body {
   }
 
   .text-primary{
-    color: #2d659c !important;
+    color: $primary-color;
   }
 
   .text-secondary{
-    color: #68717a !important;
+    color: $secondary-color;
+  }
+
+  .btn-primary{
+    background-color: $primary-color;
+    border-color: $primary-color;
+  }
+  
+  .btn-secondary{
+    background-color: $secondary-color;
+    border-color: $secondary-color;
   }
 }
