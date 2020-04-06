@@ -1,5 +1,7 @@
 /********** USING BOOTSTRAP **********/
 @import "~bootstrap/scss/bootstrap";
 
-// Custom CSS
+/********** CUSTOM CSS **********/
+@import "./header.scss";
 @import "./index.scss";
+@import "./footer.scss";

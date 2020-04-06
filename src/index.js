@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 
 // Custom Imports
 import './styles/Styles.scss';
-import AppContent from './components/App.jsx';
 import Logo from "./logo.svg"
-import Header from "./components/header.jsx";
-import Footer from "./components/footer.jsx"
+import {
+  AppContent,
+  Header,
+  Footer,
+} from './components/index/imports.js';
 
 // Language wrapper
 import { IntlProviderWrapper } from "./utils/language_helpers/IntlProviderWrapper.jsx";

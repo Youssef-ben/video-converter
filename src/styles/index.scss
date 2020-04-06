@@ -19,23 +19,7 @@ body {
     align-items: center;
   }
   
-  .footer
-  {
-    text-align: center;
-    margin-top: 20px;
-  }
-
   .main-content{
     background: $bg-color-content;
-  }
-
-  .brand-name{
-    vertical-align: middle;
-    margin-left: 0.5rem !important;
-
-    @media (max-width: 576px){
-        font-size: 0.8em !important;
-    }
-
   }
 }

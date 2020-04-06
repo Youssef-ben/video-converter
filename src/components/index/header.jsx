@@ -3,8 +3,8 @@ import Navbar from "react-bootstrap/Navbar"
 import {FormattedMessage} from "react-intl";
 
 // Custom
-import LanguageSwitcher from "../utils/language_helpers/language_switcher.jsx";
-import AppLogo  from "./app_logo.jsx";
+import LanguageSwitcher from "../../utils/language_helpers/language_switcher.jsx";
+import AppLogo  from "../utils/app_logo.jsx";
 
 export default class Header extends React.PureComponent {
   render() {
