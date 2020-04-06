@@ -10,15 +10,32 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   font-family: $font-family;
-  background: linear-gradient(135deg, $bg-left-color 0%, $bg-right-color 100%);
-}
+  background: $bg-color;
+  overflow: hidden;
 
-.root {
-  height: 100%;
-  align-items: center;
-}
+  .root
+  {
+    height: 80%;
+    align-items: center;
+  }
+  
+  .footer
+  {
+    text-align: center;
+    margin-top: 20px;
+  }
 
-.center {
-  display: flex;
-  justify-content: center;
+  .main-content{
+    background: $bg-color-content;
+  }
+
+  .brand-name{
+    vertical-align: middle;
+    margin-left: 0.5rem !important;
+
+    @media (max-width: 576px){
+        font-size: 0.8em !important;
+    }
+
+  }
 }
