@@ -46,4 +46,9 @@
             font-size: 1rem !important;
         }
     }
+
+    ::placeholder {
+        color: #6c757d47;
+        opacity: 1; /* Firefox */
+    }
 }
