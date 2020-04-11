@@ -10,7 +10,7 @@ import {
 // Custom Imports
 import { isValidUrl, getVideoIdFromUrl } from "../../utils/constants";
 
-const ytdl = require('ytdl-core');
+const ytdl = window.require('ytdl-core');
 
 export default class SectionConverter extends React.PureComponent{
     constructor(props){
@@ -45,9 +45,12 @@ export default class SectionConverter extends React.PureComponent{
 
     async fetchVideoDetails(vidID, url) {
       console.log("fetching...");
-      
-      var info = await ytdl.getInfo(vidID);
-      console.log(info);
+      try {
+        let info = await ytdl.getInfo(vidID);
+        console.log(info);
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     startProcess = () => {

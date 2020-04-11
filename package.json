@@ -1,17 +1,20 @@
 {
   "name": "video-converter",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "productName": "Online Video Converter",
-  "description": "Applicaton to convert and download YouTube/Dailymotion/Vim videos as MP3s",
+  "description": "Applicaton to convert and download [YouTube or Dailymotion] videos as MP3s or MP4s.",
   "author": "Youssef Benhessou",
   "license": "MIT",
   "private": true,
   "homepage": "https://github.com/Youssef-ben/video-converter",
+  "main": "public/electron.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "template": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "start-electron": "electron ."
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -32,7 +35,9 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "about-window": "^1.13.2",
     "bootstrap": "^4.4.1",
+    "electron-is-dev": "^1.2.0",
     "ffmpeg-static": "^4.0.1",
     "fluent-ffmpeg": "^2.1.2",
     "fs-extra": "^9.0.0",
@@ -50,7 +55,12 @@
     "babel-loader": "^8.1.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "concurrently": "^5.1.0",
+    "cross-env": "^7.0.2",
+    "electron": "^8.2.1",
+    "electron-builder": "^22.4.1",
     "html-webpack-plugin": "^4.0.4",
-    "node-sass": "^4.13.1"
+    "node-sass": "^4.13.1",
+    "wait-on": "^4.0.2"
   }
 }
