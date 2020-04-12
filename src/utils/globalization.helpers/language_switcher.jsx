@@ -1,5 +1,5 @@
 import React from "react";
-import { IntlContext } from "./IntlProviderWrapper.jsx";
+import { IntlContext } from "./Intl_provider_wrapper.jsx";
 import { LANGUAGES } from "./language.jsx";
 
 import Nav from "react-bootstrap/Nav"

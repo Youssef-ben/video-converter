@@ -3,18 +3,23 @@
   "version": "1.0.0",
   "productName": "Online Video Converter",
   "description": "Applicaton to convert and download [YouTube or Dailymotion] videos as MP3s or MP4s.",
-  "author": "Youssef Benhessou",
   "license": "MIT",
   "private": true,
-  "homepage": "https://github.com/Youssef-ben/video-converter",
+  "author":{
+    "name":"Youssef Benhessou",
+    "url": "https://github.com/Youssef-ben/video-converter"
+  },
+  "homepage": "./",
   "main": "public/electron.js",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cross-env BROWSER='none' react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "template": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
-    "start-electron": "electron ."
+    "run-dev": "concurrently \"yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "start-electron": "electron .",
+    "pack-win-electron": "yarn build & electron-builder build --win -c.extraMetadata.main=build/electron.js --publish never",
+    "postinstall-electron": "electron-builder install-app-deps"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -62,5 +67,20 @@
     "html-webpack-plugin": "^4.0.4",
     "node-sass": "^4.13.1",
     "wait-on": "^4.0.2"
+  },
+  "build": {
+    "appId": "com.video.converter",
+    "productName": "Video Converter",
+    "icon": "build/logo512.png",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
   }
 }

@@ -11,7 +11,7 @@ import {
 } from './components/index/imports.js';
 
 // Language wrapper
-import { IntlProviderWrapper } from "./utils/language_helpers/IntlProviderWrapper.jsx";
+import { IntlProviderWrapper } from "./utils/globalization.helpers/Intl_provider_wrapper.jsx";
 
 const DEFAULT_APP_NAME_ID = "app.name.id";
 const DEFAULT_APP_NAME = "Video Converter";
