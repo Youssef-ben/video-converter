@@ -26,7 +26,7 @@
     }
 }
 
-.section-converter{
+.section-converter {
     @media (max-width: 576px) {
         h5{
             font-size: 0.9em !important;
@@ -50,5 +50,19 @@
     ::placeholder {
         color: #6c757d47;
         opacity: 1; /* Firefox */
+    }
+    
+    .fa-cog {
+        margin-left: 5px;
+    }
+
+    .card {
+        margin-left: auto; 
+        margin-right: auto;
+        width: 25rem;
+
+        .h5 {
+            font-size: 1em;
+        }
     }
 }
