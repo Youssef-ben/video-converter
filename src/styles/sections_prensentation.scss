@@ -1,0 +1,30 @@
+.section-prensentation{
+    
+    // xs Devices
+    @media (max-width: 576px) {
+        h2{
+            font-size: 1.7rem !important;
+        }
+
+        h5{
+            margin-bottom: 1rem !important;
+            font-size: 1.12em !important;
+        }
+
+        p{
+            font-size: 0.9em !important;
+        }
+    }
+
+    // sm Devices
+    @media (max-width: 768px) and (min-width: 576px) {
+        h5{
+            margin-bottom: 1rem !important;
+            font-size: 1.10em !important;
+        }
+
+        p{
+            font-size: 0.9em !important;
+        }
+    }
+}

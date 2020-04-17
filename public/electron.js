@@ -44,7 +44,7 @@ function getWindowOptions(){
   return {
     title: "Convert and download video as MP3 or MP4.",
     width: windowWidth,
-    height: 680,
+    height: 700,
     maximizeable: false,
     icon: APP_ICON,
     webPreferences: {

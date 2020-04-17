@@ -11,7 +11,8 @@ body {
   background-attachment: fixed;
   font-family: $font-family;
   background: $bg-color;
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
 
   .root
   {
@@ -23,11 +24,11 @@ body {
     background: $bg-color-content;
   }
 
-  .text-primary{
+  .text-primary {
     color: $primary-color;
   }
 
-  .text-secondary{
+  .text-secondary {
     color: $secondary-color;
   }
 
@@ -41,3 +42,28 @@ body {
     border-color: $secondary-color;
   }
 }
+
+
+  /* =================== Scrollbar =================== */
+  /* width */
+  ::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px $bg-color-content; 
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: $primary-color; 
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: $secondary-color; 
+  }

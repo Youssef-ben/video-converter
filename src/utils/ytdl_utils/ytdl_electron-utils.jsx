@@ -6,7 +6,14 @@ import { getVideoIdFromUrl, convertSecondesToHMS } from "../../utils/constants";
 
 const ytdl = window.require('ytdl-core');
 
-
+export function getDefaultVideoInfos() {
+  return {
+    title: "",
+    duration: "00:00:00",
+    link: "https://www.youtube.com/watch?v=O0YxeTjFn70",
+    thumbnail: "",
+  };
+}
 export async function fetchVideoDetailsAsync(url) {
     try 
     {
