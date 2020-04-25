@@ -1,7 +1,4 @@
-import SectionPresentation from "./section_presentation.jsx";
-import SectionConverter from "./section_converter.jsx";
+import SectionPresentation from './section_presentation.jsx';
+import SectionConverter from './section_converter.jsx';
 
-export {
-    SectionPresentation,
-    SectionConverter
-}
+export { SectionPresentation, SectionConverter };

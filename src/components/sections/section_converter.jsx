@@ -1,57 +1,58 @@
-import React from "react";
+import React from 'react';
 
 // Custom Imports
-import { fetchVideoDetailsAsync, getDefaultVideoInfos } from "../../utils/ytdl_utils/ytdl_electron-utils.jsx";
+import {
+  fetchVideoDetailsAsync,
+  getDefaultVideoInfos,
+} from '../../utils/ytdl_utils/ytdl_electron-utils.jsx';
 
-import UrlSection from "./section.converter/url_section.jsx";
-import DetailsSection from "./section.converter/details_section.jsx";
+import UrlSection from './section.converter/url_section.jsx';
+import DetailsSection from './section.converter/details_section.jsx';
 
 export default class SectionConverter extends React.PureComponent {
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.state = {
       showDetails: false,
-      video_details: getDefaultVideoInfos(),
+      videoDetails: getDefaultVideoInfos(),
     };
 
     // Bind async methods.
-    this.setDetailsViewAsync = this.setDetailsViewAsync.bind(
-      this
-    );
+    this.setDetailsViewAsync = this.setDetailsViewAsync.bind(this);
   }
-  
+
   async setDetailsViewAsync(url) {
     // Fetch te video details
     const details = await fetchVideoDetailsAsync(url);
 
-    console.log(details);
-
-    this.setState({ showDetails: true, video_details: details});
+    this.setState({ showDetails: true, videoDetails: details });
   }
 
   startProcess = () => {
-    
-    this.setState({ showDetails: false, video_details: getDefaultVideoInfos()});
-  }
+    this.setState({
+      showDetails: false,
+      videoDetails: getDefaultVideoInfos(),
+    });
+  };
 
   onCancel = () => {
-    this.setState({ showDetails: false});
-  }
+    this.setState({ showDetails: false });
+  };
 
   render() {
-    const {showDetails, video_details} = this.state;
+    const { showDetails, videoDetails } = this.state;
 
     return (
       <>
         {!showDetails ? (
           <UrlSection
             setDetailsViewAsync={this.setDetailsViewAsync}
-            video_url={video_details.link}
+            videoUrl={videoDetails.link}
           />
         ) : (
           <DetailsSection
-            video_details={video_details}
+            videoDetails={videoDetails}
             cancel={this.onCancel}
             startProcess={this.startProcess}
           />

@@ -1,30 +1,25 @@
-import React from "react";
-import Navbar from "react-bootstrap/Navbar"
-import {FormattedMessage} from "react-intl";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Navbar from 'react-bootstrap/Navbar';
+import { FormattedMessage } from 'react-intl';
 
 // Custom
-import LanguageSwitcher from "../../utils/globalization.helpers/language_switcher.jsx";
-import AppLogo  from "../utils/app_logo.jsx";
+import LanguageSwitcher from '../../utils/globalization/language_switcher.jsx';
+import AppLogo from '../utils/app_logo.jsx';
 
 export default class Header extends React.PureComponent {
   render() {
-    const title = (
-      <FormattedMessage
-        id={this.props.title}
-        defaultMessage={this.props.defaultTitle}
-      />
+    const { title, defaultTitle, logo } = this.props;
+
+    const formattedTitle = (
+      <FormattedMessage id={title} defaultMessage={defaultTitle} />
     );
 
     const navBrand = (
       <>
         <Navbar.Brand>
-          <AppLogo
-            logo={this.props.logo}
-            alt={title}
-          />
-          <span className="brand-name">
-            {title}
-          </span>
+          <AppLogo logo={logo} alt={defaultTitle} />
+          <span className="brand-name">{formattedTitle}</span>
         </Navbar.Brand>
       </>
     );
@@ -33,7 +28,7 @@ export default class Header extends React.PureComponent {
       <>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
-            <LanguageSwitcher/>
+          <LanguageSwitcher />
         </Navbar.Collapse>
       </>
     );
@@ -48,4 +43,10 @@ export default class Header extends React.PureComponent {
       </header>
     );
   }
-} 
+}
+
+Header.propTypes = {
+  title: PropTypes.string,
+  defaultTitle: PropTypes.string,
+  logo: PropTypes.string,
+};

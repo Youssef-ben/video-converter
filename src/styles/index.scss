@@ -14,13 +14,12 @@ body {
   overflow-y: scroll;
   overflow-x: hidden;
 
-  .root
-  {
+  .root {
     height: 80%;
     align-items: center;
   }
-  
-  .main-content{
+
+  .main-content {
     background: $bg-color-content;
   }
 
@@ -32,38 +31,37 @@ body {
     color: $secondary-color;
   }
 
-  .btn-primary{
+  .btn-primary {
     background-color: $primary-color;
     border-color: $primary-color;
   }
-  
-  .btn-secondary{
+
+  .btn-secondary {
     background-color: $secondary-color;
     border-color: $secondary-color;
   }
 }
 
+/* =================== Scrollbar =================== */
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 10px;
+}
 
-  /* =================== Scrollbar =================== */
-  /* width */
-  ::-webkit-scrollbar {
-    width: 5px;
-    border-radius: 10px;
-  }
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px $bg-color-content;
+  border-radius: 10px;
+}
 
-  /* Track */
-  ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px $bg-color-content; 
-    border-radius: 10px;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: $primary-color; 
-    border-radius: 10px;
-  }
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $primary-color;
+  border-radius: 10px;
+}
 
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: $secondary-color; 
-  }
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $secondary-color;
+}

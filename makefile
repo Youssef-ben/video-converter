@@ -1,5 +1,8 @@
 .PHONY: clean-dist clean-build clean-node clean
 	
+make run:
+	@yarn run-dev
+	
 clean-dist: ## Delete the dist folder.
 	@echo "Cleanin the {dist} folder..."
 	@rm -rf dist

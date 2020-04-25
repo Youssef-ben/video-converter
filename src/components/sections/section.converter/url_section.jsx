@@ -1,64 +1,66 @@
-import React from "react";
-import {FormattedMessage } from "react-intl";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import {
-    Button,
-    InputGroup,
-    FormControl
-} from "react-bootstrap";
+import { FormattedMessage } from 'react-intl';
+
+import { Button, InputGroup, FormControl } from 'react-bootstrap';
 
 // Icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 
 // Custom Imports
-import { isValidUrl} from "../../../utils/constants";
+import { isValidUrl } from '../../../utils/constants';
 
 export default class UrlSection extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = this.getDefaultState(props.video_url);
+    this.state = this.getDefaultState(props.videoUrl);
   }
 
   getDefaultState = (url) => {
-    let state = {
-      input_value: url,
-      is_valid: url? true : null,
-      is_invalid: false,
-      is_disabled: url? false : true
+    const state = {
+      inputValue: url,
+      isValid: url ? true : null,
+      isInvalid: false,
+      isDisabled: !url,
+      showSpinner: false,
     };
-    
-    if(!isValidUrl(url) && url) {
-      state.is_valid = false;
-      state.is_invalid = true;
-      state.is_disabled = true;
+
+    if (!isValidUrl(url) && url) {
+      state.isValid = false;
+      state.isInvalid = true;
+      state.isDisabled = true;
     }
 
     return state;
-  }
+  };
 
-  onValueChange = (e )=> {
+  onValueChange = (e) => {
     const value = e.target.value.trim();
 
-    const state = this.getDefaultState(value); 
+    const state = this.getDefaultState(value);
     this.setState(state);
-  }
+  };
 
   startProcess = () => {
-      // Show spinner and disable the Button.
-      this.setState({show_spinner: true, is_disabled: true});
+    const { inputValue } = this.state;
+    const { setDetailsViewAsync } = this.props;
 
-      this.props.setDetailsViewAsync(this.state.input_value);
-  }
-  
+    // Show spinner and disable the Button.
+    this.setState({ showSpinner: true, isDisabled: true });
+
+    setDetailsViewAsync(inputValue);
+  };
+
   render() {
     const {
-      input_value,
-      is_disabled,
-      is_invalid,
-      is_valid,
-      show_spinner,
+      inputValue,
+      isDisabled,
+      isInvalid,
+      isValid,
+      showSpinner,
     } = this.state;
 
     const title = (
@@ -76,32 +78,32 @@ export default class UrlSection extends React.PureComponent {
       />
     );
 
-    const placeholder = "https://www.youtube.com/watch?v=Ru3bADNFE3";
+    const placeholder = 'https://www.youtube.com/watch?v=Ru3bADNFE3';
 
     return (
       <section className="container section-converter mb-4">
         <h5 className="text-secondary text-justify">{title}</h5>
         <InputGroup className="mb-3">
           <FormControl
-            value={input_value}
+            value={inputValue}
             size="lg"
             type="url"
             placeholder={placeholder}
             aria-label="video url"
             aria-describedby="video-url"
-            isInvalid={is_invalid}
-            isValid={is_valid}
+            isInvalid={isInvalid}
+            isValid={isValid}
             onChange={this.onValueChange}
           />
 
           <InputGroup.Append>
             <Button
               variant="primary"
-              disabled={is_disabled}
+              disabled={isDisabled}
               onClick={this.startProcess}
             >
               {buttonText}
-              {show_spinner ? <FontAwesomeIcon icon={faCog} spin /> : <></>}
+              {showSpinner ? <FontAwesomeIcon icon={faCog} spin /> : <></>}
             </Button>
           </InputGroup.Append>
         </InputGroup>
@@ -109,3 +111,8 @@ export default class UrlSection extends React.PureComponent {
     );
   }
 }
+
+UrlSection.propTypes = {
+  videoUrl: PropTypes.string,
+  setDetailsViewAsync: PropTypes.func,
+};

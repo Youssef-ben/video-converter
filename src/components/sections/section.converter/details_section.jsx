@@ -1,52 +1,61 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import ProgressBar from "./progress_bar.jsx";
-import DetailsCard from "./details_card.jsx"
+import ProgressBar from './progress_bar.jsx';
+import DetailsCard from './details_card.jsx';
 
 export default class DetailsSection extends React.PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      show_progress: false,
+      showProgress: false,
       progress: 0,
-      progress_message: 'Fetching...'
+      progressMessage: 'Fetching...',
     };
   }
 
   startProcess = () => {
-    let {progress} = this.state;
-    this.setState({show_progress: true});
+    let { progress } = this.state;
+    this.setState({ showProgress: true });
 
-    let inter = setInterval(() => {
+    const inter = setInterval(() => {
+      this.setState({ progress: ++progress });
 
-      this.setState({progress: ++progress});
-
-      if (progress === 100){
+      if (progress === 100) {
+        const { cancel } = this.props;
         clearInterval(inter);
-        this.props.cancel();
+        cancel();
       }
-
-    },200);
-  }
+    }, 200);
+  };
 
   cancel = () => {
-    (function(w){w = w || window; var i = w.setInterval(function(){},100000); while(i>=0) { w.clearInterval(i--); }})(/*window*/);
+    // Clear all the Intervals running in the current window.
+    (function (w) {
+      const win = w || window;
+      let i = win.setInterval(function () {}, 100000);
+      while (i >= 0) {
+        win.clearInterval(i--);
+      }
+    })(/* window */);
 
-    this.props.cancel();
-  }
+    const { cancel } = this.props;
+    cancel();
+  };
 
   render() {
-    const {show_progress, progress, progress_message} = this.state;
+    const { showProgress, progress, progressMessage } = this.state;
+    const { videoDetails } = this.props;
 
     return (
       <section className="container section-converter mb-2">
-        {show_progress &&
-          <ProgressBar progress={progress} messageText={progress_message} />
-        }
+        {showProgress && (
+          <ProgressBar progress={progress} messageText={progressMessage} />
+        )}
 
         <DetailsCard
-          video_details={this.props.video_details}
+          videoDetails={videoDetails}
           startProcess={this.startProcess}
           cancel={this.cancel}
         />
@@ -54,3 +63,8 @@ export default class DetailsSection extends React.PureComponent {
     );
   }
 }
+
+DetailsSection.propTypes = {
+  videoDetails: PropTypes.object,
+  cancel: PropTypes.func,
+};

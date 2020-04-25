@@ -1,50 +1,40 @@
-const { app, BrowserWindow, Menu } = require("electron");
+const { app, BrowserWindow, Menu } = require('electron');
 
 const os = require('os');
 const path = require('path');
 const isDev = require('electron-is-dev');
 
-// Custom 
+// Custom
 const openAboutWindow = require('about-window').default;
 
 const APP_CONTENT_DEV = 'http://localhost:3000';
-const APP_CONTENT_PROD = `file://${path.join(__dirname, '../build/index.html')}`;
+const APP_CONTENT_PROD = `file://${path.join(
+  __dirname,
+  '../build/index.html'
+)}`;
 const APP_ICON = `${__dirname}/favicon.ico`;
 const APP_PNG = `${__dirname}/logo.svg`;
-const REACT_DEV_TOOL_URL = path.join(os.homedir(),'/AppData/Local/Google/Chrome/User Data/Profile 2/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.6.0_0');
+
+// eslint-disable-next-line no-unused-vars
+const REACT_DEV_TOOL_URL = path.join(
+  os.homedir(),
+  '/AppData/Local/Google/Chrome/User Data/Profile 2/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.6.0_0'
+);
 
 let mainWindow;
-let menu_bar = new Array();
-
-// Initial method.
-function createWindow() {
-
-  mainWindow = new BrowserWindow(getWindowOptions());
-  
-  // Load the Project depending on the environment.
-  mainWindow.loadURL(isDev 
-    ? APP_CONTENT_DEV
-    : APP_CONTENT_PROD);
-
-  // Custom Menu.
-  registerFileMenu();
-  registerEditMenu();
-  registerHelpMenu();
-  Menu.setApplicationMenu(Menu.buildFromTemplate(menu_bar));
-
-  mainWindow.on('closed', () => mainWindow = null);
-}
+const menuBar = [];
 
 /**
  * Set the Electron window options.
  */
-function getWindowOptions(){
-  const windowWidth =  isDev ? 1500 : 900;
+function getWindowOptions() {
+  const windowWidth = isDev ? 1500 : 900;
+  const windowheight = isDev ? 800 : 700;
 
   return {
-    title: "Convert and download video as MP3 or MP4.",
+    title: 'Convert and download video as MP3 or MP4.',
     width: windowWidth,
-    height: 700,
+    height: windowheight,
     maximizeable: false,
     icon: APP_ICON,
     webPreferences: {
@@ -54,15 +44,15 @@ function getWindowOptions(){
 }
 
 /* ==================== REGISTER MENUS ================= */
-function registerFileMenu(){
-  menu_bar.push({
-    label: "File",
+function registerFileMenu() {
+  menuBar.push({
+    label: 'File',
     submenu: [
-      { type: "separator" },
+      { type: 'separator' },
       {
-        label: "Quit",
-        accelerator: "CmdOrCtrl+shift+Q",
-        click: function () {
+        label: 'Quit',
+        accelerator: 'CmdOrCtrl+shift+Q',
+        click() {
           app.quit();
         },
       },
@@ -70,28 +60,28 @@ function registerFileMenu(){
   });
 }
 
-function registerEditMenu(){
-  menu_bar.push({
-    label: "Edit",
+function registerEditMenu() {
+  menuBar.push({
+    label: 'Edit',
     submenu: [
-      { role: "Reload", accelerator: "CmdOrCtrl+R", selector: "reload:" },
-      { role: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
-      { role: "Redo", accelerator: "CmdOrCtrl+Y", selector: "redo:" },
-      { type: "separator" },
-      { role: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
-      { role: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
-      { role: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
+      { role: 'Reload', accelerator: 'CmdOrCtrl+R', selector: 'reload:' },
+      { role: 'Undo', accelerator: 'CmdOrCtrl+Z', selector: 'undo:' },
+      { role: 'Redo', accelerator: 'CmdOrCtrl+Y', selector: 'redo:' },
+      { type: 'separator' },
+      { role: 'Cut', accelerator: 'CmdOrCtrl+X', selector: 'cut:' },
+      { role: 'Copy', accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
+      { role: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
     ],
   });
 }
 
-function registerHelpMenu(){
-  menu_bar.push({
-    label: "?",
+function registerHelpMenu() {
+  menuBar.push({
+    label: '?',
     submenu: [
       {
-        label: "About",
-        accelerator: "CmdOrCtrl+shift+A",
+        label: 'About',
+        accelerator: 'CmdOrCtrl+shift+A',
         click: () =>
           openAboutWindow({
             icon_path: APP_PNG,
@@ -104,21 +94,21 @@ function registerHelpMenu(){
               height: 450,
               maximizeable: false,
               resizable: false,
-              minimizable:false,
+              minimizable: false,
 
               parent: mainWindow,
               modal: true,
-            }
+            },
           }),
       },
-      { type: "separator" },
+      { type: 'separator' },
       {
-        label: "Open Dev Tools",
+        label: 'Open Dev Tools',
         click: () => {
           mainWindow.webContents.openDevTools();
         },
-        accelerator: "CmdOrCtrl+shift+i",
-      }
+        accelerator: 'CmdOrCtrl+shift+i',
+      },
     ],
   });
 
@@ -127,6 +117,22 @@ function registerHelpMenu(){
     // BrowserWindow.addDevToolsExtension(REACT_DEV_TOOL_URL);
     mainWindow.webContents.openDevTools();
   }
+}
+
+// Initial method.
+function createWindow() {
+  mainWindow = new BrowserWindow(getWindowOptions());
+
+  // Load the Project depending on the environment.
+  mainWindow.loadURL(isDev ? APP_CONTENT_DEV : APP_CONTENT_PROD);
+
+  // Custom Menu.
+  registerFileMenu();
+  registerEditMenu();
+  registerHelpMenu();
+  Menu.setApplicationMenu(Menu.buildFromTemplate(menuBar));
+
+  mainWindow.on('closed', () => (mainWindow = null));
 }
 
 /* ================= SET APP LISTENERS ================= */

@@ -1,11 +1,12 @@
-import React from "react";
-import { IntlProvider } from "react-intl";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { IntlProvider } from 'react-intl';
 
 import {
-    LANGUAGES,
-    BROWSER_LANGUAGE,
-    getLanguagesResources,
-} from "./language.jsx"
+  LANGUAGES,
+  BROWSER_LANGUAGE,
+  getLanguagesResources,
+} from './language.jsx';
 
 const Context = React.createContext();
 
@@ -13,28 +14,19 @@ class IntlProviderWrapper extends React.Component {
   constructor(...args) {
     super(...args);
 
-    // Set Switchers
-    this.switchToEnglish = () =>{
-        this.switchToLanguage(LANGUAGES.ENGLISH);
-    }
-
-    this.switchToFrench = () => {
-      this.switchToLanguage(LANGUAGES.FRENCH);
-    }
-    
     // Init State.
     this.state = {
       locale: LANGUAGES.ENGLISH,
       messages: getLanguagesResources(LANGUAGES.ENGLISH),
 
-      switchToEnglish: this.switchToEnglish,
-      switchToFrench: this.switchToFrench
+      // Will be used in the Switcher class.
+      switchToLanguage: this.switchToLanguage, // eslint-disable-line react/no-unused-state
     };
   }
 
   switchToLanguage = (lang) => {
     this.setState({ locale: lang, messages: getLanguagesResources(lang) });
-  }
+  };
 
   render() {
     const { children } = this.props;
@@ -55,8 +47,11 @@ class IntlProviderWrapper extends React.Component {
   }
 }
 
-export { 
-    IntlProviderWrapper, 
-    Context as IntlContext,
-    BROWSER_LANGUAGE as BrowserLanguage
+IntlProviderWrapper.propTypes = {
+  children: PropTypes.node,
+};
+export {
+  IntlProviderWrapper,
+  Context as IntlContext,
+  BROWSER_LANGUAGE as BrowserLanguage,
 };
