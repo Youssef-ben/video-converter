@@ -37,6 +37,15 @@ export default class SectionConverter extends React.PureComponent {
   };
 
   onCancel = () => {
+    // Clear all the Intervals running in the current window.
+    (function (w) {
+      const win = w || window;
+      let i = win.setInterval(function () {}, 100000);
+      while (i >= 0) {
+        win.clearInterval(i--);
+      }
+    })(/* window */);
+
     this.setState({ showDetails: false });
   };
 

@@ -4,7 +4,7 @@ const youtubeRegExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([
 // eslint-disable-next-line
 const dailymotionRegExp = /^.+dailymotion.com\/(video|hub)\/([^_]+)[^#]*(#video=([^_&]+))?/;
 
-function getVideoIdFromUrl(url, isYoutubeUrl = true) {
+export function getVideoIdFromUrl(url, isYoutubeUrl = true) {
   const result = url.match(isYoutubeUrl ? youtubeRegExp : dailymotionRegExp);
 
   if (!result) {
@@ -15,7 +15,7 @@ function getVideoIdFromUrl(url, isYoutubeUrl = true) {
   return result[2];
 }
 
-function isValidUrl(url) {
+export function isValidUrl(url) {
   // Validate Youtube or Dailymotion URL
   if (!getVideoIdFromUrl(url, true) && !getVideoIdFromUrl(url, false)) {
     return false;
@@ -24,7 +24,7 @@ function isValidUrl(url) {
   return true;
 }
 
-function convertSecondesToHMS(secondes) {
+export function convertSecondesToHMS(secondes) {
   // Convert value to number if it's string
   const sec = parseInt(secondes, 10);
 
@@ -52,4 +52,17 @@ function convertSecondesToHMS(secondes) {
   return `${hours}:${minutes}:${seconds}`;
 }
 
-export { getVideoIdFromUrl, isValidUrl, convertSecondesToHMS };
+/**
+ * If the value {downloadFolder} is not set in the local storage.
+ * The method will set the default value with the specified `fall back` folder.
+ */
+export function getDownloadFolder(fallbackFolder) {
+  let folder = localStorage.getItem('downloadFolder');
+
+  if (!folder) {
+    localStorage.setItem('downloadFolder', fallbackFolder);
+    folder = fallbackFolder;
+  }
+
+  return folder;
+}

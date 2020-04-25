@@ -4,10 +4,17 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
 import { Button, Card, Row, Col } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCog } from '@fortawesome/free-solid-svg-icons';
 
 class DetailsCard extends React.PureComponent {
   render() {
-    const { videoDetails, startProcess, cancel } = this.props;
+    const {
+      videoDetails,
+      startProcess,
+      cancel,
+      disableDownloadBtn,
+    } = this.props;
 
     const btnDownload = (
       <FormattedMessage
@@ -47,8 +54,18 @@ class DetailsCard extends React.PureComponent {
         <Card.Footer className="p-1">
           <Row>
             <Col xs={12} sm={6} md={6} lg={6}>
-              <Button className="btn-block" size="sm" onClick={startProcess}>
+              <Button
+                className="btn-block"
+                size="sm"
+                onClick={startProcess}
+                disabled={disableDownloadBtn}
+              >
                 {btnDownload}
+                {disableDownloadBtn ? (
+                  <FontAwesomeIcon icon={faCog} spin />
+                ) : (
+                  <></>
+                )}
               </Button>
             </Col>
 
@@ -71,6 +88,7 @@ class DetailsCard extends React.PureComponent {
 
 DetailsCard.propTypes = {
   videoDetails: PropTypes.object,
+  disableDownloadBtn: PropTypes.bool,
   startProcess: PropTypes.func,
   cancel: PropTypes.func,
 };
