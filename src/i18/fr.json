@@ -1,6 +1,10 @@
 {
-    "app.name.id": "Convertisseur de vidéo",
+  "app.name.id": "Convertisseur de vidéo",
 
-    "app.sections.presentation.question":"Vous avez besoin de convertir et de télécharger des vidéos [Youtube ou Dailymotion] au format mp3 ?",
-    "app.sections.presentation.description":"Eh bien, ne cherchez plus, <b>Video Converter</b> est un outil gratuit qui vous permet de convertir une vidéo [Youtube ou Dailymotion] en un fichier mp3 que vous pouvez enregistrer sur votre appareil."
+  "app.sections.presentation.question": "Vous avez besoin de convertir et de télécharger des vidéos Youtube au format mp3 ?",
+  "app.sections.presentation.description": "Eh bien, ne cherchez plus, <b>Video Converter</b> est un outil gratuit qui vous permet de convertir une vidéo Youtube en un fichier mp3 que vous pouvez enregistrer sur votre appareil.",
+  "app.sections.converter.title": "Veuillez passer un lien valide de la vidéo Youtube dans la case ci-dessous pour démarrer le processus.",
+  "app.sections.converter.button.text": "MP3",
+  "app.sections.converter.details.download": "Télécharger",
+  "app.sections.converter.details.cancel": "Annuler"
 }
