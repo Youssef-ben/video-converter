@@ -19,7 +19,9 @@
     "run-dev": "concurrently \"yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "start-electron": "electron .",
     "pack-win-electron": "yarn build & electron-builder build --win -c.extraMetadata.main=build/electron.js --publish never",
-    "postinstall-electron": "electron-builder install-app-deps"
+    "postinstall-electron": "electron-builder install-app-deps",
+    "lint": "yarn eslint src/",
+    "lint-fix": "yarn eslint src/ --fix"
   },
   "eslintConfig": {
     "extends": "react-app"

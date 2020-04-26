@@ -1,8 +1,13 @@
-.PHONY: clean-dist clean-build clean-node clean
+.PHONY: run lint clean-dist clean-build clean-node clean
 	
-make run:
+run: ## Run the web app in the electron container.
+	@echo "running the"
 	@yarn run-dev
-	
+
+lint: ## Lint the project and automaticlly fix the problems.
+	@echo "Linting and fixing all the issues..."
+	@yarn lint-fix	
+
 clean-dist: ## Delete the dist folder.
 	@echo "Cleanin the {dist} folder..."
 	@rm -rf dist
