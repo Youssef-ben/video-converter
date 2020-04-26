@@ -10,9 +10,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 
 // Custom Imports
-import { isValidUrl } from '../../../utils/constants';
+import { isValidUrl } from '../../utils/ytdl_utils/ytdl_helpers';
 
-export default class UrlSection extends React.PureComponent {
+export default class UrlView extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -112,7 +112,7 @@ export default class UrlSection extends React.PureComponent {
   }
 }
 
-UrlSection.propTypes = {
+UrlView.propTypes = {
   videoUrl: PropTypes.string,
   setDetailsViewAsync: PropTypes.func,
 };

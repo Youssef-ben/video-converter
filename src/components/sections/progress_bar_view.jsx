@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class ProgressBar extends React.PureComponent {
+export default class ProgressBarView extends React.PureComponent {
   render() {
     const { progress, messageText } = this.props;
 
     const percentComplete = `${progress}%`;
-    const messageToShow = `${messageText}`;
     const fontColor = progress > 95 ? '#F6F0E9' : '#68717a';
 
     return (
@@ -24,14 +23,14 @@ export default class ProgressBar extends React.PureComponent {
           >
             {percentComplete}
           </div>
-          <span className="progress__info">{messageToShow}</span>
+          <span className="progress__info">{messageText}</span>
         </div>
       </div>
     );
   }
 }
 
-ProgressBar.propTypes = {
+ProgressBarView.propTypes = {
   progress: PropTypes.number,
   messageText: PropTypes.string,
 };

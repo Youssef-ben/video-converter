@@ -24,6 +24,7 @@ const SectionPresentation = () => {
       values={{ b: (...chunks) => <strong>{chunks}</strong> }} // eslint-disable-line react/display-name
     />
   );
+
   return (
     <section className="container section-prensentation mb-4">
       <Row>

@@ -1,4 +1,4 @@
-import SectionPresentation from './section_presentation.jsx';
-import SectionConverter from './section_converter.jsx';
+import VideoDetailsView from './video_details_view.jsx';
+import UrlView from './url_view.jsx';
 
-export { SectionPresentation, SectionConverter };
+export { VideoDetailsView, UrlView };

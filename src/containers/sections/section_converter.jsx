@@ -1,13 +1,11 @@
 import React from 'react';
 
 // Custom Imports
-import {
-  fetchVideoDetailsAsync,
-  getDefaultVideoInfos,
-} from '../../utils/ytdl_utils/ytdl_electron-utils.jsx';
+import { fetchVideoInfoAsync } from '../../utils/ytdl_utils/ytdl_electron_utils';
 
-import UrlSection from './section.converter/url_section.jsx';
-import DetailsSection from './section.converter/details_section.jsx';
+import { getDefaultVideoInfo } from '../../utils/ytdl_utils/ytdl_helpers';
+
+import { UrlView, VideoDetailsView } from '../../components/sections/imports';
 
 export default class SectionConverter extends React.PureComponent {
   constructor(props) {
@@ -15,7 +13,7 @@ export default class SectionConverter extends React.PureComponent {
 
     this.state = {
       showDetails: false,
-      videoDetails: getDefaultVideoInfos(),
+      videoDetails: getDefaultVideoInfo(),
     };
 
     // Bind async methods.
@@ -24,7 +22,7 @@ export default class SectionConverter extends React.PureComponent {
 
   async setDetailsViewAsync(url) {
     // Fetch te video details
-    const details = await fetchVideoDetailsAsync(url);
+    const details = await fetchVideoInfoAsync(url);
 
     this.setState({ showDetails: true, videoDetails: details });
   }
@@ -32,7 +30,7 @@ export default class SectionConverter extends React.PureComponent {
   startProcess = () => {
     this.setState({
       showDetails: false,
-      videoDetails: getDefaultVideoInfos(),
+      videoDetails: getDefaultVideoInfo(),
     });
   };
 
@@ -46,7 +44,7 @@ export default class SectionConverter extends React.PureComponent {
       }
     })(/* window */);
 
-    this.setState({ showDetails: false });
+    this.setState({ showDetails: false, videoDetails: getDefaultVideoInfo() });
   };
 
   render() {
@@ -55,12 +53,12 @@ export default class SectionConverter extends React.PureComponent {
     return (
       <>
         {!showDetails ? (
-          <UrlSection
+          <UrlView
             setDetailsViewAsync={this.setDetailsViewAsync}
             videoUrl={videoDetails.link}
           />
         ) : (
-          <DetailsSection
+          <VideoDetailsView
             videoDetails={videoDetails}
             cancel={this.onCancel}
             startProcess={this.startProcess}

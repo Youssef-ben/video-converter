@@ -4,7 +4,8 @@ import ReactDOM from 'react-dom';
 // Custom Imports
 import './styles/Styles.scss';
 import Logo from './assets/logo.svg';
-import { AppContent, Header, Footer } from './components/index/imports';
+import AppContent from './containers/root/App.jsx';
+import { Header, Footer } from './components/root/imports';
 
 // Language wrapper
 import { IntlProviderWrapper } from './utils/globalization/intl_provider_wrapper.jsx';

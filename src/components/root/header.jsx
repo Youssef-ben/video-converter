@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 
 // Custom
 import LanguageSwitcher from '../../utils/globalization/language_switcher.jsx';
-import AppLogo from '../utils/app_logo.jsx';
+import ImageView from '../utils/image_view.jsx';
 
 export default class Header extends React.PureComponent {
   render() {
@@ -18,7 +18,7 @@ export default class Header extends React.PureComponent {
     const navBrand = (
       <>
         <Navbar.Brand>
-          <AppLogo logo={logo} alt={defaultTitle} />
+          <ImageView logo={logo} alt={defaultTitle} />
           <span className="brand-name">{formattedTitle}</span>
         </Navbar.Brand>
       </>

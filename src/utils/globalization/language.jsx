@@ -1,5 +1,5 @@
-import englishMessages from '../../i18/en.json';
-import frenchMessages from '../../i18/fr.json';
+import englishMessages from '../../translations/en.json';
+import frenchMessages from '../../translations/fr.json';
 
 // Object with all the supported Languages.
 const LANGUAGES = {
