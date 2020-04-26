@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 
 // Custom Imports
-import { isValidUrl } from '../../utils/constants';
+import { isValidUrl } from '../../utils/ytdl_utils/ytdl_helpers';
 
 export default class UrlView extends React.PureComponent {
   constructor(props) {

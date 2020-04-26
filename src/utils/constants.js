@@ -1,29 +1,7 @@
-// eslint-disable-next-line
-const youtubeRegExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
-
-// eslint-disable-next-line
-const dailymotionRegExp = /^.+dailymotion.com\/(video|hub)\/([^_]+)[^#]*(#video=([^_&]+))?/;
-
-export function getVideoIdFromUrl(url, isYoutubeUrl = true) {
-  const result = url.match(isYoutubeUrl ? youtubeRegExp : dailymotionRegExp);
-
-  if (!result) {
-    return null;
-  }
-
-  // Return the ID of the video Both Youtube and Dailymotion has the ID in the 2 index.
-  return result[2];
-}
-
-export function isValidUrl(url) {
-  // Validate Youtube or Dailymotion URL
-  if (!getVideoIdFromUrl(url, true) && !getVideoIdFromUrl(url, false)) {
-    return false;
-  }
-
-  return true;
-}
-
+/**
+ * Convert the video duration from secondes to `{HH:MM:SS}`.
+ * @param {int} secondes The video duration in secondes.
+ */
 export function convertSecondesToHMS(secondes) {
   // Convert value to number if it's string
   const sec = parseInt(secondes, 10);
@@ -53,16 +31,28 @@ export function convertSecondesToHMS(secondes) {
 }
 
 /**
- * If the value {downloadFolder} is not set in the local storage.
- * The method will set the default value with the specified `fall back` folder.
+ * If the value `{storage_folder}` is not set in the application localStorage.
+ * The method will set the default value with the specified `fallback` folder value.
+ *
+ * @param {string} fallbackFolder fallback folder path.
  */
-export function getDownloadFolder(fallbackFolder) {
-  let folder = localStorage.getItem('downloadFolder');
+export function getStorageFolder(fallbackFolder) {
+  let folder = localStorage.getItem('storage_folder');
 
   if (!folder) {
-    localStorage.setItem('downloadFolder', fallbackFolder);
+    localStorage.setItem('storage_folder', fallbackFolder);
     folder = fallbackFolder;
   }
 
   return folder;
+}
+
+/**
+ * Set the storage folder in the local app storage.
+ *
+ * @param {string} folderPath Path for the storage folder.
+ */
+export function setStorageFolder(folderPath) {
+  localStorage.setItem('storage_folder', folderPath);
+  return folderPath;
 }

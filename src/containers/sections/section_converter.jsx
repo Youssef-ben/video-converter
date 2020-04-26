@@ -1,10 +1,9 @@
 import React from 'react';
 
 // Custom Imports
-import {
-  fetchVideoInfoAsync,
-  getDefaultVideoInfo,
-} from '../../utils/ytdl_utils/ytdl_electron-utils.jsx';
+import { fetchVideoInfoAsync } from '../../utils/ytdl_utils/ytdl_electron_utils';
+
+import { getDefaultVideoInfo } from '../../utils/ytdl_utils/ytdl_helpers';
 
 import { UrlView, VideoDetailsView } from '../../components/sections/imports';
 

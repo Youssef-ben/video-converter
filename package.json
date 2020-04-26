@@ -2,7 +2,7 @@
   "name": "video-converter",
   "version": "1.0.0",
   "productName": "Online Video Converter",
-  "description": "Applicaton to convert and download [YouTube or Dailymotion] videos as MP3s or MP4s.",
+  "description": "Applicaton to convert and download youtube videos as MP3s or MP4s.",
   "license": "MIT",
   "private": true,
   "author": {
