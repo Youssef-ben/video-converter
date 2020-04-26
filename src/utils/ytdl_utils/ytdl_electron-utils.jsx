@@ -54,7 +54,7 @@ function convertDurationToTime(duration = '00:00:00.00') {
   return parseFloat(`${value[0]}${value[1]}.${value[2]}`);
 }
 
-export function getDefaultVideoInfos() {
+export function getDefaultVideoInfo() {
   return {
     id: '',
     title: '',
@@ -64,7 +64,7 @@ export function getDefaultVideoInfos() {
   };
 }
 
-export async function fetchVideoDetailsAsync(url) {
+export async function fetchVideoInfoAsync(url) {
   try {
     // Get the ID from the URL.
     const videoId = getVideoIdFromUrl(url, true);

@@ -20,8 +20,8 @@
     "start-electron": "electron .",
     "pack-win-electron": "yarn build & electron-builder build --win -c.extraMetadata.main=build/electron.js --publish never",
     "postinstall-electron": "electron-builder install-app-deps",
-    "lint": "yarn eslint src/",
-    "lint-fix": "yarn eslint src/ --fix"
+    "lint": "yarn eslint src/**/*.{js,jsx}",
+    "lint-fix": "yarn eslint src/**/*.{js,jsx} --fix"
   },
   "eslintConfig": {
     "extends": "react-app"

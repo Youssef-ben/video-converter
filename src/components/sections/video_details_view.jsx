@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ProgressBar from './progress_bar.jsx';
-import DetailsCard from './details_card.jsx';
+import ProgressBarView from './progress_bar_view.jsx';
+import ThumbnailDetailsView from './thumbnail_details_view.jsx';
 
 // Custom Imports
 import {
@@ -10,11 +10,11 @@ import {
   convertToMP3Async,
   removeTempFile,
   PROGRESS_MESSAGES,
-} from '../../../utils/ytdl_utils/ytdl_electron-utils.jsx';
+} from '../../utils/ytdl_utils/ytdl_electron-utils.jsx';
 
 let abortController = null;
 
-export default class DetailsSection extends React.PureComponent {
+export default class VideoDetailsView extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -114,11 +114,11 @@ export default class DetailsSection extends React.PureComponent {
         // Let the user see that the conversion has finished.
         setTimeout(() => {
           this.cancel();
-        }, 1000);
+        }, 1200);
       }, 1000);
     } catch (error) {
       if (error.message !== 'Downloading aborted by the user.') {
-        // Handle the ERROR by sett
+        // Handle the ERRORs.
       }
     }
   }
@@ -135,10 +135,10 @@ export default class DetailsSection extends React.PureComponent {
     return (
       <section className="container section-converter mb-2">
         {showProgress && (
-          <ProgressBar progress={progress} messageText={progressMessage} />
+          <ProgressBarView progress={progress} messageText={progressMessage} />
         )}
 
-        <DetailsCard
+        <ThumbnailDetailsView
           videoDetails={videoDetails}
           startProcess={this.startConvertionProcess}
           cancel={this.cancel}
@@ -149,7 +149,7 @@ export default class DetailsSection extends React.PureComponent {
   }
 }
 
-DetailsSection.propTypes = {
+VideoDetailsView.propTypes = {
   videoDetails: PropTypes.object,
   cancel: PropTypes.func,
 };
