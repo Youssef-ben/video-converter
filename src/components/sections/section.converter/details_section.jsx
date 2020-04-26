@@ -7,6 +7,8 @@ import DetailsCard from './details_card.jsx';
 // Custom Imports
 import {
   downloadAsMP4Async,
+  convertToMP3Async,
+  removeTempFile,
   PROGRESS_MESSAGES,
 } from '../../../utils/ytdl_utils/ytdl_electron-utils.jsx';
 
@@ -33,6 +35,7 @@ export default class DetailsSection extends React.PureComponent {
       abortController = null;
     }
 
+    // Let the user see that the conversion has finished.
     const { cancel } = this.props;
     cancel();
   };
@@ -49,8 +52,8 @@ export default class DetailsSection extends React.PureComponent {
       // Handle progress bar message for when converting.
       msg =
         progress === 100
-          ? PROGRESS_MESSAGES.CONVERTING
-          : PROGRESS_MESSAGES.CONVERTING_COMPLETED;
+          ? PROGRESS_MESSAGES.CONVERTING_COMPLETED
+          : PROGRESS_MESSAGES.CONVERTING;
     }
 
     this.setState({ progress, progressMessage: msg });
@@ -58,6 +61,7 @@ export default class DetailsSection extends React.PureComponent {
 
   async startConvertionProcess() {
     const { videoDetails } = this.props;
+    abortController = new AbortController();
 
     // Update the UI by showing the Progress bar.
     this.setState({
@@ -67,23 +71,18 @@ export default class DetailsSection extends React.PureComponent {
       disableDownloadBtn: true,
     });
 
-    abortController = new AbortController();
-
     try {
-      // Start downloading the video.
+      // Start downloading the video as an MP4.
       const downLoadedMP4 = await downloadAsMP4Async(
         videoDetails,
         false,
+        abortController.signal,
 
         // Callback method for updating the progress UI.
         (progress) => {
           this.updateProgressState(true, progress);
-        },
-
-        abortController.signal
+        }
       );
-
-      console.log(downLoadedMP4);
 
       // Start Converting the video to MP3
       // TODO: Should Open the FileDialog.
@@ -91,6 +90,32 @@ export default class DetailsSection extends React.PureComponent {
         progress: 0,
         progressMessage: PROGRESS_MESSAGES.CONVERTING,
       });
+
+      await convertToMP3Async(
+        videoDetails,
+        downLoadedMP4.path,
+        '',
+
+        // Callback method for updating the progress UI.
+        (progress) => {
+          this.updateProgressState(false, progress);
+        }
+      );
+
+      // Delete the temp file and show the finish progress.
+      setTimeout(() => {
+        removeTempFile(downLoadedMP4.path);
+
+        this.setState({
+          progress: 100,
+          progressMessage: PROGRESS_MESSAGES.COMPLETED,
+        });
+
+        // Let the user see that the conversion has finished.
+        setTimeout(() => {
+          this.cancel();
+        }, 1000);
+      }, 1000);
     } catch (error) {
       if (error.message !== 'Downloading aborted by the user.') {
         // Handle the ERROR by sett

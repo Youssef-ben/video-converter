@@ -15,6 +15,8 @@ const { remote } = window.require('electron');
 const ytdl = window.require('ytdl-core');
 const sanitize = window.require('sanitize-filename');
 const fs = window.require('fs-extra');
+const ffmpeg = window.require('fluent-ffmpeg');
+const ffmpegPath = window.require('ffmpeg-static');
 
 // Path to where we will save te temporary MP4 file.
 const TEMP_DATA_FOLDER = `${remote.app.getPath('userData')}/Cache`;
@@ -27,6 +29,7 @@ export const PROGRESS_MESSAGES = {
   DOWNLOADING_FINISHED: 'Downloading completed.',
   CONVERTING: 'Converting...',
   CONVERTING_COMPLETED: 'Converting completed.',
+  COMPLETED: 'Done.',
 };
 
 /**
@@ -46,12 +49,17 @@ function getVideoStoragePath(title, forDownload = true) {
   return path.join(TEMP_DATA_FOLDER, `tmp_${title}.mp4`);
 }
 
+function convertDurationToTime(duration = '00:00:00.00') {
+  const value = duration.split(':');
+  return parseFloat(`${value[0]}${value[1]}.${value[2]}`);
+}
+
 export function getDefaultVideoInfos() {
   return {
     id: '',
     title: '',
-    duration: '00:00:00',
-    link: 'https://www.youtube.com/watch?v=O0YxeTjFn70',
+    duration: '00:00:00.00',
+    link: '',
     thumbnail: '',
   };
 }
@@ -76,17 +84,15 @@ export async function fetchVideoDetailsAsync(url) {
   }
 }
 
-export async function removeCanceledFile(filePath) {
-  setTimeout(() => {
-    fs.removeSync(filePath);
-  }, 500);
+export async function removeTempFile(filePath) {
+  fs.removeSync(filePath);
 }
 
 export async function downloadAsMP4Async(
   videoDetails,
   forDownload,
-  stateProgressCallback,
-  abortSignal
+  abortSignal,
+  stateProgressCallback
 ) {
   return new Promise((resolve, reject) => {
     // Get the path for the temporary video.
@@ -94,7 +100,7 @@ export async function downloadAsMP4Async(
 
     // Create the mp4 video object.
     const mp4 = ytdl(videoDetails.link, {
-      filter: forDownload ? 'video' : 'audioonly',
+      filter: 'video', // forDownload ? 'video' : 'audioonly',
     });
 
     // Limit the number of times we trigger the UI progress.
@@ -105,15 +111,16 @@ export async function downloadAsMP4Async(
       // Calculate the download progress.
       const progress = Math.floor((downloaded / total) * 100);
 
-      // Execute the CallBack method to update the UI.
       if (!limitProgressTrigger) {
         stateProgressCallback(progress);
+        stateProgressCallback(Math.floor(progress));
+
+        limitProgressTrigger = true;
       }
 
-      limitProgressTrigger = true;
       setTimeout(() => {
         limitProgressTrigger = false;
-      }, 200);
+      }, 100);
     });
 
     // Persiste the downloaded stream in the mp4 file.
@@ -127,7 +134,7 @@ export async function downloadAsMP4Async(
       ws.end();
 
       // Delete the mp4 file.
-      removeCanceledFile(mp4Path);
+      removeTempFile(mp4Path);
 
       // Abort the current promise action.
       const error = new AbortedAction(
@@ -142,12 +149,57 @@ export async function downloadAsMP4Async(
       stateProgressCallback(100);
 
       setTimeout(() => {
-        resolve({ video: mp4Path });
+        resolve({ path: mp4Path });
       }, 1000);
     });
+  });
+}
 
-    mp4.on('destroy', () => {
-      console.log('destroyed');
-    });
+export async function convertToMP3Async(
+  videoDetails,
+  mp4Path,
+  mp3Path,
+  stateProgressCallback
+) {
+  return new Promise((resolve) => {
+    if (!mp3Path) {
+      // eslint-disable-next-line no-param-reassign
+      mp3Path = path.join(
+        getDownloadFolder(DEFAULT_DOWNLOAD_FOLDER),
+        `${videoDetails.title}.mp3`
+      );
+    }
+
+    // Convert the Video duration to time.
+    const endTime = convertDurationToTime(videoDetails.duration);
+
+    // Limit the number of times we trigger the UI progress.
+    // to prevent the UI from refreshing every few milliseconds.
+    let limitProgressTrigger = false;
+
+    ffmpeg(mp4Path)
+      .setFfmpegPath(ffmpegPath)
+      .format('mp3')
+      .audioBitrate(320)
+      .output(fs.createWriteStream(mp3Path))
+      .on('progress', function (progress) {
+        if (!limitProgressTrigger) {
+          const currentTime = convertDurationToTime(progress.timemark);
+          const percent = (currentTime * 100) / endTime;
+
+          stateProgressCallback(Math.floor(percent));
+
+          limitProgressTrigger = true;
+        }
+
+        setTimeout(() => {
+          limitProgressTrigger = false;
+        }, 200);
+      })
+      .on('end', () => {
+        stateProgressCallback(99);
+        resolve();
+      })
+      .run();
   });
 }

@@ -11,7 +11,7 @@ const SectionPresentation = () => {
   const question = (
     <FormattedMessage
       id="app.sections.presentation.question"
-      defaultMessage="Need to download and convert a [Youtube or Dailymotion] videos in mp3 format?"
+      defaultMessage="Need to download and convert a Youtube videos in mp3 format?"
     />
   );
 
@@ -19,7 +19,7 @@ const SectionPresentation = () => {
     <FormattedMessage
       id="app.sections.presentation.description"
       defaultMessage={
-        'Well look no more, <b>Video Converter</b> is a free tool that allow you to convert a [Youtube or Dailymotion] videos to an mp3 file that you can save to your device.'
+        'Well look no more, <b>Video Converter</b> is a free tool that allow you to convert a Youtuben videos to an mp3 file that you can save to your device.'
       }
       values={{ b: (...chunks) => <strong>{chunks}</strong> }} // eslint-disable-line react/display-name
     />
