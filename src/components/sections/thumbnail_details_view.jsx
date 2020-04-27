@@ -57,7 +57,7 @@ export default class ThumbnailDetailsView extends React.PureComponent {
   };
 
   renderCardFooterCancelBtn = () => {
-    const { cancel } = this.props;
+    const { cancel, disableCancelBtn } = this.props;
 
     const btnCancel = (
       <FormattedMessage
@@ -72,6 +72,7 @@ export default class ThumbnailDetailsView extends React.PureComponent {
         className="btn-block"
         size="sm"
         onClick={cancel}
+        disabled={disableCancelBtn}
       >
         {btnCancel}
       </Button>
@@ -112,4 +113,5 @@ ThumbnailDetailsView.propTypes = {
   disableDownloadBtn: PropTypes.bool,
   startProcess: PropTypes.func,
   cancel: PropTypes.func,
+  disableCancelBtn: PropTypes.bool,
 };

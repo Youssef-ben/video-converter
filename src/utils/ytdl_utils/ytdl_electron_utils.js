@@ -101,7 +101,9 @@ export async function convertStreamToMP4Async(
       ws.end();
 
       // Delete the mp4 file.
-      removeTempFile(mp4Path);
+      if (!forDownload) {
+        removeTempFile(mp4Path);
+      }
 
       // Abort the current promise action.
       const error = new AbortedAction(
@@ -135,7 +137,7 @@ export async function convertMP4ToMP3Async(
 
     // Convert the video duration to time.
     const endTime = getTimeFromDuration(videoDetails.duration);
-    
+
     ffmpeg(mp4Path)
       .setFfmpegPath(ffmpegPath.replace('app.asar', 'app.asar.unpacked'))
       .format('mp3')

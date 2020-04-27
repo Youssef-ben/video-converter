@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
 
-import { Button, InputGroup, FormControl } from 'react-bootstrap';
+import { Button, InputGroup, FormControl, Row, Col } from 'react-bootstrap';
 
 // Icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -24,8 +24,10 @@ export default class UrlView extends React.PureComponent {
       inputValue: url,
       isValid: url ? true : null,
       isInvalid: false,
+
       isDisabled: !url,
-      showSpinner: false,
+      showSpinnerMp3: false,
+      showSpinnerMp4: false,
     };
 
     if (!isValidUrl(url) && url) {
@@ -44,25 +46,93 @@ export default class UrlView extends React.PureComponent {
     this.setState(state);
   };
 
-  startProcess = () => {
+  startProcess = (downloadAsMP4 = false) => {
     const { inputValue } = this.state;
     const { setDetailsViewAsync } = this.props;
 
     // Show spinner and disable the Button.
-    this.setState({ showSpinner: true, isDisabled: true });
+    this.setState({
+      showSpinnerMp3: !downloadAsMP4,
+      showSpinnerMp4: downloadAsMP4,
+      isDisabled: true,
+    });
 
-    setDetailsViewAsync(inputValue);
+    setDetailsViewAsync(inputValue, downloadAsMP4);
+  };
+
+  renderUrlInput = () => {
+    const { inputValue, isInvalid, isValid } = this.state;
+
+    const placeholder = 'https://www.youtube.com/watch?v=Ru3bADNFE3';
+
+    return (
+      <InputGroup className="mb-3">
+        <FormControl
+          value={inputValue}
+          size="lg"
+          type="url"
+          placeholder={placeholder}
+          aria-label="video url"
+          aria-describedby="video-url"
+          isInvalid={isInvalid}
+          isValid={isValid}
+          onChange={this.onValueChange}
+        />
+      </InputGroup>
+    );
+  };
+
+  renderMp3Button = () => {
+    const { isDisabled, showSpinnerMp3 } = this.state;
+
+    const mp3ButtonText = (
+      <FormattedMessage
+        id="app.sections.converter.button.text.mp3"
+        defaultMessage="Download as MP3"
+      />
+    );
+
+    return (
+      <Col md={6}>
+        <Button
+          variant="primary"
+          disabled={isDisabled}
+          onClick={() => this.startProcess(false)}
+          className="btn-block"
+        >
+          {mp3ButtonText}
+          {showSpinnerMp3 ? <FontAwesomeIcon icon={faCog} spin /> : <></>}
+        </Button>
+      </Col>
+    );
+  };
+
+  renderMp4Button = () => {
+    const { isDisabled, showSpinnerMp4 } = this.state;
+
+    const mp4ButtonText = (
+      <FormattedMessage
+        id="app.sections.converter.button.text.mp4"
+        defaultMessage="Download as MP4"
+      />
+    );
+
+    return (
+      <Col md={6}>
+        <Button
+          variant="primary"
+          disabled={isDisabled}
+          onClick={() => this.startProcess(true)}
+          className="btn-block mp4-btn"
+        >
+          {mp4ButtonText}
+          {showSpinnerMp4 ? <FontAwesomeIcon icon={faCog} spin /> : <></>}
+        </Button>
+      </Col>
+    );
   };
 
   render() {
-    const {
-      inputValue,
-      isDisabled,
-      isInvalid,
-      isValid,
-      showSpinner,
-    } = this.state;
-
     const title = (
       <FormattedMessage
         id="app.sections.converter.title"
@@ -71,42 +141,17 @@ export default class UrlView extends React.PureComponent {
       />
     );
 
-    const buttonText = (
-      <FormattedMessage
-        id="app.sections.converter.button.text"
-        defaultMessage="MP3"
-      />
-    );
-
-    const placeholder = 'https://www.youtube.com/watch?v=Ru3bADNFE3';
-
     return (
       <section className="container section-converter mb-4">
         <h5 className="text-secondary text-justify">{title}</h5>
-        <InputGroup className="mb-3">
-          <FormControl
-            value={inputValue}
-            size="lg"
-            type="url"
-            placeholder={placeholder}
-            aria-label="video url"
-            aria-describedby="video-url"
-            isInvalid={isInvalid}
-            isValid={isValid}
-            onChange={this.onValueChange}
-          />
 
-          <InputGroup.Append>
-            <Button
-              variant="primary"
-              disabled={isDisabled}
-              onClick={this.startProcess}
-            >
-              {buttonText}
-              {showSpinner ? <FontAwesomeIcon icon={faCog} spin /> : <></>}
-            </Button>
-          </InputGroup.Append>
-        </InputGroup>
+        {this.renderUrlInput()}
+
+        <Row>
+          {this.renderMp3Button()}
+
+          {this.renderMp4Button()}
+        </Row>
       </section>
     );
   }

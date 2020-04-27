@@ -48,11 +48,13 @@ export function getStorageFolder(fallbackFolder) {
 }
 
 /**
- * Set the storage folder in the local app storage.
+ * Set the specified path to the application LocalStorage.
+ * If the `{folderPath}` value is null, save the fallback path instead.
  *
  * @param {string} folderPath Path for the storage folder.
+ * @param {string} fallbackfolder Facllback path for the storage folder.
  */
-export function setStorageFolder(folderPath) {
-  localStorage.setItem('storage_folder', folderPath);
+export function setStorageFolder(folderPath, fallbackfolder) {
+  localStorage.setItem('storage_folder', folderPath || fallbackfolder);
   return folderPath;
 }

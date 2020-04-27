@@ -1,7 +1,7 @@
 .PHONY: run lint pack-win clean-dist clean-build clean-node clean
 	
 run: ## Run the web app in the electron container.
-	@echo "running the"
+	@echo "running the web app and electron container..."
 	@yarn run-dev
 
 lint: ## Lint the project and automaticlly fix the problems.

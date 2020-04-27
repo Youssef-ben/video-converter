@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { getStorageFolder } from '../constants';
+import { getStorageFolder, setStorageFolder } from '../constants';
 
 const { remote } = window.require('electron');
 
@@ -17,7 +17,7 @@ export const DEFAULT_DOWNLOAD_FOLDER = remote.app.getPath('downloads');
 
 export const PROGRESS_MESSAGES = {
   DONLOADING: 'Downloading...',
-  DOWNLOADING_FINISHED: 'Downloading completed.',
+  DONLOADING_COMPLETED: 'Downloading completed.',
   CONVERTING: 'Converting...',
   CONVERTING_COMPLETED: 'Converting completed.',
   COMPLETED: 'Done.',
@@ -105,4 +105,22 @@ export function getDefaultVideoInfo() {
     link: '',
     thumbnail: '',
   };
+}
+
+/**
+ * Create an open file dialog for selecting the storage folder
+ * and save it in the application localStorage.
+ * The dialog point the `{storage_folder}` value if set,
+ * otherwise it point to the default storage folder `{downloads}`.
+ */
+export async function selectStorageFolder() {
+  const fileSelector = await remote.dialog.showOpenDialog({
+    defaultPath: `${getStorageFolder(DEFAULT_DOWNLOAD_FOLDER)}`,
+    properties: ['openDirectory'],
+    title: 'Select folder to save files.',
+  });
+
+  if (fileSelector && !fileSelector.canceled) {
+    setStorageFolder(fileSelector.filePaths[0], DEFAULT_DOWNLOAD_FOLDER);
+  }
 }

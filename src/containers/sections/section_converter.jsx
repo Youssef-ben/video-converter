@@ -14,17 +14,25 @@ export default class SectionConverter extends React.PureComponent {
     this.state = {
       showDetails: false,
       videoDetails: getDefaultVideoInfo(),
+      downloadAsMP4: false,
     };
 
     // Bind async methods.
     this.setDetailsViewAsync = this.setDetailsViewAsync.bind(this);
   }
 
-  async setDetailsViewAsync(url) {
-    // Fetch te video details
-    const details = await fetchVideoInfoAsync(url);
+  async setDetailsViewAsync(url, downloadAsMP4 = false) {
+    try {
+      const details = await fetchVideoInfoAsync(url);
 
-    this.setState({ showDetails: true, videoDetails: details });
+      this.setState({
+        showDetails: true,
+        downloadAsMP4,
+        videoDetails: details,
+      });
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   startProcess = () => {
@@ -48,7 +56,7 @@ export default class SectionConverter extends React.PureComponent {
   };
 
   render() {
-    const { showDetails, videoDetails } = this.state;
+    const { showDetails, videoDetails, downloadAsMP4 } = this.state;
 
     return (
       <>
@@ -62,6 +70,7 @@ export default class SectionConverter extends React.PureComponent {
             videoDetails={videoDetails}
             cancel={this.onCancel}
             startProcess={this.startProcess}
+            downloadAsMP4={downloadAsMP4}
           />
         )}
       </>

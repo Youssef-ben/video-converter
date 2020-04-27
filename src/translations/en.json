@@ -3,8 +3,9 @@
 
   "app.sections.presentation.question": "Need to download and convert a Youtube videos in mp3 format?",
   "app.sections.presentation.description": "Well look no more, <b>Video Converter</b> is a free tool that allow you to convert a Youtube videos to an mp3 file that you can save to your device.",
-  "app.sections.converter.title": "Please past a valid link of the Youtube video in the box bellow to start the process.",
-  "app.sections.converter.button.text": "MP3",
+  "app.sections.converter.title": "Past a valid link of the Youtube video in the box bellow to start the process.",
+  "app.sections.converter.button.text.mp3": "Download as MP3",
+  "app.sections.converter.button.text.mp4": "Download as MP4",
   "app.sections.converter.details.download": "Download",
   "app.sections.converter.details.cancel": "Cancel"
 }
