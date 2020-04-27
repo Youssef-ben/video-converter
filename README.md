@@ -6,25 +6,25 @@ The **Online video converter** is a web/desktop application that will allows you
 
 ## Disclaimer
 
-This application should only be user for **non-copyrighted** materials and open source videos for personal use only.
+This application should be used for **non-copyrighted** materials and open-source videos for personal use only.
 
 If you wish to use any copyrighted videos from Youtube you must obtain expressed permission from the copyright owner.
 
 ## Stack
 
-- [Create React App]():
-- [ReactJS]():
-- [Electron]():
-- [Sass]():
-- [FFmpeg]():
+- [Create React App](https://create-react-app.dev/docs/getting-started/): Create React App is an officially supported way to create single-page React applications. It offers a modern build setup with no configuration.
+- [ReactJS](https://fr.reactjs.org/): JavaScript library for creating user interfaces.
+- [Electron](https://www.electronjs.org/): Develop cross-platform desktop applications with JavaScript, HTML and CSS
+- [Sass](https://sass-lang.com/): Sass is a stylesheet language that’s compiled to CSS.
+- [FFmpeg](https://www.ffmpeg.org/): A complete, cross-platform solution to record, convert and stream audio and video.
 
 ## Dependencies
 
-- [Electron]():
-- [ytdl-core]():
-- [fluent-ffmpeg]():
-- [ffmpeg-static]():
-- [react-bootstrap]():
+- [Electron](https://www.npmjs.com/package/electron).
+- [ytdl-core](https://www.npmjs.com/package/ytdl-core).
+- [fluent-ffmpeg](https://www.npmjs.com/package/fluent-ffmpeg).
+- [ffmpeg-static](https://www.npmjs.com/package/ffmpeg-static).
+- [react-bootstrap](https://www.npmjs.com/package/react-bootstrap).
 
 ## Future Improvements
 
@@ -48,15 +48,11 @@ yarn
 ## Run the application
 yarn run-dev
 
-or
-
-make run
-
 ## Build the application
 yarn build
 
 ## Package the application
-yarn pack-win-electron
+yarn pack-win-electron or make pack-win
 
 ## Lint the project
 yarn lint-fix
