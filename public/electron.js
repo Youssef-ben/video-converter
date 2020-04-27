@@ -86,6 +86,7 @@ function registerHelpMenu() {
           openAboutWindow({
             icon_path: APP_PNG,
             copyright: `Copyright (c) ${new Date().getFullYear()} - Video Converter`,
+            homepage: 'https://github.com/Youssef-ben/video-converter',
             package_json_dir: `${__dirname}/..`,
             license: `${__dirname}/../LICENSE.md`,
             css_path: path.join(__dirname, '/about.css'),

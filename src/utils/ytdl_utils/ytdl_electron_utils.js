@@ -135,9 +135,9 @@ export async function convertMP4ToMP3Async(
 
     // Convert the video duration to time.
     const endTime = getTimeFromDuration(videoDetails.duration);
-
+    
     ffmpeg(mp4Path)
-      .setFfmpegPath(ffmpegPath)
+      .setFfmpegPath(ffmpegPath.replace('app.asar', 'app.asar.unpacked'))
       .format('mp3')
       .audioBitrate(320)
       .output(fs.createWriteStream(mp3Path))

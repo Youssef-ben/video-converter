@@ -1,4 +1,4 @@
-.PHONY: run lint clean-dist clean-build clean-node clean
+.PHONY: run lint pack-win clean-dist clean-build clean-node clean
 	
 run: ## Run the web app in the electron container.
 	@echo "running the"
@@ -7,6 +7,21 @@ run: ## Run the web app in the electron container.
 lint: ## Lint the project and automaticlly fix the problems.
 	@echo "Linting and fixing all the issues..."
 	@yarn lint-fix	
+
+pack-win: ## Build and pack the electron app.
+	@echo "Installing the Reatct-Electron app dependencies..."
+	@yarn
+
+	@echo "Building the Reatct-Electron app..."
+	@yarn build
+
+	@echo "Packing the React-Electron app..."
+	@yarn pack-win-electron
+
+	@echo "Persisting data..."
+	@yarn postinstall-electron
+
+	@echo "Done."
 
 clean-dist: ## Delete the dist folder.
 	@echo "Cleanin the {dist} folder..."
