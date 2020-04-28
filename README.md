@@ -66,3 +66,7 @@ yarn lint-fix
 ## Clean the project
 make clean
 ```
+
+## Preview
+
+![Preview](src/assets/preview.png)
