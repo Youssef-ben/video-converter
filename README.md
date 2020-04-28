@@ -1,6 +1,6 @@
-<h1 align="center">
+<p align="center">
   <a href="https://github.com/Youssef-ben"><img src="https://github.com/Youssef-ben/video-converter/blob/develop/src/assets/logo.png" alt="Online Video converter" width="200"></a>
-</h1>
+</p>
 
 # Online video converter
 
