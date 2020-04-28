@@ -123,4 +123,6 @@ export async function selectStorageFolder() {
   if (fileSelector && !fileSelector.canceled) {
     setStorageFolder(fileSelector.filePaths[0], DEFAULT_DOWNLOAD_FOLDER);
   }
+
+  return getStorageFolder(DEFAULT_DOWNLOAD_FOLDER);
 }

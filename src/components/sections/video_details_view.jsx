@@ -5,6 +5,7 @@ import ProgressBarView from './progress_bar_view.jsx';
 import ThumbnailDetailsView from './thumbnail_details_view.jsx';
 
 // Custom Imports
+import { getAlwaysShowStorageFolderSeclector } from '../../utils/constants';
 import {
   convertStreamToMP4Async,
   convertMP4ToMP3Async,
@@ -147,8 +148,12 @@ export default class VideoDetailsView extends React.PureComponent {
         actionCanceled = false;
         return;
       }
-      //  Open the save file dialog.
-      await selectStorageFolder();
+
+      // Open the save file dialog.
+      // Only if the user selected to do so every time.
+      if (getAlwaysShowStorageFolderSeclector()) {
+        await selectStorageFolder();
+      }
 
       // Get the MP3 file.
       await this.getAsMP3Async(videoDetails);

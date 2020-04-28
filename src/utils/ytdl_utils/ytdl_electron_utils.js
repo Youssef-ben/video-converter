@@ -4,7 +4,7 @@
 
 import AbortedAction from './aborted_action';
 
-import { convertSecondesToHMS } from '../constants';
+import { convertSecondesToHMS, getMp3Bitrate } from '../constants';
 
 import {
   getVideoIdFromUrl,
@@ -141,7 +141,7 @@ export async function convertMP4ToMP3Async(
     ffmpeg(mp4Path)
       .setFfmpegPath(ffmpegPath.replace('app.asar', 'app.asar.unpacked'))
       .format('mp3')
-      .audioBitrate(320)
+      .audioBitrate(getMp3Bitrate())
       .output(fs.createWriteStream(mp3Path))
       .on('progress', function (progress) {
         if (!limitProgressTrigger) {

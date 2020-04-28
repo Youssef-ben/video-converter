@@ -48,7 +48,7 @@ export function getStorageFolder(fallbackFolder) {
 }
 
 /**
- * Set the specified path to the application LocalStorage.
+ * Set the specified path to the application LocalStorage <storage_folder>.
  * If the `{folderPath}` value is null, save the fallback path instead.
  *
  * @param {string} folderPath Path for the storage folder.
@@ -57,4 +57,34 @@ export function getStorageFolder(fallbackFolder) {
 export function setStorageFolder(folderPath, fallbackfolder) {
   localStorage.setItem('storage_folder', folderPath || fallbackfolder);
   return folderPath;
+}
+
+export function setAlwaysShowStorageFolderSeclector(value = true) {
+  localStorage.setItem('always_show_select_folder', value);
+  return value;
+}
+
+export function getAlwaysShowStorageFolderSeclector() {
+  const shouldShow = localStorage.getItem('always_show_select_folder');
+
+  if (shouldShow === 'true' || shouldShow === null) {
+    return true;
+  }
+
+  return false;
+}
+
+export function setMp3Bitrate(value = 320) {
+  localStorage.setItem('mp3_bitrate', parseInt(value));
+  return value;
+}
+
+export function getMp3Bitrate() {
+  let value = localStorage.getItem('mp3_bitrate');
+
+  if (!value) {
+    value = 320;
+  }
+
+  return parseInt(value);
 }

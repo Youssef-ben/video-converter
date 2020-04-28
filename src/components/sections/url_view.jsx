@@ -7,7 +7,7 @@ import { Button, InputGroup, FormControl, Row, Col } from 'react-bootstrap';
 
 // Icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog } from '@fortawesome/free-solid-svg-icons';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
 // Custom Imports
 import { isValidUrl } from '../../utils/ytdl_utils/ytdl_helpers';
@@ -101,7 +101,11 @@ export default class UrlView extends React.PureComponent {
           className="btn-block"
         >
           {mp3ButtonText}
-          {showSpinnerMp3 ? <FontAwesomeIcon icon={faCog} spin /> : <></>}
+          {showSpinnerMp3 ? (
+            <FontAwesomeIcon icon={faCircleNotch} spin />
+          ) : (
+            <></>
+          )}
         </Button>
       </Col>
     );
@@ -126,7 +130,11 @@ export default class UrlView extends React.PureComponent {
           className="btn-block mp4-btn"
         >
           {mp4ButtonText}
-          {showSpinnerMp4 ? <FontAwesomeIcon icon={faCog} spin /> : <></>}
+          {showSpinnerMp4 ? (
+            <FontAwesomeIcon icon={faCircleNotch} spin />
+          ) : (
+            <></>
+          )}
         </Button>
       </Col>
     );

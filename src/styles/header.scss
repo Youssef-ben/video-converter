@@ -1,3 +1,5 @@
+@import "./Variables.scss";
+
 .brand-name {
   vertical-align: middle;
   margin-left: 0.5rem !important;
@@ -5,4 +7,69 @@
   @media (max-width: 576px) {
     font-size: 0.8em !important;
   }
+}
+
+.dropdown {
+  .dropdown-menu {
+    right: 0;
+    left: auto;
+  }
+  .dropdown-toggle {
+    text-decoration: none;
+    font-size: 1.5em;
+
+    &:after {
+      color: $secondary-color;
+      display: none;
+    }
+
+    .fa-bars {
+      &:hover {
+        color: $secondary-color-hover;
+      }
+    }
+  }
+
+  .dropdown-item {
+    font-size: 0.9em;
+
+    &:active {
+      background-color: rgba(0, 0, 0, 0.075);
+    }
+  }
+}
+
+/* blurred background modal for bootstrap v4 */
+body.modal-open > :not(.modal) {
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-body {
+  .form-group {
+    .col-form-label {
+      font-size: 0.9em;
+      font-weight: bold;
+      color: $secondary-color-hover;
+    }
+
+    .form-check-label {
+      font-size: 0.8em;
+    }
+    .custom-control-label {
+      font-size: 0.8em;
+    }
+  }
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  border-color: $primary-color;
+  background-color: $primary-color;
 }

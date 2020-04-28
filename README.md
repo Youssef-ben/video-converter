@@ -28,11 +28,7 @@ If you wish to use any copyrighted videos from Youtube you must obtain expressed
 
 ## Future Improvements
 
-- [ ] Multiple downloads at a time
-- [ ] Preference - Should show or not the `Select Download folder`.
-- [ ] Preference - Save default storage path.
-- [ ] Preference - Choice of bitrate for convertion of the MP3s files.
-- [ ] Preference - Should show or not the `Select Download folder`.
+- [ ] Add multiple videos to download.
 
 ## Getting started
 

@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { Button, Card, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog } from '@fortawesome/free-solid-svg-icons';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
 export default class ThumbnailDetailsView extends React.PureComponent {
   renderCardThumbnail = (videoDetails) => (
@@ -51,7 +51,11 @@ export default class ThumbnailDetailsView extends React.PureComponent {
       >
         {btnDownload}
 
-        {disableDownloadBtn ? <FontAwesomeIcon icon={faCog} spin /> : <></>}
+        {disableDownloadBtn ? (
+          <FontAwesomeIcon icon={faCircleNotch} spin />
+        ) : (
+          <></>
+        )}
       </Button>
     );
   };

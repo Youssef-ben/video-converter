@@ -1,5 +1,5 @@
 import React from 'react';
-import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 import { IntlContext } from './intl_provider_wrapper.jsx';
 import { LANGUAGES } from './language.jsx';
 
@@ -8,21 +8,19 @@ const LanguageSwitcher = () => (
     {({ switchToLanguage, locale }) => (
       <>
         {locale === LANGUAGES.ENGLISH ? (
-          <Nav.Link
-            className="text-secondary"
+          <NavDropdown.Item
+            className="text-secondary pt-0 pb-0"
             onClick={() => switchToLanguage(LANGUAGES.FRENCH)}
           >
-            {' '}
-            {LANGUAGES.FRENCH.toUpperCase()}{' '}
-          </Nav.Link>
+            Français
+          </NavDropdown.Item>
         ) : (
-          <Nav.Link
-            className="text-secondary"
+          <NavDropdown.Item
+            className="text-secondary pt-0 pb-0"
             onClick={() => switchToLanguage(LANGUAGES.ENGLISH)}
           >
-            {' '}
-            {LANGUAGES.ENGLISH.toUpperCase()}{' '}
-          </Nav.Link>
+            English
+          </NavDropdown.Item>
         )}
       </>
     )}

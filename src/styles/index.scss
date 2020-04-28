@@ -36,7 +36,7 @@ body {
     border-color: $primary-color;
 
     &:hover {
-      background-color: #1f466d !important;
+      background-color: $primary-color-hover !important;
     }
   }
 
@@ -45,7 +45,7 @@ body {
     border-color: $secondary-color;
 
     &:hover {
-      background-color: #535a61 !important;
+      background-color: $secondary-color-hover !important;
     }
   }
 }
