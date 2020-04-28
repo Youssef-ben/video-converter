@@ -1,68 +1,72 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  <a href="https://github.com/Youssef-ben"><img src="https://github.com/Youssef-ben/video-converter/blob/develop/src/assets/logo.png" alt="Online Video converter" width="200"></a>
+</p>
 
-## Available Scripts
+# Online video converter
 
-In the project directory, you can run:
+The idea of this project came from the fact that most of the free tools that exist on the internet have some restrictions like the length of the video, must watch ads, or a confusion UI with a lot of download buttons. With this, the need to create a free tool that has none of the inconvenience or restrictions like the others became stronger.
 
-### `yarn start`
+The **Online video converter** is a web/desktop application that will allows you to download youtube videos as `MP4s` or convert them to `MP3s` without any restriction.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Disclaimer
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+This application should be used for **non-copyrighted** and open-source videos only and should be for personal use only.
 
-### `yarn test`
+If you wish to use any copyrighted videos from Youtube you must obtain expressed permission from the copyright owner.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Stack
 
-### `yarn build`
+- [Create React App](https://create-react-app.dev/docs/getting-started/): Create React App is an officially supported way to create single-page React applications. It offers a modern build setup with no configuration.
+- [ReactJS](https://fr.reactjs.org/): JavaScript library for creating user interfaces.
+- [Electron](https://www.electronjs.org/): Develop cross-platform desktop applications with JavaScript, HTML and CSS
+- [Sass](https://sass-lang.com/): Sass is a stylesheet language that’s compiled to CSS.
+- [FFmpeg](https://www.ffmpeg.org/): A complete, cross-platform solution to record, convert and stream audio and video.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Dependencies
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- [Electron](https://www.npmjs.com/package/electron).
+- [ytdl-core](https://www.npmjs.com/package/ytdl-core).
+- [fluent-ffmpeg](https://www.npmjs.com/package/fluent-ffmpeg).
+- [ffmpeg-static](https://www.npmjs.com/package/ffmpeg-static).
+- [react-bootstrap](https://www.npmjs.com/package/react-bootstrap).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Future Improvements
 
-### `yarn eject`
+- [ ] Make the app as a web page.
+- [ ] Add multiple videos to download.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Getting started
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To start developing or using the application you need to make sure that you have [NodeJs v12.16.x](https://nodejs.org/dist/latest-v12.x/node-v12.16.2-x64.msi) and the package manager [yarn v1.22.x](https://classic.yarnpkg.com/en/docs/install#windows-stable) installed.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Useful commands
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
 
-## Learn More
+## Install dependencies
+yarn
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Run the application
+yarn run-dev
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+or
 
-### Code Splitting
+yarn start
+yarn run-electron
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Build the application
+yarn build
 
-### Analyzing the Bundle Size
+## Package the application
+yarn pack-win-electron or make pack-win
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## Lint the project
+yarn lint-fix
 
-### Making a Progressive Web App
+## Clean the project
+make clean
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## Preview
 
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+![Preview](src/assets/preview.png)

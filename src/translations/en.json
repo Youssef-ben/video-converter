@@ -1,0 +1,20 @@
+{
+  "app.name.id": "Video Converter",
+
+  "app.header.dropdown.modal.preferences.title": "Preferences",
+  "app.sections.presentation.question": "Need to download and convert a Youtube videos in mp3 format?",
+  "app.sections.presentation.description": "Well look no more, <b>Video Converter</b> is a free tool that allow you to convert a Youtube videos to an mp3 file that you can save to your device.",
+  "app.sections.converter.title": "Past a valid link of a youtube video in the box bellow to start the process.",
+  "app.sections.converter.button.text.mp3": "Download as MP3",
+  "app.sections.converter.button.text.mp4": "Download as MP4",
+  "app.sections.converter.details.download": "Download",
+  "app.sections.converter.details.cancel": "Cancel",
+  "app.modal.preferences.storage.selector.default": "Select default storage folder",
+  "app.modal.preferences.storage.selector.show": "Show storage folder selector",
+  "app.modal.preferences.storage.selector.show.description": "If Active, the folder selector will always be shown. Otherwise, the app will use the default storage location (downloads).",
+  "app.modal.preferences.storage.bitrate": "MP3 Bitrate",
+  "app.modal.preferences.storage.bitrate.full": "320 (High Quality)",
+  "app.modal.preferences.storage.bitrate.high": "191 (Good Quality)",
+  "app.modal.preferences.storage.bitrate.cd": "160 (CD Quality)",
+  "app.modal.preferences.storage.bitrate.radio": "130 (Radio Quality)"
+}
