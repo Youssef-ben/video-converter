@@ -17,7 +17,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "run-dev": "concurrently \"yarn start\" \"wait-on http://localhost:3000 && electron .\"",
-    "start-electron": "electron .",
+    "run-electron": "electron .",
     "pack-win-electron": "yarn build & electron-builder build --win -c.extraMetadata.main=build/electron.js --publish never",
     "postinstall-electron": "electron-builder install-app-deps",
     "lint": "yarn eslint src/**/*.{js,jsx}",

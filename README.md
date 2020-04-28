@@ -6,7 +6,7 @@ The **Online video converter** is a web/desktop application that will allows you
 
 ## Disclaimer
 
-This application should be used for **non-copyrighted** materials and open-source videos for personal use only.
+This application should be used for **non-copyrighted** and open-source videos only and should be for personal use only.
 
 If you wish to use any copyrighted videos from Youtube you must obtain expressed permission from the copyright owner.
 
@@ -28,6 +28,7 @@ If you wish to use any copyrighted videos from Youtube you must obtain expressed
 
 ## Future Improvements
 
+- [ ] Make the app as a web page.
 - [ ] Add multiple videos to download.
 
 ## Getting started
@@ -43,6 +44,11 @@ yarn
 
 ## Run the application
 yarn run-dev
+
+or
+
+yarn start
+yarn run-electron
 
 ## Build the application
 yarn build
