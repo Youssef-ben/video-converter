@@ -1,3 +1,7 @@
+<h1 align="center">
+  <a href="https://github.com/Youssef-ben"><img src="https://github.com/Youssef-ben/video-converter/blob/develop/src/assets/logo.png" alt="Online Video converter" width="200"></a>
+</h1>
+
 # Online video converter
 
 The idea of this project came from the fact that most of the free tools that exist on the internet have some restrictions like the length of the video, must watch ads, or a confusion UI with a lot of download buttons. With this, the need to create a free tool that has none of the inconvenience or restrictions like the others became stronger.
