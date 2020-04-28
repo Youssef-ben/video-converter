@@ -8,7 +8,7 @@ lint: ## Lint the project and automaticlly fix the problems.
 	@echo "Linting and fixing all the issues..."
 	@yarn lint-fix	
 
-pack-win: ## Build and pack the electron app.
+pack-win: clean-dist clean-build ## Build and pack the electron app.
 	@echo "Installing the Reatct-Electron app dependencies..."
 	@yarn
 

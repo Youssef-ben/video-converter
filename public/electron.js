@@ -28,8 +28,8 @@ const menuBar = [];
  * Set the Electron window options.
  */
 function getWindowOptions() {
-  const windowWidth = isDev ? 1500 : 900;
-  const windowheight = isDev ? 800 : 700;
+  const windowWidth = isDev ? 1500 : 780;
+  const windowheight = isDev ? 800 : 595;
 
   return {
     title: 'Convert and download video as MP3 or MP4.',

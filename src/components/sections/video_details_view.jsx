@@ -182,8 +182,11 @@ export default class VideoDetailsView extends React.PureComponent {
     const { videoDetails } = this.props;
 
     try {
-      //  Open the save file dialog.
-      await selectStorageFolder();
+      // Open the save file dialog.
+      // Only if the user selected to do so every time.
+      if (getAlwaysShowStorageFolderSeclector()) {
+        await selectStorageFolder();
+      }
 
       // Get the MP4 file.
       await this.getAsMP4Async(videoDetails, true);
