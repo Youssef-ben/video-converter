@@ -32,6 +32,7 @@ If you wish to use any copyrighted videos from Youtube you must obtain expressed
 
 ## Future Improvements
 
+- [ ] Allow users to browse files to convert.
 - [ ] Make the app as a web page.
 - [ ] Add multiple videos to download.
 
