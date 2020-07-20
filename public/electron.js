@@ -28,7 +28,7 @@ const menuBar = [];
  * Set the Electron window options.
  */
 function getWindowOptions() {
-  const windowWidth = isDev ? 1500 : 780;
+  const windowWidth = isDev ? 1500 : 800;
   const windowheight = isDev ? 800 : 595;
 
   return {
@@ -44,73 +44,82 @@ function getWindowOptions() {
 }
 
 /* ==================== REGISTER MENUS ================= */
+function quiteActionMenu() {
+  return {
+    label: 'Quit',
+    accelerator: 'CmdOrCtrl+shift+Q',
+    click() {
+      app.quit();
+    },
+  };
+}
+
+function editActionMenu() {
+  return [
+    { role: 'Reload', accelerator: 'CmdOrCtrl+R', selector: 'reload:' },
+    { role: 'Undo', accelerator: 'CmdOrCtrl+Z', selector: 'undo:' },
+    { role: 'Redo', accelerator: 'CmdOrCtrl+Y', selector: 'redo:' },
+    { type: 'separator' },
+    { role: 'Cut', accelerator: 'CmdOrCtrl+X', selector: 'cut:' },
+    { role: 'Copy', accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
+    { role: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
+  ];
+}
+
+function aboutActionMenu() {
+  return {
+    label: 'About',
+    accelerator: 'CmdOrCtrl+shift+A',
+    click: () =>
+      openAboutWindow({
+        icon_path: APP_PNG,
+        copyright: `Copyright (c) ${new Date().getFullYear()} - Video Converter`,
+        homepage: 'https://github.com/Youssef-ben/video-converter',
+        package_json_dir: `${__dirname}/..`,
+        license: `${__dirname}/../LICENSE.md`,
+        css_path: path.join(__dirname, '/about.css'),
+        win_options: {
+          width: 600,
+          height: 450,
+          maximizeable: false,
+          resizable: false,
+          minimizable: false,
+
+          parent: mainWindow,
+          modal: true,
+        },
+      }),
+  };
+}
+
+function devToolActionMenu() {
+  return {
+    label: 'Open Dev Tools',
+    click: () => {
+      mainWindow.webContents.openDevTools();
+    },
+    accelerator: 'CmdOrCtrl+shift+i',
+  };
+}
+
 function registerFileMenu() {
   menuBar.push({
     label: 'File',
-    submenu: [
-      { type: 'separator' },
-      {
-        label: 'Quit',
-        accelerator: 'CmdOrCtrl+shift+Q',
-        click() {
-          app.quit();
-        },
-      },
-    ],
+    submenu: [{ type: 'separator' }, quiteActionMenu()],
   });
 }
 
 function registerEditMenu() {
   menuBar.push({
     label: 'Edit',
-    submenu: [
-      { role: 'Reload', accelerator: 'CmdOrCtrl+R', selector: 'reload:' },
-      { role: 'Undo', accelerator: 'CmdOrCtrl+Z', selector: 'undo:' },
-      { role: 'Redo', accelerator: 'CmdOrCtrl+Y', selector: 'redo:' },
-      { type: 'separator' },
-      { role: 'Cut', accelerator: 'CmdOrCtrl+X', selector: 'cut:' },
-      { role: 'Copy', accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
-      { role: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
-    ],
+    submenu: editActionMenu(),
   });
 }
 
 function registerHelpMenu() {
   menuBar.push({
     label: '?',
-    submenu: [
-      {
-        label: 'About',
-        accelerator: 'CmdOrCtrl+shift+A',
-        click: () =>
-          openAboutWindow({
-            icon_path: APP_PNG,
-            copyright: `Copyright (c) ${new Date().getFullYear()} - Video Converter`,
-            homepage: 'https://github.com/Youssef-ben/video-converter',
-            package_json_dir: `${__dirname}/..`,
-            license: `${__dirname}/../LICENSE.md`,
-            css_path: path.join(__dirname, '/about.css'),
-            win_options: {
-              width: 600,
-              height: 450,
-              maximizeable: false,
-              resizable: false,
-              minimizable: false,
-
-              parent: mainWindow,
-              modal: true,
-            },
-          }),
-      },
-      { type: 'separator' },
-      {
-        label: 'Open Dev Tools',
-        click: () => {
-          mainWindow.webContents.openDevTools();
-        },
-        accelerator: 'CmdOrCtrl+shift+i',
-      },
-    ],
+    submenu: [aboutActionMenu(), { type: 'separator' }, devToolActionMenu()],
   });
 
   // Automatically open the dev tool if it's dev environment.
@@ -137,7 +146,30 @@ function createWindow() {
 }
 
 /* ================= SET APP LISTENERS ================= */
-app.on('ready', createWindow);
+app.on('ready', function () {
+  createWindow();
+
+  mainWindow.webContents.on('context-menu', function (e, params) {
+    const contextualMenu = [
+      { role: 'Reload', accelerator: 'CmdOrCtrl+R', selector: 'reload:' },
+      { role: 'Cut', accelerator: 'CmdOrCtrl+X', selector: 'cut:' },
+      { role: 'Copy', accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
+      { role: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
+      { type: 'separator' },
+      aboutActionMenu(),
+      { type: 'separator' },
+      devToolActionMenu(),
+      { type: 'separator' },
+      quiteActionMenu(),
+    ];
+
+    Menu.buildFromTemplate(contextualMenu).popup(
+      mainWindow,
+      params.x,
+      params.y
+    );
+  });
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {

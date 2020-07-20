@@ -24,19 +24,19 @@ pack-win: clean-dist clean-build ## Build and pack the electron app.
 	@echo "Done."
 
 clean-dist: ## Delete the dist folder.
-	@echo "Cleanin the {dist} folder..."
+	@echo "Cleaning the {dist} folder..."
 	@rm -rf dist
 	
 clean-build: ## Delete the Build folder.
-	@echo "Cleanin the {build} folder..."
+	@echo "Cleaning the {build} folder..."
 	@rm -rf build
 
 clean-node: ## Delete the node module folder.
-	@echo "Cleanin the {node-modules} folder..."
+	@echo "Cleaning the {node-modules} folder..."
 	@rm -rf node_modules
 	
 clean: clean-dist clean-build clean-node ## Delete all the folders [build, dist, node_modules]
-	@echo "Cleanin other files and folders..."
+	@echo "Cleaning other files and folders..."
 	@rm -rf yarn-error.log
 
 	@echo "done."

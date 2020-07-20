@@ -1,6 +1,6 @@
 {
   "name": "video-converter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "productName": "Online Video Converter",
   "description": "Applicaton to convert and download youtube videos as MP3s or MP4s.",
   "license": "MIT",
@@ -68,7 +68,7 @@
     "react-intl": "^4.3.1",
     "react-scripts": "3.4.1",
     "sanitize-filename": "^1.6.3",
-    "ytdl-core": "^2.0.1"
+    "ytdl-core": "^3.1.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
