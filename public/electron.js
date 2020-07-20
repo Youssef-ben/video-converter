@@ -28,7 +28,7 @@ const menuBar = [];
  * Set the Electron window options.
  */
 function getWindowOptions() {
-  const windowWidth = isDev ? 1500 : 780;
+  const windowWidth = isDev ? 1500 : 800;
   const windowheight = isDev ? 800 : 595;
 
   return {
