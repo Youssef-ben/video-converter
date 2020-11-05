@@ -25,13 +25,14 @@ export async function fetchVideoInfoAsync(url) {
 
   // Get the video details.
   const info = await ytdl.getInfo(videoId);
+  const details = info.videoDetails;
 
   return {
     id: videoId,
-    title: sanitize(info.title),
-    duration: convertSecondesToHMS(info.length_seconds),
-    link: info.video_url,
-    thumbnail: info.player_response.videoDetails.thumbnail.thumbnails[2],
+    title: sanitize(details.title),
+    duration: convertSecondesToHMS(details.lengthSeconds),
+    link: details.video_url,
+    thumbnail: details.thumbnail.thumbnails[2],
   };
 }
 

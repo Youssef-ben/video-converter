@@ -39,6 +39,7 @@ function getWindowOptions() {
     icon: APP_ICON,
     webPreferences: {
       nodeIntegration: true,
+      enableRemoteModule: true,
     },
   };
 }
