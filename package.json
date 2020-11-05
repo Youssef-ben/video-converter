@@ -1,6 +1,6 @@
 {
   "name": "video-converter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "productName": "Online Video Converter",
   "description": "Applicaton to convert and download youtube videos as MP3s or MP4s.",
   "license": "MIT",
