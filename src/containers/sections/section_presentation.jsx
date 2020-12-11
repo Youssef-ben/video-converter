@@ -18,9 +18,8 @@ const SectionPresentation = () => {
   const description = (
     <FormattedMessage
       id="app.sections.presentation.description"
-      defaultMessage={
-        'Well look no more, <b>Video Converter</b> is a free tool that allow you to convert a Youtuben videos to an mp3 file that you can save to your device.'
-      }
+      defaultMessage="Well look no more, <b>Video Converter</b> is a free tool that allow you to convert a Youtube
+       videos to an mp3 file that you can save to your device."
       values={{ b: (...chunks) => <strong>{chunks}</strong> }} // eslint-disable-line react/display-name
     />
   );
