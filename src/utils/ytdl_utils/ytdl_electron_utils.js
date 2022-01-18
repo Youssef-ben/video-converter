@@ -32,7 +32,7 @@ export async function fetchVideoInfoAsync(url) {
     title: sanitize(details.title),
     duration: convertSecondesToHMS(details.lengthSeconds),
     link: details.video_url,
-    thumbnail: details.thumbnail.thumbnails[2],
+    thumbnail: details.thumbnails[2],
   };
 }
 
