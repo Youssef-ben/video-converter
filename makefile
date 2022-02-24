@@ -1,42 +1,46 @@
 .PHONY: run lint pack-win clean-dist clean-build clean-node clean
-	
+
+define print_inf
+	@echo "[INFO] - $(1)"
+endef
+
 run: ## Run the web app in the electron container.
-	@echo "running the web app and electron container..."
+	$(call print_inf,'Running the web app and electron container...')
 	@yarn run-dev
 
 lint: ## Lint the project and automaticlly fix the problems.
-	@echo "Linting and fixing all the issues..."
+	$(call print_inf,'Linting and fixing all the issues...')
 	@yarn lint-fix	
 
 pack-win: clean-dist clean-build ## Build and pack the electron app.
-	@echo "Installing the Reatct-Electron app dependencies..."
+	$(call print_inf,'Installing the Reatct-Electron app dependencies...')
 	@yarn
 
-	@echo "Building the Reatct-Electron app..."
+	$(call print_inf,'Building the Reatct-Electron app...')
 	@yarn build
 
-	@echo "Packing the React-Electron app..."
+	$(call print_inf,'Packing the React-Electron app...')
 	@yarn pack-win-electron
 
-	@echo "Persisting data..."
+	$(call print_inf,'Persisting data...')
 	@yarn postinstall-electron
 
-	@echo "Done."
+	$(call print_inf,'Done.')
 
 clean-dist: ## Delete the dist folder.
-	@echo "Cleaning the {dist} folder..."
+	$(call print_inf,'Cleaning the {dist} folder...')
 	@rm -rf dist
 	
 clean-build: ## Delete the Build folder.
-	@echo "Cleaning the {build} folder..."
+	$(call print_inf,'Cleaning the {build} folder...')
 	@rm -rf build
 
 clean-node: ## Delete the node module folder.
-	@echo "Cleaning the {node-modules} folder..."
+	$(call print_inf,'Cleaning the {distnode-modules} folder...')
 	@rm -rf node_modules
 	
-clean: clean-dist clean-build clean-node ## Delete all the folders [build, dist, node_modules]
-	@echo "Cleaning other files and folders..."
+clean: clean-dist clean-build clean-node ## Delete all the folders [build, dist, node_modules].
+	$(call print_inf,'Cleaning other files and folders...')
 	@rm -rf yarn-error.log
 
-	@echo "done."
+	$(call print_inf,'Done.')
