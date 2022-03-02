@@ -1,0 +1,32 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "eslint.validate": ["typescript", "javascript"],
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "cSpell.words": [
+    "APPDATA",
+    "asar",
+    "asynciterable",
+    "audioonly",
+    "camelcase",
+    "Ffprobe",
+    "HHMM",
+    "highestaudio",
+    "highestvideo",
+    "highres",
+    "lowestaudio",
+    "lowestvideo",
+    "middlewares",
+    "snakecase",
+    "timemark",
+    "tsoa",
+    "videoonly",
+    "vytc",
+    "webm",
+    "youtu",
+    "ytdl"
+  ]
+}
