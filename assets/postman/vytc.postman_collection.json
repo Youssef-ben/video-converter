@@ -1,0 +1,249 @@
+{
+	"info": {
+		"_postman_id": "55885686-9cbc-4b5b-a403-12885581a097",
+		"name": "VYTC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Security",
+			"item": [
+				{
+					"name": "vytc - Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Login\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"\r",
+									"    var jsonData = JSON.parse(responseBody);\r",
+									"    postman.setEnvironmentVariable(\"AccessToken\", jsonData.result.access_token);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"passphrase\": \"{{Passphrase}}\"\r\n}"
+						},
+						"url": {
+							"raw": "{{Uri}}/security/login",
+							"host": [
+								"{{Uri}}"
+							],
+							"path": [
+								"security",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "vytc - Refresh",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Refresh\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"\r",
+									"    var jsonData = JSON.parse(responseBody);\r",
+									"    postman.setEnvironmentVariable(\"access_token\", jsonData.result.access_token);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Uri}}/security/refresh",
+							"host": [
+								"{{Uri}}"
+							],
+							"path": [
+								"security",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "vytc - Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Logout\", function () {\r",
+									"    pm.response.to.be.status(200);\r",
+									"\r",
+									"    var jsonData = JSON.parse(responseBody);\r",
+									"    postman.setEnvironmentVariable(\"access_token\", \"\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer Value",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"passphrase\": \"#Domo$Arigato&2\"\r\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/security/logout",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"security",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Server",
+			"item": [
+				{
+					"name": "Server - Config",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Uri}}/server",
+							"host": [
+								"{{Uri}}"
+							],
+							"path": [
+								"server"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Worker",
+			"item": [
+				{
+					"name": "Worker - Details - Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Uri}}/worker/fetch?videoUrl=https://www.youtube.com/watch?v=2N4SjqaKPA8",
+							"host": [
+								"{{Uri}}"
+							],
+							"path": [
+								"worker",
+								"fetch"
+							],
+							"query": [
+								{
+									"key": "videoUrl",
+									"value": "https://www.youtube.com/watch?v=2N4SjqaKPA8"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{AccessToken}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}

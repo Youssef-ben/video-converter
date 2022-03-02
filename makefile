@@ -1,46 +1,88 @@
-.PHONY: run lint pack-win clean-dist clean-build clean-node clean
+.PHONEY: build-server build-client build-images start-server start-client start stop-server stop-client stop remove-server remove-client remove clean help
 
-define print_inf
-	@echo "[INFO] - $(1)"
+# Must include the environment file to be able to use the docker-compose.
+include .env
+
+SERVER_VERSION	=	$(shell cat ./src/server/package.json | grep -oP '(?<="version": ").*(?=",)')
+CLIENT_VERSION	=	$(shell cat ./src/client/package.json | grep -oP '(?<="version": ").*(?=",)')
+
+SERVER_IMAGE_PATH = ${SERVER_IMAGE_NAME}:${SERVER_VERSION}
+CLIENT_IMAGE_PATH = ${CLIENT_IMAGE_NAME}:${CLIENT_VERSION}
+
+# 1 - Message
+# 2 - Action
+define run_compose
+	@echo "[INF] - $(1)"
+
+	@SERVER_IMAGE_NAME=${SERVER_IMAGE_PATH} \
+	CLIENT_IMAGE_NAME=${CLIENT_IMAGE_PATH} \
+	docker-compose -f docker/docker-compose.yml --env-file ./.env  $(2)
 endef
 
-run: ## Run the web app in the electron container.
-	$(call print_inf,'Running the web app and electron container...')
-	@yarn run-dev
+define show_container_url
+	@echo "[INF] - The container {$(1)} is up and running and listening on {$(2)}!"
+endef
 
-lint: ## Lint the project and automaticlly fix the problems.
-	$(call print_inf,'Linting and fixing all the issues...')
-	@yarn lint-fix	
+define remove-image
+	@echo "[INF] - Removing the image {$(1)}..."
 
-pack-win: clean-dist clean-build ## Build and pack the electron app.
-	$(call print_inf,'Installing the Reatct-Electron app dependencies...')
-	@yarn
+	@if [ $(shell docker image ls -q --filter 'reference=$(1)' | wc -l | sed -e 's/^[ \t]*//') -eq 1 ]; then \
+		docker rmi $(1) > /dev/null; \
+	fi
+endef
 
-	$(call print_inf,'Building the Reatct-Electron app...')
-	@yarn build
+build-server: ## Build the api server docker image.
+	$(call run_compose,Building the {API server} docker image..., build --no-cache --force-rm --compress --progress=plain $(SERVER_CONTAINER_NAME))
 
-	$(call print_inf,'Packing the React-Electron app...')
-	@yarn pack-win-electron
+build-client: ## Build the web client docker image.
+	$(call run_compose,Building the {web client} docker image..., build --no-cache --force-rm --compress --progress=plain $(CLIENT_CONTAINER_NAME))
 
-	$(call print_inf,'Persisting data...')
-	@yarn postinstall-electron
+build-images: build-server build-client ## Builds the API server and the web client docker image.
+	@echo "[INF] - Done."
 
-	$(call print_inf,'Done.')
-
-clean-dist: ## Delete the dist folder.
-	$(call print_inf,'Cleaning the {dist} folder...')
-	@rm -rf dist
+start-server: ## Starts the API Server container.
+	$(call run_compose,Starting the {Api server} container..., up -d $(SERVER_CONTAINER_NAME)) > /dev/null
+	$(call show_container_url,API server,http://localhost:$(SERVER_PORT))
 	
-clean-build: ## Delete the Build folder.
-	$(call print_inf,'Cleaning the {build} folder...')
-	@rm -rf build
+start-client: ## Starts the web client container.
+	$(call run_compose,Starting the {web client} container..., up -d $(CLIENT_CONTAINER_NAME)) > /dev/null
+	$(call show_container_url,web,http://localhost:$(CLIENT_PORT))
 
-clean-node: ## Delete the node module folder.
-	$(call print_inf,'Cleaning the {distnode-modules} folder...')
-	@rm -rf node_modules
+start: start-server start-client ## Starts the API server and the web client container.
+	@echo "[INF] - Done."
 	
-clean: clean-dist clean-build clean-node ## Delete all the folders [build, dist, node_modules].
-	$(call print_inf,'Cleaning other files and folders...')
-	@rm -rf yarn-error.log
+stop-server: ## Stops the API server container.
+	$(call run_compose,Stopping the {API server} container..., stop $(SERVER_CONTAINER_NAME)) > /dev/null
 
-	$(call print_inf,'Done.')
+stop-client: ## Stops the web client container.
+	$(call run_compose,Stopping the {web client} container..., stop $(CLIENT_CONTAINER_NAME))  > /dev/null
+
+stop: stop-server stop-client ## Stops the API server and web client containers.
+	@echo "[INF] - Done."
+
+remove-server: stop-server ## Removes the API server container and its volumes.
+	$(call run_compose,Removing the {API server} container..., rm -v -s -f $(SERVER_CONTAINER_NAME)) > /dev/null
+
+remove-client: stop-client ## Removes the web client container and its volumes.
+	$(call run_compose,Removing the {web client} container..., rm -v -s -f $(CLIENT_CONTAINER_NAME)) > /dev/null
+
+remove: remove-server remove-client ## Removes the API server and web client container
+	@echo "[INF] - Done."
+
+clean: remove ## Removes the API server and web client containers and images.
+	$(call remove-image,$(SERVER_IMAGE_PATH)) > /dev/null
+	$(call remove-image,$(CLIENT_IMAGE_PATH)) > /dev/null
+	$(call run_compose,Cleaning any leftover..., down --rmi "all" --remove-orphans -v) > /dev/null
+
+	@echo "[INF] - Done."
+
+help: ## Shows the Current Makefile Commands.
+	@echo ''
+	@echo '========================================= [COMMANDS] ==========================================='
+	@grep -E '^[a-zA-Z_-]+:.*$$' ./Makefile | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+	@echo '================================================================================================'
+
+	@echo ''
+	@echo '====================================== [SERVER COMMANDS] ======================================='
+	@grep -E '^[a-zA-Z_-]+:.*$$' ./src/server/Makefile | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+	@echo '================================================================================================'
