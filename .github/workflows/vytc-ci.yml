@@ -8,8 +8,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "16"
-          cache: "npm"
-          cache-dependency-path: subdir/package-lock.json
+          cache: "yarn"
       - run: cd ./src/server
       - run: yarn
       - run: yarn test
