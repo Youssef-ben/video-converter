@@ -20,7 +20,7 @@
   "allowed_guests": "*",
 
   "security": {
-    "duration_by_minutes": 10,
+    "duration_in_minutes": 1440,
     "_comment_passphrase": "api&test@",
     "secret_key": "default-e9667a24-32e6-4140-83e4-9bf0d84edf1d-token",
     "passphrase": "$2a$12$xBdGc4bANl6DqaYE6tOnyer0U7lc8bK/3DJDwj5WLUeLawHTts/fu"

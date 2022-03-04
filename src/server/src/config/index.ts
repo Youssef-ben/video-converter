@@ -74,15 +74,15 @@ class ApiConfig {
    */
   private setupFromEnvironmentFile(): void {
     logger.debug(`Config::Overriding the configuration using the (.env) file...`);
-    const { allowed_guests, duration_by_minutes, secret_key, passphrase } = process.env;
+    const { allowed_guests, duration_in_minutes, secret_key, passphrase } = process.env;
     const { security } = this.config;
 
     // Setup the allowed domains.
     this.config.allowed_guests = allowed_guests ?? this.config.allowed_guests;
 
     // Setup the Security section.
-    const duration = duration_by_minutes || undefined;
-    this.config.security.duration_by_minutes = duration ? parseInt(duration) : security.duration_by_minutes;
+    const duration = duration_in_minutes || undefined;
+    this.config.security.duration_in_minutes = duration ? parseInt(duration) : security.duration_in_minutes;
     this.config.security.secret_key = secret_key || security.secret_key;
     this.config.security.passphrase = passphrase || security.passphrase;
     logger.debug(`Config::Overriding the configuration using the (.env) finished successfuly!`);
@@ -112,7 +112,7 @@ class ApiConfig {
     if (!this.config.security) {
       errors.push(msg.format('Security section'));
     }
-    if (!this.config.security.duration_by_minutes || this.config.security.duration_by_minutes < 1) {
+    if (!this.config.security.duration_in_minutes || this.config.security.duration_in_minutes < 1) {
       errors.push(msg.format('duration by minutes'));
     }
     if (!this.config.security.secret_key) {

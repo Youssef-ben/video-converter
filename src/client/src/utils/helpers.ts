@@ -106,7 +106,7 @@ export const refreshAccessToken = async (): Promise<void> => {
     });
 
     localStorage.setItem(LOCAL_STORAGE_KEYS.token, data.result.access_token);
-  }, 10 * 60 * 1000); // Minutes after which we should refresh the token
+  }, 20 * 60 * 1000); // Minutes after which we should refresh the token
 };
 
 export const clearAccessToken = (): void => {

@@ -16,7 +16,7 @@ interface ISecurityService {
 
 class SecurityService implements ISecurityService {
   private nextJob: Date;
-  JOB_RECURRENCE = 15; // every 15 minutes
+  JOB_RECURRENCE = 1440; // every 15 minutes
 
   private static AllowedTokens: Array<SavedAccessTokens> = new Array<SavedAccessTokens>();
 
@@ -32,7 +32,7 @@ class SecurityService implements ISecurityService {
     this.options = {
       algorithm: 'HS256',
       audience: appConfig.allowed_guests.split(';'), // List Of Allowed clients
-      expiresIn: this.settings.duration_by_minutes * 60, // Calculate the secondes
+      expiresIn: this.settings.duration_in_minutes * 60, // Calculate the secondes
     };
 
     this.runBackgroundJob();
@@ -52,7 +52,7 @@ class SecurityService implements ISecurityService {
 
     // Calculate the expiration date.
     const expiresDate = new Date();
-    expiresDate.setMinutes(expiresDate.getMinutes() + this.settings.duration_by_minutes);
+    expiresDate.setMinutes(expiresDate.getMinutes() + this.settings.duration_in_minutes);
 
     SecurityService.AllowedTokens.push({
       id: jwtId,

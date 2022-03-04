@@ -13,7 +13,7 @@ type AppSection = {
 };
 
 export type SecuritySection = {
-  duration_by_minutes: number;
+  duration_in_minutes: number;
   secret_key: string;
   passphrase: string;
 };
