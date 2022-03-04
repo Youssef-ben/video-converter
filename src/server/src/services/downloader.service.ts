@@ -19,8 +19,9 @@ class DownloaderService {
    * Start the download process based on the file type.
    *
    * The following logic is considered to be the best option to download a video or audio file
-   * from youtube using {ytdl-core} library, since when using the option {highest} it download
-   * the file with the best quality audio and video and this gives a low quality file.
+   * from youtube using {ytdl-core} library, since when using the option {highest} of the ytdl core
+   * library the file is downloaded with the combination of the best audio and video which gives a low quality file
+   * instead of the high resolution we're looking for.
    *
    * Audio:
    *  - Download the {audio} file from youtube with the given quality.
@@ -80,7 +81,7 @@ class DownloaderService {
    *
    * @param key The temporary key of the video.
    * @param title The title of the video.
-   * @param extension The extension of the video.
+   * @param type The file type [audio | video].
    * @returns Return the Downloaded video full path and details.
    */
   public getDownloadedVideo = (key: string, title: string, type: string): FileDownloadDetails | null => {

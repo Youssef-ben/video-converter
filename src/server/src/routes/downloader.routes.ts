@@ -59,7 +59,9 @@ class DownloaderRoutes extends BaseRoutesConfig {
 
         // Clean the resources.
         logger.debug(this.loggerId + 'Downloading::Cleaning the temporary files...');
-        removeSync(response.filePath);
+        setTimeout(() => {
+          removeSync(response.filePath);
+        }, 600000); // 10 mins
       });
     });
 

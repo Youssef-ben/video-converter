@@ -3,7 +3,7 @@ import ffmpeg from 'fluent-ffmpeg';
 import ffmpegPath from 'ffmpeg-static';
 import ffprobePath from 'ffprobe-static';
 import { DownloadProgressEvent, WsMessages } from '../models/vytc/websocket.events';
-import { getFilePath, getFileTemporaryPath } from '../utils/helpers';
+import { convertHmsToSeconds, getFilePath, getFileTemporaryPath } from '../utils/helpers';
 import { logger } from '../utils/winston.logger';
 import { createWriteStream, removeSync } from 'fs-extra';
 import { FileType } from '../models/vytc/file_extensions.enum';
@@ -26,20 +26,22 @@ class FFmpegService {
       const progressText = forAudio ? WsMessages.WsConverting : WsMessages.WsSettingUpFile;
       const totalSteps = forAudio ? 2 : 4;
       const baseProgress = isAudio ? (forAudio ? 50 : 25) : 75;
-      let progressValue = isAudio ? (forAudio ? 50 : 25) : 75;
+      const targetDuration = convertHmsToSeconds(ytFile.duration);
 
       if (progressCallback)
         progressCallback({
           key: ytFile.key,
           text: progressText,
-          progress: progressValue,
+          progress: isAudio ? (forAudio ? 50 : 25) : 75,
         });
 
       ffmpeg(sourceFile)
         .setFfmpegPath(ffmpegPath.replace('app.asar', 'app.asar.unpacked'))
         .format(format)
         .on('progress', function (progress) {
-          progressValue = baseProgress + Math.floor(progress.percent / totalSteps);
+          const progressDuration = convertHmsToSeconds(progress.timemark);
+          const progressPercent = (progressDuration / targetDuration) * 100;
+          const progressValue = baseProgress + Math.floor(progressPercent / totalSteps);
 
           // Update the UI state.
           if (progressCallback)
@@ -50,6 +52,8 @@ class FFmpegService {
             });
         })
         .on('error', (err: Error) => {
+          logger.error(ytFile);
+          logger.error(err.message);
           reject(WsMessages.WsErrorSettingUpFile);
         })
         .on('end', () => {
@@ -58,7 +62,7 @@ class FFmpegService {
             progressCallback({
               key: ytFile.key,
               text: progressText,
-              progress: progressValue,
+              progress: 100,
             });
 
           logger.debug(`${this.loggerId}Finished working on the (${ytFile.type}) file to convert into (${format})!`);
@@ -80,7 +84,7 @@ class FFmpegService {
       const baseProgress = 75;
       let progressValue = 75;
 
-      // Set the progress to 0%
+      // Set the progress
       if (progressCallback)
         progressCallback({
           key: ytFile.key,
@@ -95,6 +99,8 @@ class FFmpegService {
         .input(audioPath)
         .outputOptions('-c copy -map 0:v:0 -map 1:a:0 -f mp4 -c:v libx264 -crf 19 -profile:v high'.split(' '))
         .on('error', function (err: Error) {
+          logger.error(err.message, ytFile);
+          logger.error(err.message);
           throw new ApplicationError(err.message, WsMessages.WsErrorConverting);
         })
         .on('progress', function (progress) {
@@ -109,6 +115,8 @@ class FFmpegService {
             });
         })
         .on('error', (err: Error) => {
+          logger.error(err.message, ytFile);
+          logger.error(err.message);
           reject(WsMessages.WsErrorSettingUpFile);
         })
         .on('end', () => {

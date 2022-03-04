@@ -132,7 +132,7 @@ start_server();
  */
 function gracefulClosing() {
   logger.info(`Shutting down the server and all connected tools...`);
-  fs.rmdirSync(SERVER_TEMP_FOLDER, { recursive: true });
+  fs.rmSync(SERVER_TEMP_FOLDER, { recursive: true });
 
   wsServer.close((err: Error | undefined) => {
     // eslint-disable-next-line no-console

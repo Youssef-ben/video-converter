@@ -41,6 +41,17 @@ export function convertSecondesToHMS(secondes: string): string {
   return `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
 
+/**
+ * Convert the given duration `{HH:MM:SS}` to seconds.
+ *
+ * @param duration Duration of the video or audio file.
+ * @returns Duration in Seconds.
+ */
+export function convertHmsToSeconds(duration: string): number {
+  const values = duration.split(':');
+  return +values[0] * 60 * 60 + +values[1] * 60 + +values[2];
+}
+
 export function getFileQuality(type: FileType, quality: FileQuality): string {
   switch (quality) {
     case FileQuality.HIGHEST:
