@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/Youssef-ben/video-converter">
-    <img src="https://github.com/Youssef-ben/video-converter/blob/develop/assets/logo/vytc - logo.png" alt="Videos and youtube converter" width="200">
+    <img src="https://github.com/Youssef-ben/video-converter/blob/new-structure/assets/logo/vytc - logo.png" alt="Videos and youtube converter" width="200">
   </a>
 </p>
 
