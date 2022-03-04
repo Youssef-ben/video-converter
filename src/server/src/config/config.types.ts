@@ -25,4 +25,5 @@ export type ConfigurationFile = {
   app: AppSection;
   allowed_guests: string;
   security: SecuritySection;
+  getAllowedDomains: () => Array<string> | boolean;
 };

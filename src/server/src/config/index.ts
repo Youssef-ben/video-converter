@@ -17,7 +17,17 @@ class ApiConfig {
     this.setupFromEnvironmentFile();
 
     this.validateAppConfigSection();
+
+    this.config.getAllowedDomains = this.getAllowedDomains;
   }
+
+  private getAllowedDomains = (): Array<string> | boolean => {
+    if (this.config.allowed_guests == '*') {
+      return true;
+    }
+
+    return this.config.allowed_guests.split(';');
+  };
 
   private loadConfigFile = (): ConfigurationFile => {
     logger.debug(`Config::Started the process of loading the configuration file (config.json)...`);

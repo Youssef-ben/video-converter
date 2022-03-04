@@ -36,7 +36,7 @@ const routes: Array<BaseRoutesConfig> = [];
 const wsServer = new WsServer(httpServer, {
   path: '/vytc',
   cors: {
-    origin: appConfig.allowed_guests.split(';'),
+    origin: appConfig.getAllowedDomains(),
   },
 });
 
@@ -45,7 +45,7 @@ app.use(json());
 app.use(xss());
 app.use(
   cors({
-    origin: appConfig.allowed_guests.split(';'),
+    origin: appConfig.getAllowedDomains(),
   })
 );
 
