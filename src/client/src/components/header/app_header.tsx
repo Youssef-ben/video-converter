@@ -3,7 +3,7 @@ import { isMobile } from 'react-device-detect';
 import { useTranslation } from 'react-i18next';
 import { Container, Flag, Menu, Image } from 'semantic-ui-react';
 
-import Logo from '../../assets/img/logo.png';
+import Logo from '../../assets/images/logo.png';
 
 function AppHeader(): JSX.Element {
   const { t, i18n } = useTranslation();

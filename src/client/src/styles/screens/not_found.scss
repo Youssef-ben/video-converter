@@ -16,7 +16,7 @@ $nunito-font: 'Nunito', sans-serif;
 }
 
 .page-not-found {
-  background-image: url('../../assets/img/404/star.svg'), linear-gradient(to bottom, $primary-color, $primary-color-hover);
+  background-image: url('../../assets/images/404/star.svg'), linear-gradient(to bottom, $primary-color, $primary-color-hover);
   height: 95vh;
   margin: 0;
   background-attachment: fixed;
@@ -28,7 +28,7 @@ $nunito-font: 'Nunito', sans-serif;
     bottom: 0;
     position: absolute;
     height: 27vmin;
-    background: url('../../assets/img/404/mars.svg') no-repeat bottom center;
+    background: url('../../assets/images/404/mars.svg') no-repeat bottom center;
     background-size: cover;
   }
 

@@ -2,10 +2,10 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import PageNotFound404Logo from '../../assets/img/404/404.svg';
-import MeteorLogo from '../../assets/img/404/meteor.svg';
-import AstronautLogo from '../../assets/img/404/astronaut.svg';
-import SpaceshipLogo from '../../assets/img/404/spaceship.svg';
+import PageNotFound404Logo from '../../assets/images/404/404.svg';
+import MeteorLogo from '../../assets/images/404/meteor.svg';
+import AstronautLogo from '../../assets/images/404/astronaut.svg';
+import SpaceshipLogo from '../../assets/images/404/spaceship.svg';
 
 function PageNotFound(): JSX.Element {
   const { t } = useTranslation();

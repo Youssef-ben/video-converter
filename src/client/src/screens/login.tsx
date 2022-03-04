@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Redirect } from 'react-router-dom';
 import { Button, Container, Form, Grid, Header, Image } from 'semantic-ui-react';
-import Logo from '../assets/img/logo.png';
+import Logo from '../assets/images/logo.png';
 import useLoginHook from '../hooks/login_page/use_login_hook';
 import APP_ROUTES from '../routes/routes.constants';
 

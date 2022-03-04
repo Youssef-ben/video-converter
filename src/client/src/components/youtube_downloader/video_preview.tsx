@@ -6,7 +6,7 @@ import { Loader, Image } from 'semantic-ui-react';
 
 // Custom
 import { Redirect } from 'react-router-dom';
-import loadingImage from '../../assets/img/loading.png';
+import loadingImage from '../../assets/images/loading.png';
 import AvailableScreen from '../../types/available_screen';
 import DownloadLink from './video_preview_download_link';
 import VideoPreviewConvert from './video_preview_convert';
