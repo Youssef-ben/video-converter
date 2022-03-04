@@ -76,13 +76,14 @@ clean: remove ## Removes the API server and web client containers and images.
 
 	@echo "[INF] - Done."
 
+open-server: ## Opens vsCode editor on the {Server} folder.
+	$(shell code ./src/server/)
+
+open-client: ## Opens vsCode editor on the {Client} folder.
+	$(shell code ./src/client/)
+
 help: ## Shows the Current Makefile Commands.
 	@echo ''
 	@echo '========================================= [COMMANDS] ==========================================='
 	@grep -E '^[a-zA-Z_-]+:.*$$' ./Makefile | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
-	@echo '================================================================================================'
-
-	@echo ''
-	@echo '====================================== [SERVER COMMANDS] ======================================='
-	@grep -E '^[a-zA-Z_-]+:.*$$' ./src/server/Makefile | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 	@echo '================================================================================================'
