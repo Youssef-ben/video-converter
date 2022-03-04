@@ -26,7 +26,7 @@ export const workerFetchObject = {
 export const runLogin = async (request: supertest.SuperAgentTest, passphrase?: string): Promise<ApiResponse<TestLoginResponseDto> | ErrorApiResponse> => {
   // Prepare
   const login: LoginDto = {
-    passphrase: passphrase || 'api&local*test@',
+    passphrase: passphrase || 'api&test@',
   };
 
   // Execute

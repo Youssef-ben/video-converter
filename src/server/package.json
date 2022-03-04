@@ -32,7 +32,7 @@
   ],
   "scripts": {
     "start": "yarn gen-swagger && yarn ts-node-dev --poll src/startup.ts",
-    "test": "yarn cross-env DEBUG_LEVEL=none mocha -r ts-node/register 'tests/**/*.test.ts' --exit --timeout 10000",
+    "test": "yarn cross-env NODE_ENV=tests DEBUG_LEVEL=info mocha -r ts-node/register 'tests/**/*.test.ts' --exit --timeout 10000",
     "build": "yarn lint && yarn test && yarn tsc && yarn copy-config && yarn gen-swagger",
     "lint": "yarn eslint --ext .js,.ts . --quiet",
     "lint-fix": "yarn eslint --ext .js,.ts . --quiet --fix",
