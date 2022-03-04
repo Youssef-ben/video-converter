@@ -8,6 +8,5 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "16"
-      - run: cd ./src/server
-      - run: yarn
-      - run: yarn test
+      - run: cd ./src/server && yarn
+      - run: cd ./src/server && yarn test
