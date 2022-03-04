@@ -8,14 +8,14 @@
   "main": "src/index.tsx",
   "author": {
     "name": "UcefBen",
-    "url": "https://<git-repository-url>"
+    "url": "https://github.com/Youssef-ben/video-converter/"
   },
   "repository": {
     "type": "git",
-    "url": "git+<git-repository-url>.git"
+    "url": "git@github.com:Youssef-ben/video-converter.git"
   },
   "bugs": {
-    "url": "https://<git-repository-url>/issues"
+    "url": "https://github.com/Youssef-ben/video-converter/issues"
   },
   "scripts": {
     "start": "yarn lint && cross-env PORT=3001 BROWSER=chrome BROWSER_ARGS=--incognito  react-scripts start",
