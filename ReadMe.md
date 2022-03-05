@@ -8,6 +8,8 @@
   </a>
 </p>
 
+![vytc workflow](https://github.com/Youssef-ben/video-converter/actions/workflows/vytc-ci.yml/badge.svg)
+
 # Videos and youtube converter
 
 The idea of this project came from the fact that most of the free tools that exist on the internet have some restrictions like the length of the video, must watch ads, or a confusion UI with a lot of download buttons. With this, the need to create a free tool that has none of the inconvenience or restrictions like the others became stronger.

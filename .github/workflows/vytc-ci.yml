@@ -1,4 +1,4 @@
-name: vytc CI
+name: vytc workflow
 on: [push, pull_request]
 jobs:
   test:
