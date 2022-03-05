@@ -1,7 +1,7 @@
 <p align="center">
   <a href="https://github.com/Youssef-ben/video-converter">
     <img
-      src="https://github.com/Youssef-ben/video-converter/blob/new-structure/assets/images/logo.png"
+      src="https://github.com/Youssef-ben/video-converter/blob/new-structure/assets/images/circle-not-bg.png"
       alt="Videos and youtube converter"
       width="200"
       style="max-width: 100%; border-radius: 50%;">
