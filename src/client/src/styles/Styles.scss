@@ -1,0 +1,14 @@
+/********** CUSTOM CSS **********/
+@import './variables.scss';
+@import './global.scss';
+@import './header.scss';
+@import './footer.scss';
+
+/*** COMPONENTS ***/
+@import './components/progress-bar.scss';
+@import './components/buttons.scss';
+
+/*** PAGES ***/
+@import './screens/youtube_downloader.scss';
+@import './screens/not_found.scss';
+@import './screens/login.scss';

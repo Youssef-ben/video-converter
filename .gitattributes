@@ -1,0 +1,6 @@
+# Convert text file line endings to lf
+*.js text eol=lf
+*.js text
+
+*.ts text eol=lf
+*.ts text

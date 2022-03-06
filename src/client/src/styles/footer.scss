@@ -1,0 +1,14 @@
+.closed-connection {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+
+  .message {
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+  }
+
+  .mobile-message {
+    padding: 0.5em;
+  }
+}

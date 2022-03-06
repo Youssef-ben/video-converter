@@ -9,17 +9,41 @@
 /coverage
 
 # production
-/build
-/release-builds
-/dist
+[Bb]uild/
+[Dd]ist/
+[Ll]ogs/
+tmp/
 
 # misc
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+
+# Env file
+.env
+.env.*
+!.env.example
+config.*.json
+src/server/public/swagger.json
+
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+tsconfig.tsbuildinfo
+_.log
+npm-debug.log_
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.idea
+.lock-wscript
+build/Release
+node_modules/
+jspm_packages/
+typings/
+*.tsbuildinfo
+.npm
+.eslintcache
+.node_repl_history
+*.tgz
+.yarn-integrity
+.cache
