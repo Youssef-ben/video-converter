@@ -9,4 +9,5 @@ import 'react-semantic-toasts/styles/react-semantic-alert.css';
 // Initialize the translator.
 import './app.i18n';
 
-ReactDOM.render(<App />, document.querySelector('#root'));
+const container = document.querySelector('#root');
+ReactDOM.render(<App />, container);
