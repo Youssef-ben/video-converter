@@ -40,5 +40,8 @@ services:
     ports:
       - ${CLIENT_PORT}:80
 
+    depends_on:
+      - vytc-server
+
     networks:
       - vytc-network
