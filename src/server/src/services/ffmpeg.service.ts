@@ -5,7 +5,7 @@ import ffprobePath from 'ffprobe-static';
 import { DownloadProgressEvent, WsMessages } from '../models/vytc/websocket.events';
 import { convertHmsToSeconds, getFilePath, getFileTemporaryPath } from '../utils/helpers';
 import { logger } from '../utils/winston.logger';
-import { createWriteStream, removeSync } from 'fs-extra';
+import { removeSync } from 'fs-extra';
 import { FileType } from '../models/vytc/file_extensions.enum';
 import { ApplicationError } from '../models/exceptions/application.error';
 
@@ -35,9 +35,12 @@ class FFmpegService {
           progress: isAudio ? (forAudio ? 50 : 25) : 75,
         });
 
+      const options = isAudio ? [] : '-c:v copy'.split(' ');
       ffmpeg(sourceFile)
         .setFfmpegPath(ffmpegPath.replace('app.asar', 'app.asar.unpacked'))
-        .format(format)
+        .toFormat(format)
+        .videoCodec('libx264')
+        .outputOptions(options)
         .on('progress', function (progress) {
           const progressDuration = convertHmsToSeconds(progress.timemark);
           const progressPercent = (progressDuration / targetDuration) * 100;
@@ -52,8 +55,9 @@ class FFmpegService {
             });
         })
         .on('error', (err: Error) => {
-          logger.error(ytFile);
-          logger.error(err.message);
+          logger.error(`Failed to convert the [${ytFile.type}] of [${ytFile.extension}] to ${format}!`);
+          logger.error(JSON.stringify(ytFile));
+          logger.error(JSON.stringify(err));
           reject(WsMessages.WsErrorSettingUpFile);
         })
         .on('end', () => {
@@ -68,8 +72,7 @@ class FFmpegService {
           logger.debug(`${this.loggerId}Finished working on the (${ytFile.type}) file to convert into (${format})!`);
           resolve();
         })
-        .output(createWriteStream(targetFile))
-        .run();
+        .save(targetFile);
     });
 
   combineAudioAndVideoAsync = async (ytFile: GetYoutubeFile, progressCallback?: (value: DownloadProgressEvent) => void): Promise<void> =>
@@ -99,8 +102,9 @@ class FFmpegService {
         .input(audioPath)
         .outputOptions('-c copy -map 0:v:0 -map 1:a:0 -f mp4 -c:v libx264 -crf 19 -profile:v high'.split(' '))
         .on('error', function (err: Error) {
-          logger.error(err.message, ytFile);
-          logger.error(err.message);
+          logger.error('Error combining the Audio and Video!');
+          logger.error(JSON.stringify(ytFile));
+          logger.error(JSON.stringify(err));
           throw new ApplicationError(err.message, WsMessages.WsErrorConverting);
         })
         .on('progress', function (progress) {
