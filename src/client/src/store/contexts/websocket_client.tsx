@@ -14,7 +14,11 @@ let websocketInstance: Socket | null;
 /**
  * Create the Websocket React Provider.
  */
-const WsProvider: React.FC = ({ children }) => {
+
+interface WsProviderProps {
+  children: JSX.Element;
+}
+const WsProvider = ({ children }: WsProviderProps) => {
   if (!websocketInstance) {
     websocketInstance = io(SERVER_URLS.ws_base, {
       path: SERVER_URLS.ws_uri,

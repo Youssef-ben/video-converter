@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { Button, Container, Form, Grid, Header, Image } from 'semantic-ui-react';
 import Logo from '../assets/images/logo.png';
 import useLoginHook from '../hooks/login_page/use_login_hook';
@@ -11,7 +11,7 @@ function LoginPage(): JSX.Element {
   const hookData = useLoginHook();
 
   if (hookData.hasAuthToken) {
-    return <Redirect to={APP_ROUTES.PRIV_YTD} />;
+    return <Navigate to={APP_ROUTES.PRIV_YTD} />;
   }
 
   return (
