@@ -9,6 +9,8 @@ import { removeSync } from 'fs-extra';
 import { FileType } from '../models/vytc/file_extensions.enum';
 import { ApplicationError } from '../models/exceptions/application.error';
 
+const FFMPEG_PATH = (ffmpegPath as string).replace('app.asar', 'app.asar.unpacked');
+
 class FFmpegService {
   private loggerId = 'Service::ffmpeg::';
 
@@ -37,7 +39,7 @@ class FFmpegService {
 
       const options = isAudio ? [] : '-c:v copy'.split(' ');
       ffmpeg(sourceFile)
-        .setFfmpegPath(ffmpegPath.replace('app.asar', 'app.asar.unpacked'))
+        .setFfmpegPath(FFMPEG_PATH)
         .toFormat(format)
         .videoCodec('libx264')
         .outputOptions(options)
@@ -96,7 +98,7 @@ class FFmpegService {
         });
 
       ffmpeg()
-        .setFfmpegPath(ffmpegPath.replace('app.asar', 'app.asar.unpacked'))
+        .setFfmpegPath(FFMPEG_PATH)
         .setFfprobePath(ffprobePath.path)
         .input(videoPath)
         .input(audioPath)
