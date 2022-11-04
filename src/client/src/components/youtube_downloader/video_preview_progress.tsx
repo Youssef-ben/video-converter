@@ -29,7 +29,11 @@ export default function VideoPreviewProgress(props: VideoPreviewProgressProps): 
       <Form.Field>
         <ProgressBar display key="pg" text={progress.text} progress={progress.progress} />
       </Form.Field>
-      <Button className="btn yt-btn-right" color="red" onClick={() => window.location.reload()}>
+      <Button
+        className="btn yt-btn-right"
+        color="red"
+        onClick={() => window.location.reload()}
+      >
         <span>{t('btn.cancel')}</span>
       </Button>
     </Form>

@@ -83,6 +83,8 @@ app.use(apiRoutes.configureRoutes());
 
 // Config a {404: Route Not Found} custom error for bad urls.
 app.use('*', (req, res) => {
+  res.removeHeader('Content-Type');
+  res.setHeader('Content-Type', 'text/html');
   res.sendFile(joinPaths(__dirname, '..', 'public', 'ui', 'index.html'));
 });
 
