@@ -50,6 +50,9 @@ export default {
     'api.err.security.unauthorized': 'Non autorisé',
     'api.err.security.unauthorized_desc': "Informations d'identification invalides ou vous n'avez pas la permission d'accéder aux ressources demandées !",
 
+    'api.err.downloader.invalid_url': 'Invalid Youtube URL!',
+    'api.err.downloader.invalid_url_desc': 'Please review the Youtube URL and try again!',
+
     'ws.err.connection_lost': 'La connexion au serveur a été perdue, tentatives de reconnexion...',
     'ws.success': 'Succès',
     'ws.err.fields_required': 'Un ou plusieurs champs sont obligatoires !',
