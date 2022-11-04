@@ -1,5 +1,4 @@
-import { Router, Request, Response } from 'express';
-import { RouteNotFoundError } from '../models/exceptions/route_not_found.errors';
+import { Router } from 'express';
 import ServerRoutes from './server.routes';
 import WorkerRoutes from './worker.routes';
 import DownloaderRoutes from './downloader.routes';
@@ -20,12 +19,6 @@ export default class ApiRegisterRoutes {
     this.router.use(WorkerRoutes.getRoute(), WorkerRoutes.getRouter());
     this.router.use(DownloaderRoutes.getRoute(), DownloaderRoutes.getRouter());
     this.router.use(SecurityRoutes.getRoute(), SecurityRoutes.getRouter());
-
-    // Config a {404: Route Not Found} custom error for bad urls.
-    this.router.use('*', (req: Request, res: Response) => {
-      throw new RouteNotFoundError();
-    });
-
     return this.router;
   }
 }

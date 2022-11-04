@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
 import { Button, Form, Grid } from 'semantic-ui-react';
+import APP_ROUTES from '../../routes/routes.constants';
 import IframeDownloader from '../utils/iframe_downloader';
 
 type DownloadLinkProps = {
@@ -10,6 +12,12 @@ type DownloadLinkProps = {
 function DownloadLink({ link }: DownloadLinkProps): JSX.Element {
   const { t } = useTranslation();
   const [showText, setShowText] = useState(true);
+  const history = useHistory();
+
+  const onFinishHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    history.push(APP_ROUTES.PRIV_HOME);
+  };
 
   // Hide the download text
   setTimeout(() => {
@@ -27,7 +35,7 @@ function DownloadLink({ link }: DownloadLinkProps): JSX.Element {
             </Grid.Column>
             <Grid.Column mobile={16} tablet={6} computer={5}>
               {!showText && (
-                <Button className="btn yt-right" color="red" onClick={() => window.location.reload()}>
+                <Button className="btn yt-right" color="red" onClick={onFinishHandler}>
                   <span>{t('btn.finish')}</span>
                 </Button>
               )}

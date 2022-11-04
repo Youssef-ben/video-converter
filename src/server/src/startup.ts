@@ -6,13 +6,13 @@ dotenv.config();
 import express from 'express';
 require('express-async-errors'); // Required to handle errors for the async routes/methods.
 import cors from 'cors';
-import helmet from 'helmet';
 import { Server as HttpServer, createServer } from 'http';
 import { Server as WsServer } from 'socket.io';
 import { json } from 'body-parser';
 import compression from 'compression';
 import swaggerUi, { SwaggerUiOptions } from 'swagger-ui-express';
 import fs from 'fs';
+import { join as joinPaths } from 'path';
 
 /* eslint-disable-next-line @typescript-eslint/no-var-requires */
 const xss = require('xss-clean');
@@ -49,9 +49,9 @@ app.use(
   })
 );
 
-app.use(helmet());
 app.disable('x-powered-by');
-app.use(express.static('public'));
+app.use(express.static(joinPaths(__dirname, '..', 'public')));
+app.use(express.static(joinPaths(__dirname, '..', 'public', 'ui')));
 app.use(compression());
 
 app.use(jsonFormatterMiddleware.requestRemoveEmptyProperties());
@@ -80,6 +80,11 @@ if (appConfig.app.environment === 'development') {
 // Register the API routes.
 const apiRoutes = new ApiRegisterRoutes();
 app.use(apiRoutes.configureRoutes());
+
+// Config a {404: Route Not Found} custom error for bad urls.
+app.use('*', (req, res) => {
+  res.sendFile(joinPaths(__dirname, '..', 'public', 'ui', 'index.html'));
+});
 
 // Middleware handler after routes.
 app.use(globalErrorsHandlerMiddleware);
