@@ -1,12 +1,5 @@
 .PHONEY: build-server build-client build-images start-server start-client start stop-server stop-client stop remove-server remove-client remove clean open-server open-client generate-env help
 
-generate-env: ## Generate a (.env) file based on the (.env.example) file..
-	@echo "[INF] - Generating (.env) file for each project..."
-	@cp ./.env.example ./.env
-	@cp ./src/server/.env.example ./src/server/.env
-	@cp ./src/client/.env.example ./src/client/.env
-	@echo "[INF] - Done."
-	
 # Must include the environment file to be able to use the docker-compose.
 include .env
 
@@ -89,6 +82,12 @@ open-server: ## Opens vsCode editor on the {Server} folder.
 open-client: ## Opens vsCode editor on the {Client} folder.
 	$(shell code ./src/client/)
 
+generate-env: ## Generate a (.env) file based on the (.env.example) file..
+	@echo "[INF] - Generating (.env) file for each project..."
+	@cp ./.env.example ./.env
+	@cp ./src/server/.env.example ./src/server/.env
+	@cp ./src/client/.env.example ./src/client/.env
+	@echo "[INF] - Done."
 
 help: ## Shows the Current Makefile Commands.
 	@echo ''
