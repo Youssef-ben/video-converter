@@ -53,6 +53,9 @@ open-server: ## Opens vsCode editor on the {Server} folder.
 open-client: ## Opens vsCode editor on the {Client} folder.
 	$(shell code ./src/client/)
 
+open-mobile: ## Opens vsCode editor on the {Client} folder.
+	$(shell code ./src/mobile/)
+
 generate-env: ## Generate a (.env) file based on the (.env.example) file..
 	@echo "[INF] - Generating (.env) file for each project..."
 	@cp ./.env.example ./.env
