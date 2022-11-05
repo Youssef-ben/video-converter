@@ -13,7 +13,6 @@ define run_compose
 	@echo "[INF] - $(1)"
 
 	@SERVER_IMAGE_NAME=${SERVER_IMAGE_PATH} \
-	CLIENT_IMAGE_NAME=${CLIENT_IMAGE_PATH} \
 	docker-compose -f docker/docker-compose.yml --env-file ./.env  $(2)
 endef
 
@@ -30,21 +29,20 @@ define remove-image
 endef
 
 build-image: ## Build the api server docker image.
-	$(call run_compose,Building the {API server} docker image..., build --no-cache --force-rm --compress --progress=plain $(SERVER_CONTAINER_NAME))
+	$(call run_compose,Building the {vytc} docker image..., build --no-cache --force-rm --compress --progress=plain $(SERVER_CONTAINER_NAME))
 
-start-server: ## Starts the API Server container.
-	$(call run_compose,Starting the {Api server} container..., up -d $(SERVER_CONTAINER_NAME)) > /dev/null
+start: ## Starts the API Server container.
+	$(call run_compose,Starting the {vytc} container..., up -d $(SERVER_CONTAINER_NAME)) > /dev/null
 	$(call show_container_url,API server,http://localhost:$(SERVER_PORT))
 	
-stop-server: ## Stops the API server container.
-	$(call run_compose,Stopping the {API server} container..., stop $(SERVER_CONTAINER_NAME)) > /dev/null
+stop: ## Stops the API server container.
+	$(call run_compose,Stopping the {vytc} container..., stop $(SERVER_CONTAINER_NAME)) > /dev/null
 
-remove-server: stop-server ## Removes the API server container and its volumes.
-	$(call run_compose,Removing the {API server} container..., rm -v -s -f $(SERVER_CONTAINER_NAME)) > /dev/null
+remove: stop-server ## Removes the API server container and its volumes.
+	$(call run_compose,Removing the {vytcr} container..., rm -v -s -f $(SERVER_CONTAINER_NAME)) > /dev/null
 
-clean: remove-server ## Removes the API server and web client containers and images.
+clean: remove ## Removes the API server and web client containers and images.
 	$(call remove-image,$(SERVER_IMAGE_PATH)) > /dev/null
-	$(call remove-image,$(CLIENT_IMAGE_PATH)) > /dev/null
 	$(call run_compose,Cleaning any leftover..., down --rmi "all" --remove-orphans -v) > /dev/null
 
 	@echo "[INF] - Done."

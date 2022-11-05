@@ -46,9 +46,5 @@ COPY --from=BUILD-SERVER-STAGE /api/public /usr/api/public
 
 COPY --from=BUILD-CLIENT-STAGE /app/build /usr/api/public/ui
 
-RUN ls -al
-RUN ls -al src/config
-
-
 EXPOSE 3000
 CMD ["node","./src/startup.js"]

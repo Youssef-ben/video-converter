@@ -1,6 +1,6 @@
 {
   "name": "vytc",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "releaseDate": "2021-10-30",
   "productName": "vytc - Videos youtube converter",
   "homepage": "https://github.com/Youssef-ben/video-converter/#readme",
@@ -9,7 +9,7 @@
   "private": true,
   "main": "src/startup.ts",
   "author": {
-    "name": "UcefBen",
+    "name": "ybsoft",
     "url": "https://github.com/Youssef-ben/video-converter/"
   },
   "repository": {
