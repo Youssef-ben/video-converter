@@ -1,13 +1,11 @@
-.PHONEY: build-server build-client build-images start-server start-client start stop-server stop-client stop remove-server remove-client remove clean open-server open-client generate-env help
+.PHONEY: build-image start-server stop-server remove-server clean open-server open-client generate-env help
 
 # Must include the environment file to be able to use the docker-compose.
 include .env
 
 SERVER_VERSION	=	$(shell cat ./src/server/package.json | grep -oP '(?<="version": ").*(?=",)')
-CLIENT_VERSION	=	$(shell cat ./src/client/package.json | grep -oP '(?<="version": ").*(?=",)')
 
 SERVER_IMAGE_PATH = ${SERVER_IMAGE_NAME}:${SERVER_VERSION}
-CLIENT_IMAGE_PATH = ${CLIENT_IMAGE_NAME}:${CLIENT_VERSION}
 
 # 1 - Message
 # 2 - Action
@@ -15,7 +13,6 @@ define run_compose
 	@echo "[INF] - $(1)"
 
 	@SERVER_IMAGE_NAME=${SERVER_IMAGE_PATH} \
-	CLIENT_IMAGE_NAME=${CLIENT_IMAGE_PATH} \
 	docker-compose -f docker/docker-compose.yml --env-file ./.env  $(2)
 endef
 
@@ -31,47 +28,21 @@ define remove-image
 	fi
 endef
 
-build-server: ## Build the api server docker image.
-	$(call run_compose,Building the {API server} docker image..., build --no-cache --force-rm --compress --progress=plain $(SERVER_CONTAINER_NAME))
+build-image: ## Build the api server docker image.
+	$(call run_compose,Building the {vytc} docker image..., build --no-cache --force-rm --compress --progress=plain $(SERVER_CONTAINER_NAME))
 
-build-client: ## Build the web client docker image.
-	$(call run_compose,Building the {web client} docker image..., build --no-cache --force-rm --compress --progress=plain $(CLIENT_CONTAINER_NAME))
-
-build-images: build-server build-client ## Builds the API server and the web client docker image.
-	@echo "[INF] - Done."
-
-start-server: ## Starts the API Server container.
-	$(call run_compose,Starting the {Api server} container..., up -d $(SERVER_CONTAINER_NAME)) > /dev/null
+start: ## Starts the API Server container.
+	$(call run_compose,Starting the {vytc} container..., up -d $(SERVER_CONTAINER_NAME)) > /dev/null
 	$(call show_container_url,API server,http://localhost:$(SERVER_PORT))
 	
-start-client: ## Starts the web client container.
-	$(call run_compose,Starting the {web client} container..., up -d $(CLIENT_CONTAINER_NAME)) > /dev/null
-	$(call show_container_url,web,http://localhost:$(CLIENT_PORT))
+stop: ## Stops the API server container.
+	$(call run_compose,Stopping the {vytc} container..., stop $(SERVER_CONTAINER_NAME)) > /dev/null
 
-start: start-server start-client ## Starts the API server and the web client container.
-	@echo "[INF] - Done."
-	
-stop-server: ## Stops the API server container.
-	$(call run_compose,Stopping the {API server} container..., stop $(SERVER_CONTAINER_NAME)) > /dev/null
-
-stop-client: ## Stops the web client container.
-	$(call run_compose,Stopping the {web client} container..., stop $(CLIENT_CONTAINER_NAME))  > /dev/null
-
-stop: stop-server stop-client ## Stops the API server and web client containers.
-	@echo "[INF] - Done."
-
-remove-server: stop-server ## Removes the API server container and its volumes.
-	$(call run_compose,Removing the {API server} container..., rm -v -s -f $(SERVER_CONTAINER_NAME)) > /dev/null
-
-remove-client: stop-client ## Removes the web client container and its volumes.
-	$(call run_compose,Removing the {web client} container..., rm -v -s -f $(CLIENT_CONTAINER_NAME)) > /dev/null
-
-remove: remove-server remove-client ## Removes the API server and web client container
-	@echo "[INF] - Done."
+remove: stop-server ## Removes the API server container and its volumes.
+	$(call run_compose,Removing the {vytcr} container..., rm -v -s -f $(SERVER_CONTAINER_NAME)) > /dev/null
 
 clean: remove ## Removes the API server and web client containers and images.
 	$(call remove-image,$(SERVER_IMAGE_PATH)) > /dev/null
-	$(call remove-image,$(CLIENT_IMAGE_PATH)) > /dev/null
 	$(call run_compose,Cleaning any leftover..., down --rmi "all" --remove-orphans -v) > /dev/null
 
 	@echo "[INF] - Done."

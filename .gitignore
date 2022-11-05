@@ -22,7 +22,7 @@ tmp/
 .env.*
 !.env.example
 config.*.json
-src/server/public/swagger.json
+src/server/public/*
 
 
 npm-debug.log*

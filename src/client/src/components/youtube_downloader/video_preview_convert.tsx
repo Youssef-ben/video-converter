@@ -2,7 +2,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Dropdown, Form, Grid } from 'semantic-ui-react';
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { FileType } from '../../types/vytc/file_extensions.enum';
 import { VID_TITLE_PLACEHOLDER } from '../../utils/constants';
 import InputWithLabel from '../utils/input_with_label';
@@ -28,7 +28,7 @@ function VideoPreviewConvert(): JSX.Element {
   } = useAppContext();
 
   if (!ytData) {
-    return <Redirect to={APP_ROUTES.PRIV_YTD} />;
+    return <Navigate to={APP_ROUTES.PRIV_YTD} />;
   }
 
   return (

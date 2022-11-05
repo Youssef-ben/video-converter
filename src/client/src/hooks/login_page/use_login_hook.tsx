@@ -2,7 +2,7 @@
 import axios, { AxiosResponse } from 'axios';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { InputOnChangeData } from 'semantic-ui-react';
 import ShowToast from '../../components/utils/custom_toast';
 import APP_ROUTES from '../../routes/routes.constants';
@@ -29,7 +29,7 @@ const useLoginHook = (): UseLoginHook => {
   const { state, dispatch } = useAppContext();
   const [passphrase, setPassphrase] = React.useState('');
   const [error, setError] = React.useState<InputError>();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   function onPasswordChange(_: React.ChangeEvent<HTMLInputElement>, { value }: InputOnChangeData) {
     setPassphrase(value);
@@ -61,7 +61,7 @@ const useLoginHook = (): UseLoginHook => {
 
       setPassphrase('');
 
-      history.push(APP_ROUTES.PRIV_YTD);
+      navigate(APP_ROUTES.PRIV_YTD);
     } catch (error: any) {
       if (error?.response?.data?.type === 'api.err.validation') {
         ShowToast('error', t('app.err.invalid_passphrase'), t('app.err.invalid_passphrase_desc'));

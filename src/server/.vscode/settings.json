@@ -1,10 +1,11 @@
 {
   "files.eol": "\n",
+
+  // tell the ESLint plugin to run on save
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
+
   "eslint.validate": ["typescript", "javascript"],
   "typescript.preferences.importModuleSpecifier": "relative",
   "cSpell.words": [

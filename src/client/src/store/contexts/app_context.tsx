@@ -34,7 +34,10 @@ const appReducer = (state: AppStateType, action: AuthAction | YtDownloaderAction
 });
 
 // Context Methods
-export const AppProvider: React.FC = ({ children }) => {
+interface AppProviderProps {
+  children: JSX.Element;
+}
+export const AppProvider = ({ children }: AppProviderProps) => {
   const [state, dispatch] = React.useReducer(appReducer, initialStateValues);
 
   const memoizedValue = useMemo(() => ({ state, dispatch }), [state, dispatch]);

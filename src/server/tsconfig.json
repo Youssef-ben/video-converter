@@ -21,6 +21,7 @@
     "emitDecoratorMetadata": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "skipLibCheck": true,
     "rootDir": ".",
     "baseUrl": ".",
     "outDir": "./dist",
@@ -42,5 +43,5 @@
   },
 
   "include": ["src", "src/config"],
-  "exclude": ["node_modules", "tests/**/*.ts"]
+  "exclude": ["node_modules", "tests/**/*.ts", "public"]
 }

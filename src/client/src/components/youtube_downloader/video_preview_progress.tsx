@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Form } from 'semantic-ui-react';
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import ErrorView from '../utils/error_view';
 import ProgressBar from '../utils/progressbar';
 import { useAppContext } from '../../store/contexts/app_context';
@@ -19,7 +19,7 @@ export default function VideoPreviewProgress(props: VideoPreviewProgressProps): 
   const { hasError, progress } = useVideoPreviewProgressHook(props);
 
   if (!ytData) {
-    return <Redirect to={APP_ROUTES.PRIV_YTD} />;
+    return <Navigate to={APP_ROUTES.PRIV_YTD} />;
   }
 
   const content = hasError ? (
@@ -29,7 +29,11 @@ export default function VideoPreviewProgress(props: VideoPreviewProgressProps): 
       <Form.Field>
         <ProgressBar display key="pg" text={progress.text} progress={progress.progress} />
       </Form.Field>
-      <Button className="btn yt-btn-right" color="red" onClick={() => window.location.reload()}>
+      <Button
+        className="btn yt-btn-right"
+        color="red"
+        onClick={() => window.location.reload()}
+      >
         <span>{t('btn.cancel')}</span>
       </Button>
     </Form>

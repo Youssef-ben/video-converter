@@ -11,9 +11,9 @@ services:
     container_name: ${SERVER_CONTAINER_NAME}
 
     build:
-      context: ../src/server/
-      dockerfile: ../../docker/Dockerfile.server
-      target: production
+      context: ../
+      dockerfile: ./docker/Dockerfile
+      target: PRODUCTION
 
     ports:
       - ${SERVER_PORT}:3000
@@ -26,22 +26,3 @@ services:
       - "../src/server/src/config/config.${NODE_ENV}.json:/usr/api/src/config/config.${NODE_ENV}.json"
       - "../src/server/.env:/usr/api/.env"
       - "./tmp:/tmp/vytc"
-
-  ## WEB APP client
-  vytc-client:
-    image: ${CLIENT_IMAGE_NAME}
-    container_name: ${CLIENT_CONTAINER_NAME}
-
-    build:
-      context: ../src/client/
-      dockerfile: ../../docker/Dockerfile.client
-      target: production
-
-    ports:
-      - ${CLIENT_PORT}:80
-
-    depends_on:
-      - vytc-server
-
-    networks:
-      - vytc-network

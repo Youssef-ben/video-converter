@@ -2,7 +2,7 @@
 import axios from 'axios';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { YtDownloaderActions } from '../../store/actions/youtube_download_actions';
 import { useAppContext } from '../../store/contexts/app_context';
 import ApiResponse from '../../types/api.response';
@@ -27,7 +27,8 @@ type UseVideoLookupHook = {
 const useVideoLookupHook = (): UseVideoLookupHook => {
   const { t } = useTranslation();
   const { dispatch } = useAppContext();
-  const history = useHistory();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const [urlValue, setUrlValue] = React.useState<string>('');
   const [inputError, setInputError] = React.useState<InputError>();
@@ -77,7 +78,7 @@ const useVideoLookupHook = (): UseVideoLookupHook => {
 
       saveYoutubeData(data.result);
 
-      history.push(`${history.location.pathname}/preview`);
+      navigate(`${location.pathname}/preview`);
     } catch (error: any) {
       setLoading(false);
       handleError(error, t);

@@ -5,7 +5,7 @@ import ReactPlayer from 'react-player';
 import { Loader, Image } from 'semantic-ui-react';
 
 // Custom
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import loadingImage from '../../assets/images/loading.png';
 import AvailableScreen from '../../types/available_screen';
 import DownloadLink from './video_preview_download_link';
@@ -31,7 +31,7 @@ function VideoPreview(): JSX.Element {
   const [downloadLink, setDownloadLink] = useState<string>('');
 
   if (!ytData) {
-    return <Redirect to={APP_ROUTES.PRIV_YTD} />;
+    return <Navigate to={APP_ROUTES.PRIV_YTD} />;
   }
 
   let partialScreen: JSX.Element;

@@ -47,6 +47,9 @@ export default {
     'api.err.security.unauthorized': 'Unauthorized',
     'api.err.security.unauthorized_desc': "Invalid credentials or you don't have permission to access the requested resources!",
 
+    'api.err.downloader.invalid_url': 'Invalid Youtube URL!',
+    'api.err.downloader.invalid_url_desc': 'Please review the Youtube URL and try again!',
+
     'ws.downloading': 'Preparing...',
     'ws.success': 'Success',
     'ws.err.connection_lost': 'The connection to the server was lost, trying to reconnect...',
