@@ -11,9 +11,10 @@ interface ThemeButtonProps {
   text: string;
   style?: ViewStyle;
   type?: 'primary' | 'secondary';
+  disabled?: boolean;
   onPress: () => void;
 }
-export const ThemeButton = ({ text, style, type = 'primary', onPress }: ThemeButtonProps) => {
+export const ThemeButton = ({ text, style, type = 'primary', disabled = false, onPress }: ThemeButtonProps) => {
   const { themeStyle } = useAppThemeColor();
   const isSecondary = type === 'secondary';
 
@@ -24,6 +25,7 @@ export const ThemeButton = ({ text, style, type = 'primary', onPress }: ThemeBut
     {
       borderColor: themeStyle.buttonBackground,
       backgroundColor: isSecondary ? themeStyle.backgroundColor : themeStyle.buttonBackground,
+      opacity: disabled ? 0.5 : 1,
     },
     style,
   ];
@@ -38,7 +40,7 @@ export const ThemeButton = ({ text, style, type = 'primary', onPress }: ThemeBut
   ];
 
   return (
-    <Pressable style={[wrapperStyle]} onPress={onPress} android_ripple={{ color: themeStyle.color }}>
+    <Pressable disabled={disabled} style={[wrapperStyle]} onPress={onPress} android_ripple={{ color: themeStyle.color }}>
       <ThemeText style={textStyle}>{text}</ThemeText>
     </Pressable>
   );
@@ -51,6 +53,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    opacity: 1,
   },
   text: {
     lineHeight: 21,

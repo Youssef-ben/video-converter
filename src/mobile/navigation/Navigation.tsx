@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Image, StyleSheet } from 'react-native';
 
 import { useAppThemeColor } from 'components/theme/useAppThemeColor';
-import Home from 'screens/Home';
+import Home from 'screens/home/Home';
 import Login from 'screens/login/Login';
 
 import type { RootStackParamList } from './types';

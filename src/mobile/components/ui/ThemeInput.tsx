@@ -47,10 +47,10 @@ export const ThemeInput = ({ label, isInvalid = false, input, wrapper }: ThemeIn
         {label && <ThemeText style={[styles.label]}>{label}</ThemeText>}
 
         <TextInput
-          placeholderTextColor={themeStyle.InputPlaceholderColor}
-          style={[inputStyle, styles.input]}
-          placeholder={input?.placeholder || 'Enter your text...'}
           {...input}
+          placeholderTextColor={themeStyle.InputPlaceholderColor}
+          style={[inputStyle, styles.input, input?.style]}
+          placeholder={input?.placeholder || 'Enter your text...'}
         />
       </ThemeView>
     </>

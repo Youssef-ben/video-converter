@@ -12,9 +12,7 @@ const Login = () => {
 
   return (
     <ThemeView style={[styles.root]}>
-      <ThemeView style={styles.logoContainer}>
-        <Logo source={require('../../assets/logo.png')} dimension={{ width: 180, height: 180 }} />
-      </ThemeView>
+      <Logo source={require('../../assets/logo.png')} dimension={{ width: 180, height: 180 }} />
 
       <ThemeView style={styles.formContainer}>
         <ThemeInput
@@ -42,11 +40,6 @@ const styles = StyleSheet.create({
     paddingTop: 12,
     alignItems: 'center',
     alignContent: 'center',
-  },
-  logoContainer: {
-    elevation: 10,
-    marginTop: '10%',
-    borderRadius: 100,
   },
 
   formContainer: {
