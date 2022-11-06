@@ -18,7 +18,11 @@ export default function App() {
   return (
     <SafeAreaProvider style={[themeStyle, styles.container]}>
       <ThemeView style={[styles.simpleView]}>
-        <ThemeText>Open up App.tsx to start working on your app!</ThemeText>
+        <ThemeText>This is a simple text inside a view</ThemeText>
+      </ThemeView>
+
+      <ThemeView style={[styles.cardView]}>
+        <ThemeText>This is a card view</ThemeText>
       </ThemeView>
 
       <ThemeView style={[styles.buttonContainer]}>
@@ -74,8 +78,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   simpleView: {
-    borderWidth: 1,
     margin: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+  },
+
+  cardView: {
+    margin: 10,
+    elevation: 5,
+    borderWidth: 1,
     paddingHorizontal: 12,
     paddingVertical: 8,
   },
