@@ -1,19 +1,35 @@
+import React from 'react';
+
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, useColorScheme, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+import { useAppThemeColor } from 'components/theme/Index';
+import { ThemeButton, ThemeText, ThemeView } from 'components/theme/ThemeComponents';
+import useIsAppReady from 'hooks/useIsAppReady';
 
 export default function App() {
-  const color = useColorScheme();
-  console.log(color);
+  const { isAppReady } = useIsAppReady();
+  const { themeStyle, isLightMode } = useAppThemeColor();
+
+  if (!isAppReady) {
+    return null;
+  }
+
   return (
-    <View style={[styles.container, color ==='light' ? styles.light : styles.dark ]}>
-      <Text style={[color ==='light' ? styles.light : styles.dark ]}>Open up App.tsx to start working on your app!</Text>
+    <SafeAreaProvider style={[themeStyle, styles.container]}>
+      <ThemeView style={[styles.simpleView]}>
+        <ThemeText>Open up App.tsx to start working on your app!</ThemeText>
+      </ThemeView>
+
+      <ThemeView style={[styles.buttonContainer]}>
+        <ThemeButton text="My Super Long Button Text" onPress={() => {}} />
+      </ThemeView>
+
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaProvider>
   );
 }
-
-const tintColorLight = '#2f95dc';
-const tintColorDark = '#fff';
 
 const styles = StyleSheet.create({
   container: {
@@ -21,18 +37,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  light: {
-    color: '#000',
-    backgroundColor: '#fff',
-    tintColor: tintColorLight,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorLight,
+  simpleView: {
+    borderWidth: 1,
+    margin: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
   },
-  dark: {
-    color: '#fffff',
-    backgroundColor: '#000',
-    tint: tintColorDark,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorDark,
+  buttonContainer: {
+    margin: 10,
   },
 });

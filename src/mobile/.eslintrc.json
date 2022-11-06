@@ -51,7 +51,7 @@
     "@typescript-eslint/explicit-module-boundary-types": "off",
 
     // React-Native
-    "react-native/no-raw-text": "error",
+    "react-native/no-raw-text": "off",
     "react-native/no-unused-styles": "warn",
     "react-native/no-color-literals": "warn",
     "react-native/no-inline-styles": "error",
@@ -80,7 +80,7 @@
     "import/no-duplicates": "error",
     "import/no-unused-modules": "off",
     "import/no-named-as-default": "warn",
-    "import/prefer-default-export": "warn",
+    "import/prefer-default-export": "off",
     "import/no-useless-path-segments": "error",
     "import/no-extraneous-dependencies": "warn",
     "import/no-named-as-default-member": "warn",
@@ -117,6 +117,15 @@
       "node": {
         "paths": [".", "./src"],
         "extensions": [".tsx", ".ts"]
+      },
+
+      "typescript": {
+        "alwaysTryTypes": true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+
+        // Choose from one of the "project" configs below or omit to use <root>/tsconfig.json by default
+
+        // use <root>/path/to/folder/tsconfig.json
+        "project": "./tsconfig.json"
       }
     }
   }

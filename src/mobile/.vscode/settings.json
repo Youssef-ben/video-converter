@@ -4,8 +4,16 @@
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
   "editor.formatOnSave": true,
+  "editor.hover.enabled": false,
   "editor.tabCompletion": "on",
   "editor.snippetSuggestions": "top",
+
+  "[typescript]": {
+    "editor.hover.enabled": true
+  },
+  "[typescriptreact]": {
+    "editor.hover.enabled": true
+  },
 
   // Activate if ever want to also run global Prettier.
   // "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -19,6 +27,15 @@
   "eslint.validate": ["typescript", "typescriptreact"],
 
   "[jsonc]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.quickSuggestions": {
+      "strings": true
+    },
+    "editor.suggest.insertMode": "replace",
+    "gitlens.codeLens.scopes": ["document"]
+  },
+  "[json]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.quickSuggestions": {

@@ -4,7 +4,7 @@
     "strict": true,
     "target": "es5",
     "module": "esnext",
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
