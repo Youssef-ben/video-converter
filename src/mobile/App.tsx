@@ -4,8 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { useAppThemeColor } from 'components/theme/Index';
-import { ThemeButton, ThemeText, ThemeView } from 'components/theme/ThemeComponents';
+import { ThemeButton, ThemeInput, ThemeText, ThemeView, useAppThemeColor } from 'components/theme/Index';
 import useIsAppReady from 'hooks/useIsAppReady';
 
 export default function App() {
@@ -23,9 +22,25 @@ export default function App() {
       </ThemeView>
 
       <ThemeView style={[styles.buttonContainer]}>
-        <ThemeButton text="Click Me" onPress={() => {}} />
+        <ThemeButton text="Primary" onPress={() => {}} style={styles.marginBottom} />
+        <ThemeButton text="Secondary" onPress={() => {}} type="secondary" />
       </ThemeView>
 
+      <ThemeView style={[styles.textContainer]}>
+        <ThemeInput
+          wrapper={{
+            style: styles.marginBottom,
+          }}
+        />
+        <ThemeInput
+          label="Input Field"
+          input={{
+            onChangeText(text) {
+              console.log(text);
+            },
+          }}
+        />
+      </ThemeView>
       <StatusBar style="auto" />
     </SafeAreaProvider>
   );
@@ -45,5 +60,11 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     margin: 10,
+  },
+  textContainer: {
+    marginTop: 10,
+  },
+  marginBottom: {
+    marginBottom: 10,
   },
 });

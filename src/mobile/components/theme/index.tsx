@@ -1,19 +1,8 @@
-import type { ColorSchemeName } from 'react-native';
-import { useColorScheme as _useColorScheme } from 'react-native';
+import { ThemeButton } from 'components/theme/components/ThemeButton';
+import { ThemeInput } from 'components/theme/components/ThemeInput';
+import { ThemeText } from 'components/theme/components/ThemeText';
+import { ThemeView } from 'components/theme/components/ThemeView';
 
-import { AppThemeStyle } from './AppThemeStyle';
+import { useAppThemeColor } from './useAppThemeColor';
 
-/**
- * Returns the app theme colors.
- */
-export const useAppThemeColor = () => {
-  const appTheme = _useColorScheme() as NonNullable<ColorSchemeName>;
-
-  return {
-    mode: appTheme,
-    themeStyle: AppThemeStyle[appTheme],
-
-    isDarkMode: () => appTheme === 'dark',
-    isLightMode: () => appTheme === 'light',
-  };
-};
+export { ThemeButton, ThemeInput, ThemeText, ThemeView, useAppThemeColor };
