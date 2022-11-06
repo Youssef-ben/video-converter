@@ -4,8 +4,8 @@ import type { TextInputProps, ViewProps } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
-import { TransparentColor } from '../AppThemeStyle';
-import { useAppThemeColor } from '../useAppThemeColor';
+import { TransparentColor } from '../theme/AppThemeStyle';
+import { useAppThemeColor } from '../theme/useAppThemeColor';
 import { ThemeText } from './ThemeText';
 import { ThemeView } from './ThemeView';
 

@@ -3,7 +3,7 @@ import React from 'react';
 import type { ViewProps } from 'react-native';
 import { View } from 'react-native';
 
-import { useAppThemeColor } from '../useAppThemeColor';
+import { useAppThemeColor } from '../theme/useAppThemeColor';
 
 type ThemeViewProps = ViewProps & {
   hasBorders?: boolean;

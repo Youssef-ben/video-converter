@@ -3,8 +3,8 @@ import React from 'react';
 import type { ViewStyle } from 'react-native';
 import { Pressable, StyleSheet } from 'react-native';
 
-import { TransparentColor } from '../AppThemeStyle';
-import { useAppThemeColor } from '../useAppThemeColor';
+import { TransparentColor } from '../theme/AppThemeStyle';
+import { useAppThemeColor } from '../theme/useAppThemeColor';
 import { ThemeText } from './ThemeText';
 
 interface ThemeButtonProps {

@@ -5,10 +5,11 @@ import { StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { useAppThemeColor } from 'components/theme/Index';
-import useIsAppReady from 'hooks/useIsAppReady';
+import useResourcesLoader from 'hooks/useResourcesLoader';
+import AppNavigation from 'navigation/Navigation';
 
 export default function App() {
-  const { isAppReady } = useIsAppReady();
+  const { isAppReady } = useResourcesLoader();
   const { themeStyle } = useAppThemeColor();
 
   if (!isAppReady) {
@@ -17,6 +18,8 @@ export default function App() {
 
   return (
     <SafeAreaProvider style={[themeStyle, styles.container]}>
+      <AppNavigation />
+
       <StatusBar style="auto" />
     </SafeAreaProvider>
   );
@@ -25,7 +28,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });

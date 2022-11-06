@@ -1,5 +1,7 @@
 const LightColor = '#d0d0c0';
+const LightHeaderColor = '#d9d9cc';
 const DarkColor = '#323232';
+const DarkHeaderColor = '#464646';
 
 const ButtonColor = '#375e8d';
 const InputBorderColor = '#737373';
@@ -13,6 +15,7 @@ export const AppThemeStyle = {
   light: {
     color: DarkColor,
     backgroundColor: LightColor,
+    headerBackgroundColor: LightHeaderColor,
     fontFamily: appFontName,
     borderRadius: 3,
     borderColor: DarkColor,
@@ -25,12 +28,13 @@ export const AppThemeStyle = {
 
     InputBorderColor: InputBorderColor,
     InputPlaceholderColor: InputBorderColor,
-    InputBackgroundColor: '#d9d9cc',
+    InputBackgroundColor: LightHeaderColor,
   },
 
   dark: {
     color: LightColor,
     backgroundColor: DarkColor,
+    headerBackgroundColor: DarkHeaderColor,
     fontFamily: appFontName,
     borderRadius: 3,
     borderColor: LightColor,

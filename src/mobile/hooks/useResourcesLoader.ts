@@ -6,11 +6,11 @@ import * as SplashScreen from 'expo-splash-screen';
 
 import { appFontName } from 'components/theme/AppThemeStyle';
 
-const useIsAppReady = () => {
+const useResourcesLoader = () => {
   const [isAppReady, setIsAppReady] = useState(false);
 
   useEffect(() => {
-    const loadResourcesAndDataAsync = async () => {
+    const loadResourcesAsync = async () => {
       try {
         SplashScreen.preventAutoHideAsync();
 
@@ -28,7 +28,7 @@ const useIsAppReady = () => {
       }
     };
 
-    loadResourcesAndDataAsync();
+    loadResourcesAsync();
   }, []);
 
   return {
@@ -36,4 +36,4 @@ const useIsAppReady = () => {
   };
 };
 
-export default useIsAppReady;
+export default useResourcesLoader;
