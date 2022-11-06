@@ -4,7 +4,7 @@ import { ThemeText, ThemeView } from 'components/ui';
 
 const Login = () => {
   return (
-    <ThemeView style={[styles.simpleView]}>
+    <ThemeView style={[styles.root]}>
       <ThemeText>This is a simple text inside the Login View</ThemeText>
     </ThemeView>
   );
@@ -13,8 +13,8 @@ const Login = () => {
 export default Login;
 
 const styles = StyleSheet.create({
-  simpleView: {
+  root: {
     flex: 1,
-    marginTop: '8%',
+    paddingTop: 12,
   },
 });
