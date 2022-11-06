@@ -10,7 +10,7 @@ import useIsAppReady from 'hooks/useIsAppReady';
 
 export default function App() {
   const { isAppReady } = useIsAppReady();
-  const { themeStyle, isLightMode } = useAppThemeColor();
+  const { themeStyle } = useAppThemeColor();
 
   if (!isAppReady) {
     return null;
@@ -23,7 +23,7 @@ export default function App() {
       </ThemeView>
 
       <ThemeView style={[styles.buttonContainer]}>
-        <ThemeButton text="My Super Long Button Text" onPress={() => {}} />
+        <ThemeButton text="Click Me" onPress={() => {}} />
       </ThemeView>
 
       <StatusBar style="auto" />

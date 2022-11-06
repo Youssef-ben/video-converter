@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { TextProps, ViewStyle } from 'react-native';
+import type { TextProps } from 'react-native';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { TransparentColor } from './AppThemeStyle';
@@ -24,46 +24,41 @@ export const ThemeView = ({ style, hasBorders, ...otherProps }: ThemeViewProps) 
 
 interface ThemeButtonProps {
   text: string;
-  style?: ViewStyle;
   onPress: () => void;
 }
-export const ThemeButton = ({ text, style, onPress }: ThemeButtonProps) => {
-  const { themeStyle, isLightMode } = useAppThemeColor();
+export const ThemeButton = ({ text, onPress }: ThemeButtonProps) => {
+  const { themeStyle } = useAppThemeColor();
 
-  const rippleEffect = { color: isLightMode() ? themeStyle.color : themeStyle.color };
   const buttonBackground = {
+    borderWidth: 1,
     borderColor: themeStyle.buttonBackground,
     backgroundColor: themeStyle.buttonBackground,
   };
 
+  const buttonText = {
+    color: themeStyle.buttonTextColor,
+  };
+
   return (
-    <ThemeView hasBorders style={[buttonBackground, styles.container, style]}>
-      <Pressable onPress={onPress} android_ripple={rippleEffect}>
-        <ThemeView style={[styles.button]}>
-          <ThemeText style={[{ color: themeStyle.buttonTextColor }, styles.buttonText]}>{text}</ThemeText>
-        </ThemeView>
-      </Pressable>
-    </ThemeView>
+    <Pressable style={[themeStyle, buttonBackground, buttonStyle.container]} onPress={onPress} android_ripple={{ color: themeStyle.color }}>
+      <Text style={[themeStyle, buttonText, buttonStyle.text]}>{text}</Text>
+    </Pressable>
   );
 };
 
-const styles = StyleSheet.create({
+const buttonStyle = StyleSheet.create({
   container: {
-    elevation: 4,
-    minWidth: '30%',
-  },
-
-  button: {
-    flexDirection: 'row',
-    alignSelf: 'center',
+    elevation: 3,
     alignItems: 'center',
-    alignContent: 'center',
-    backgroundColor: TransparentColor,
+    justifyContent: 'center',
+    minWidth: 150,
   },
-  buttonText: {
-    flex: 1,
-    padding: 6,
-    textAlign: 'center',
+  text: {
+    lineHeight: 21,
+    fontWeight: 'bold',
+    paddingVertical: 8,
+    letterSpacing: 0.25,
+    paddingHorizontal: 12,
     backgroundColor: TransparentColor,
   },
 });
