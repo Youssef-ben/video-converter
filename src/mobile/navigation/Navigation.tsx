@@ -7,6 +7,7 @@ import { Image, StyleSheet } from 'react-native';
 import { useAppThemeColor } from 'components/theme/useAppThemeColor';
 import Home from 'screens/home/Home';
 import Login from 'screens/login/Login';
+import Preview from 'screens/preview/Preview';
 
 import type { RootStackParamList } from './types';
 
@@ -36,6 +37,7 @@ function RootNavigator() {
     >
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Preview" component={Preview} />
     </Stack.Navigator>
   );
 }

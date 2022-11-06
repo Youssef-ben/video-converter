@@ -34,7 +34,7 @@ const Home = () => {
             style={styles.formButton}
             text="Search"
             onPress={() => {
-              navigation.dispatch(StackActions.replace('Home'));
+              navigation.dispatch(StackActions.push('Preview'));
             }}
           />
         </ThemeView>
