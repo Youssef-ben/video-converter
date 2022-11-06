@@ -37,7 +37,7 @@ export default function App() {
       </ThemeView>
 
       <ThemeView style={styles.card}>
-        <Pressable android_ripple={{ color: themeStyle.color }} style={({ pressed }) => (pressed ? styles.pressable : null)} onPress={() => {}}>
+        <Pressable android_ripple={{ color: themeStyle.color }} onPress={() => {}}>
           <Pressable android_ripple={{ color: themeStyle.color }} onPress={() => {}}>
             <ThemeView style={styles.imageContainer}>
               <Image resizeMode="contain" source={require('./assets/adaptive-icon.png')} style={styles.image} />
@@ -143,9 +143,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 8,
   },
-  pressable: {
-    opacity: 0.4,
-  },
+
   imageContainer: {
     borderRadius: 5,
     borderBottomEndRadius: 0,
