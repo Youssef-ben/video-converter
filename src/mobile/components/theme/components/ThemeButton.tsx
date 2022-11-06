@@ -15,44 +15,42 @@ interface ThemeButtonProps {
 }
 export const ThemeButton = ({ text, style, type = 'primary', onPress }: ThemeButtonProps) => {
   const { themeStyle } = useAppThemeColor();
+  const isSecondary = type === 'secondary';
 
-  const buttonBackground = {
-    borderWidth: 1,
-    borderColor: themeStyle.buttonBackground,
-    backgroundColor: themeStyle.buttonBackground,
-  };
-
-  const buttonText = {
-    color: themeStyle.buttonTextColor,
-  };
-
-  const secondaryBtn = {
-    button: {
-      borderWidth: 1,
+  // Style for the pressable
+  const wrapperStyle = [
+    themeStyle,
+    styles.container,
+    {
       borderColor: themeStyle.buttonBackground,
-      backgroundColor: themeStyle.backgroundColor,
+      backgroundColor: isSecondary ? themeStyle.backgroundColor : themeStyle.buttonBackground,
     },
-    text: {
-      color: themeStyle.buttonBackground,
+    style,
+  ];
+
+  // Style for the text
+  const textStyle = [
+    themeStyle,
+    styles.text,
+    {
+      color: isSecondary ? themeStyle.buttonBackground : themeStyle.buttonTextColor,
     },
-  };
+  ];
 
   return (
-    <Pressable
-      style={[themeStyle, buttonBackground, buttonStyle.container, type === 'secondary' && secondaryBtn.button, style]}
-      onPress={onPress}
-      android_ripple={{ color: themeStyle.color }}
-    >
-      <ThemeText style={[themeStyle, buttonText, buttonStyle.text, type === 'secondary' && secondaryBtn.text]}>{text}</ThemeText>
+    <Pressable style={[wrapperStyle]} onPress={onPress} android_ripple={{ color: themeStyle.color }}>
+      <ThemeText style={textStyle}>{text}</ThemeText>
     </Pressable>
   );
 };
-const buttonStyle = StyleSheet.create({
+
+const styles = StyleSheet.create({
   container: {
-    elevation: 3,
+    elevation: 4,
+    minWidth: 150,
+    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    minWidth: 150,
   },
   text: {
     lineHeight: 21,

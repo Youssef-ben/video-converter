@@ -58,7 +58,7 @@ export const ThemeInput = ({ label, isInvalid = false, input, wrapper }: ThemeIn
 };
 const styles = StyleSheet.create({
   container: {
-    elevation: 2,
+    elevation: 4,
     paddingTop: 0,
     minWidth: '90%',
     borderBottomWidth: 1,
