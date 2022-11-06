@@ -1,13 +1,13 @@
-export const LightColor = '#d0d0c0';
-export const DarkColor = '#323232';
+const LightColor = '#d0d0c0';
+const DarkColor = '#323232';
 
-export const ButtonColor = '#375e8d';
-export const InputBorderColor = '#737373';
-export const LightInputBackgroundColor = '#d9d9cc';
-export const DarkInputBackgroundColor = '#464646';
-export const TransparentColor = 'transparent';
+const ButtonColor = '#375e8d';
+const InputBorderColor = '#737373';
+const ErrorColor = '#d74946';
+const ErrorBackground = '#f5bbbb';
 
 export const appFontName = 'Nunito';
+export const TransparentColor = 'transparent';
 
 export const AppThemeStyle = {
   light: {
@@ -17,13 +17,15 @@ export const AppThemeStyle = {
     borderRadius: 3,
     borderColor: DarkColor,
     shadowColor: DarkColor,
+    Error: ErrorColor,
+    ErrorBackground: ErrorBackground,
 
     buttonTextColor: LightColor,
     buttonBackground: ButtonColor,
 
     InputBorderColor: InputBorderColor,
     InputPlaceholderColor: InputBorderColor,
-    InputBackgroundColor: LightInputBackgroundColor,
+    InputBackgroundColor: '#d9d9cc',
   },
 
   dark: {
@@ -33,12 +35,14 @@ export const AppThemeStyle = {
     borderRadius: 3,
     borderColor: LightColor,
     shadowColor: LightColor,
+    Error: ErrorColor,
+    ErrorBackground: ErrorBackground,
 
     buttonTextColor: LightColor,
     buttonBackground: ButtonColor,
 
     InputBorderColor: InputBorderColor,
     InputPlaceholderColor: InputBorderColor,
-    InputBackgroundColor: DarkInputBackgroundColor,
+    InputBackgroundColor: '#464646',
   },
 };

@@ -11,40 +11,52 @@ import { ThemeView } from './ThemeView';
 
 type ThemeInputProps = {
   label?: string;
+  isInvalid?: boolean;
   input?: TextInputProps;
   wrapper?: ViewProps;
 };
 
-export const ThemeInput = ({ label, input, wrapper }: ThemeInputProps) => {
-  const { themeStyle } = useAppThemeColor();
+export const ThemeInput = ({ label, isInvalid = false, input, wrapper }: ThemeInputProps) => {
+  const { themeStyle, isDarkMode } = useAppThemeColor();
 
   const containerStyle = {
-    borderColor: themeStyle.InputBorderColor,
-    backgroundColor: themeStyle.InputBackgroundColor,
+    borderColor: isInvalid ? themeStyle.Error : themeStyle.InputBorderColor,
+    borderTopWidth: isInvalid ? 1 : 0,
+    borderLeftWidth: isInvalid ? 1 : 0,
+    borderRightWidth: isInvalid ? 1 : 0,
+    backgroundColor: isInvalid ? '#f5bbbb' : themeStyle.InputBackgroundColor,
   };
 
   const inputStyle = {
-    color: themeStyle.color,
+    color: isInvalid ? 'black' : themeStyle.color,
   };
 
-  textInputStyle.container = {
-    ...textInputStyle.container,
+  styles.container = {
+    ...styles.container,
     paddingTop: label ? 5 : 0,
   };
 
+  styles.label = {
+    ...styles.label,
+    color: isDarkMode() && isInvalid ? themeStyle.backgroundColor : themeStyle.color,
+  };
+
   return (
-    <ThemeView {...wrapper} style={[containerStyle, textInputStyle.container, wrapper?.style]}>
-      {label && <ThemeText style={[{ color: themeStyle.color }, textInputStyle.label]}>{label}</ThemeText>}
-      <TextInput
-        placeholderTextColor={themeStyle.InputPlaceholderColor}
-        style={[inputStyle, textInputStyle.input]}
-        placeholder={input?.placeholder || 'Enter your text...'}
-        {...input}
-      />
-    </ThemeView>
+    <>
+      <ThemeView {...wrapper} style={[containerStyle, styles.container, wrapper?.style]}>
+        {label && <ThemeText style={[styles.label]}>{label}</ThemeText>}
+
+        <TextInput
+          placeholderTextColor={themeStyle.InputPlaceholderColor}
+          style={[inputStyle, styles.input]}
+          placeholder={input?.placeholder || 'Enter your text...'}
+          {...input}
+        />
+      </ThemeView>
+    </>
   );
 };
-const textInputStyle = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     elevation: 2,
     paddingTop: 0,
@@ -60,6 +72,7 @@ const textInputStyle = StyleSheet.create({
     fontSize: 12,
     fontWeight: 'bold',
     letterSpacing: 0.25,
+    color: TransparentColor,
     backgroundColor: TransparentColor,
   },
 });

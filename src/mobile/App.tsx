@@ -32,8 +32,29 @@ export default function App() {
             style: styles.marginBottom,
           }}
         />
+
+        <ThemeInput
+          isInvalid
+          wrapper={{
+            style: styles.marginBottom,
+          }}
+        />
+
         <ThemeInput
           label="Input Field"
+          wrapper={{
+            style: styles.marginBottom,
+          }}
+          input={{
+            onChangeText(text) {
+              console.log(text);
+            },
+          }}
+        />
+
+        <ThemeInput
+          label="Input Field"
+          isInvalid
           input={{
             onChangeText(text) {
               console.log(text);
