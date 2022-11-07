@@ -1,16 +1,34 @@
 import React from 'react';
 
-import { StyleSheet } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
+import YoutubePlayer from 'react-native-youtube-iframe';
 
-import Logo from 'components/Logo';
-import { ThemeView } from 'components/ui';
+import { ThemeButton, ThemeText, ThemeView } from 'components/ui';
 
 const Preview = () => {
+  const { width } = useWindowDimensions();
+
   return (
     <ThemeView style={[styles.root]}>
-      <Logo source={require('../../assets/logo.png')} dimension={{ width: 180, height: 180 }} />
+      <ThemeView style={[styles.youtubeContainer]}>
+        <YoutubePlayer
+          height={210}
+          width={width - 40}
+          videoId={'-DD8PcdE_d0'}
+          webViewProps={{
+            renderToHardwareTextureAndroid: true,
+          }}
+        />
+      </ThemeView>
 
-      <ThemeView style={styles.formContainer} />
+      <ThemeView>
+        <ThemeText style={styles.youtubeTitle}>
+          Gentle music, calms the nervous system and pleases the soul - healing music for the heart and blood
+        </ThemeText>
+
+        <ThemeButton style={styles.formButton} text="CONVERT TO AUDIO" onPress={() => {}} />
+        <ThemeButton type="secondary" style={styles.formButton} text="CONVERT TO VIDEO" onPress={() => {}} />
+      </ThemeView>
     </ThemeView>
   );
 };
@@ -26,8 +44,20 @@ const styles = StyleSheet.create({
     alignContent: 'center',
   },
 
-  formContainer: {
-    marginTop: '10%',
+  youtubeContainer: {
+    alignItems: 'center',
+    alignContent: 'center',
+  },
+  youtubeTitle: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    paddingHorizontal: 15,
+    marginTop: 8,
+  },
+  formButton: {
+    color: 'white',
+    marginTop: 10,
     marginHorizontal: 15,
   },
 });
