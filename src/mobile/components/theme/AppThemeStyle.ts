@@ -3,7 +3,7 @@ const LightHeaderColor = '#d9d9cc';
 const DarkColor = '#323232';
 const DarkHeaderColor = '#464646';
 
-const ButtonColor = '#375e8d';
+const ButtonColor = DarkColor; //'#375e8d';
 const InputBorderColor = '#737373';
 const ErrorColor = '#d74946';
 const ErrorBackground = '#f5bbbb';
@@ -24,7 +24,7 @@ export const AppThemeStyle = {
     ErrorBackground: ErrorBackground,
 
     buttonTextColor: LightColor,
-    buttonBackground: ButtonColor,
+    buttonBackground: DarkColor,
 
     InputBorderColor: InputBorderColor,
     InputPlaceholderColor: InputBorderColor,
@@ -42,8 +42,8 @@ export const AppThemeStyle = {
     Error: ErrorColor,
     ErrorBackground: ErrorBackground,
 
-    buttonTextColor: LightColor,
-    buttonBackground: ButtonColor,
+    buttonTextColor: DarkColor,
+    buttonBackground: LightColor,
 
     InputBorderColor: InputBorderColor,
     InputPlaceholderColor: InputBorderColor,

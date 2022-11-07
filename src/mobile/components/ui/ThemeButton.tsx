@@ -15,7 +15,7 @@ interface ThemeButtonProps {
   onPress: () => void;
 }
 export const ThemeButton = ({ text, style, type = 'primary', disabled = false, onPress }: ThemeButtonProps) => {
-  const { themeStyle, isLightMode } = useAppThemeColor();
+  const { themeStyle } = useAppThemeColor();
   const isSecondary = type === 'secondary';
 
   // Style for the pressable
@@ -31,16 +31,13 @@ export const ThemeButton = ({ text, style, type = 'primary', disabled = false, o
   ];
 
   // Style for the text
-  const textStyle = [
-    themeStyle,
-    styles.text,
-    {
-      color: isLightMode() && isSecondary ? themeStyle.buttonBackground : themeStyle.buttonTextColor,
-    },
-  ];
+  const textColor = {
+    color: isSecondary ? themeStyle.buttonBackground : themeStyle.buttonTextColor,
+  };
+  const textStyle = [themeStyle, styles.text, textColor];
 
   return (
-    <Pressable disabled={disabled} style={[wrapperStyle]} onPress={onPress} android_ripple={{ color: themeStyle.color }}>
+    <Pressable disabled={disabled} style={[wrapperStyle]} onPress={onPress} android_ripple={textColor}>
       <ThemeText style={textStyle}>{text}</ThemeText>
     </Pressable>
   );
