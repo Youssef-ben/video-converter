@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 
 import { StyleSheet, useWindowDimensions } from 'react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
@@ -7,27 +7,18 @@ import { ThemeButton, ThemeText, ThemeView } from 'components/ui';
 
 const Preview = () => {
   const { width } = useWindowDimensions();
-  const [loading, setLoading] = useState(true);
-
-  const onReady = useCallback(() => {
-    console.log('Ready show ');
-    setLoading(false);
-  }, []);
 
   return (
     <ThemeView style={[styles.root]}>
       <ThemeView style={[styles.youtubeContainer]}>
         <YoutubePlayer
-          height={loading ? 0 : 210}
+          height={210}
           width={width - 40}
           videoId={'2N4SjqaKPA8'}
-          onReady={onReady}
           webViewProps={{
             renderToHardwareTextureAndroid: true,
           }}
         />
-
-        {loading && <ThemeText style={styles.youtubeTitle}>This is my text</ThemeText>}
       </ThemeView>
 
       <ThemeView>
@@ -35,8 +26,8 @@ const Preview = () => {
           Gentle music, calms the nervous system and pleases the soul - healing music for the heart and blood
         </ThemeText>
 
-        <ThemeButton style={styles.formButton} text="CONVERT TO AUDIO" onPress={() => {}} />
-        <ThemeButton type="secondary" style={styles.formButton} text="CONVERT TO VIDEO" onPress={() => {}} />
+        <ThemeButton style={styles.formButton} text="DOWNLOAD AS AUDIO" onPress={() => {}} />
+        <ThemeButton type="secondary" style={styles.formButton} text="DOWNLOAD AS VIDEO" onPress={() => {}} />
       </ThemeView>
     </ThemeView>
   );
