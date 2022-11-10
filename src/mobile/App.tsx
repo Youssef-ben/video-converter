@@ -7,6 +7,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useAppThemeColor } from 'components/theme/Index';
 import useResourcesLoader from 'hooks/useResourcesLoader';
 import AppNavigation from 'navigation/Navigation';
+import 'shared/translations';
 
 export default function App() {
   const { isAppReady } = useResourcesLoader();

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { StackActions } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
 
 import Logo from 'components/Logo';
@@ -9,6 +10,7 @@ import { useAppNavigation } from 'navigation/types';
 
 const Login = () => {
   const navigation = useAppNavigation();
+  const { t } = useTranslation();
 
   return (
     <ThemeView style={[styles.root]}>
@@ -17,12 +19,13 @@ const Login = () => {
       <ThemeView style={styles.formContainer}>
         <ThemeInput
           input={{
-            placeholder: 'Password...',
+            placeholder: t('app.login.password'),
           }}
         />
+
         <ThemeButton
           style={styles.formButton}
-          text="Login"
+          text={t('app.login.btn')}
           onPress={() => {
             navigation.dispatch(StackActions.replace('Home'));
           }}
