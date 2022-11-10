@@ -13,6 +13,6 @@ config.transformer.getTransformOptions = async () => ({
   },
 });
 
-config.watchFolders = [...config.watchFolders, path.join(__dirname, '..', 'shared')];
+config.watchFolders = [...config.watchFolders, path.join(__dirname, '..', 'common')];
 console.log(config.watchFolders);
 module.exports = config;
