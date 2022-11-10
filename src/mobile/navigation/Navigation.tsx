@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 42,
     height: 42,
-    marginEnd: 10,
+    marginEnd: 15,
+    marginStart: -4,
   },
 });

@@ -1,6 +1,7 @@
 import type { ImageSourcePropType } from 'react-native';
-import { Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet, useWindowDimensions } from 'react-native';
 
+import { useAppThemeColor } from './theme/useAppThemeColor';
 import { ThemeView } from './ui';
 
 interface LogoProps {
@@ -12,13 +13,17 @@ interface LogoProps {
 }
 
 const Logo = ({ source, dimension }: LogoProps) => {
-  if (dimension) {
-    styles.image = {
-      ...styles.image,
-      width: dimension.width,
-      height: dimension.height,
-    };
-  }
+  const { isLightMode } = useAppThemeColor();
+  const { width } = useWindowDimensions();
+
+  const autoSize = width < 400 ? 126 : 130;
+  const logoDimension = isLightMode() ? autoSize : 132;
+
+  styles.image = {
+    ...styles.image,
+    width: dimension ? dimension.width : logoDimension,
+    height: dimension ? dimension.height : logoDimension,
+  };
 
   return (
     <ThemeView style={styles.imageContainer}>

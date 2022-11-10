@@ -12,7 +12,7 @@ const Home = () => {
 
   return (
     <ThemeView style={[styles.root]}>
-      <Logo source={require('../../assets/logo.png')} dimension={{ width: 180, height: 180 }} />
+      <Logo source={require('../../assets/logo.png')} />
 
       <ThemeView style={styles.formContainer}>
         <ThemeText style={styles.formLabel}>

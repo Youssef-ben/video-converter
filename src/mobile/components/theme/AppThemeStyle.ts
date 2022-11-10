@@ -3,7 +3,6 @@ const LightHeaderColor = '#d9d9cc';
 const DarkColor = '#323232';
 const DarkHeaderColor = '#464646';
 
-const ButtonColor = DarkColor; //'#375e8d';
 const InputBorderColor = '#737373';
 const ErrorColor = '#d74946';
 const ErrorBackground = '#f5bbbb';

@@ -8,12 +8,13 @@ import { ThemeButton, ThemeText, ThemeView } from 'components/ui';
 const Preview = () => {
   const { width } = useWindowDimensions();
 
+  const videoContainerOffset = width < 400 ? 20 : 40;
   return (
     <ThemeView style={[styles.root]}>
-      <ThemeView style={[styles.youtubeContainer]}>
+      <ThemeView hasBorders style={[styles.youtubeContainer]}>
         <YoutubePlayer
           height={210}
-          width={width - 40}
+          width={width - videoContainerOffset}
           videoId={'2N4SjqaKPA8'}
           webViewProps={{
             renderToHardwareTextureAndroid: true,
@@ -45,6 +46,8 @@ const styles = StyleSheet.create({
   },
 
   youtubeContainer: {
+    overflow: 'hidden',
+    borderRadius: 4,
     alignItems: 'center',
     alignContent: 'center',
   },
@@ -56,7 +59,6 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   formButton: {
-    color: 'white',
     marginTop: 10,
     marginHorizontal: 15,
   },
