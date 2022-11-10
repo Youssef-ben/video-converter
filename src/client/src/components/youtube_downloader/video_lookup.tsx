@@ -9,6 +9,8 @@ import { VIDEO_PLACEHOLDER } from '../../utils/constants';
 import InputWithLabel from '../utils/input_with_label';
 import useVideoLookupHook from '../../hooks/youtube_downloader/video_lookup_hook';
 
+import AppLogo from '../utils/app_logo';
+
 const TEXT = {
   description: 'app.yt.video_lookup.description',
   btn_search: 'app.yt.btn.search',
@@ -20,7 +22,10 @@ function VideoLookup(): JSX.Element {
 
   return (
     <>
+      <AppLogo />
+
       <p>{t(TEXT.description)}</p>
+
       <Form>
         <Form.Field>
           <InputWithLabel placeholder={VIDEO_PLACEHOLDER} value={hookData.urlValue} setValue={hookData.onYoutubeUrlChange} error={hookData.inputError} />

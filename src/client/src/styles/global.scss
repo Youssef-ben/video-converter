@@ -2,10 +2,6 @@ body {
   background-color: $background-color;
 }
 
-.app-logo {
-  border-radius: 100px !important;
-}
-
 // Input background and border color
 input {
   background: $background-input !important;
@@ -17,7 +13,7 @@ input {
 
 .dropdown {
   color: $primary-color !important;
-  background: $background-input !important;
+  background: $secondary-background-color !important;
   border: 1px solid $primary-background-color !important;
 
   &:hover {

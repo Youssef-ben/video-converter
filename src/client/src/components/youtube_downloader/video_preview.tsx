@@ -53,8 +53,6 @@ function VideoPreview(): JSX.Element {
 
   return (
     <>
-      <p>{t(TEXT.description)}</p>
-
       <div className="player-wrapper">
         {showPlayerLoading && (
           <div className="react-player" style={{ width: '100%', height: '100%' }}>

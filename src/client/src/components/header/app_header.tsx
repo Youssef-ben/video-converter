@@ -1,9 +1,9 @@
 import React from 'react';
 import { isMobile } from 'react-device-detect';
 import { useTranslation } from 'react-i18next';
-import { Container, Flag, Menu, Image } from 'semantic-ui-react';
+import { Container, Flag, Menu } from 'semantic-ui-react';
 
-import Logo from '../../assets/images/logo.png';
+import AppLogo from '../utils/app_logo';
 
 function AppHeader(): JSX.Element {
   const { t, i18n } = useTranslation();
@@ -26,7 +26,7 @@ function AppHeader(): JSX.Element {
         <Container className="app-header" fluid>
           <a className="home-page-link" href="/">
             <Menu.Item>
-              <Image className="app-logo" size="mini" rounded src={Logo} inline />
+              <AppLogo forHeader />
             </Menu.Item>
 
             <Menu.Item header>
