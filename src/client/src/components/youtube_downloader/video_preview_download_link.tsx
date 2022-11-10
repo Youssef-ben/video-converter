@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 import { Button, Form, Grid } from 'semantic-ui-react';
-import APP_ROUTES from '../../routes/routes.constants';
 import IframeDownloader from '../utils/iframe_downloader';
 
 type DownloadLinkProps = {
@@ -12,11 +10,10 @@ type DownloadLinkProps = {
 function DownloadLink({ link }: DownloadLinkProps): JSX.Element {
   const { t } = useTranslation();
   const [showText, setShowText] = useState(true);
-  const navigate = useNavigate();
 
   const onFinishHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    navigate(APP_ROUTES.PRIV_YTD);
+    window.location.reload();
   };
 
   // Hide the download text

@@ -63,7 +63,7 @@ function VideoPreviewConvert(): JSX.Element {
         </span>
       </Button>
 
-      <Button className="btn yt-right" color="orange" onClick={(e: React.MouseEvent<HTMLButtonElement>) => setScreenAction(e, FileType.VIDEO)}>
+      <Button className="secondary btn yt-right" onClick={(e: React.MouseEvent<HTMLButtonElement>) => setScreenAction(e, FileType.VIDEO)}>
         <span>
           {t(TEXT.btn_download)}
           {'  '}
