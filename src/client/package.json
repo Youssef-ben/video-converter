@@ -18,7 +18,7 @@
     "url": "https://github.com/Youssef-ben/video-converter/issues"
   },
   "scripts": {
-    "start": "yarn lint && cross-env PORT=3001 BROWSER=chrome BROWSER_ARGS=--incognito  react-scripts start",
+    "start": "yarn lint && cross-env PORT=3001 BROWSER='none' react-scripts start",
     "build": "yarn lint && react-scripts build",
     "test": "react-scripts test",
     "lint": "eslint --ext ts,tsx src"
