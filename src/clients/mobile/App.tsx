@@ -1,9 +1,11 @@
 import React from 'react';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { VytcContextProvider } from 'common/store/vytc-context/provider';
 import { setTranslation } from 'common/translations';
 import { useAppThemeColor } from 'components/theme/Index';
 import useResourcesLoader from 'hooks/useResourcesLoader';
@@ -23,7 +25,9 @@ export default function App() {
 
   return (
     <SafeAreaProvider style={[themeStyle, styles.container]}>
-      <AppNavigation />
+      <VytcContextProvider storage={AsyncStorage}>
+        <AppNavigation />
+      </VytcContextProvider>
 
       <StatusBar style="auto" />
     </SafeAreaProvider>
