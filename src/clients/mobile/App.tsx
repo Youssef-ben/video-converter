@@ -5,7 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import VytcProvider from 'common/store/contexts/vytc/provider';
+import { VytcContextProvider } from 'common/store/vytc-context/provider';
 import { setTranslation } from 'common/translations';
 import { useAppThemeColor } from 'components/theme/Index';
 import useResourcesLoader from 'hooks/useResourcesLoader';
@@ -25,9 +25,9 @@ export default function App() {
 
   return (
     <SafeAreaProvider style={[themeStyle, styles.container]}>
-      <VytcProvider storage={AsyncStorage}>
+      <VytcContextProvider storage={AsyncStorage}>
         <AppNavigation />
-      </VytcProvider>
+      </VytcContextProvider>
 
       <StatusBar style="auto" />
     </SafeAreaProvider>

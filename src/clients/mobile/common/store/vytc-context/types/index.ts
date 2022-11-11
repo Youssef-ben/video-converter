@@ -1,10 +1,10 @@
-import type { LoginResponsePayload, YoutubeVideoPayload } from '../../types/server';
+import type { LoginPayload, YoutubeVideoPayload } from '../../../types/server';
 
 /**
  * Authentication Store structure
  */
 export type AuthenticationState = {
-  data: LoginResponsePayload;
+  data: LoginPayload;
 
   connect: (token: string) => void;
   refresh: (token: string) => void;
