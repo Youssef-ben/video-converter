@@ -22,7 +22,7 @@ export type AuthState = LoginPayload & {
 
 export const AUTH_INITIAL_DATA = {
   accessToken: '',
-  isAuthenticated: true,
+  isAuthenticated: false,
 };
 
 export type AuthActions = {

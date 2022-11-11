@@ -36,9 +36,7 @@ root.render(
 
     <VytcContextProvider storage={appStorage} >
       <BrowserRouter>
-
         <AppNavigation />
-
       </BrowserRouter>
     </VytcContextProvider>
   </React.StrictMode>

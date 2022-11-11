@@ -1,10 +1,20 @@
+import AppFooter from "components/app-footer";
 import AppHeader from "components/app-header";
 
-function App() {
+interface Props {
+  children: JSX.Element;
+}
+function App({ children }: Props) {
   return (
     <>
       <AppHeader />
-      Home PAge</>
+
+      <section>
+        {children}
+      </section>
+
+      <AppFooter />
+    </>
   )
 }
 
