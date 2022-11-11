@@ -1,7 +1,13 @@
-
 // Border color for the focused input that has an error
 .error.field {
+  .ui.pointing.below {
+    background: $input-border-background-error !important;
+  }
+
   input {
+    border-color: $input-border-color-error !important;
+    background-color: $input-border-background-error !important;
+
     &:focus {
       border-color: $input-border-color-error !important;
     }

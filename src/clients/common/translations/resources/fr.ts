@@ -18,7 +18,6 @@ export default {
     'app.login.placeholder.password': 'Mot de passe...',
     'app.login.btn': 'Connexion',
     'app.login.err.password_required': 'Le mot de passe est obligatoire, veuillez spécifier une valeur valide !',
-    'api.login.err.invalid_credentials': 'Mot de passe invalide !',
 
     // App Errors
     'app.err.unhandled': 'Erreur non prise en charge!',

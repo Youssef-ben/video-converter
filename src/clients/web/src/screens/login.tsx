@@ -6,7 +6,7 @@ import useLogin from "common/store/hooks/useLogin";
 import AppLogo from "components/app_logo";
 
 function Login() {
-  const { login, onPasswordChange } = useLogin();
+  const { login, onLogin, onPasswordChange } = useLogin();
   const { t } = useTranslation();
   const text = {
     placeholder: 'app.login.placeholder.password',
@@ -16,6 +16,12 @@ function Login() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onChangeHandler = (_: React.ChangeEvent<HTMLInputElement>, { value }: InputOnChangeData) => {
     onPasswordChange(value)
+  }
+
+  const onClickHandler = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+
+    await onLogin();
   }
 
   return (
@@ -30,12 +36,13 @@ function Login() {
               icon="lock"
               type="password"
               iconPosition="left"
-              placeholder={t(text.placeholder)}
               value={login.value}
+              error={!login?.error?.fromServer && login.error}
+              placeholder={t(text.placeholder)}
               onChange={onChangeHandler}
             />
 
-            <Button primary fluid size="large">
+            <Button primary fluid size="large" onClick={onClickHandler}>
               {t(text.button)}
             </Button>
           </Form>

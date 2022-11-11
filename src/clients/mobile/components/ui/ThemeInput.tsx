@@ -24,7 +24,7 @@ export const ThemeInput = ({ label, isInvalid = false, input, wrapper }: ThemeIn
     borderTopWidth: isInvalid ? 1 : 0,
     borderLeftWidth: isInvalid ? 1 : 0,
     borderRightWidth: isInvalid ? 1 : 0,
-    backgroundColor: isInvalid ? '#f5bbbb' : themeStyle.InputBackgroundColor,
+    backgroundColor: isInvalid ? themeStyle.ErrorBackground : themeStyle.InputBackgroundColor,
   };
 
   const inputStyle = {

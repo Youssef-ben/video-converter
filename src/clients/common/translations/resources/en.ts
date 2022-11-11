@@ -18,7 +18,6 @@ export default {
     'app.login.placeholder.password': 'Password...',
     'app.login.btn': 'Login',
     'app.login.err.password_required': 'The password is required, please specify a valid value!',
-    'api.login.err.invalid_credentials': 'Invalid password!',
 
     // App Errors
     'app.err.unhandled': 'Unhandled error!',
