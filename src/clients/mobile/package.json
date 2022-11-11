@@ -36,8 +36,8 @@
     "ios": "yarn start --ios",
     "web": "yarn start --web",
     "lint": "yarn eslint",
-    "sync-with-common": "cp -rf ./common ../",
-    "sync-from-common": "cp -rf ../common ./"
+    "sync-with-common": "rm -rf ../common && cp -rf ./common ../",
+    "sync-from-common": "rm -rf ./common && cp -rf ../common ./"
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",

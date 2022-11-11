@@ -1,7 +1,7 @@
-export type LoginPayload = {
+export type LoginRequestPayload = {
   passphrase: string;
 };
 
-export type LoginResponsePayload = {
+export type LoginPayload = {
   accessToken: string;
 };

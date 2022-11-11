@@ -22,8 +22,8 @@
     "build": "yarn lint && react-scripts build",
     "test": "react-scripts test",
     "lint": "eslint --ext ts,tsx src",
-    "sync-with-common": "cp -rf ./src/common ../",
-    "sync-from-common": "cp -rf ../common ./src/"
+    "sync-with-common": "rm -rf ../common && cp -rf ./src/common ../",
+    "sync-from-common": "rm -rf ./src/common && cp -rf ../common ./src/"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
