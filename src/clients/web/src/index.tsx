@@ -1,4 +1,3 @@
-import React from 'react';
 
 import I18nextBrowserLanguageDetector from 'i18next-browser-languagedetector';
 // eslint-disable-next-line import/order
@@ -32,11 +31,11 @@ const appStorage: VytcAsyncStorageProvider = {
 
 
 root.render(
-  <React.StrictMode>
-    <VytcContextProvider storage={appStorage} >
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </VytcContextProvider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <VytcContextProvider storage={appStorage} >
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </VytcContextProvider>
+  // </React.StrictMode>
 );

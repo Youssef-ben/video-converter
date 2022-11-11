@@ -14,6 +14,12 @@ export default {
     'app.title': 'VYTC',
     'app.title.extras': '- Videos and Youtube Converter',
 
+    // Login page
+    'app.login.placeholder.password': 'Password...',
+    'app.login.btn': 'Login',
+    'app.login.err.password_required': 'The password is required, please specify a valid value!',
+    'api.login.err.invalid_credentials': 'Invalid password!',
+
     // App Errors
     'app.err.unhandled': 'Unhandled error!',
     'app.err.unhandled_desc': 'An error occurred while trying to handle your request!',
@@ -23,12 +29,6 @@ export default {
     'api.err.security.invalid_passphrase': 'Invalid passphrase!',
     'app.err.invalid_passphrase_desc': 'Please check that you specified a valid passphrase and try again!',
     'api.err.security.invalid_passphrase_desc': 'Please check that you specified a valid passphrase and try again!',
-
-    // Login page
-    'app.login.password': 'Password...',
-    'app.login.btn': 'Login',
-    'app.login.err.password_required': 'The password is required, please specify a valid value!',
-    'api.login.err.invalid_credentials': 'Invalid password!',
 
     // Youtube downloader page
     'app.yt.title': 'Youtube Downloader',
