@@ -7,7 +7,8 @@ import AppRoutes from '../routes/routes';
 import AppHeader from '../components/header/app_header';
 import AppFooter from '../components/footer/app.footer';
 import { AppProvider } from '../store/contexts/app_context';
-import VytcProvider, { VytcAsyncStorageProvider } from '../common/store/contexts/vytc/provider';
+import VytcProvider from '../common/store/contexts/vytc/provider';
+import { VytcAsyncStorageProvider } from '../common/store/types';
 
 function App(): JSX.Element {
   const appStorage: VytcAsyncStorageProvider = {
@@ -15,8 +16,6 @@ function App(): JSX.Element {
     setItem: async (key: string, value: string) => localStorage.setItem(key, value),
     removeItem: async (key: string) => localStorage.removeItem(key),
   };
-
-  appStorage.setItem('test', 'myValue');
 
   return (
     <>

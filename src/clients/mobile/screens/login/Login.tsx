@@ -4,6 +4,7 @@ import { StackActions } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
 
+import { useAppContext } from 'common/store/contexts/vytc/provider';
 import Logo from 'components/Logo';
 import { ThemeButton, ThemeInput, ThemeView } from 'components/ui';
 import { useAppNavigation } from 'navigation/types';
@@ -11,6 +12,7 @@ import { useAppNavigation } from 'navigation/types';
 const Login = () => {
   const navigation = useAppNavigation();
   const { t } = useTranslation();
+  const { auth } = useAppContext();
 
   return (
     <ThemeView style={[styles.root]}>
@@ -27,6 +29,7 @@ const Login = () => {
           style={styles.formButton}
           text={t('app.login.btn')}
           onPress={() => {
+            auth.connect('YoDude');
             navigation.dispatch(StackActions.replace('Home'));
           }}
         />

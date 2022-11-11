@@ -5,7 +5,6 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import type { VytcAsyncStorageProvider } from 'common/store/contexts/vytc/provider';
 import VytcProvider from 'common/store/contexts/vytc/provider';
 import { setTranslation } from 'common/translations';
 import { useAppThemeColor } from 'components/theme/Index';
@@ -24,15 +23,9 @@ export default function App() {
     return null;
   }
 
-  const appStorage: VytcAsyncStorageProvider = {
-    getItem: async (key: string) => await AsyncStorage.getItem(key),
-    setItem: async (key: string, value: string) => await AsyncStorage.setItem(key, value),
-    removeItem: async (key: string) => await AsyncStorage.removeItem(key),
-  };
-
   return (
     <SafeAreaProvider style={[themeStyle, styles.container]}>
-      <VytcProvider storage={appStorage}>
+      <VytcProvider storage={AsyncStorage}>
         <AppNavigation />
       </VytcProvider>
 

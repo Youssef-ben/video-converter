@@ -27,16 +27,7 @@
     "no-console": "warn",
     "no-nested-ternary": "warn",
     "prefer-destructuring": "warn",
-    "comma-dangle": [
-      "error",
-      {
-        "arrays": "always-multiline",
-        "objects": "always-multiline",
-        "imports": "always-multiline",
-        "exports": "always-multiline",
-        "functions": "always-multiline"
-      }
-    ],
+    "comma-dangle": "off",
 
     // TypeScript
     "@typescript-eslint/indent": "off",

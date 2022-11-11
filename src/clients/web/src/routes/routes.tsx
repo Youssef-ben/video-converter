@@ -1,18 +1,18 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { useAppContext } from '../common/store/contexts/vytc/provider';
 import PageNotFound from '../components/utils/page_not_found';
 import VideoLookup from '../components/youtube_downloader/video_lookup';
 import VideoPreview from '../components/youtube_downloader/video_preview';
-import LoginPage from '../screens/login';
-import PrivateRoute from './routes.private_wrapper';
-import APP_ROUTES from './routes.constants';
 import YtDownloaderContainer from '../components/youtube_downloader/youtube_downloader_container';
-import { useAppContext } from '../store/contexts/app_context';
+import LoginPage from '../screens/login';
+import APP_ROUTES from './routes.constants';
+import PrivateRoute from './routes.private_wrapper';
 
 function AppRoutes(): JSX.Element {
-  const { state } = useAppContext();
-
-  const landingPage = state.authState.token ? <Navigate to={APP_ROUTES.PRIV_YTD} /> : <Navigate to={APP_ROUTES.PUB_LOGIN} />;
+  const { auth } = useAppContext();
+  console.log(auth);
+  const landingPage = auth.data.accessToken ? <Navigate to={APP_ROUTES.PRIV_YTD} /> : <Navigate to={APP_ROUTES.PUB_LOGIN} />;
 
   const videoLookupComponent = (
     <YtDownloaderContainer>
