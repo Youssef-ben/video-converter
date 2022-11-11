@@ -17,6 +17,7 @@
     "copyright": ""
   },
 
+  "_comment_allowed_guests": "use (*) to allow any origin or (url_1;url2;....)",
   "allowed_guests": "*",
 
   "security": {

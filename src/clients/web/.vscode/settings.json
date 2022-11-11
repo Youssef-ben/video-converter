@@ -1,0 +1,18 @@
+{
+  "files.eol": "\n",
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.formatOnSave": true,
+  "editor.hover.enabled": false,
+  "editor.tabCompletion": "on",
+  "editor.snippetSuggestions": "top",
+
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "eslint.validate": ["typescript", "javascript"],
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "cSpell.words": ["borderless", "browserslist", "languagedetector", "nobg", "Submenu", "vytc", "webm", "youtu"],
+  "cSpell.ignorePaths": ["package-lock.json", "node_modules", "vscode-extension", ".git/objects", ".vscode", ".vscode-insiders", "/src/i18n/fr.ts"]
+}

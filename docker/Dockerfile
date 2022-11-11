@@ -1,10 +1,10 @@
 # CLIENT BUILD STAGE
 #-------------------------------------------------------------------------
-FROM node:16-alpine as BUILD-CLIENT-STAGE
+FROM node:16-alpine as BUILD-WEB-CLIENT-STAGE
 WORKDIR /app
 
 # Custom cache invalidation
-COPY ./src/client .
+COPY ./src/clients/web .
 
 # Install dependencies
 RUN yarn
@@ -44,7 +44,7 @@ COPY --from=BUILD-SERVER-STAGE /api/dist .
 COPY --from=BUILD-SERVER-STAGE /api/node_modules ./node_modules
 COPY --from=BUILD-SERVER-STAGE /api/public /usr/api/public
 
-COPY --from=BUILD-CLIENT-STAGE /app/build /usr/api/public/ui
+COPY --from=BUILD-WEB-CLIENT-STAGE /app/build /usr/api/public/ui
 
 EXPOSE 3000
 CMD ["node","./src/startup.js"]

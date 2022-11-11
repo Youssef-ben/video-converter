@@ -22,7 +22,7 @@ class ApiConfig {
   }
 
   private getAllowedDomains = (): Array<string> | boolean => {
-    if (this.config.allowed_guests == '*') {
+    if (this.config.allowed_guests === '*') {
       return true;
     }
 
@@ -60,7 +60,8 @@ class ApiConfig {
     const data = fs.readFileSync(jsonConfigFile, 'utf-8');
     const extraSettings = JSON.parse(data);
 
-    logger.debug(`Config::Environment configuration file (${env}), loaded successfuly!`);
+    logger.debug(`Config::Environment configuration file (${env}), loaded successfully!`);
+
     return mergeObjects({ ...defaultConfig }, { ...extraSettings });
   }
 

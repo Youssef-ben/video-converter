@@ -1,4 +1,4 @@
-.PHONEY: build-image start-server stop-server remove-server clean open-server open-client generate-env help
+.PHONEY: build-image start-server stop-server remove-server clean open-server open-web open-mobile  open-common generate-env help
 
 # Must include the environment file to be able to use the docker-compose.
 include .env
@@ -50,14 +50,37 @@ clean: remove ## Removes the API server and web client containers and images.
 open-server: ## Opens vsCode editor on the {Server} folder.
 	$(shell code ./src/server/)
 
-open-client: ## Opens vsCode editor on the {Client} folder.
-	$(shell code ./src/client/)
+open-web: ## Opens vsCode editor on the {Client} folder.
+	$(shell code ./src/clients/web)
+
+open-mobile: ## Opens vsCode editor on the {Client} folder.
+	$(shell code ./src/clients/mobile/)
+
+open-common: ## Opens vsCode editor on the {Mobile} folder.
+	$(shell code ./src/clients/common/)
 
 generate-env: ## Generate a (.env) file based on the (.env.example) file..
 	@echo "[INF] - Generating (.env) file for each project..."
 	@cp ./.env.example ./.env
 	@cp ./src/server/.env.example ./src/server/.env
-	@cp ./src/client/.env.example ./src/client/.env
+	@cp ./src/clients/web/.env.example ./src/clients/web/.env
+	@echo "[INF] - Done."
+
+clean-projects:
+	@echo "[INF] - Cleaning the project dependencies..."
+
+	@echo "[DBG] - Cleaning {Clients}..."
+	@rm -rf ./src/clients/node_modules
+	
+	@echo "[DBG] - Cleaning {Clients/Common}..."
+	@rm -rf ./src/clients/common/node_modules
+	
+	@echo "[DBG] - Cleaning {Clients/Web}..."
+	@rm -rf ./src/clients/web/node_modules
+	
+	@echo "[DBG] - Cleaning {Clients/Mobile}..."
+	@rm -rf ./src/clients/mobile/node_modules
+
 	@echo "[INF] - Done."
 
 help: ## Shows the Current Makefile Commands.

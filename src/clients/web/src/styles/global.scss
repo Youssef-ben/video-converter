@@ -1,0 +1,75 @@
+body {
+  background-color: $background-color;
+}
+
+// Input background and border color
+input {
+  background: $background-input !important;
+  border-color: #aeaeae !important;
+
+  &:focus {
+    border-color: $primary-background-color !important;
+  }
+}
+
+.dropdown {
+  color: $primary-color !important;
+  background: $secondary-background-color !important;
+  border: 1px solid #aeaeae !important;
+
+  &:hover {
+    color: $primary-background-color !important;
+    background: $background-color !important;
+  }
+  &:focus {
+    border-color: $primary-background-color !important;
+  }
+
+  .menu.visible {
+    background: $background-input !important;
+  }
+  .menu > .selected {
+    background: $background-color !important;
+  }
+}
+
+// Border color for the focused input that has an error
+.error.field {
+  input {
+    &:focus {
+      border-color: #9f3a38 !important;
+    }
+  }
+}
+
+// Placeholder for the inputs
+::placeholder {
+  color: gray !important;
+  opacity: 0.7 !important; /* Firefox */
+}
+
+.app-content {
+  margin-top: 0.1em;
+  background-color: $background-content-color;
+  height: calc(100vh - 45px);
+  max-height: calc(100vh - 45px);
+  min-width: 290px;
+  text-align: justify;
+}
+
+@media only screen and (min-width: 722px) {
+  .ui.container {
+    width: 700px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .ui.container {
+    margin-left: 0em !important;
+    margin-right: 0em !important;
+  }
+}
+
+.hidden {
+  visibility: hidden;
+}
