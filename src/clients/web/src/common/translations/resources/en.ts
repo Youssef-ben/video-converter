@@ -2,8 +2,6 @@
 export default {
   translation: {
     // Common
-    'app.title': 'VYTC',
-    'app.title.extras': '- Videos and Youtube Converter',
     'app.loading': 'Loading...',
     'app.convert': 'DOWNLOAD AS',
     'app.convert.audio': 'AUDIO',
@@ -11,6 +9,10 @@ export default {
     'app.auto_download': 'Your download will start automatically, please wait...',
     'btn.cancel': 'Cancel',
     'btn.finish': 'Finish',
+
+    // Header
+    'app.title': 'VYTC',
+    'app.title.extras': '- Videos and Youtube Converter',
 
     // App Errors
     'app.err.unhandled': 'Unhandled error!',

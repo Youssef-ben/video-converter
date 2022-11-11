@@ -8,14 +8,21 @@ export interface VytcContextAuthStateMethods {
   connect: (token: string) => void;
   refresh: (token: string) => void;
   signOut: () => void;
-  isConnected: () => Promise<boolean>;
 }
 
 export const CONTEXT_METHODS: VytcContextAuthStateMethods = {
   connect: (_: string) => null,
   refresh: (_: string) => null,
   signOut: () => null,
-  isConnected: () => Promise.resolve(false),
+};
+
+export type AuthState = LoginPayload & {
+  isAuthenticated: boolean;
+};
+
+export const AUTH_INITIAL_DATA = {
+  accessToken: '',
+  isAuthenticated: true,
 };
 
 export type AuthActions = {
@@ -23,17 +30,19 @@ export type AuthActions = {
   payload: string;
 };
 
-export const authReducer = (state: LoginPayload, action: AuthActions) => {
+export const authReducer = (state: AuthState, action: AuthActions) => {
   switch (action.type) {
     case 'CONNECT':
     case 'REFRESH':
       return {
+        isAuthenticated: true,
         accessToken: action.payload,
       };
 
     case 'SING_OUT':
       return {
         accessToken: '',
+        isAuthenticated: false,
       };
 
     default:
@@ -65,10 +74,5 @@ export const authReducerMethods = (dispatch: React.Dispatch<AuthActions>, storag
       payload: '',
     });
     await storage.removeItem(LOCAL_STORAGE_KEYS.AUTH);
-  },
-
-  isConnected: async () => {
-    const token = await storage.getItem(LOCAL_STORAGE_KEYS.AUTH);
-    return !!token;
   },
 });

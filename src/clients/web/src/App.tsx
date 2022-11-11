@@ -1,26 +1,10 @@
-
-import { BrowserRouter } from 'react-router-dom';
-
-import { VytcContextProvider } from 'common/store/vytc-context/provider';
-import type { VytcAsyncStorageProvider } from 'common/store/vytc-context/types';
-import AppNavigation from 'navigation';
+import AppHeader from "components/app-header";
 
 function App() {
-  // Make sure that the method are async.
-  const appStorage: VytcAsyncStorageProvider = {
-    getItem: async (key: string) => localStorage.getItem(key),
-    setItem: async (key: string, value: string) => localStorage.setItem(key, value),
-    removeItem: async (key: string) => localStorage.removeItem(key),
-  };
-
   return (
-    <VytcContextProvider storage={appStorage} >
-      <BrowserRouter>
-
-        <AppNavigation />
-
-      </BrowserRouter>
-    </VytcContextProvider>
+    <>
+      <AppHeader />
+      Home PAge</>
   )
 }
 

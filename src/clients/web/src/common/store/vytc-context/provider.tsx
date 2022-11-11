@@ -1,14 +1,14 @@
 import { createContext, useContext, useMemo, useReducer } from 'react';
 
-import type { LoginPayload, YoutubeVideoPayload } from '../../types/server';
-import type { AuthActions, VytcContextAuthStateMethods } from './reducers/authentication-reducer';
-import { authReducer, authReducerMethods, CONTEXT_METHODS } from './reducers/authentication-reducer';
+import type { YoutubeVideoPayload } from '../../types/server';
+import type { AuthActions, AuthState, VytcContextAuthStateMethods } from './reducers/authentication-reducer';
+import { authReducer, authReducerMethods, AUTH_INITIAL_DATA, CONTEXT_METHODS } from './reducers/authentication-reducer';
 import type { VytcAsyncStorageProvider } from './types/index';
 
 // Types
 /* ============================================================ */
 interface VytcContextState extends VytcContextAuthStateMethods {
-  auth: LoginPayload;
+  auth: AuthState;
   vyt?: YoutubeVideoPayload;
 }
 /* ============================================================ */
@@ -17,7 +17,7 @@ interface VytcContextState extends VytcContextAuthStateMethods {
 /* ============================================================ */
 
 const CONTEXT_INITIAL_STATE: VytcContextState = {
-  auth: { accessToken: '' },
+  auth: AUTH_INITIAL_DATA,
   vyt: undefined,
 
   // Context Methods
