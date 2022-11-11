@@ -1,0 +1,3 @@
+# Ignore fies
+.gitignore
+node_modules
