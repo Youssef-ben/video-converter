@@ -7,7 +7,6 @@ import type { AuthenticationState, VytcAsyncStorageProvider, YoutubeVideoState }
 
 // Types
 /* ============================================================ */
-
 type VytcContextState = {
   auth: AuthenticationState;
   vyt?: YoutubeVideoState;
@@ -26,7 +25,7 @@ const INITIAL_STATE: VytcContextState = {
 const VytcContext = createContext<VytcContextState>(INITIAL_STATE);
 export const useAppContext = () => useContext(VytcContext);
 
-// Reducers
+// Reducers Combined
 /* ============================================================ */
 const VytcReducer = (state: VytcContextState, action: AuthActions): VytcContextState => {
   return {

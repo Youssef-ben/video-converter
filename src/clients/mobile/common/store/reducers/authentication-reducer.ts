@@ -1,7 +1,6 @@
 import type React from 'react';
 
-import type { VytcAsyncStorageProvider } from '../contexts/vytc/provider';
-import type { AuthenticationState } from '../types';
+import type { AuthenticationState, VytcAsyncStorageProvider } from '../types';
 
 // Default Values.
 export const AUTH_INITIAL_VALUES: AuthenticationState = {
@@ -20,7 +19,9 @@ export type AuthActions = {
   payload: string;
 };
 
-// Authentication Reducer
+/**
+ * Authentication Reducers actions.
+ */
 export const authenticationReducer = (state: AuthenticationState, action: AuthActions): AuthenticationState => {
   switch (action.type) {
     case 'CONNECT':
@@ -45,6 +46,14 @@ export const authenticationReducer = (state: AuthenticationState, action: AuthAc
   }
 };
 
+/**
+ * Defines the methods for the Authentication store.
+ *
+ * @param state Data
+ * @param dispatch Action dispatcher callback.
+ * @param storage Local Storage API.
+ * @returns
+ */
 export const setAuthenticationActions = (
   state: AuthenticationState,
   dispatch: React.Dispatch<AuthActions>,
