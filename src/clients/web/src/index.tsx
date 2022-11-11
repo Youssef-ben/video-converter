@@ -9,9 +9,9 @@ import './assets/styles/index.scss';
 
 import { BrowserRouter } from 'react-router-dom';
 
+import App from 'App';
 import { VytcContextProvider } from 'common/store/vytc-context/provider';
 import type { VytcAsyncStorageProvider } from 'common/store/vytc-context/types';
-import AppNavigation from 'navigation';
 
 import { setTranslation } from './common/translations';
 
@@ -33,10 +33,9 @@ const appStorage: VytcAsyncStorageProvider = {
 
 root.render(
   <React.StrictMode>
-
     <VytcContextProvider storage={appStorage} >
       <BrowserRouter>
-        <AppNavigation />
+        <App />
       </BrowserRouter>
     </VytcContextProvider>
   </React.StrictMode>

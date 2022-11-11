@@ -1,16 +1,14 @@
 import AppFooter from "components/app-footer";
 import AppHeader from "components/app-header";
+import AppNavigation from "navigation";
 
-interface Props {
-  children: JSX.Element;
-}
-function App({ children }: Props) {
+function App() {
   return (
     <>
       <AppHeader />
 
       <section>
-        {children}
+        <AppNavigation />
       </section>
 
       <AppFooter />

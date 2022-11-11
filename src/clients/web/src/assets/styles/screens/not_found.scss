@@ -15,7 +15,7 @@
 
 .page-not-found {
   margin: 0;
-  height: 100vh;
+  height: calc(90vh - 43px);
   overflow: hidden;
   background-attachment: fixed;
   background-image: url('../../images/404/star.svg'), linear-gradient(to bottom, $primary-color, $primary-background-color);
@@ -24,7 +24,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    height: 27vmin;
+    height: 30vmin;
     position: absolute;
     background-size: cover !important;
     background: url('../../images/404/mars.svg') no-repeat bottom center;
