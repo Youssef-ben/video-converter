@@ -4,4 +4,3 @@ The following is the list of packages that need to be installed when converting 
 
 - i18next
 - react-i18next
-- i18next-browser-languagedetector
