@@ -2,8 +2,6 @@
 export default {
   translation: {
     // Common
-    'app.title': 'VYTC',
-    'app.title.extras': '- Videos and Youtube Converter',
     'app.loading': 'Chargement...',
     'app.convert': 'CONVERTIR EN',
     'app.convert.audio': 'AUDIO',
@@ -11,6 +9,16 @@ export default {
     'app.auto_download': 'Votre téléchargement va démarrer automatiquement, veuillez patienter...',
     'btn.cancel': 'Annuler',
     'btn.finish': 'Terminer',
+
+    // Headers
+    'app.title': 'VYTC',
+    'app.title.extras': '- Videos and Youtube Converter',
+
+    // Login page
+    'app.login.placeholder.password': 'Mot de passe...',
+    'app.login.btn': 'Connexion',
+    'app.login.err.password_required': 'Le mot de passe est obligatoire, veuillez spécifier une valeur valide !',
+    'api.login.err.invalid_credentials': 'Mot de passe invalide !',
 
     // App Errors
     'app.err.unhandled': 'Erreur non prise en charge!',
@@ -24,12 +32,6 @@ export default {
 
     'api.err.video_not_found_desc':
       "La vidéo que vous essayez de télécharger a déjà été téléchargée ou une erreur s'est produite. Veuillez rafraîchir la page et réessayer !",
-
-    // Login page
-    'app.login.password': 'Mot de passe...',
-    'app.login.btn': 'Connexion',
-    'app.login.err.password_required': 'Le mot de passe est obligatoire, veuillez spécifier une valeur valide !',
-    'api.login.err.invalid_credentials': 'Mot de passe invalide !',
 
     // Youtube downloader page
     'app.yt.title': 'Téléchargeur Youtube',

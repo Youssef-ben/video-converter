@@ -1,19 +1,20 @@
 import React from 'react';
 
-import { StackActions } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
 
-import { useAppContext } from 'common/store/vytc-context/provider';
+import useLogin from 'common/store/hooks/useLogin';
 import Logo from 'components/Logo';
 import { ThemeButton, ThemeInput, ThemeView } from 'components/ui';
-import { useAppNavigation } from 'navigation/types';
 
 const Login = () => {
-  const navigation = useAppNavigation();
+  const { login, onPasswordChange } = useLogin();
   const { t } = useTranslation();
-  const { connect } = useAppContext();
-
+  const text = {
+    placeholder: 'app.login.placeholder.password',
+    button: 'app.login.btn',
+  };
+  console.log(login);
   return (
     <ThemeView style={[styles.root]}>
       <Logo source={require('../../assets/logo.png')} />
@@ -21,16 +22,19 @@ const Login = () => {
       <ThemeView style={styles.formContainer}>
         <ThemeInput
           input={{
-            placeholder: t('app.login.password'),
+            value: login.value,
+            secureTextEntry: true,
+            placeholder: t(text.placeholder),
+
+            onChangeText: onPasswordChange,
           }}
         />
 
         <ThemeButton
           style={styles.formButton}
-          text={t('app.login.btn')}
+          text={t(text.button)}
           onPress={() => {
-            connect('YoDude');
-            navigation.dispatch(StackActions.replace('Home'));
+            /** */
           }}
         />
       </ThemeView>

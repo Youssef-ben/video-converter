@@ -2,8 +2,6 @@
 export default {
   translation: {
     // Common
-    'app.title': 'VYTC',
-    'app.title.extras': '- Videos and Youtube Converter',
     'app.loading': 'Loading...',
     'app.convert': 'DOWNLOAD AS',
     'app.convert.audio': 'AUDIO',
@@ -11,6 +9,16 @@ export default {
     'app.auto_download': 'Your download will start automatically, please wait...',
     'btn.cancel': 'Cancel',
     'btn.finish': 'Finish',
+
+    // Header
+    'app.title': 'VYTC',
+    'app.title.extras': '- Videos and Youtube Converter',
+
+    // Login page
+    'app.login.placeholder.password': 'Password...',
+    'app.login.btn': 'Login',
+    'app.login.err.password_required': 'The password is required, please specify a valid value!',
+    'api.login.err.invalid_credentials': 'Invalid password!',
 
     // App Errors
     'app.err.unhandled': 'Unhandled error!',
@@ -21,12 +29,6 @@ export default {
     'api.err.security.invalid_passphrase': 'Invalid passphrase!',
     'app.err.invalid_passphrase_desc': 'Please check that you specified a valid passphrase and try again!',
     'api.err.security.invalid_passphrase_desc': 'Please check that you specified a valid passphrase and try again!',
-
-    // Login page
-    'app.login.password': 'Password...',
-    'app.login.btn': 'Login',
-    'app.login.err.password_required': 'The password is required, please specify a valid value!',
-    'api.login.err.invalid_credentials': 'Invalid password!',
 
     // Youtube downloader page
     'app.yt.title': 'Youtube Downloader',
@@ -44,7 +46,7 @@ export default {
     // Not Found page
     'app.page.not_found.title': 'Oh no!!',
     'app.page.not_found.subtitle': 'You’re either misspelling the URL or ',
-    'app.page.not_found.subtitle_2': 'requesting a page that’s no longer here.',
+    'app.page.not_found.subtitle_2': 'requesting a page that’s no longer exits.',
     'app.page.not_found.back_btn': 'Home page',
 
     // Server Messages/Error.

@@ -1,13 +1,21 @@
 import { useTranslation } from "react-i18next";
+import type { InputOnChangeData } from "semantic-ui-react";
 import { Button, Container, Form, Grid } from "semantic-ui-react";
 
+import useLogin from "common/store/hooks/useLogin";
 import AppLogo from "components/app_logo";
 
 function Login() {
+  const { login, onPasswordChange } = useLogin();
   const { t } = useTranslation();
   const text = {
     placeholder: 'app.login.placeholder.password',
     button: 'app.login.btn',
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onChangeHandler = (_: React.ChangeEvent<HTMLInputElement>, { value }: InputOnChangeData) => {
+    onPasswordChange(value)
   }
 
   return (
@@ -23,6 +31,8 @@ function Login() {
               type="password"
               iconPosition="left"
               placeholder={t(text.placeholder)}
+              value={login.value}
+              onChange={onChangeHandler}
             />
 
             <Button primary fluid size="large">
