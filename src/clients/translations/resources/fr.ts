@@ -1,5 +1,7 @@
+/* eslint-disable import/no-anonymous-default-export */
 export default {
   translation: {
+    // Common
     'app.title': 'VYTC',
     'app.title.extras': '- Videos and Youtube Converter',
     'app.loading': 'Chargement...',
@@ -9,8 +11,8 @@ export default {
     'app.auto_download': 'Votre téléchargement va démarrer automatiquement, veuillez patienter...',
     'btn.cancel': 'Annuler',
     'btn.finish': 'Terminer',
-    'btn.login': 'Connexion',
 
+    // App Errors
     'app.err.unhandled': 'Erreur non prise en charge!',
     'app.err.unhandled_desc': "Une erreur s'est produite lors du traitement de votre demande !",
     'app.err.unhandled_reload': 'Veuillez recharger la page.',
@@ -20,10 +22,12 @@ export default {
     'app.err.invalid_passphrase_desc': 'Veuillez vérifier que vous avez spécifié un mot de passe valide et réessayez!',
     'api.err.security.invalid_passphrase_desc': 'Veuillez vérifier que vous avez spécifié un mot de passe valide et réessayez!',
 
-    'api.err.video_not_found_desc': "La vidéo que vous essayez de télécharger a déjà été téléchargée ou une erreur s'est produite. Veuillez rafraîchir la page et réessayer !",
+    'api.err.video_not_found_desc':
+      "La vidéo que vous essayez de télécharger a déjà été téléchargée ou une erreur s'est produite. Veuillez rafraîchir la page et réessayer !",
 
     // Login page
     'app.login.password': 'Mot de passe...',
+    'app.login.btn': 'Connexion',
     'app.login.err.password_required': 'Le mot de passe est obligatoire, veuillez spécifier une valeur valide !',
     'api.login.err.invalid_credentials': 'Mot de passe invalide !',
 
@@ -32,7 +36,8 @@ export default {
     'app.yt.btn.search': 'Chercher',
     'app.yt.video_lookup.description':
       "Téléchargez n'importe quelle vidéo youtube au format audio ou video. Tout ce que vous avez à faire est de copier le lien dans la case ci-dessous.",
-    'app.yt.video_preview.description': 'Hooray!! nous avons trouvé la vidéo que vous recherchez. Veuillez choisir le format de fichier que vous souhaitez télécharger.',
+    'app.yt.video_preview.description':
+      'Hooray!! nous avons trouvé la vidéo que vous recherchez. Veuillez choisir le format de fichier que vous souhaitez télécharger.',
     'app.yt.video_preview.title_name': '(Facultatif) - Utilisez la case ci-dessous pour renommer la vidéo.',
     'app.yt.err.invalid_url_msg': "L'url que vous avez entré n'est pas valide, veuillez réessayer avec une valeur valide !",
     'app.yt.video_preview.video_quality': 'Qualité vidéo',
@@ -46,9 +51,10 @@ export default {
     'app.page.not_found.subtitle_2': "Soit vous demandez une page qui n'existe plus.",
     'app.page.not_found.back_btn': "Page d'accueil",
 
-    // Server Messages.
+    // Server Messages/Error.
     'api.err.security.unauthorized': 'Non autorisé',
-    'api.err.security.unauthorized_desc': "Informations d'identification invalides ou vous n'avez pas la permission d'accéder aux ressources demandées !",
+    'api.err.security.unauthorized_desc':
+      "Informations d'identification invalides ou vous n'avez pas la permission d'accéder aux ressources demandées !",
 
     'api.err.downloader.invalid_url': 'Invalid Youtube URL!',
     'api.err.downloader.invalid_url_desc': 'Please review the Youtube URL and try again!',

@@ -32,7 +32,7 @@ function LoginPage(): JSX.Element {
             />
 
             <Button primary fluid size="large" onClick={hookData.onLogin}>
-              {t('btn.login')}
+              {t('app.login.btn')}
             </Button>
           </Form>
         </Grid.Column>

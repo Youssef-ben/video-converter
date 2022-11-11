@@ -1,4 +1,4 @@
-.PHONEY: build-image start-server stop-server remove-server clean open-server open-client generate-env help
+.PHONEY: build-image start-server stop-server remove-server clean open-server open-web open-mobile  open-common generate-env help
 
 # Must include the environment file to be able to use the docker-compose.
 include .env
@@ -50,7 +50,7 @@ clean: remove ## Removes the API server and web client containers and images.
 open-server: ## Opens vsCode editor on the {Server} folder.
 	$(shell code ./src/server/)
 
-open-client: ## Opens vsCode editor on the {Client} folder.
+open-web: ## Opens vsCode editor on the {Client} folder.
 	$(shell code ./src/clients/web)
 
 open-mobile: ## Opens vsCode editor on the {Client} folder.

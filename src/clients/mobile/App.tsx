@@ -4,10 +4,14 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import 'common/translations';
+import { setTranslation } from 'common/translations';
 import { useAppThemeColor } from 'components/theme/Index';
 import useResourcesLoader from 'hooks/useResourcesLoader';
 import AppNavigation from 'navigation/Navigation';
+import RNLanguageDetector from 'utils/i18next.languageDetector';
+
+// Set Translation for the APP.
+setTranslation(RNLanguageDetector);
 
 export default function App() {
   const { isAppReady } = useResourcesLoader();
