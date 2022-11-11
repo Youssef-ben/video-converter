@@ -44,7 +44,7 @@ export default {
     // Not Found page
     'app.page.not_found.title': 'Oh no!!',
     'app.page.not_found.subtitle': 'You’re either misspelling the URL or ',
-    'app.page.not_found.subtitle_2': 'requesting a page that’s no longer here.',
+    'app.page.not_found.subtitle_2': 'requesting a page that’s no longer exits.',
     'app.page.not_found.back_btn': 'Home page',
 
     // Server Messages/Error.

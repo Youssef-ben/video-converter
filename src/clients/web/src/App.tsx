@@ -16,7 +16,7 @@ function App() {
   return (
     <VytcContextProvider storage={appStorage} >
       <BrowserRouter>
-        <h1>This is my test</h1>
+
         <AppNavigation />
 
       </BrowserRouter>

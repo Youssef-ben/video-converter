@@ -1,6 +1,11 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "VYTC",
+  "name": "vytc - Client for videos and youtube converter",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#323232",
+  "background_color": "#d0d0c0",
+
   "icons": [
     {
       "src": "favicon.ico",
@@ -17,9 +22,5 @@
       "type": "image/png",
       "sizes": "512x512"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  ]
 }

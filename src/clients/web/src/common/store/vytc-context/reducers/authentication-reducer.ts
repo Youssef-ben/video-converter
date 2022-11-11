@@ -8,12 +8,14 @@ export interface VytcContextAuthStateMethods {
   connect: (token: string) => void;
   refresh: (token: string) => void;
   signOut: () => void;
+  isConnected: () => Promise<boolean>;
 }
 
 export const CONTEXT_METHODS: VytcContextAuthStateMethods = {
   connect: (_: string) => null,
   refresh: (_: string) => null,
   signOut: () => null,
+  isConnected: () => Promise.resolve(false),
 };
 
 export type AuthActions = {
@@ -63,5 +65,10 @@ export const authReducerMethods = (dispatch: React.Dispatch<AuthActions>, storag
       payload: '',
     });
     await storage.removeItem(LOCAL_STORAGE_KEYS.AUTH);
+  },
+
+  isConnected: async () => {
+    const token = await storage.getItem(LOCAL_STORAGE_KEYS.AUTH);
+    return !!token;
   },
 });
