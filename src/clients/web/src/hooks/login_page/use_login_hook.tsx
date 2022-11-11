@@ -4,14 +4,15 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { InputOnChangeData } from 'semantic-ui-react';
-import { useAppContext } from '../../common/store/contexts/vytc/provider';
 import ShowToast from '../../components/utils/custom_toast';
 import APP_ROUTES from '../../routes/routes.constants';
+import { AuthActionsTypes } from '../../store/actions/auth_actions';
+import { useAppContext } from '../../store/contexts/app_context';
 
 import ApiResponse from '../../types/api.response';
 import { InputError } from '../../types/input_error';
 import { LoginDto, LoginResponseDto } from '../../types/vytc/security.models';
-import { SERVER_URLS } from '../../utils/constants';
+import { LOCAL_STORAGE_KEYS, SERVER_URLS } from '../../utils/constants';
 import { handleError } from '../../utils/helpers';
 
 interface UseLoginHook {
@@ -26,8 +27,7 @@ interface UseLoginHook {
 
 const useLoginHook = (): UseLoginHook => {
   const { t } = useTranslation();
-  // const { state, dispatch } = useAppContext();
-  const { auth } = useAppContext();
+  const { state, dispatch } = useAppContext();
   const [passphrase, setPassphrase] = React.useState('');
   const [error, setError] = React.useState<InputError>();
   const navigate = useNavigate();
@@ -51,7 +51,14 @@ const useLoginHook = (): UseLoginHook => {
         passphrase,
       });
 
-      auth.connect(data.result.access_token);
+      localStorage.setItem(LOCAL_STORAGE_KEYS.token, data.result.access_token);
+
+      dispatch({
+        type: AuthActionsTypes.LoggedIn,
+        payload: {
+          token: data.result.access_token,
+        },
+      });
 
       setPassphrase('');
 
@@ -74,7 +81,7 @@ const useLoginHook = (): UseLoginHook => {
     throw new Error('Not implemented!');
   }
 
-  return { password: passphrase, error, hasAuthToken: !!auth.data.accessToken, onPasswordChange, onLogin, onRefreshToken };
+  return { password: passphrase, error, hasAuthToken: !!state.authState.token, onPasswordChange, onLogin, onRefreshToken };
 };
 
 export default useLoginHook;

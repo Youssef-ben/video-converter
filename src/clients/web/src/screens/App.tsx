@@ -7,8 +7,8 @@ import AppRoutes from '../routes/routes';
 import AppHeader from '../components/header/app_header';
 import AppFooter from '../components/footer/app.footer';
 import { AppProvider } from '../store/contexts/app_context';
-import VytcProvider from '../common/store/contexts/vytc/provider';
-import { VytcAsyncStorageProvider } from '../common/store/types';
+import { VytcContextProvider } from '../common/store/vytc-context/provider';
+import { VytcAsyncStorageProvider } from '../common/store/vytc-context/types';
 
 function App(): JSX.Element {
   const appStorage: VytcAsyncStorageProvider = {
@@ -23,11 +23,11 @@ function App(): JSX.Element {
 
       <section>
         <BrowserRouter>
-          <VytcProvider storage={appStorage}>
+          <VytcContextProvider storage={appStorage}>
             <AppProvider>
               <AppRoutes />
             </AppProvider>
-          </VytcProvider>
+          </VytcContextProvider>
         </BrowserRouter>
       </section>
 
