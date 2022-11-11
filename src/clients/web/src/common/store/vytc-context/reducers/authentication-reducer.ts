@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import type { LoginPayload } from '../../../types/server';
 import { LOCAL_STORAGE_KEYS } from '../../../utils/constants';
 import type { VytcAsyncStorageProvider } from '../types';
@@ -37,31 +39,29 @@ export const authReducer = (state: LoginPayload, action: AuthActions) => {
   }
 };
 
-export const authReducerMethods = (dispatch: React.Dispatch<AuthActions>, storage: VytcAsyncStorageProvider): VytcContextAuthStateMethods => {
-  return {
-    connect: async (token: string) => {
-      dispatch({
-        type: 'CONNECT',
-        payload: token,
-      });
-      await storage.setItem(LOCAL_STORAGE_KEYS.AUTH, token);
-    },
+export const authReducerMethods = (dispatch: React.Dispatch<AuthActions>, storage: VytcAsyncStorageProvider): VytcContextAuthStateMethods => ({
+  connect: async (token: string) => {
+    dispatch({
+      type: 'CONNECT',
+      payload: token,
+    });
+    await storage.setItem(LOCAL_STORAGE_KEYS.AUTH, token);
+  },
 
-    refresh: async (token: string) => {
-      dispatch({
-        type: 'REFRESH',
-        payload: token,
-      });
-      await storage.removeItem(LOCAL_STORAGE_KEYS.AUTH);
-      await storage.setItem(LOCAL_STORAGE_KEYS.AUTH, token);
-    },
+  refresh: async (token: string) => {
+    dispatch({
+      type: 'REFRESH',
+      payload: token,
+    });
+    await storage.removeItem(LOCAL_STORAGE_KEYS.AUTH);
+    await storage.setItem(LOCAL_STORAGE_KEYS.AUTH, token);
+  },
 
-    signOut: async () => {
-      dispatch({
-        type: 'SING_OUT',
-        payload: '',
-      });
-      await storage.removeItem(LOCAL_STORAGE_KEYS.AUTH);
-    },
-  };
-};
+  signOut: async () => {
+    dispatch({
+      type: 'SING_OUT',
+      payload: '',
+    });
+    await storage.removeItem(LOCAL_STORAGE_KEYS.AUTH);
+  },
+});

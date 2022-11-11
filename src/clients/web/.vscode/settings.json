@@ -44,6 +44,14 @@
     "editor.suggest.insertMode": "replace",
     "gitlens.codeLens.scopes": ["document"]
   },
+  "[scss]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.quickSuggestions": {
+      "strings": true
+    },
+    "editor.suggest.insertMode": "replace"
+  },
 
   "[markdown]": {
     "editor.formatOnSave": true,
@@ -70,5 +78,6 @@
       ".vscode-insiders",
       "../src/common/translations/index.ts"
     ]
-  }
+  },
+  "cSpell.words": ["languagedetector"]
 }

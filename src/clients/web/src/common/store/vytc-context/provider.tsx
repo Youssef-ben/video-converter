@@ -27,15 +27,13 @@ const CONTEXT_INITIAL_STATE: VytcContextState = {
 
 // Reducers
 /* ============================================================ */
-const VytcReducer = (state: VytcContextState, action: AuthActions): VytcContextState => {
-  return {
-    auth: authReducer(state.auth, action),
-    vyt: undefined,
+const VytcReducer = (state: VytcContextState, action: AuthActions): VytcContextState => ({
+  auth: authReducer(state.auth, action),
+  vyt: undefined,
 
-    // Context Methods, Will be initialized in the VytcProvider.
-    ...CONTEXT_METHODS,
-  };
-};
+  // Context Methods, Will be initialized in the VytcProvider.
+  ...CONTEXT_METHODS,
+});
 /* ============================================================ */
 
 // VYTC Context

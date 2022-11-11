@@ -71,7 +71,7 @@
     "@typescript-eslint/indent": "off",
     "@typescript-eslint/ban-types": "warn",
     "@typescript-eslint/no-shadow": "error",
-    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/ban-ts-comment": "error",
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/no-empty-function": "off",

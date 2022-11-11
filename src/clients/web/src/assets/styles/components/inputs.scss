@@ -1,0 +1,46 @@
+
+// Border color for the focused input that has an error
+.error.field {
+  input {
+    &:focus {
+      border-color: $input-border-color-error !important;
+    }
+  }
+}
+
+// Input background and border color
+input {
+  background: $input-background !important;
+  border-color: $input-border-color !important;
+
+  &:focus {
+    border-color: $primary-background-color !important;
+  }
+}
+
+// Placeholder for the inputs
+::placeholder {
+  color: gray !important;
+  opacity: 0.7 !important; /* Firefox */
+}
+
+.dropdown {
+  color: $primary-color !important;
+  background: $secondary-background-color !important;
+  border: 1px solid $input-border-color !important;
+
+  &:hover {
+    color: $primary-background-color !important;
+    background: $secondary-color !important;
+  }
+  &:focus {
+    border-color: $primary-background-color !important;
+  }
+
+  .menu.visible {
+    background: $input-background !important;
+  }
+  .menu > .selected {
+    background: $secondary-color !important;
+  }
+}
