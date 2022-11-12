@@ -25,6 +25,7 @@ const useLogin = () => {
   const connectUser = async (): Promise<boolean> => {
     setState((current) => ({ ...current, loading: true }));
 
+    // Validate the password is not empty.
     if (!state.value) {
       setState((current) => ({
         ...current,
@@ -37,34 +38,27 @@ const useLogin = () => {
       return false;
     }
 
+    // Call the Login API.
     const { error, data } = await AxiosPost<LoginRequestPayload, LoginPayload>(SERVER_URLS.security_login, {
       passphrase: state.value,
     });
 
-    if (error) {
+    // Check for errors
+    if (error || !data) {
+      const errorContent = !data ? `${t('app.err.unhandled')} - ${t('app.err.unhandled_desc')}` : t(error?.type as string);
+
       setState({
         value: '',
         loading: false,
         error: {
-          content: t(error.type),
-          fromServer: true,
-        },
-      });
-      return false;
-    }
-    if (!data) {
-      setState({
-        value: '',
-        loading: false,
-        error: {
-          content: `${t('app.err.unhandled')} - ${t('app.err.unhandled_desc')}`,
+          content: errorContent,
           fromServer: true,
         },
       });
       return false;
     }
 
-    // Set Access Token and connect
+    // Connect and reset values.
     connect(data?.accessToken);
     setState(INITIAL_VALUES);
     return true;

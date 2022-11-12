@@ -7,16 +7,13 @@
   "editor.hover.enabled": true,
   "editor.tabCompletion": "on",
   "editor.snippetSuggestions": "top",
-
-  "[typescript]": {
-    "editor.hover.enabled": true
-  },
-  "[typescriptreact]": {
-    "editor.hover.enabled": true
+  "editor.suggest.insertMode": "replace",
+  "editor.quickSuggestions": {
+    "strings": true
   },
 
   // Activate if ever want to also run global Prettier.
-  // "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
 
   // Configure ESLint plugin to run on save.
   "editor.codeActionsOnSave": {
@@ -26,37 +23,7 @@
 
   "eslint.validate": ["typescript", "typescriptreact"],
 
-  "[jsonc]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.quickSuggestions": {
-      "strings": true
-    },
-    "editor.suggest.insertMode": "replace",
-    "gitlens.codeLens.scopes": ["document"]
-  },
-  "[json]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.quickSuggestions": {
-      "strings": true
-    },
-    "editor.suggest.insertMode": "replace",
-    "gitlens.codeLens.scopes": ["document"]
-  },
-  "[scss]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.quickSuggestions": {
-      "strings": true
-    },
-    "editor.suggest.insertMode": "replace"
-  },
-
   "[markdown]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-
     "editor.unicodeHighlight.ambiguousCharacters": false,
     "editor.unicodeHighlight.invisibleCharacters": false,
     "editor.wordWrap": "on",
@@ -64,20 +31,12 @@
       "comments": "off",
       "strings": "off",
       "other": "off"
-    },
-    "cSpell.fixSpellingWithRenameProvider": true,
-    "cSpell.advanced.feature.useReferenceProviderWithRename": true,
-    "cSpell.advanced.feature.useReferenceProviderRemove": "/^#+\\s/",
-
-    "cSpell.ignorePaths": [
-      "package-lock.json",
-      "node_modules",
-      "vscode-extension",
-      ".git/objects",
-      ".vscode",
-      ".vscode-insiders",
-      "../src/common/translations/index.ts"
-    ]
+    }
   },
+
+  "cSpell.fixSpellingWithRenameProvider": true,
+  "cSpell.advanced.feature.useReferenceProviderWithRename": true,
+  "cSpell.advanced.feature.useReferenceProviderRemove": "/^#+\\s/",
+  "cSpell.ignorePaths": ["package-lock.json", "node_modules", " **/*/fr.ts"],
   "cSpell.words": ["languagedetector"]
 }
