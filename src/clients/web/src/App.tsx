@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 import { useAppContext } from "common/store/vytc-context/provider";
 import { setupAxiosRequestInterceptor } from "common/utils/http";
-import AppFooter from "components/app-footer";
-import AppHeader from "components/app-header";
+import AppFooter from "components/AppFooter";
+import AppHeader from "components/AppHeader";
 import AppNavigation from "navigation";
 import APP_ROUTES from "navigation/navigation-constants";
 

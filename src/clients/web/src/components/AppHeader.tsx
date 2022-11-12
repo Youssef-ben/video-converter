@@ -5,7 +5,7 @@ import { Container, Flag, Menu } from "semantic-ui-react";
 
 import APP_ROUTES from "navigation/navigation-constants";
 
-import AppLogo from "./app_logo";
+import AppLogo from "./AppLogo";
 
 function AppHeader(): JSX.Element {
   const { t, i18n } = useTranslation();

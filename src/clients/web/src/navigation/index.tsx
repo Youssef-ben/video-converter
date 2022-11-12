@@ -1,8 +1,8 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import Home from "screens/home";
-import Login from "screens/login";
-import PageNotFound from "screens/page-not-found";
+import Home from "screens/Home";
+import Login from "screens/Login";
+import PageNotFound from "screens/PageNotFound";
 
 import APP_ROUTES from "./navigation-constants";
 import ProtectedRoute from "./protected-route";

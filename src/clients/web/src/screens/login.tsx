@@ -5,7 +5,7 @@ import type { InputOnChangeData } from "semantic-ui-react";
 import { Button, Container, Form, Grid, Message } from "semantic-ui-react";
 
 import useLogin from "common/store/hooks/useLogin";
-import AppLogo from "components/app_logo";
+import AppLogo from "components/AppLogo";
 import APP_ROUTES from "navigation/navigation-constants";
 
 function Login() {
