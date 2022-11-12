@@ -9,6 +9,7 @@ import ErrorApiResponse from 'common/types/server/response/error.api.response';
 
 import { SERVER_URLS } from '../constants';
 
+// Convert all responses to CamelCase.
 const AppHttp = applyCaseMiddleware(
   axios.create({
     baseURL: SERVER_URLS.base,
@@ -29,13 +30,12 @@ interface InterceptorProps extends VytcContextState {
 export const setupAxiosRequestInterceptor = ({ auth, navigation }: InterceptorProps) => {
   AppHttp.interceptors.request.use(
     async (config: AxiosRequestConfig) => {
-      navigation();
       // If public URL, nothing to do.
-      if (config.url?.includes(SERVER_URLS.security_login) || config.url?.includes(SERVER_URLS.server)) {
+      if (config.url?.includes(SERVER_URLS.securityLogin) || config.url?.includes(SERVER_URLS.server)) {
         return config;
       }
 
-      // If AccessToken is empty, redirect to login page.
+      // If Not Authenticated, redirect to login page.
       if (!auth.isAuthenticated) {
         navigation();
         return config;

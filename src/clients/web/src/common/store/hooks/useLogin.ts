@@ -39,7 +39,7 @@ const useLogin = () => {
     }
 
     // Call the Login API.
-    const { error, data } = await AxiosPost<LoginRequestPayload, LoginPayload>(SERVER_URLS.security_login, {
+    const { error, data } = await AxiosPost<LoginRequestPayload, LoginPayload>(SERVER_URLS.securityLogin, {
       passphrase: state.value,
     });
 

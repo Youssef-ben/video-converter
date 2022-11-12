@@ -4,15 +4,15 @@ export const LOCAL_STORAGE_KEYS = {
 };
 
 export const SERVER_URLS = {
-  ws_base: process.env.REACT_APP_WS_SERVER_URL || 'ws://localhost:3000',
-  ws_uri: '/vytc',
+  wsBase: process.env.REACT_APP_WS_SERVER_URL || 'ws://localhost:3000',
+  wsUri: '/vytc',
 
   base: process.env.REACT_APP_SERVER_URL || 'http://localhost:3000',
-  worker_fetch: '/worker/fetch',
+  workerFetch: '/worker/fetch',
 
-  security_login: '/security/login',
-  security_refresh: '/security/refresh',
-  security_logout: '/security/logout',
+  securityLogin: '/security/login',
+  securityRefresh: '/security/refresh',
+  securityLogout: '/security/logout',
 
   server: '/server',
 };
