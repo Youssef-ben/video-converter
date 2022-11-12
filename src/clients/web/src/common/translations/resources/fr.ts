@@ -53,6 +53,9 @@ export default {
     'app.page.not_found.back_btn': "Page d'accueil",
 
     // Server Messages/Error.
+    'api.err.unexpected_error':
+      "Une erreur inattendue s'est produite lors du traitement de votre demande. Veuillez contacter l'équipe si le problème persiste !",
+
     'api.err.security.unauthorized': 'Non autorisé',
     'api.err.security.unauthorized_desc':
       "Informations d'identification invalides ou vous n'avez pas la permission d'accéder aux ressources demandées !",

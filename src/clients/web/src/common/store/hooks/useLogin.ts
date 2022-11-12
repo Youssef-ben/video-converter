@@ -11,26 +11,24 @@ import { useAppContext } from '../vytc-context/provider';
 
 interface LoginState {
   value: string;
+  loading: boolean;
   error?: InputError;
 }
-
-export interface Welcome {
-  version: string;
-  release_date: Date;
-  name: string;
-  copyright: string;
-}
+const INITIAL_VALUES: LoginState = { value: '', loading: false };
 
 const useLogin = () => {
   const { t } = useTranslation();
   const { connect } = useAppContext();
 
-  const [state, setState] = useState<LoginState>({ value: '' });
+  const [state, setState] = useState<LoginState>(INITIAL_VALUES);
 
   const connectUser = async (): Promise<boolean> => {
+    setState((current) => ({ ...current, loading: true }));
+
     if (!state.value) {
       setState((current) => ({
         ...current,
+        loading: false,
         error: {
           content: t('app.login.err.password_required'),
           pointing: 'below',
@@ -46,6 +44,7 @@ const useLogin = () => {
     if (error) {
       setState({
         value: '',
+        loading: false,
         error: {
           content: t(error.type),
           fromServer: true,
@@ -56,6 +55,7 @@ const useLogin = () => {
     if (!data) {
       setState({
         value: '',
+        loading: false,
         error: {
           content: `${t('app.err.unhandled')} - ${t('app.err.unhandled_desc')}`,
           fromServer: true,
@@ -66,7 +66,7 @@ const useLogin = () => {
 
     // Set Access Token and connect
     connect(data?.accessToken);
-    setState({ value: '' });
+    setState(INITIAL_VALUES);
     return true;
   };
 

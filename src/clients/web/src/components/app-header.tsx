@@ -38,7 +38,7 @@ function AppHeader(): JSX.Element {
 
           <Menu.Menu position="right">
             <Menu.Item onClick={toggleLanguage}>
-              <Flag name={i18n.language === 'en' ? 'us' : 'ca'} />
+              <Flag name={i18n.language === 'en' ? 'ca' : 'us'} />
             </Menu.Item>
           </Menu.Menu>
         </Container>

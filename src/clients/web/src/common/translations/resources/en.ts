@@ -49,6 +49,8 @@ export default {
     'app.page.not_found.back_btn': 'Home page',
 
     // Server Messages/Error.
+    'api.err.unexpected_error': 'An unexpected error occurred while trying to handle your request. Please contact the team if the issue persists!',
+
     'api.err.security.unauthorized': 'Unauthorized',
     'api.err.security.unauthorized_desc': "Invalid credentials or you don't have permission to access the requested resources!",
 

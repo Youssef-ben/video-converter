@@ -1,3 +1,4 @@
+
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import type { InputOnChangeData } from "semantic-ui-react";
@@ -9,20 +10,20 @@ import APP_ROUTES from "navigation/navigation-constants";
 
 function Login() {
   const navigate = useNavigate();
-  const { login, connectUser, onPasswordChange } = useLogin();
   const { t } = useTranslation();
   const text = {
     placeholder: 'app.login.placeholder.password',
     button: 'app.login.btn',
   }
+  const { login, connectUser, onPasswordChange } = useLogin();
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onChangeHandler = (_: React.ChangeEvent<HTMLInputElement>, { value }: InputOnChangeData) => {
     onPasswordChange(value)
   }
 
   const onClickHandler = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+
     const result = await connectUser();
     if (result) {
       navigate(APP_ROUTES.PRIV_HOME)
@@ -52,7 +53,7 @@ function Login() {
               onChange={onChangeHandler}
             />
 
-            <Button primary fluid size="large" onClick={onClickHandler}>
+            <Button loading={login.loading} disabled={login.loading} primary fluid size="large" onClick={onClickHandler}>
               {t(text.button)}
             </Button>
           </Form>
