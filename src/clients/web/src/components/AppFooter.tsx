@@ -11,7 +11,7 @@ function AppFooter(): JSX.Element {
 
   return (
     <footer>
-      <div className="closed-connection hidden">
+      <div className="closed-connection app-error hidden">
         <Message negative className={isMobile ? 'mobile-message' : ''}>
           <p>{t('ws.err.connection_lost')}</p>
         </Message>
