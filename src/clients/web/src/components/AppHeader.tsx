@@ -7,13 +7,13 @@ import APP_ROUTES from "navigation/navigation-constants";
 
 import AppLogo from "./AppLogo";
 
+const translation = {
+  title: 'app.title',
+  extras: 'app.title.extras',
+}
+
 function AppHeader(): JSX.Element {
   const { t, i18n } = useTranslation();
-
-  const text = {
-    title: 'app.title',
-    extras: 'app.title.extras',
-  }
 
   // Toggle language.
   const toggleLanguage = () => {
@@ -32,7 +32,7 @@ function AppHeader(): JSX.Element {
             </Menu.Item>
 
             <Menu.Item header>
-              {t(text.title)} {!isMobile && <div className="extras-title">{t(text.extras)}</div>}
+              {t(translation.title)} {!isMobile && <div className="extras-title">{t(translation.extras)}</div>}
             </Menu.Item>
           </Link>
 
