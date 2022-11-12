@@ -7,7 +7,7 @@ export const SERVER_URLS = {
   ws_base: process.env.REACT_APP_WS_SERVER_URL || 'ws://localhost:3000',
   ws_uri: '/vytc',
 
-  base: process.env.REACT_APP_SERVER_URL || 'http://192.168.2.19:3000',
+  base: process.env.REACT_APP_SERVER_URL || 'http://localhost:3000',
   worker_fetch: '/worker/fetch',
 
   security_login: '/security/login',
