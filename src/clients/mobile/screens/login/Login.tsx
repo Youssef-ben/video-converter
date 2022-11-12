@@ -6,9 +6,11 @@ import { StyleSheet } from 'react-native';
 import useLogin from 'common/store/hooks/useLogin';
 import Logo from 'components/Logo';
 import { ThemeButton, ThemeInput, ThemeText, ThemeView } from 'components/ui';
+import { scale } from 'utils/TextScale';
 
 const Login = () => {
-  const { login, onLogin, onPasswordChange } = useLogin();
+  const { login, connectUser, onPasswordChange } = useLogin();
+
   const { t } = useTranslation();
   const text = {
     placeholder: 'app.login.placeholder.password',
@@ -20,7 +22,11 @@ const Login = () => {
       <Logo source={require('../../assets/logo.png')} />
 
       <ThemeView style={styles.formContainer}>
-        {login.error && <ThemeText hasError>{login.error.content}</ThemeText>}
+        {login.error && (
+          <ThemeText style={styles.error} hasError>
+            {login.error.content}
+          </ThemeText>
+        )}
         <ThemeInput
           isInvalid={!!login.error}
           input={{
@@ -34,8 +40,8 @@ const Login = () => {
         <ThemeButton
           style={styles.formButton}
           text={t(text.button)}
-          onPress={() => {
-            onLogin();
+          onPress={async () => {
+            await connectUser();
           }}
         />
       </ThemeView>
@@ -56,8 +62,12 @@ const styles = StyleSheet.create({
   formContainer: {
     marginTop: '10%',
     marginHorizontal: 10,
+    maxWidth: '90%',
   },
   formButton: {
     marginTop: 15,
+  },
+  error: {
+    fontSize: scale(14),
   },
 });

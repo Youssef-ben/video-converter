@@ -1,4 +1,7 @@
-import { createContext, useContext, useMemo, useReducer } from 'react';
+import { createContext, useContext, useEffect, useMemo, useReducer, useState } from 'react';
+
+import { LOCAL_STORAGE_KEYS } from 'common/utils/constants';
+
 
 
 import type { YoutubeVideoPayload } from '../../types/server';
@@ -47,6 +50,23 @@ interface VytcProviderProps {
 }
 export function VytcContextProvider({ children, storage }: VytcProviderProps) {
   const [state, dispatch] = useReducer(VytcReducer, CONTEXT_INITIAL_STATE);
+  const [loading, setLoading] = useState(true);
+
+  // Once the UI loaded, check if we have a value in our local storage.
+  useEffect(() => {
+    const fetchAccessToken = async () => {
+      const value = await storage.getItem(LOCAL_STORAGE_KEYS.AUTH);
+      dispatch({
+        type: value ? 'REFRESH' : 'SING_OUT',
+        payload: value || '',
+      })
+
+
+      setLoading(false);
+    }
+
+    fetchAccessToken();
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Initialize the Methods of the Context.
   const providerState = useMemo(
@@ -57,6 +77,10 @@ export function VytcContextProvider({ children, storage }: VytcProviderProps) {
     }),
     [state, storage]
   );
+
+  if (loading) {
+    return null;
+  }
 
   return <VytcContext.Provider value={providerState}>{children}</VytcContext.Provider>;
 }

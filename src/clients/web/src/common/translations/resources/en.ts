@@ -53,7 +53,7 @@ export default {
     'api.err.security.unauthorized_desc': "Invalid credentials or you don't have permission to access the requested resources!",
 
     // Login
-    'api.err.validation': 'Invalid passphrase value!',
+    'api.err.validation': 'Invalid password!',
 
     'api.err.downloader.invalid_url': 'Invalid Youtube URL!',
     'api.err.downloader.invalid_url_desc': 'Please review the Youtube URL and try again!',

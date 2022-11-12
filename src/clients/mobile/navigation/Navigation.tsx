@@ -4,6 +4,7 @@ import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Image, StyleSheet } from 'react-native';
 
+import { useAppContext } from 'common/store/vytc-context/provider';
 import { useAppThemeColor } from 'components/theme/useAppThemeColor';
 import Home from 'screens/home/Home';
 import Login from 'screens/login/Login';
@@ -14,6 +15,7 @@ import type { RootStackParamList } from './types';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
+  const { auth } = useAppContext();
   const { themeStyle } = useAppThemeColor();
 
   const LefHeaderLogo = useCallback(() => {
@@ -35,9 +37,20 @@ function RootNavigator() {
         headerLeft: () => LefHeaderLogo(),
       }}
     >
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Preview" component={Preview} />
+      {!auth.isAuthenticated ? (
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{
+            animationTypeForReplace: !auth.isAuthenticated ? 'pop' : 'push',
+          }}
+        />
+      ) : (
+        <>
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Preview" component={Preview} />
+        </>
+      )}
     </Stack.Navigator>
   );
 }

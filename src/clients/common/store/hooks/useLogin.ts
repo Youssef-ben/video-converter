@@ -39,7 +39,6 @@ const useLogin = () => {
       return false;
     }
 
-    // TODO: Call Login Api!
     const { error, data } = await AxiosPost<LoginRequestPayload, LoginPayload>(SERVER_URLS.security_login, {
       passphrase: state.value,
     });

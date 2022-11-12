@@ -19,6 +19,7 @@ export const ThemeText = ({ hasError = false, style, ...otherProps }: ThemeTextP
     hasError && {
       marginBottom: 8,
       paddingVertical: 4,
+      fontWeight: '800',
       paddingHorizontal: 10,
       color: themeStyle.Error,
     },

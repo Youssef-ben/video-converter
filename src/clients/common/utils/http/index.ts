@@ -16,7 +16,10 @@ const AppHttp = applyCaseMiddleware(
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-  })
+  }),
+  {
+    ignoreHeaders: true,
+  }
 );
 
 // Interceptors
