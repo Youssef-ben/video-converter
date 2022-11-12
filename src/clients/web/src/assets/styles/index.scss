@@ -4,13 +4,13 @@
 // @import './footer.scss';
 
 // /*** COMPONENTS ***/
-@import './components/app-logo.scss';
+@import './components/appLogo.scss';
 @import './components/buttons.scss';
 @import './components/header.scss';
 @import './components/inputs.scss';
-@import './components/progress-bar.scss';
+@import './components/progressBar.scss';
 
 // /*** PAGES ***/
-// @import './screens/youtube_downloader.scss';
+@import './screens/screenWrapper.scss';
 @import './screens/login.scss';
-@import './screens/not_found.scss';
+@import './screens/notFound.scss';

@@ -19,7 +19,7 @@ function App() {
       ...store,
       navigation: () => navigate(APP_ROUTES.PUB_LOGIN),
     });
-  }, [store, navigate])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>

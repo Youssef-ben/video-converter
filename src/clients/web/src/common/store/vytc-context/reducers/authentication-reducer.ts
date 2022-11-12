@@ -35,7 +35,7 @@ export const authReducer = (state: AuthState, action: AuthActions) => {
     case 'CONNECT':
     case 'REFRESH':
       return {
-        isAuthenticated: true,
+        isAuthenticated: !!action.payload,
         accessToken: action.payload,
       };
 

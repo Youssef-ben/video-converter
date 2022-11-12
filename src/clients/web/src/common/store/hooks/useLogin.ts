@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import type { LoginPayload, LoginRequestPayload } from 'common/types/server';
 import { SERVER_URLS } from 'common/utils/constants';
-import { AxiosPost } from 'common/utils/http';
+import { AxiosGet, AxiosPost } from 'common/utils/http';
 
 import type { InputError } from '../../types/clients/InputError';
 import { useAppContext } from '../vytc-context/provider';
@@ -18,9 +18,16 @@ const INITIAL_VALUES: LoginState = { value: '', loading: false };
 
 const useLogin = () => {
   const { t } = useTranslation();
-  const { connect } = useAppContext();
+  const { connect, refresh } = useAppContext();
 
   const [state, setState] = useState<LoginState>(INITIAL_VALUES);
+
+  const onPasswordChange = (value: string) => {
+    setState((current) => ({
+      ...current,
+      value,
+    }));
+  };
 
   const connectUser = async (): Promise<boolean> => {
     setState((current) => ({ ...current, loading: true }));
@@ -64,14 +71,15 @@ const useLogin = () => {
     return true;
   };
 
-  const onPasswordChange = (value: string) => {
-    setState((current) => ({
-      ...current,
-      value,
-    }));
+  const refreshToken = async () => {
+    // Call the Login API.
+    const { data } = await AxiosGet<LoginPayload>(SERVER_URLS.securityRefresh);
+    if (data) {
+      refresh(data.accessToken);
+    }
   };
 
-  return { login: state, connectUser, onPasswordChange };
+  return { login: state, connectUser, onPasswordChange, refreshToken };
 };
 
 export default useLogin;

@@ -11,16 +11,6 @@ body {
   visibility: hidden;
 }
 
-// Move to Components -> base-container.
-.app-content {
-  margin-top: 0.1em;
-  background-color: $secondary-background-color;
-  height: calc(100vh - 45px);
-  max-height: calc(100vh - 45px);
-  min-width: 290px;
-  text-align: justify;
-}
-
 @media only screen and (min-width: 722px) {
   .ui.container {
     width: 700px;

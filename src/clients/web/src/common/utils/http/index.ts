@@ -9,6 +9,8 @@ import ErrorApiResponse from 'common/types/server/response/error.api.response';
 
 import { SERVER_URLS } from '../constants';
 
+let interceptorIndex: number;
+
 // Convert all responses to CamelCase.
 const AppHttp = applyCaseMiddleware(
   axios.create({
@@ -27,8 +29,12 @@ const AppHttp = applyCaseMiddleware(
 interface InterceptorProps extends VytcContextState {
   navigation: Function; // eslint-disable-line @typescript-eslint/ban-types
 }
-export const setupAxiosRequestInterceptor = ({ auth, navigation }: InterceptorProps) => {
-  AppHttp.interceptors.request.use(
+export const setupAxiosRequestInterceptor = ({ storage, navigation }: InterceptorProps) => {
+  if (interceptorIndex) {
+    return;
+  }
+
+  interceptorIndex = AppHttp.interceptors.request.use(
     async (config: AxiosRequestConfig) => {
       // If public URL, nothing to do.
       if (config.url?.includes(SERVER_URLS.securityLogin) || config.url?.includes(SERVER_URLS.server)) {
@@ -36,7 +42,8 @@ export const setupAxiosRequestInterceptor = ({ auth, navigation }: InterceptorPr
       }
 
       // If Not Authenticated, redirect to login page.
-      if (!auth.isAuthenticated) {
+      const accessToken = await storage?.getItem('store/access_token');
+      if (!accessToken) {
         navigation();
         return config;
       }
@@ -46,7 +53,7 @@ export const setupAxiosRequestInterceptor = ({ auth, navigation }: InterceptorPr
 
       newConfig.headers = {
         ...newConfig.headers,
-        Authorization: `Bearer ${auth.accessToken}`,
+        Authorization: `Bearer ${accessToken}`,
       };
 
       return newConfig;
@@ -74,9 +81,28 @@ function handleError(err: any): ErrorApiResponse {
   return new ErrorApiResponse(undefined, err as Error);
 }
 
-export async function AxiosPost<PayloadType, ResponseType>(url: string, payload: PayloadType): Promise<AppAxiosResult<ResponseType>> {
+export async function AxiosPost<PayloadType, ResponseType>(url: string, payload?: PayloadType): Promise<AppAxiosResult<ResponseType>> {
   try {
     const { data } = await AppHttp.post<ResponseType, AxiosResponse<ApiResponse<ResponseType>>, PayloadType>(url, payload);
+    return {
+      data: data.result,
+    };
+  } catch (err) {
+    return {
+      error: handleError(err),
+    };
+  }
+}
+
+export async function AxiosGet<ResponseType>(url: string, params?: object): Promise<AppAxiosResult<ResponseType>> {
+  try {
+    const { data } = await AppHttp.get<ResponseType, AxiosResponse<ApiResponse<ResponseType>>>(
+      url,
+      params && {
+        params,
+      }
+    );
+
     return {
       data: data.result,
     };

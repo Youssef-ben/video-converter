@@ -14,6 +14,8 @@ import type { VytcAsyncStorageProvider } from './types/index';
 export interface VytcContextState extends VytcContextAuthStateMethods {
   auth: AuthState;
   vyt?: YoutubeVideoPayload;
+
+  storage?: VytcAsyncStorageProvider;
 }
 /* ============================================================ */
 
@@ -23,6 +25,7 @@ export interface VytcContextState extends VytcContextAuthStateMethods {
 const CONTEXT_INITIAL_STATE: VytcContextState = {
   auth: AUTH_INITIAL_DATA,
   vyt: undefined,
+
 
   // Context Methods
   ...CONTEXT_METHODS,
@@ -74,6 +77,7 @@ export function VytcContextProvider({ children, storage }: VytcProviderProps) {
       ...state,
 
       ...authReducerMethods(dispatch, storage),
+      storage,
     }),
     [state, storage]
   );
