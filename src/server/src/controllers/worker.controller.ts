@@ -29,7 +29,7 @@ class WorkerController {
 
     const result = await WorkerService.fetchVideoDetailsAsync(videoUrl);
     if (!result) {
-      throw new BadRequestError('Invalid youtube url!', 'api.err.downloader.invalid_url');
+      throw new BadRequestError('Invalid youtube url!', 'api.err.worker.invalid_url');
     }
 
     return new ApiResponse<YoutubeVideoDetails>(result);

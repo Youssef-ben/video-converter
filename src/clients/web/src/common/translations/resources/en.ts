@@ -2,15 +2,12 @@
 export default {
   translation: {
     // Common
-    'app.loading': 'Loading...',
     'app.convert': 'DOWNLOAD AS',
     'app.convert.audio': 'AUDIO',
     'app.convert.video': 'VIDEO',
     'app.auto_download': 'Your download will start automatically, please wait...',
-    'btn.cancel': 'Cancel',
-    'btn.finish': 'Finish',
 
-    // Header
+    // Headers
     'app.title': 'VYTC',
     'app.title.extras': '- Videos and Youtube Converter',
 
@@ -19,16 +16,27 @@ export default {
     'app.login.btn': 'Login',
     'app.login.err.password_required': 'The password is required, please specify a valid value!',
 
-    // App Errors
-    'app.err.unhandled': 'Unhandled error!',
-    'app.err.unhandled_desc': 'An error occurred while trying to handle your request!',
-    'app.err.unhandled_reload': 'Please reload the page.',
-    'app.err.unhandled_contact_team': 'If the problem persists, please contact the team.',
-    'app.err.invalid_passphrase': 'Invalid passphrase!',
-    'api.err.security.invalid_passphrase': 'Invalid passphrase!',
-    'app.err.invalid_passphrase_desc': 'Please check that you specified a valid passphrase and try again!',
-    'api.err.security.invalid_passphrase_desc': 'Please check that you specified a valid passphrase and try again!',
+    // Lookup page
+    'app.lookup.btn': 'Search',
+    'app.lookup.description': 'Download any youtube video as an audio or video format. All you need to do is copy the link in the box bellow.',
+    'app.lookup.err.value_required': "The Youtube URL that you've entered is invalid, please re-try with a valid value!",
 
+    // Not Found page
+    'app.page.not_found.title': 'Oh no!!',
+    'app.page.not_found.subtitle': 'You’re either misspelling the URL or ',
+    'app.page.not_found.subtitle_2': 'requesting a page that’s no longer exits.',
+    'app.page.not_found.back_btn': 'Home page',
+
+    // App Errors
+    'app.err.unhandled_error':
+      'An error occurred while trying to handle your request. Please reload the page and if the problem persists, please contact the team!',
+
+    // Api Errors
+    'api.err.validation': 'Invalid password, Please check that you specified a valid passphrase and try again!',
+    'api.err.worker.invalid_url': 'The url you entered is invalid, please re-try with a valid value!',
+
+    // TODO: Deleted everything after this line.
+    //-------------------------------------------------------------------------------------------
     // Youtube downloader page
     'app.yt.title': 'Youtube Downloader',
     'app.yt.btn.search': 'Search',
@@ -42,12 +50,6 @@ export default {
     'app.default': 'Medium',
     'app.lowest': 'Lowest',
 
-    // Not Found page
-    'app.page.not_found.title': 'Oh no!!',
-    'app.page.not_found.subtitle': 'You’re either misspelling the URL or ',
-    'app.page.not_found.subtitle_2': 'requesting a page that’s no longer exits.',
-    'app.page.not_found.back_btn': 'Home page',
-
     // Server Messages/Error.
     'api.err.unexpected_error': 'An unexpected error occurred while trying to handle your request. Please contact the team if the issue persists!',
 
@@ -55,8 +57,6 @@ export default {
     'api.err.security.unauthorized_desc': "Invalid credentials or you don't have permission to access the requested resources!",
 
     // Login
-    'api.err.validation': 'Invalid password!',
-
     'api.err.downloader.invalid_url': 'Invalid Youtube URL!',
     'api.err.downloader.invalid_url_desc': 'Please review the Youtube URL and try again!',
 

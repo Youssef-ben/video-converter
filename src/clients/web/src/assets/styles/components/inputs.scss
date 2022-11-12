@@ -16,7 +16,8 @@
 
 .negative.message.app-error {
   font-weight: bold;
-  padding: 0.5em 0.5em !important;
+  margin-bottom: 0.5em;
+  padding: 0.5em 1em !important;
   color: $input-border-color-error !important;
   background: $input-border-background-error !important;
 }

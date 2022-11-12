@@ -52,7 +52,7 @@ const useLogin = () => {
 
     // Check for errors
     if (error || !data) {
-      const errorContent = !data ? `${t('app.err.unhandled')} - ${t('app.err.unhandled_desc')}` : t(error?.type as string);
+      const errorContent = !data ? t('app.err.unhandled_error') : t(error?.type as string);
 
       setState({
         value: '',
@@ -79,7 +79,7 @@ const useLogin = () => {
     }
   };
 
-  return { login: state, connectUser, onPasswordChange, refreshToken };
+  return { login: state, connectUser, refreshToken, onPasswordChange };
 };
 
 export default useLogin;

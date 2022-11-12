@@ -2,13 +2,10 @@
 export default {
   translation: {
     // Common
-    'app.loading': 'Chargement...',
     'app.convert': 'CONVERTIR EN',
     'app.convert.audio': 'AUDIO',
     'app.convert.video': 'VIDÉO',
     'app.auto_download': 'Votre téléchargement va démarrer automatiquement, veuillez patienter...',
-    'btn.cancel': 'Annuler',
-    'btn.finish': 'Terminer',
 
     // Headers
     'app.title': 'VYTC',
@@ -19,24 +16,31 @@ export default {
     'app.login.btn': 'Connexion',
     'app.login.err.password_required': 'Le mot de passe est obligatoire, veuillez spécifier une valeur valide !',
 
+    // Lookup page
+    'app.lookup.btn': 'Chercher',
+    'app.lookup.description':
+      "Téléchargez n'importe quelle vidéo youtube au format audio ou video. Tout ce que vous avez à faire est de copier le lien dans la case ci-dessous.",
+    'app.lookup.err.value_required': "L'url que vous avez entré n'est pas valide, veuillez réessayer avec une valeur valide !",
+
+    // Not Found page
+    'app.page.not_found.title': 'Oh non!!',
+    'app.page.not_found.subtitle': "Soit vous avez mal orthographié l'URL.",
+    'app.page.not_found.subtitle_2': "Soit vous demandez une page qui n'existe plus.",
+    'app.page.not_found.back_btn': "Page d'accueil",
+
     // App Errors
-    'app.err.unhandled': 'Erreur non prise en charge!',
-    'app.err.unhandled_desc': "Une erreur s'est produite lors du traitement de votre demande !",
-    'app.err.unhandled_reload': 'Veuillez recharger la page.',
-    'app.err.unhandled_contact_team': "Si le problème persiste, veuillez contacter l'équipe.",
-    'app.err.invalid_passphrase': 'Mot de passe invalide !',
-    'api.err.security.invalid_passphrase': 'Mot de passe invalide !',
-    'app.err.invalid_passphrase_desc': 'Veuillez vérifier que vous avez spécifié un mot de passe valide et réessayez!',
-    'api.err.security.invalid_passphrase_desc': 'Veuillez vérifier que vous avez spécifié un mot de passe valide et réessayez!',
+    'app.err.unhandled_error':
+      "Une erreur s'est produite lors du traitement de votre demande. Veuillez recharger la page, et si le problème persiste, veuillez contacter l'équipe !",
 
-    'api.err.video_not_found_desc':
-      "La vidéo que vous essayez de télécharger a déjà été téléchargée ou une erreur s'est produite. Veuillez rafraîchir la page et réessayer !",
+    // Api Errors
+    'api.err.validation': 'Mot de passe incorrect, Veuillez vérifier que vous avez spécifié un mot de passe valide et réessayez!',
+    'api.err.worker.invalid_url': "L'url que vous avez entré n'est pas valide, veuillez réessayer avec une valeur valide !",
 
+    // TODO: Deleted everything after this line.
+    //-------------------------------------------------------------------------------------------
     // Youtube downloader page
     'app.yt.title': 'Téléchargeur Youtube',
     'app.yt.btn.search': 'Chercher',
-    'app.yt.video_lookup.description':
-      "Téléchargez n'importe quelle vidéo youtube au format audio ou video. Tout ce que vous avez à faire est de copier le lien dans la case ci-dessous.",
     'app.yt.video_preview.description':
       'Hooray!! nous avons trouvé la vidéo que vous recherchez. Veuillez choisir le format de fichier que vous souhaitez télécharger.',
     'app.yt.video_preview.title_name': '(Facultatif) - Utilisez la case ci-dessous pour renommer la vidéo.',
@@ -45,12 +49,6 @@ export default {
     'app.highest': 'Haute qualité',
     'app.default': 'Moyenne',
     'app.lowest': 'Faible qualité',
-
-    // Not Found page
-    'app.page.not_found.title': 'Oh non!!',
-    'app.page.not_found.subtitle': "Soit vous avez mal orthographié l'URL.",
-    'app.page.not_found.subtitle_2': "Soit vous demandez une page qui n'existe plus.",
-    'app.page.not_found.back_btn': "Page d'accueil",
 
     // Server Messages/Error.
     'api.err.unexpected_error':
@@ -61,8 +59,6 @@ export default {
       "Informations d'identification invalides ou vous n'avez pas la permission d'accéder aux ressources demandées !",
 
     // Login
-    'api.err.validation': 'Mot de passe incorrect !',
-
     'api.err.downloader.invalid_url': 'Invalid Youtube URL!',
     'api.err.downloader.invalid_url_desc': 'Please review the Youtube URL and try again!',
 
