@@ -1,12 +1,15 @@
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import type { InputOnChangeData } from "semantic-ui-react";
-import { Button, Container, Form, Grid } from "semantic-ui-react";
+import { Button, Container, Form, Grid, Message } from "semantic-ui-react";
 
 import useLogin from "common/store/hooks/useLogin";
 import AppLogo from "components/app_logo";
+import APP_ROUTES from "navigation/navigation-constants";
 
 function Login() {
-  const { login, onLogin, onPasswordChange } = useLogin();
+  const navigate = useNavigate();
+  const { login, connectUser, onPasswordChange } = useLogin();
   const { t } = useTranslation();
   const text = {
     placeholder: 'app.login.placeholder.password',
@@ -20,8 +23,10 @@ function Login() {
 
   const onClickHandler = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-
-    await onLogin();
+    const result = await connectUser();
+    if (result) {
+      navigate(APP_ROUTES.PRIV_HOME)
+    }
   }
 
   return (
@@ -31,13 +36,18 @@ function Login() {
           <AppLogo />
 
           <Form size="large">
+            {login?.error &&
+              <Message size="small" negative className="app-error">
+                <p>{login.error.content}</p>
+              </Message>
+            }
             <Form.Input
               fluid
               icon="lock"
               type="password"
               iconPosition="left"
               value={login.value}
-              error={!login?.error?.fromServer && login.error}
+              error={!!login?.error}
               placeholder={t(text.placeholder)}
               onChange={onChangeHandler}
             />

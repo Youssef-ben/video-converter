@@ -57,6 +57,9 @@ export default {
     'api.err.security.unauthorized_desc':
       "Informations d'identification invalides ou vous n'avez pas la permission d'accéder aux ressources demandées !",
 
+    // Login
+    'api.err.validation': 'La valeur du mot de passe est invalide !',
+
     'api.err.downloader.invalid_url': 'Invalid Youtube URL!',
     'api.err.downloader.invalid_url_desc': 'Please review the Youtube URL and try again!',
 
