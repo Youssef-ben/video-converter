@@ -1,3 +1,5 @@
+export const VIDEO_PLACEHOLDER = process.env.REACT_APP_VID_PLACEHOLDER || 'https://www.youtube.com/watch?v=2N4SjqaKPA8';
+
 export const LOCAL_STORAGE_KEYS = {
   AUTH: 'store/access_token',
   VYT: 'store/data',
