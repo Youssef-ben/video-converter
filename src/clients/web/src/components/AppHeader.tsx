@@ -7,7 +7,7 @@ import APP_ROUTES from "navigation/navigation-constants";
 
 import AppLogo from "./AppLogo";
 
-const translation = {
+const translations = {
   title: 'app.title',
   extras: 'app.title.extras',
 }
@@ -32,7 +32,7 @@ function AppHeader(): JSX.Element {
             </Menu.Item>
 
             <Menu.Item header>
-              {t(translation.title)} {!isMobile && <div className="extras-title">{t(translation.extras)}</div>}
+              {t(translations.title)} {!isMobile && <div className="extras-title">{t(translations.extras)}</div>}
             </Menu.Item>
           </Link>
 
