@@ -2,19 +2,21 @@
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import type { InputOnChangeData } from "semantic-ui-react";
-import { Button, Container, Form, Grid, Message } from "semantic-ui-react";
+import { Button, Container, Form, Grid } from "semantic-ui-react";
 
 import useLogin from "common/store/hooks/useLogin";
 import AppLogo from "components/AppLogo";
+import ErrorMessage from "components/ErrorMessage";
 import APP_ROUTES from "navigation/navigation-constants";
+
+const translations = {
+  placeholder: 'app.login.placeholder.password',
+  button: 'app.login.btn',
+}
 
 function Login() {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const text = {
-    placeholder: 'app.login.placeholder.password',
-    button: 'app.login.btn',
-  }
   const { login, connectUser, onPasswordChange } = useLogin();
 
   const onChangeHandler = (_: React.ChangeEvent<HTMLInputElement>, { value }: InputOnChangeData) => {
@@ -37,24 +39,21 @@ function Login() {
           <AppLogo />
 
           <Form size="large">
-            {login?.error &&
-              <Message size="small" negative className="app-error">
-                <p>{login.error.content}</p>
-              </Message>
-            }
+            <ErrorMessage show={!!login.error} content={login.error?.content as string} />
+
             <Form.Input
               fluid
               icon="lock"
               type="password"
               iconPosition="left"
               value={login.value}
-              error={!!login?.error}
-              placeholder={t(text.placeholder)}
+              error={!!login.error}
+              placeholder={t(translations.placeholder)}
               onChange={onChangeHandler}
             />
 
             <Button loading={login.loading} disabled={login.loading} primary fluid size="large" onClick={onClickHandler}>
-              {t(text.button)}
+              {t(translations.button)}
             </Button>
           </Form>
         </Grid.Column>
