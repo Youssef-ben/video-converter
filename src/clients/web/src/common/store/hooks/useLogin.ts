@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import type { LoginPayload, LoginRequestPayload } from 'common/types/server';
 import { SERVER_URLS } from 'common/utils/constants';
-import { AxiosGet, AxiosPost } from 'common/utils/http';
+import { axiosGet, axiosPost } from 'common/utils/http';
 
 import type { InputError } from '../../types/clients/InputError';
 import { useAppContext } from '../vytc-context/provider';
@@ -46,7 +46,7 @@ const useLogin = () => {
     }
 
     // Call the Login API.
-    const { error, data } = await AxiosPost<LoginRequestPayload, LoginPayload>(SERVER_URLS.securityLogin, {
+    const { error, data } = await axiosPost<LoginRequestPayload, LoginPayload>(SERVER_URLS.securityLogin, {
       passphrase: state.value,
     });
 
@@ -73,7 +73,7 @@ const useLogin = () => {
 
   const refreshToken = async () => {
     // Call the Login API.
-    const { data } = await AxiosGet<LoginPayload>(SERVER_URLS.securityRefresh);
+    const { data } = await axiosGet<LoginPayload>(SERVER_URLS.securityRefresh);
     if (data) {
       refresh(data.accessToken);
     }
