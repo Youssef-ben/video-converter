@@ -1,8 +1,8 @@
-import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
-import { useAppContext } from "common/store/vytc-context/provider";
+import { useAppContext } from 'common/store/vytc-context/provider';
 
-import APP_ROUTES from "./navigation-constants";
+import APP_ROUTES from './navigation-constants';
 
 /**
  * A wrapper around the {Route} component that redirects the unauthenticated

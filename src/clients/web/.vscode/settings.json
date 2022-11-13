@@ -11,6 +11,10 @@
   "editor.quickSuggestions": {
     "strings": true
   },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
 
   // Activate if ever want to also run global Prettier.
   "editor.defaultFormatter": "esbenp.prettier-vscode",

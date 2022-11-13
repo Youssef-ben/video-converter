@@ -1,4 +1,4 @@
-import { Container } from "semantic-ui-react";
+import { Container } from 'semantic-ui-react';
 
 interface Props {
   children: JSX.Element;
@@ -10,6 +10,5 @@ function ScreenWrapper({ children }: Props) {
     </Container>
   );
 }
-
 
 export default ScreenWrapper;

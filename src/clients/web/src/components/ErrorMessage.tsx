@@ -1,4 +1,4 @@
-import { Message } from "semantic-ui-react";
+import { Message } from 'semantic-ui-react';
 
 interface ErrorMessageProps {
   show: boolean;
@@ -9,9 +9,11 @@ function ErrorMessage({ show, content }: ErrorMessageProps) {
   if (!show) {
     return null;
   }
-  return <Message size="small" negative className="app-error">
-    <p>{content}</p>
-  </Message>;
+  return (
+    <Message size="small" negative className="app-error">
+      <p>{content}</p>
+    </Message>
+  );
 }
 
 export default ErrorMessage;

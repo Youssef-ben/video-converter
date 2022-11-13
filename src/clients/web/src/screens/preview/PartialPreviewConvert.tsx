@@ -1,6 +1,5 @@
-import { useTranslation } from "react-i18next";
-import { Button, Grid } from "semantic-ui-react";
-
+import { useTranslation } from 'react-i18next';
+import { Button, Grid } from 'semantic-ui-react';
 
 const translations = {
   btnDownload: 'app.preview.convert',
@@ -13,12 +12,10 @@ const translations = {
 function PartialPreviewConvert() {
   const { t } = useTranslation();
 
-
   return (
-    < >
-
+    <>
       <Grid.Column mobile={16} tablet={6} computer={6}>
-        <Button fluid size="small" primary   >
+        <Button fluid size="small" primary>
           <span className="break-line">
             {t(translations.btnDownload)}
             {'  '}
@@ -28,7 +25,7 @@ function PartialPreviewConvert() {
       </Grid.Column>
 
       <Grid.Column mobile={16} tablet={6} computer={6}>
-        <Button fluid size="small" secondary className="mt-1"  >
+        <Button fluid size="small" secondary className="mt-1">
           <span>
             {t(translations.btnDownload)}
             {'  '}
@@ -36,10 +33,8 @@ function PartialPreviewConvert() {
           </span>
         </Button>
       </Grid.Column>
-
     </>
-  )
+  );
 }
-
 
 export default PartialPreviewConvert;

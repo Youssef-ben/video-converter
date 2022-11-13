@@ -1,16 +1,16 @@
-import { isMobile } from "react-device-detect";
-import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
-import { Container, Flag, Menu } from "semantic-ui-react";
+import { isMobile } from 'react-device-detect';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { Container, Flag, Menu } from 'semantic-ui-react';
 
-import APP_ROUTES from "navigation/navigation-constants";
+import APP_ROUTES from 'navigation/navigation-constants';
 
-import AppLogo from "./AppLogo";
+import AppLogo from './AppLogo';
 
 const translations = {
   title: 'app.title',
   extras: 'app.title.extras',
-}
+};
 
 function AppHeader(): JSX.Element {
   const { t, i18n } = useTranslation();
@@ -25,7 +25,6 @@ function AppHeader(): JSX.Element {
     <header>
       <Menu borderless>
         <Container className="app-header" fluid>
-
           <Link className="home-page-link" to={APP_ROUTES.PRIV_HOME}>
             <Menu.Item>
               <AppLogo forHeader />
@@ -46,6 +45,5 @@ function AppHeader(): JSX.Element {
     </header>
   );
 }
-
 
 export default AppHeader;

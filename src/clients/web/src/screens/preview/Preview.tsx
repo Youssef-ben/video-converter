@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { useTranslation } from "react-i18next";
-import ReactPlayer from "react-player";
-import { useNavigate } from "react-router-dom";
-import { Dropdown, Grid, Image, Label, Loader, Popup } from "semantic-ui-react";
+import { useTranslation } from 'react-i18next';
+import ReactPlayer from 'react-player';
+import { useNavigate } from 'react-router-dom';
+import { Dropdown, Grid, Image, Label, Loader, Popup } from 'semantic-ui-react';
 
 import loadingImage from 'assets/images/loading.png';
-import { useAppContext } from "common/store/vytc-context/provider";
-import APP_ROUTES from "navigation/navigation-constants";
+import { useAppContext } from 'common/store/vytc-context/provider';
+import APP_ROUTES from 'navigation/navigation-constants';
 
-import PartialPreviewConvert from "./PartialPreviewConvert";
+import PartialPreviewConvert from './PartialPreviewConvert';
 
 const translations = {
   videoTitle: 'app.preview.video.title',
@@ -27,7 +27,7 @@ function Preview() {
     if (!vyt) {
       navigate(APP_ROUTES.PRIV_HOME);
     }
-  })
+  });
 
   const [loadingPlayer, setLoadingPlayer] = useState(true);
 
@@ -36,15 +36,10 @@ function Preview() {
       <Grid.Row className="title">
         <Grid.Column className="right-padding-none" mobile={16} tablet={10} computer={12}>
           <Popup
-
             header={t(translations.videoTitle)}
             content={vyt?.title}
-            className="popup-note"
-            trigger={
-              <Label className="video-title">
-                {vyt?.title}
-              </Label>
-            }
+            className="popup-note "
+            trigger={<Label className="video-title">{vyt?.title}</Label>}
           />
         </Grid.Column>
 
@@ -53,35 +48,23 @@ function Preview() {
             className="popup-note"
             header="Note"
             content={t(translations.downloadQualityLabel)}
-            trigger={
-              <Dropdown
-                fluid
-                button
-                className="icon video-quality"
-                labeled
-                icon="setting"
-                text={t(translations.dropdownLabel)}
-              />
-            }
+            trigger={<Dropdown fluid button className="icon video-quality" labeled icon="setting" text={t(translations.dropdownLabel)} />}
           />
         </Grid.Column>
       </Grid.Row>
 
       <Grid.Row>
-
         <div className="player-wrapper">
           {loadingPlayer && (
-            <div className="react-player loading-image" >
+            <div className="react-player loading-image">
               <Loader active inverted size="huge" />
 
               <Image src={loadingImage} rounded width="100%" height="100%" />
             </div>
           )}
 
-
           <ReactPlayer url={vyt?.link} width="100%" height="100%" className="react-player" controls onReady={() => setLoadingPlayer(false)} />
         </div>
-
       </Grid.Row>
 
       <Grid.Row className="buttons-group">
@@ -89,8 +72,7 @@ function Preview() {
         <PartialPreviewConvert />
       </Grid.Row>
     </Grid>
-  )
+  );
 }
-
 
 export default Preview;

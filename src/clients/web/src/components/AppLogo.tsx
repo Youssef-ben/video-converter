@@ -1,4 +1,3 @@
-
 import { Image } from 'semantic-ui-react';
 
 import Logo from 'assets/images/logo.png';
