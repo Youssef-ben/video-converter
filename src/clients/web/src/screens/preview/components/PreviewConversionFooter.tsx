@@ -9,7 +9,7 @@ const translations = {
   downloadQualityLabel: 'app.preview.video_quality.label',
 };
 
-function PartialPreviewConvert() {
+function PreviewConversionFooter() {
   const { t } = useTranslation();
 
   return (
@@ -37,4 +37,4 @@ function PartialPreviewConvert() {
   );
 }
 
-export default PartialPreviewConvert;
+export default PreviewConversionFooter;

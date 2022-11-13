@@ -1,24 +1,17 @@
 import { useEffect, useState } from 'react';
 
-import { useTranslation } from 'react-i18next';
 import ReactPlayer from 'react-player';
 import { useNavigate } from 'react-router-dom';
-import { Dropdown, Grid, Image, Label, Loader, Popup } from 'semantic-ui-react';
+import { Grid, Image, Loader } from 'semantic-ui-react';
 
 import loadingImage from 'assets/images/loading.png';
 import { useAppContext } from 'common/store/vytc-context/provider';
 import APP_ROUTES from 'navigation/navigation-constants';
 
-import PartialPreviewConvert from './PartialPreviewConvert';
-
-const translations = {
-  videoTitle: 'app.preview.video.title',
-  dropdownLabel: 'app.preview.video_quality',
-  downloadQualityLabel: 'app.preview.video_quality.label',
-};
+import PreviewConversionFooter from './components/PreviewConversionFooter';
+import PreviewHeader from './components/PreviewHeader';
 
 function Preview() {
-  const { t } = useTranslation();
   const navigate = useNavigate();
   const { vyt } = useAppContext();
 
@@ -34,23 +27,7 @@ function Preview() {
   return (
     <Grid columns={2} className="preview-convert">
       <Grid.Row className="title">
-        <Grid.Column className="right-padding-none" mobile={16} tablet={10} computer={12}>
-          <Popup
-            header={t(translations.videoTitle)}
-            content={vyt?.title}
-            className="popup-note "
-            trigger={<Label className="video-title">{vyt?.title}</Label>}
-          />
-        </Grid.Column>
-
-        <Grid.Column className="left-padding-none" mobile={16} tablet={6} computer={4}>
-          <Popup
-            className="popup-note"
-            header="Note"
-            content={t(translations.downloadQualityLabel)}
-            trigger={<Dropdown fluid button className="icon video-quality" labeled icon="setting" text={t(translations.dropdownLabel)} />}
-          />
-        </Grid.Column>
+        <PreviewHeader />
       </Grid.Row>
 
       <Grid.Row>
@@ -67,9 +44,9 @@ function Preview() {
         </div>
       </Grid.Row>
 
+      {/** TODO: Add The other partial views. */}
       <Grid.Row className="buttons-group">
-        {/** TODO: Add The other partial views. */}
-        <PartialPreviewConvert />
+        <PreviewConversionFooter />
       </Grid.Row>
     </Grid>
   );

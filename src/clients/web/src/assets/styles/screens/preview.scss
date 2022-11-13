@@ -88,13 +88,16 @@
 }
 
 .popup-note {
-  text-align: justify;
-  max-width: 71vh !important;
+  text-align: justify !important;
   font-size: 13px !important;
   background-color: $input-background !important;
 
   &::before {
     background-color: $input-background !important;
+  }
+
+  &.video-title-note {
+    max-width: 71vh !important;
   }
 }
 

@@ -20,4 +20,8 @@
   .home-page-link {
     display: flex;
   }
+
+  .right.menu {
+    border-left: 1px solid $input-border-color;
+  }
 }
