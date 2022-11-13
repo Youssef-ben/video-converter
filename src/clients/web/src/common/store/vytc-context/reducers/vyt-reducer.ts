@@ -41,7 +41,7 @@ export type VytActions = {
 export function vytReducer(state: VytState, action: VytActions): VytState | undefined {
   switch (action.type) {
     case 'PERSIST':
-      return { ...state };
+      return action.payload;
 
     case 'CLEAR':
       return undefined;
@@ -63,7 +63,7 @@ export function vytReducerMethods(dispatch: React.Dispatch<VytActions>, storage:
   const clear = async () => {
     await storage.removeItem(LOCAL_STORAGE_KEYS.VYT);
     dispatch({
-      type: 'PERSIST',
+      type: 'CLEAR',
       payload: undefined,
     });
   };

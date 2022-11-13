@@ -2,7 +2,7 @@ export const VIDEO_PLACEHOLDER = process.env.REACT_APP_VID_PLACEHOLDER || 'https
 
 export const LOCAL_STORAGE_KEYS = {
   AUTH: 'store/access_token',
-  VYT: 'store/data',
+  VYT: 'store/vyt',
 };
 
 export const SERVER_URLS = {

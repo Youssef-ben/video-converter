@@ -19,7 +19,8 @@ export default {
     // Lookup page
     'app.lookup.btn': 'Search',
     'app.lookup.description': 'Download any youtube video as an audio or video format. All you need to do is copy the link in the box bellow.',
-    'app.lookup.err.value_required': "The Youtube URL that you've entered is invalid, please re-try with a valid value!",
+    'app.lookup.err.value_required': 'Invalid Entry, Please specify a Youtube URL and try again!',
+    'app.lookup.err.invalid_url': "The url you've entered is invalid, please re-try with a valid value!",
 
     // Not Found page
     'app.page.not_found.title': 'Oh no!!',
@@ -33,7 +34,7 @@ export default {
 
     // Api Errors
     'api.err.validation': 'Invalid password, Please check that you specified a valid passphrase and try again!',
-    'api.err.worker.invalid_url': 'The url you entered is invalid, please re-try with a valid value!',
+    'api.err.worker.invalid_url': "The url you've entered is invalid, please re-try with a valid value!",
 
     // TODO: Deleted everything after this line.
     //-------------------------------------------------------------------------------------------

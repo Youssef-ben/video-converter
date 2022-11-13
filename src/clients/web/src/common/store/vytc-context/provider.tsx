@@ -61,7 +61,7 @@ export function VytcContextProvider({ children, storage }: VytcProviderProps) {
 
   // Once the UI loaded, check if we have a value in our local storage.
   useEffect(() => {
-    const fetchAccessToken = async () => {
+    const fetchLocalStorageData = async () => {
       const value = await storage.getItem(LOCAL_STORAGE_KEYS.AUTH);
       dispatch({
         type: value ? 'REFRESH' : 'SING_OUT',
@@ -69,10 +69,16 @@ export function VytcContextProvider({ children, storage }: VytcProviderProps) {
       })
 
 
+      const vytValue = await storage.getItem(LOCAL_STORAGE_KEYS.VYT);
+      dispatch({
+        type: vytValue ? 'PERSIST' : 'CLEAR',
+        payload: vytValue ? JSON.parse(vytValue) : undefined,
+      })
+
       setLoading(false);
     }
 
-    fetchAccessToken();
+    fetchLocalStorageData();
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Initialize the Methods of the Context.

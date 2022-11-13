@@ -19,7 +19,7 @@ const INITIAL_VALUES: LookupState = { value: '', loading: false };
 
 function useLookup() {
   const { t } = useTranslation();
-  const { vyt } = useAppContext();
+  const { persist } = useAppContext();
 
   const [state, setState] = useState<LookupState>(INITIAL_VALUES);
 
@@ -30,16 +30,29 @@ function useLookup() {
     }));
   };
 
+  const validate = (): string | undefined => {
+    if (!state.value) {
+      return 'app.lookup.err.value_required';
+    }
+
+    if (!isValidYoutubeUrl(state.value)) {
+      return 'app.lookup.err.invalid_url';
+    }
+
+    return undefined;
+  };
+
   const search = async (): Promise<boolean> => {
     setState((current) => ({ ...current, loading: true }));
 
     // Validate the youtube URL.
-    if (!state.value || !isValidYoutubeUrl(state.value)) {
+    const errorMsg = validate();
+    if (errorMsg) {
       setState((current) => ({
         ...current,
         loading: false,
         error: {
-          content: t('app.lookup.err.value_required'),
+          content: t(errorMsg),
           pointing: 'below',
         },
       }));
@@ -52,25 +65,22 @@ function useLookup() {
     });
 
     // Check for errors
-    if (error || !data) {
-      const errorContent = !data ? t('app.err.unhandled_error') : t(error?.type as string);
-
-      setState({
-        value: '',
+    if (error) {
+      setState((current) => ({
+        value: current.value,
         loading: false,
         error: {
-          content: errorContent,
+          content: t(error?.type as string),
           fromServer: true,
         },
-      });
+      }));
       return false;
     }
 
     // Save video details to storage.
-    console.log(vyt);
-    console.log(data);
+    persist(data as YoutubeVideoPayload);
     setState(INITIAL_VALUES);
-    return false;
+    return true;
   };
 
   return { lookup: state, search, onSearchUrlChange };

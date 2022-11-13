@@ -20,7 +20,8 @@ export default {
     'app.lookup.btn': 'Chercher',
     'app.lookup.description':
       "Téléchargez n'importe quelle vidéo youtube au format audio ou video. Tout ce que vous avez à faire est de copier le lien dans la case ci-dessous.",
-    'app.lookup.err.value_required': "L'url que vous avez entré n'est pas valide, veuillez réessayer avec une valeur valide !",
+    'app.lookup.err.value_required': 'Entrée invalide, Veuillez spécifier un URL Youtube valide et réessayer !',
+    'app.lookup.err.invalid_url': "L'url que vous avez entré n'est pas valide, veuillez réessayer avec une valeur valide !",
 
     // Not Found page
     'app.page.not_found.title': 'Oh non!!',
