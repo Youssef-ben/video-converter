@@ -1,12 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 export default {
   translation: {
-    // Common
-    'app.convert': 'DOWNLOAD AS',
-    'app.convert.audio': 'AUDIO',
-    'app.convert.video': 'VIDEO',
-    'app.auto_download': 'Your download will start automatically, please wait...',
-
     // Headers
     'app.title': 'VYTC',
     'app.title.extras': '- Videos and Youtube Converter',
@@ -21,6 +15,16 @@ export default {
     'app.lookup.description': 'Download any youtube video as an audio or video format. All you need to do is copy the link in the box bellow.',
     'app.lookup.err.value_required': 'Invalid Entry, Please specify a Youtube URL and try again!',
     'app.lookup.err.invalid_url': "The url you've entered is invalid, please re-try with a valid value!",
+
+    // Preview Page
+    'app.preview.convert': 'DOWNLOAD AS',
+    'app.preview.convert.audio': 'AUDIO',
+    'app.preview.convert.video': 'VIDEO',
+    'app.preview.auto_download': 'Your download will start automatically, please wait...',
+    'app.preview.video_quality': 'Video Quality',
+    'app.preview.video_quality.highest': 'Highest',
+    'app.preview.video_quality.default': 'Medium',
+    'app.preview.video_quality.lowest': 'Lowest',
 
     // Not Found page
     'app.page.not_found.title': 'Oh no!!',

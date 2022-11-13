@@ -1,15 +1,18 @@
 import { useTranslation } from "react-i18next";
 import { Button, Dropdown, Form, Grid } from "semantic-ui-react";
 
+import { useAppContext } from "common/store/vytc-context/provider";
+
 const translations = {
-  inputLabel: 'app.yt.video_preview.title_name',
-  btn_download: 'app.convert',
-  btn_mp3: 'app.convert.audio',
-  btn_mp4: 'app.convert.video',
+  btnDownload: 'app.preview.convert',
+  btnMp3: 'app.preview.convert.audio',
+  btnMp4: 'app.preview.convert.video',
+  dropdownLabel: 'app.preview.video_quality',
 };
 
 function PartialPreviewConvert() {
   const { t } = useTranslation();
+  const { vyt } = useAppContext();
 
   return (
     <Form className="preview-convert">
@@ -21,7 +24,7 @@ function PartialPreviewConvert() {
               fluid
               disabled
               type="text"
-              value="Video Title here"
+              value={vyt?.title}
             />
           </Grid.Column>
 
@@ -31,7 +34,7 @@ function PartialPreviewConvert() {
               className="icon video-quality"
               labeled
               icon="setting"
-              text={t('app.yt.video_preview.video_quality')}
+              text={t(translations.dropdownLabel)}
             />
           </Grid.Column>
         </Grid.Row>
@@ -40,9 +43,9 @@ function PartialPreviewConvert() {
           <Grid.Column mobile={16} tablet={6} computer={6}>
             <Button fluid size="small" primary   >
               <span className="break-line">
-                {t(translations.btn_download)}
+                {t(translations.btnDownload)}
                 {'  '}
-                {t(translations.btn_mp3)}
+                {t(translations.btnMp3)}
               </span>
             </Button>
           </Grid.Column>
@@ -50,9 +53,9 @@ function PartialPreviewConvert() {
           <Grid.Column mobile={16} tablet={6} computer={6}>
             <Button fluid size="small" secondary className="mt-1"  >
               <span>
-                {t(translations.btn_download)}
+                {t(translations.btnDownload)}
                 {'  '}
-                {t(translations.btn_mp4)}
+                {t(translations.btnMp4)}
               </span>
             </Button>
           </Grid.Column>
