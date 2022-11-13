@@ -12,9 +12,7 @@ import APP_ROUTES from "navigation/navigation-constants";
 import PartialPreviewConvert from "./PartialPreviewConvert";
 
 const translations = {
-  btnDownload: 'app.preview.convert',
-  btnMp3: 'app.preview.convert.audio',
-  btnMp4: 'app.preview.convert.video',
+  videoTitle: 'app.preview.video.title',
   dropdownLabel: 'app.preview.video_quality',
   downloadQualityLabel: 'app.preview.video_quality.label',
 };
@@ -37,10 +35,17 @@ function Preview() {
     <Grid columns={2} className="preview-convert">
       <Grid.Row className="title">
         <Grid.Column className="right-padding-none" mobile={16} tablet={10} computer={12}>
-          <Label className="video-title">
-            {vyt?.title}
-          </Label>
+          <Popup
 
+            header={t(translations.videoTitle)}
+            content={vyt?.title}
+            className="popup-note"
+            trigger={
+              <Label className="video-title">
+                {vyt?.title}
+              </Label>
+            }
+          />
         </Grid.Column>
 
         <Grid.Column className="left-padding-none" mobile={16} tablet={6} computer={4}>

@@ -31,12 +31,16 @@
 }
 
 .search-button {
-  float: right;
-  width: 15em;
+  width: 40%;
 }
 
 @media only screen and (max-width: 767px) {
   .mt-1 {
     margin-top: 1rem !important;
+  }
+
+  .search-button {
+    width: 100% !important;
+    margin-right: 0 !important;
   }
 }

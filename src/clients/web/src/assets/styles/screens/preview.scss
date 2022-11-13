@@ -80,13 +80,27 @@
   font-family: $nunito-font !important;
   background-color: $input-background !important;
   border: 1px solid $input-border-color !important;
+
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .popup-note {
+  text-align: justify;
+  max-width: 71vh !important;
   font-size: 13px !important;
   background-color: $input-background !important;
+
   &::before {
     background-color: $input-background !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .popup-note {
+    max-width: 50vh !important;
   }
 }
 

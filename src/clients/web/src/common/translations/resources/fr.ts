@@ -18,6 +18,7 @@ export default {
     'app.lookup.err.invalid_url': "L'url que vous avez entré n'est pas valide, veuillez réessayer avec une valeur valide !",
 
     // Preview Page
+    'app.preview.video.title': 'Titre',
     'app.preview.convert': 'TÉLÉCHARGER',
     'app.preview.convert.audio': 'AUDIO',
     'app.preview.convert.video': 'VIDÉO',
