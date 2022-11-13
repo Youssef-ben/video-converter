@@ -39,6 +39,8 @@ input {
 }
 
 .dropdown {
+  height: 34px !important;
+  padding-top: 0.6em !important;
   color: $primary-color !important;
   background: $secondary-background-color !important;
   border: 1px solid $input-border-color !important;

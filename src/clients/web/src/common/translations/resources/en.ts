@@ -21,10 +21,11 @@ export default {
     'app.preview.convert.audio': 'AUDIO',
     'app.preview.convert.video': 'VIDEO',
     'app.preview.auto_download': 'Your download will start automatically, please wait...',
-    'app.preview.video_quality': 'Video Quality',
+    'app.preview.video_quality': 'Quality',
     'app.preview.video_quality.highest': 'Highest',
     'app.preview.video_quality.default': 'Medium',
     'app.preview.video_quality.lowest': 'Lowest',
+    'app.preview.video_quality.label': 'The higher the quality, the longer it will take to convert and download!',
 
     // Not Found page
     'app.page.not_found.title': 'Oh no!!',

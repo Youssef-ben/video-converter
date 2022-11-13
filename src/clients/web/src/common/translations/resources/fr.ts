@@ -22,10 +22,11 @@ export default {
     'app.preview.convert.audio': 'AUDIO',
     'app.preview.convert.video': 'VIDÉO',
     'app.preview.auto_download': 'Votre téléchargement va démarrer automatiquement, veuillez patienter...',
-    'app.preview.video_quality': 'Qualité vidéo',
-    'app.preview.highest': 'Haute qualité',
-    'app.preview.default': 'Moyenne',
-    'app.preview.lowest': 'Faible qualité',
+    'app.preview.video_quality': 'Qualité',
+    'app.preview.video_quality.highest': 'Haute qualité',
+    'app.preview.video_quality.default': 'Moyenne',
+    'app.preview.video_quality.lowest': 'Faible qualité',
+    'app.preview.video_quality.label': 'NOTE : Plus la qualité est élevée, plus la conversion et le téléchargement seront longs !',
 
     // Not Found page
     'app.page.not_found.title': 'Oh non!!',
