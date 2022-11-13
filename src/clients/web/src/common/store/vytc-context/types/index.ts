@@ -1,18 +1,3 @@
-import type { LoginPayload, YoutubeVideoPayload } from '../../../types/server';
-
-/**
- * Authentication Store structure
- */
-export type AuthenticationState = {
-  data: LoginPayload;
-
-  connect: (token: string) => void;
-  refresh: (token: string) => void;
-  signOut: () => void;
-};
-
-export type YoutubeVideoState = YoutubeVideoPayload;
-
 /**
  * Required Methods by the Storage API.
  *

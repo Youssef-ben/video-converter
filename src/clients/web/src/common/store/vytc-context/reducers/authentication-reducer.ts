@@ -10,7 +10,7 @@ export interface VytcContextAuthStateMethods {
   signOut: () => void;
 }
 
-export const CONTEXT_METHODS: VytcContextAuthStateMethods = {
+export const AUTH_CONTEXT_METHODS: VytcContextAuthStateMethods = {
   connect: (_: string) => null,
   refresh: (_: string) => null,
   signOut: () => null,
@@ -52,27 +52,27 @@ export const authReducer = (state: AuthState, action: AuthActions) => {
 
 export const authReducerMethods = (dispatch: React.Dispatch<AuthActions>, storage: VytcAsyncStorageProvider): VytcContextAuthStateMethods => ({
   connect: async (token: string) => {
+    await storage.setItem(LOCAL_STORAGE_KEYS.AUTH, token);
     dispatch({
       type: 'CONNECT',
       payload: token,
     });
-    await storage.setItem(LOCAL_STORAGE_KEYS.AUTH, token);
   },
 
   refresh: async (token: string) => {
+    await storage.removeItem(LOCAL_STORAGE_KEYS.AUTH);
+    await storage.setItem(LOCAL_STORAGE_KEYS.AUTH, token);
     dispatch({
       type: 'REFRESH',
       payload: token,
     });
-    await storage.removeItem(LOCAL_STORAGE_KEYS.AUTH);
-    await storage.setItem(LOCAL_STORAGE_KEYS.AUTH, token);
   },
 
   signOut: async () => {
+    await storage.removeItem(LOCAL_STORAGE_KEYS.AUTH);
     dispatch({
       type: 'SING_OUT',
       payload: '',
     });
-    await storage.removeItem(LOCAL_STORAGE_KEYS.AUTH);
   },
 });

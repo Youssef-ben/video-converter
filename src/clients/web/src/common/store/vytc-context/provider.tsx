@@ -4,16 +4,17 @@ import { LOCAL_STORAGE_KEYS } from 'common/utils/constants';
 
 
 
-import type { YoutubeVideoPayload } from '../../types/server';
 import type { AuthActions, AuthState, VytcContextAuthStateMethods } from './reducers/authentication-reducer';
-import { authReducer, authReducerMethods, AUTH_INITIAL_DATA, CONTEXT_METHODS } from './reducers/authentication-reducer';
+import { authReducer, authReducerMethods, AUTH_CONTEXT_METHODS, AUTH_INITIAL_DATA } from './reducers/authentication-reducer';
+import type { VytActions, VytcContextYoutubeStateMethods, VytState } from './reducers/vyt-reducer';
+import { vytReducer, vytReducerMethods, VYT_CONTEXT_METHODS } from './reducers/vyt-reducer';
 import type { VytcAsyncStorageProvider } from './types/index';
 
 // Types
 /* ============================================================ */
-export interface VytcContextState extends VytcContextAuthStateMethods {
+export interface VytcContextState extends VytcContextAuthStateMethods, VytcContextYoutubeStateMethods {
   auth: AuthState;
-  vyt?: YoutubeVideoPayload;
+  vyt?: VytState;
 
   storage?: VytcAsyncStorageProvider;
 }
@@ -28,18 +29,21 @@ const CONTEXT_INITIAL_STATE: VytcContextState = {
 
 
   // Context Methods
-  ...CONTEXT_METHODS,
+  ...AUTH_CONTEXT_METHODS,
+  ...VYT_CONTEXT_METHODS,
+
 };
 /* ============================================================ */
 
 // Reducers
 /* ============================================================ */
-const VytcReducer = (state: VytcContextState, action: AuthActions): VytcContextState => ({
-  auth: authReducer(state.auth, action),
-  vyt: undefined,
+const VytcReducer = (state: VytcContextState, action: AuthActions | VytActions): VytcContextState => ({
+  auth: authReducer(state.auth, action as AuthActions),
+  vyt: vytReducer(state.vyt as VytState, action as VytActions),
 
   // Context Methods, Will be initialized in the VytcProvider.
-  ...CONTEXT_METHODS,
+  ...AUTH_CONTEXT_METHODS,
+  ...VYT_CONTEXT_METHODS,
 });
 /* ============================================================ */
 
@@ -75,9 +79,10 @@ export function VytcContextProvider({ children, storage }: VytcProviderProps) {
   const providerState = useMemo(
     (): VytcContextState => ({
       ...state,
+      storage,
 
       ...authReducerMethods(dispatch, storage),
-      storage,
+      ...vytReducerMethods(dispatch, storage),
     }),
     [state, storage]
   );

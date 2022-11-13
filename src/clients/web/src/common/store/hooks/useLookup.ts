@@ -7,6 +7,7 @@ import { SERVER_URLS } from 'common/utils/constants';
 import { axiosGet } from 'common/utils/http';
 
 import type { InputError } from '../../types/clients/InputError';
+import { useAppContext } from '../vytc-context/provider';
 import { isValidYoutubeUrl } from './helpers';
 
 interface LookupState {
@@ -18,6 +19,8 @@ const INITIAL_VALUES: LookupState = { value: '', loading: false };
 
 function useLookup() {
   const { t } = useTranslation();
+  const { vyt } = useAppContext();
+
   const [state, setState] = useState<LookupState>(INITIAL_VALUES);
 
   const onSearchUrlChange = (text: string) => {
@@ -64,6 +67,7 @@ function useLookup() {
     }
 
     // Save video details to storage.
+    console.log(vyt);
     console.log(data);
     setState(INITIAL_VALUES);
     return false;
