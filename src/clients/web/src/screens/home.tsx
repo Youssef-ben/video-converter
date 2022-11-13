@@ -56,7 +56,9 @@ function Home() {
       </Form.Field>
 
       <Button
-        className="primary btn yt-btn-right"
+        primary
+        floated="right"
+        className="search-button"
         loading={lookup.loading}
         disabled={lookup.loading}
         onClick={searchHandler}>
