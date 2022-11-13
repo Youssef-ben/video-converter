@@ -4,9 +4,9 @@ import { Dropdown, Grid, Label, Popup } from 'semantic-ui-react';
 import { useAppContext } from 'common/store/vytc-context/provider';
 
 const translations = {
-  popupVideoTitle: 'app.preview.popup.video.title',
-  videoQualityLabel: 'app.preview.video_quality',
-  popupVideoQualityLabel: 'app.preview.popup.video_quality.label',
+  popupVideoTitle: 'app.preview.header.popup.video.title',
+  videoQualityLabel: 'app.preview.header.video_quality',
+  popupVideoQualityLabel: 'app.preview.header.popup.video_quality.label',
 };
 
 interface PreviewHeaderProps {

@@ -9,6 +9,7 @@ import { useAppContext } from 'common/store/vytc-context/provider';
 import APP_ROUTES from 'navigation/navigation-constants';
 
 import PreviewConversion from './components/footer/PreviewConversion';
+import PreviewDownload from './components/footer/PreviewDownload';
 import PreviewProgress from './components/footer/PreviewProgress';
 import PreviewHeader from './components/PreviewHeader';
 
@@ -52,6 +53,10 @@ function Preview() {
 
       <Grid.Row className="buttons-group">
         <PreviewProgress />
+      </Grid.Row>
+
+      <Grid.Row className="buttons-group">
+        <PreviewDownload downloadLink="/test" />
       </Grid.Row>
     </Grid>
   );

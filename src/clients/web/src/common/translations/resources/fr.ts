@@ -18,17 +18,21 @@ export default {
     'app.lookup.err.invalid_url': "L'url que vous avez entré n'est pas valide, veuillez réessayer avec une valeur valide !",
 
     // Preview Page
-    'app.preview.popup.video.title': 'Titre',
+    'app.preview.header.popup.video.title': 'Titre',
+    'app.preview.header.video_quality': 'Qualité',
+    'app.preview.header.video_quality.highest': 'Haute qualité',
+    'app.preview.header.video_quality.default': 'Moyenne',
+    'app.preview.header.video_quality.lowest': 'Faible qualité',
+    'app.preview.header.popup.video_quality.label': 'Plus la qualité est élevée, plus la conversion et le téléchargement seront longs !',
+
     'app.preview.convert': 'TÉLÉCHARGER',
     'app.preview.convert.audio': 'AUDIO',
     'app.preview.convert.video': 'VIDÉO',
-    'app.preview.auto_download': 'Votre téléchargement va démarrer automatiquement, veuillez patienter...',
-    'app.preview.video_quality': 'Qualité',
-    'app.preview.video_quality.highest': 'Haute qualité',
-    'app.preview.video_quality.default': 'Moyenne',
-    'app.preview.video_quality.lowest': 'Faible qualité',
-    'app.preview.popup.video_quality.label': 'Plus la qualité est élevée, plus la conversion et le téléchargement seront longs !',
+
     'app.preview.progress.btn': 'Annuler',
+
+    'app.preview.download': 'Votre téléchargement va démarrer automatiquement, veuillez patienter...',
+    'app.preview.download.btn': 'Terminer',
 
     // Not Found page
     'app.page.not_found.title': 'Oh non!!',

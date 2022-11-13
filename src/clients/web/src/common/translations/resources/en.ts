@@ -17,17 +17,21 @@ export default {
     'app.lookup.err.invalid_url': "The url you've entered is invalid, please re-try with a valid value!",
 
     // Preview Page
-    'app.preview.popup.video.title': 'Title',
+    'app.preview.header.popup.video.title': 'Title',
+    'app.preview.header.video_quality': 'Quality',
+    'app.preview.header.video_quality.highest': 'Highest',
+    'app.preview.header.video_quality.default': 'Medium',
+    'app.preview.header.video_quality.lowest': 'Lowest',
+    'app.preview.header.popup.video_quality.label': 'The higher the quality, the longer it will take to convert and download!',
+
     'app.preview.convert': 'DOWNLOAD AS',
     'app.preview.convert.audio': 'AUDIO',
     'app.preview.convert.video': 'VIDEO',
-    'app.preview.auto_download': 'Your download will start automatically, please wait...',
-    'app.preview.video_quality': 'Quality',
-    'app.preview.video_quality.highest': 'Highest',
-    'app.preview.video_quality.default': 'Medium',
-    'app.preview.video_quality.lowest': 'Lowest',
-    'app.preview.popup.video_quality.label': 'The higher the quality, the longer it will take to convert and download!',
+
     'app.preview.progress.btn': 'Cancel',
+
+    'app.preview.download': 'Your download will start automatically, please wait...',
+    'app.preview.download.btn': 'Finish',
 
     // Not Found page
     'app.page.not_found.title': 'Oh no!!',

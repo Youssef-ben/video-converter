@@ -5,8 +5,6 @@ const translations = {
   btnDownload: 'app.preview.convert',
   btnMp3: 'app.preview.convert.audio',
   btnMp4: 'app.preview.convert.video',
-  dropdownLabel: 'app.preview.video_quality',
-  downloadQualityLabel: 'app.preview.video_quality.label',
 };
 
 function PreviewConversion() {

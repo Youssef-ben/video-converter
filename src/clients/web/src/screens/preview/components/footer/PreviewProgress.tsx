@@ -12,7 +12,7 @@ function PreviewProgress() {
   return (
     <Grid.Column mobile={16} tablet={16} computer={16}>
       <ProgressBar display key="pg" text="Downloading" progress={50} />
-      <Button color="red" floated="right" className="search-button" size="small">
+      <Button color="red" floated="right" className="floated-button" size="small">
         <span className="break-line">{t(translations.button)}</span>
       </Button>
     </Grid.Column>
