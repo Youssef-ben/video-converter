@@ -8,7 +8,8 @@ import loadingImage from 'assets/images/loading.png';
 import { useAppContext } from 'common/store/vytc-context/provider';
 import APP_ROUTES from 'navigation/navigation-constants';
 
-import PreviewConversionFooter from './components/PreviewConversionFooter';
+import PreviewConversion from './components/footer/PreviewConversion';
+import PreviewProgress from './components/footer/PreviewProgress';
 import PreviewHeader from './components/PreviewHeader';
 
 function Preview() {
@@ -27,7 +28,7 @@ function Preview() {
   return (
     <Grid columns={2} className="preview-convert">
       <Grid.Row className="title">
-        <PreviewHeader />
+        <PreviewHeader showVideoQuality />
       </Grid.Row>
 
       <Grid.Row>
@@ -46,7 +47,11 @@ function Preview() {
 
       {/** TODO: Add The other partial views. */}
       <Grid.Row className="buttons-group">
-        <PreviewConversionFooter />
+        <PreviewConversion />
+      </Grid.Row>
+
+      <Grid.Row className="buttons-group">
+        <PreviewProgress />
       </Grid.Row>
     </Grid>
   );

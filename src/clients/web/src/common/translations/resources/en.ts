@@ -6,8 +6,8 @@ export default {
     'app.title.extras': '- Videos and Youtube Converter',
 
     // Login page
-    'app.login.placeholder.password': 'Password...',
     'app.login.btn': 'Login',
+    'app.login.placeholder.password': 'Password...',
     'app.login.err.password_required': 'The password is required, please specify a valid value!',
 
     // Lookup page
@@ -27,6 +27,7 @@ export default {
     'app.preview.video_quality.default': 'Medium',
     'app.preview.video_quality.lowest': 'Lowest',
     'app.preview.popup.video_quality.label': 'The higher the quality, the longer it will take to convert and download!',
+    'app.preview.progress.btn': 'Cancel',
 
     // Not Found page
     'app.page.not_found.title': 'Oh no!!',

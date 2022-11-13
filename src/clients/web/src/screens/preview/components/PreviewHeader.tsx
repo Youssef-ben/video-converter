@@ -9,7 +9,10 @@ const translations = {
   popupVideoQualityLabel: 'app.preview.popup.video_quality.label',
 };
 
-function PreviewHeader() {
+interface PreviewHeaderProps {
+  showVideoQuality?: boolean;
+}
+function PreviewHeader({ showVideoQuality = true }: PreviewHeaderProps) {
   const { t } = useTranslation();
   const { vyt } = useAppContext();
 
@@ -24,14 +27,16 @@ function PreviewHeader() {
         />
       </Grid.Column>
 
-      <Grid.Column className="left-padding-none" mobile={16} tablet={6} computer={4}>
-        <Popup
-          header="Note"
-          className="popup-note"
-          content={t(translations.popupVideoQualityLabel)}
-          trigger={<Dropdown fluid button className="icon video-quality" labeled icon="setting" text={t(translations.videoQualityLabel)} />}
-        />
-      </Grid.Column>
+      {showVideoQuality && (
+        <Grid.Column className="left-padding-none" mobile={16} tablet={6} computer={4}>
+          <Popup
+            header="Note"
+            className="popup-note"
+            content={t(translations.popupVideoQualityLabel)}
+            trigger={<Dropdown fluid button className="icon video-quality" labeled icon="setting" text={t(translations.videoQualityLabel)} />}
+          />
+        </Grid.Column>
+      )}
     </>
   );
 }

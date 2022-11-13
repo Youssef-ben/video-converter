@@ -1,41 +1,47 @@
-$progress-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-$progress-background: $secondary-background-color;
 $progress-font-size: 0.8em;
-$progress-transition: 0.1s ease-in-out;
 $progress-color: #68717a !important;
+$progress-transition: 0.1s ease-in-out;
+$progress-background: $input-background;
+$progress-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 
 .progress {
   width: 100%;
+  height: 1rem;
+  border-radius: 3px;
   box-shadow: $progress-box-shadow;
   background-color: $progress-background;
-  height: 1rem;
 
   .progress-bar {
-    background-color: $primary-color;
-    display: inline-block;
     height: 100%;
+    border-radius: 3px;
+    display: inline-block;
+    background-color: $primary-color;
     transition: width $progress-transition;
   }
 }
 
 .progress-info {
-  height: 30px;
-  text-shadow: $progress-box-shadow;
-  color: $progress-color;
-  font-size: $progress-font-size;
-  margin-top: 10px;
-  font-weight: 200;
-}
+  margin-bottom: 0.5em;
 
-.progress-percentage {
-  font-size: $progress-font-size;
-  font-weight: 200;
-  transition: color $progress-transition;
-  position: relative;
-  text-align: right;
-  width: 80px;
-  float: right;
-  margin-top: 2px;
-  color: $progress-color;
-  text-shadow: $progress-box-shadow;
+  .progress-percentage {
+    width: 80px;
+    float: right;
+    margin-top: 2px;
+    font-weight: 200;
+    text-align: right;
+    position: relative;
+    color: $progress-color;
+    font-size: $progress-font-size;
+    text-shadow: $progress-box-shadow;
+    transition: color $progress-transition;
+  }
+
+  .progress-text {
+    height: 30px;
+    margin-top: 10px;
+    font-weight: 200;
+    color: $progress-color;
+    font-size: $progress-font-size;
+    text-shadow: $progress-box-shadow;
+  }
 }

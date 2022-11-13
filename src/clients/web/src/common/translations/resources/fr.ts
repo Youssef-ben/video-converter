@@ -28,6 +28,7 @@ export default {
     'app.preview.video_quality.default': 'Moyenne',
     'app.preview.video_quality.lowest': 'Faible qualité',
     'app.preview.popup.video_quality.label': 'Plus la qualité est élevée, plus la conversion et le téléchargement seront longs !',
+    'app.preview.progress.btn': 'Annuler',
 
     // Not Found page
     'app.page.not_found.title': 'Oh non!!',
