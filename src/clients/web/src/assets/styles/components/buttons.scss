@@ -23,38 +23,19 @@
   }
 }
 
-.btn {
-  width: 15em;
-  height: 30px;
-  padding: 0 !important;
-
-  &.yt-btn-right {
-    float: right;
-  }
-
-  &.yt-left {
-    float: left; 
-  }
-
-  &.yt-right {
-    float: right; 
-  }
-
+.button {
   .break-line::after {
     content: '\a';
     white-space: pre;
   }
 }
 
-@media only screen and (max-width: 560px) {
-  .btn {
-    width: 100%;
-    &.yt-left {
-      margin-bottom: 1em;
-    }
-
-    &.yt-right {
-      margin-right: 0;
-    }
+@media only screen and (max-width: 767px) {
+  .mt-1 {
+    margin-top: 1rem !important;
   }
+}
+.search-button {
+  float: right;
+  width: 15em;
 }
