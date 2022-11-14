@@ -1,8 +1,4 @@
-.closed-connection {
-  position: absolute;
-  bottom: 0px;
-  width: 100%;
-
+@mixin message-css {
   .message {
     padding-bottom: 0.5em;
     padding-top: 0.5em;
@@ -10,5 +6,21 @@
 
   .mobile-message {
     padding: 0.5em;
+  }
+}
+
+.closed-connection {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+
+  @include message-css;
+}
+
+.ws-error {
+  @include message-css;
+
+  a {
+    color: $input-border-color-error !important;
   }
 }

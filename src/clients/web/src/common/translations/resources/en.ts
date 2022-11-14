@@ -40,8 +40,9 @@ export default {
     'app.page.not_found.back_btn': 'Home page',
 
     // App Errors
-    'app.err.unhandled_error':
-      'An error occurred while trying to handle your request. Please reload the page and if the problem persists, please contact the team!',
+    'app.err.unhandled_error.title': 'Unhandled error!',
+    'app.err.unhandled_error.desc':
+      'An error occurred while trying to handle your request. Please reload the page and if the problem persists, contact the team!',
 
     // Api Errors
     'api.err.validation': 'Invalid password, Please check that you specified a valid passphrase and try again!',

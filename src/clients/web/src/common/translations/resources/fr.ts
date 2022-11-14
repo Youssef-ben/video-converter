@@ -41,7 +41,8 @@ export default {
     'app.page.not_found.back_btn': "Page d'accueil",
 
     // App Errors
-    'app.err.unhandled_error':
+    'app.err.unhandled_error.title': 'Erreur non prise en charge!',
+    'app.err.unhandled_error.desc':
       "Une erreur s'est produite lors du traitement de votre demande. Veuillez recharger la page, et si le problème persiste, veuillez contacter l'équipe !",
 
     // Api Errors

@@ -52,7 +52,7 @@ const useLogin = () => {
 
     // Check for errors
     if (error || !data) {
-      const errorContent = !data ? t('app.err.unhandled_error') : t(error?.type as string);
+      const errorContent = !data ? t('app.err.unhandled_error.desc') : t(error?.type as string);
 
       setState({
         value: '',
