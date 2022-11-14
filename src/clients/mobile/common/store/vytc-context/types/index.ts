@@ -1,18 +1,3 @@
-import type { LoginPayload, YoutubeVideoPayload } from '../../../types/server';
-
-/**
- * Authentication Store structure
- */
-export type AuthenticationState = {
-  data: LoginPayload;
-
-  connect: (token: string) => void;
-  refresh: (token: string) => void;
-  signOut: () => void;
-};
-
-export type YoutubeVideoState = YoutubeVideoPayload;
-
 /**
  * Required Methods by the Storage API.
  *
@@ -23,4 +8,21 @@ export interface VytcAsyncStorageProvider {
   getItem: (key: string) => Promise<string | null>;
   setItem: (key: string, value: string) => Promise<void>;
   removeItem: (key: string) => Promise<void>;
+}
+
+export enum VideoQuality {
+  HIGHEST = 'highest',
+  DEFAULT = 'default',
+  LOWEST = 'lowest',
+}
+
+export enum FileType {
+  AUDIO_ONLY = 'audio',
+  VIDEO = 'video',
+}
+
+export enum ScreenAction {
+  PREVIEW = 'PREVIEW',
+  PROGRESS = 'download',
+  DOWNLOAD = 'finish',
 }
