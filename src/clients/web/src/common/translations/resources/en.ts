@@ -39,40 +39,7 @@ export default {
     'app.page.not_found.subtitle_2': 'requesting a page that’s no longer exits.',
     'app.page.not_found.back_btn': 'Home page',
 
-    // App Errors
-    'app.err.unhandled_error.title': 'Unhandled error!',
-    'app.err.unhandled_error.desc':
-      'An error occurred while trying to handle your request. Please reload the page and if the problem persists, contact the team!',
-
-    // Api Errors
-    'api.err.validation': 'Invalid password, Please check that you specified a valid passphrase and try again!',
-    'api.err.worker.invalid_url': "The url you've entered is invalid, please re-try with a valid value!",
-
-    // TODO: Deleted everything after this line.
-    //-------------------------------------------------------------------------------------------
-    // Youtube downloader page
-    'app.yt.title': 'Youtube Downloader',
-    'app.yt.btn.search': 'Search',
-    'app.yt.video_lookup.description':
-      'Download any youtube video as an audio or video format. All you need to do is copy the link in the box bellow.',
-    'app.yt.video_preview.description': "Hooray!! we found the video you're looking for. Please choose the file format you want to download.",
-    'app.yt.video_preview.title_name': '(Optional) - Use the box below to rename the video.',
-    'app.yt.err.invalid_url_msg': 'The url you entered is invalid, please re-try with a valid value!',
-    'app.yt.video_preview.video_quality': 'Video Quality',
-    'app.highest': 'Highest',
-    'app.default': 'Medium',
-    'app.lowest': 'Lowest',
-
-    // Server Messages/Error.
-    'api.err.unexpected_error': 'An unexpected error occurred while trying to handle your request. Please contact the team if the issue persists!',
-
-    'api.err.security.unauthorized': 'Unauthorized',
-    'api.err.security.unauthorized_desc': "Invalid credentials or you don't have permission to access the requested resources!",
-
-    // Login
-    'api.err.downloader.invalid_url': 'Invalid Youtube URL!',
-    'api.err.downloader.invalid_url_desc': 'Please review the Youtube URL and try again!',
-
+    // Websocket - From Server
     'ws.downloading': 'Preparing...',
     'ws.success': 'Success',
     'ws.err.connection_lost': 'The connection to the server was lost, trying to reconnect...',
@@ -91,5 +58,14 @@ export default {
     'ws.saving': 'Saving...',
     'ws.err.unhandled': 'Unhandled error!',
     'ws.err.unhandled_desc': 'An error occurred while trying to handle your request!',
+
+    // App Errors
+    'app.err.unhandled_error.title': 'Unhandled error!',
+    'app.err.unhandled_error.desc':
+      'An error occurred while trying to handle your request. Please reload the page and if the problem persists, contact the team!',
+
+    // Api Errors
+    'api.err.validation': 'Invalid password, Please check that you specified a valid passphrase and try again!',
+    'api.err.worker.invalid_url': "The url you've entered is invalid, please re-try with a valid value!",
   },
 };

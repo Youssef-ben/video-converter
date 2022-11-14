@@ -30,9 +30,9 @@ export const WsMessages = {
 // EVENTS
 /* ============================================================ */
 export type StartDownloadEvent = {
-  video: YoutubeVideoPayload;
-  type: FileType.AUDIO_ONLY | FileType.VIDEO;
+  type: FileType;
   quality: VideoQuality;
+  video: YoutubeVideoPayload;
 };
 
 export interface DownloadProgressEvent {

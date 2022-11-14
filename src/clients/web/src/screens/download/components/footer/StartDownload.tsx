@@ -12,12 +12,10 @@ const translations = {
   button: 'app.download.download.btn',
 };
 
-interface PreviewDownloadProps {
-  downloadLink: string;
-}
-function StartDownload({ downloadLink }: PreviewDownloadProps) {
+function StartDownload() {
   const { t } = useTranslation();
-  const { clear } = useAppContext();
+  const { vyt, clear } = useAppContext();
+
   const [downloadStarted, setDownloadStarted] = useState(false);
 
   useEffect(() => {
@@ -27,7 +25,6 @@ function StartDownload({ downloadLink }: PreviewDownloadProps) {
   }, []);
 
   const onFinish = () => {
-    // TODO: Clear all and return the home page.
     clear();
   };
 
@@ -39,13 +36,13 @@ function StartDownload({ downloadLink }: PreviewDownloadProps) {
     </Grid.Column>
   ) : (
     <Grid.Column mobile={16} tablet={16} computer={16}>
-      {t('app.download.download')}
+      {t(translations.text)}
     </Grid.Column>
   );
 
   return (
     <>
-      <IframeDownloader uri={downloadLink} />
+      <IframeDownloader uri={vyt.download.downloadLink} />
       {component}
     </>
   );

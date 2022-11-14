@@ -36,7 +36,7 @@ function Download() {
       break;
 
     case ScreenAction.DOWNLOAD:
-      partialScreen = <StartDownload downloadLink="/test" />;
+      partialScreen = <StartDownload />;
       break;
 
     default:

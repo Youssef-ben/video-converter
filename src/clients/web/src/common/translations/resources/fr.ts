@@ -40,41 +40,7 @@ export default {
     'app.page.not_found.subtitle_2': "Soit vous demandez une page qui n'existe plus.",
     'app.page.not_found.back_btn': "Page d'accueil",
 
-    // App Errors
-    'app.err.unhandled_error.title': 'Erreur non prise en charge!',
-    'app.err.unhandled_error.desc':
-      "Une erreur s'est produite lors du traitement de votre demande. Veuillez recharger la page, et si le problème persiste, veuillez contacter l'équipe !",
-
-    // Api Errors
-    'api.err.validation': 'Mot de passe incorrect, Veuillez vérifier que vous avez spécifié un mot de passe valide et réessayez!',
-    'api.err.worker.invalid_url': "L'url que vous avez entré n'est pas valide, veuillez réessayer avec une valeur valide !",
-
-    // TODO: Deleted everything after this line.
-    //-------------------------------------------------------------------------------------------
-    // Youtube downloader page
-    'app.yt.title': 'Téléchargeur Youtube',
-    'app.yt.btn.search': 'Chercher',
-    'app.yt.video_preview.description':
-      'Hooray!! nous avons trouvé la vidéo que vous recherchez. Veuillez choisir le format de fichier que vous souhaitez télécharger.',
-    'app.yt.video_preview.title_name': '(Facultatif) - Utilisez la case ci-dessous pour renommer la vidéo.',
-    'app.yt.err.invalid_url_msg': "L'url que vous avez entré n'est pas valide, veuillez réessayer avec une valeur valide !",
-    'app.yt.video_preview.video_quality': 'Qualité vidéo',
-    'app.highest': 'Haute qualité',
-    'app.default': 'Moyenne',
-    'app.lowest': 'Faible qualité',
-
-    // Server Messages/Error.
-    'api.err.unexpected_error':
-      "Une erreur inattendue s'est produite lors du traitement de votre demande. Veuillez contacter l'équipe si le problème persiste !",
-
-    'api.err.security.unauthorized': 'Non autorisé',
-    'api.err.security.unauthorized_desc':
-      "Informations d'identification invalides ou vous n'avez pas la permission d'accéder aux ressources demandées !",
-
-    // Login
-    'api.err.downloader.invalid_url': 'Invalid Youtube URL!',
-    'api.err.downloader.invalid_url_desc': 'Please review the Youtube URL and try again!',
-
+    // Websocket - From Server
     'ws.err.connection_lost': 'La connexion au serveur a été perdue, tentatives de reconnexion...',
     'ws.success': 'Succès',
     'ws.err.fields_required': 'Un ou plusieurs champs sont obligatoires !',
@@ -93,5 +59,14 @@ export default {
     'ws.saving': 'Enregistrement en cours...',
     'ws.error.unhandled': 'Erreur non prise en charge!',
     'ws.error.unhandled_desc': "Une erreur s'est produite lors du traitement de votre demande !",
+
+    // App Errors
+    'app.err.unhandled_error.title': 'Erreur non prise en charge!',
+    'app.err.unhandled_error.desc':
+      "Une erreur s'est produite lors du traitement de votre demande. Veuillez recharger la page, et si le problème persiste, veuillez contacter l'équipe !",
+
+    // Api Errors
+    'api.err.validation': 'Mot de passe incorrect, Veuillez vérifier que vous avez spécifié un mot de passe valide et réessayez!',
+    'api.err.worker.invalid_url': "L'url que vous avez entré n'est pas valide, veuillez réessayer avec une valeur valide !",
   },
 };
