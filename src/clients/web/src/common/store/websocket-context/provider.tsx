@@ -38,15 +38,18 @@ export function WsProvider({ children, toastCallback }: WsProviderProps) {
     });
 
     wsInstance.on(WsEvents.Connect, () => {
+      console.log('[INF] - Connection opened!');
       document.getElementsByClassName('closed-connection').item(0)?.classList.add('hidden');
     });
 
     wsInstance.on(WsEvents.Disconnect, () => {
+      console.log('[WAR] - Connection closed!');
       toastCallback('Disconnected', 'The Connection expired, please try to connect again!', 'error');
       signOut();
     });
 
     wsInstance.on(WsEvents.ConnectError, () => {
+      console.log('[WAR] - Connection error!');
       document.getElementsByClassName('closed-connection').item(0)?.classList.remove('hidden');
     });
 
