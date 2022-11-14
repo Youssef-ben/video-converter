@@ -2,19 +2,17 @@ import { createContext, useContext, useEffect, useMemo, useReducer, useState } f
 
 import { LOCAL_STORAGE_KEYS } from 'common/utils/constants';
 
-
-
 import type { AuthActions, AuthState, VytcContextAuthStateMethods } from './reducers/authentication-reducer';
 import { authReducer, authReducerMethods, AUTH_CONTEXT_METHODS, AUTH_INITIAL_DATA } from './reducers/authentication-reducer';
 import type { VytActions, VytcContextYoutubeStateMethods, VytState } from './reducers/vyt-reducer';
-import { vytReducer, vytReducerMethods, VYT_CONTEXT_METHODS } from './reducers/vyt-reducer';
+import { vytReducer, vytReducerMethods, VYT_CONTEXT_METHODS, VYT_INITIAL_DATA } from './reducers/vyt-reducer';
 import type { VytcAsyncStorageProvider } from './types/index';
 
 // Types
 /* ============================================================ */
 export interface VytcContextState extends VytcContextAuthStateMethods, VytcContextYoutubeStateMethods {
   auth: AuthState;
-  vyt?: VytState;
+  vyt: VytState;
 
   storage?: VytcAsyncStorageProvider;
 }
@@ -22,16 +20,13 @@ export interface VytcContextState extends VytcContextAuthStateMethods, VytcConte
 
 // Initial Context State
 /* ============================================================ */
-
 const CONTEXT_INITIAL_STATE: VytcContextState = {
   auth: AUTH_INITIAL_DATA,
-  vyt: undefined,
-
+  vyt: VYT_INITIAL_DATA,
 
   // Context Methods
   ...AUTH_CONTEXT_METHODS,
   ...VYT_CONTEXT_METHODS,
-
 };
 /* ============================================================ */
 
@@ -66,20 +61,19 @@ export function VytcContextProvider({ children, storage }: VytcProviderProps) {
       dispatch({
         type: value ? 'REFRESH' : 'SING_OUT',
         payload: value || '',
-      })
-
+      });
 
       const vytValue = await storage.getItem(LOCAL_STORAGE_KEYS.VYT);
       dispatch({
         type: vytValue ? 'PERSIST' : 'CLEAR',
         payload: vytValue ? JSON.parse(vytValue) : undefined,
-      })
+      });
 
       setLoading(false);
-    }
+    };
 
     fetchLocalStorageData();
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Initialize the Methods of the Context.
   const providerState = useMemo(

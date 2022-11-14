@@ -53,7 +53,7 @@ function Home() {
           />
         </Form.Field>
 
-        <Button primary floated="right" className="search-button" loading={lookup.loading} disabled={lookup.loading} onClick={searchHandler}>
+        <Button primary floated="right" className="floated-button" loading={lookup.loading} disabled={lookup.loading} onClick={searchHandler}>
           {t(translations.btn_search)}
         </Button>
       </Form>

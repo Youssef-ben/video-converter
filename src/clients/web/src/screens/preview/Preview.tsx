@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 import { useEffect, useState } from 'react';
 
 import ReactPlayer from 'react-player';
@@ -6,6 +7,7 @@ import { Grid, Image, Loader } from 'semantic-ui-react';
 
 import loadingImage from 'assets/images/loading.png';
 import { useAppContext } from 'common/store/vytc-context/provider';
+import { ScreenAction } from 'common/store/vytc-context/types';
 import APP_ROUTES from 'navigation/navigation-constants';
 
 import PreviewConversion from './components/footer/PreviewConversion';
@@ -15,21 +17,35 @@ import PreviewHeader from './components/PreviewHeader';
 
 function Preview() {
   const navigate = useNavigate();
-  const { vyt } = useAppContext();
+  const {
+    vyt: { data, preview },
+  } = useAppContext();
+
+  const [loadingPlayer, setLoadingPlayer] = useState(true);
 
   // If no data, return to home
   useEffect(() => {
-    if (!vyt) {
+    if (!data) {
       navigate(APP_ROUTES.PRIV_HOME);
     }
   });
 
-  const [loadingPlayer, setLoadingPlayer] = useState(true);
+  // Select Screen to display
+  let partialScreen = <PreviewConversion />;
+  switch (preview.screen) {
+    case ScreenAction.PROGRESS:
+      partialScreen = <PreviewProgress />;
+      break;
+
+    case ScreenAction.DOWNLOAD:
+      partialScreen = <PreviewDownload downloadLink="/test" />;
+      break;
+  }
 
   return (
     <Grid columns={2} className="preview-convert">
       <Grid.Row className="title">
-        <PreviewHeader showVideoQuality />
+        <PreviewHeader />
       </Grid.Row>
 
       <Grid.Row>
@@ -42,22 +58,12 @@ function Preview() {
             </div>
           )}
 
-          <ReactPlayer url={vyt?.link} width="100%" height="100%" className="react-player" controls onReady={() => setLoadingPlayer(false)} />
+          <ReactPlayer url={data?.link} width="100%" height="100%" className="react-player" controls onReady={() => setLoadingPlayer(false)} />
         </div>
       </Grid.Row>
 
       {/** TODO: Add The other partial views. */}
-      <Grid.Row className="buttons-group">
-        <PreviewConversion />
-      </Grid.Row>
-
-      <Grid.Row className="buttons-group">
-        <PreviewProgress />
-      </Grid.Row>
-
-      <Grid.Row className="buttons-group">
-        <PreviewDownload downloadLink="/test" />
-      </Grid.Row>
+      <Grid.Row className="buttons-group">{partialScreen}</Grid.Row>
     </Grid>
   );
 }

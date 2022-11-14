@@ -9,3 +9,20 @@ export interface VytcAsyncStorageProvider {
   setItem: (key: string, value: string) => Promise<void>;
   removeItem: (key: string) => Promise<void>;
 }
+
+export enum VideoQuality {
+  HIGHEST = 'highest',
+  DEFAULT = 'default',
+  LOWEST = 'lowest',
+}
+
+export enum FileType {
+  AUDIO_ONLY = 'audio',
+  VIDEO = 'video',
+}
+
+export enum ScreenAction {
+  PREVIEW = 'PREVIEW',
+  PROGRESS = 'download',
+  DOWNLOAD = 'finish',
+}

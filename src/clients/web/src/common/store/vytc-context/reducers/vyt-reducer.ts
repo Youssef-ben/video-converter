@@ -4,47 +4,92 @@ import type { YoutubeVideoPayload } from 'common/types/server';
 import { LOCAL_STORAGE_KEYS } from 'common/utils/constants';
 
 import type { VytcAsyncStorageProvider } from '../types';
+import { FileType, ScreenAction, VideoQuality } from '../types';
 
 export interface VytcContextYoutubeStateMethods {
   persist: (data: YoutubeVideoPayload) => void;
   clear: () => void;
+
+  // Preview Actions
+  setVideoQuality: (data: VideoQuality) => void;
+  setFileType: (data: FileType) => void;
+  setScreen: (data: ScreenAction) => void;
 }
 
 export const VYT_CONTEXT_METHODS: VytcContextYoutubeStateMethods = {
   persist: (_: YoutubeVideoPayload) => null,
   clear: () => null,
+
+  // Preview Actions
+  setVideoQuality: (_: VideoQuality) => null,
+  setFileType: (_: FileType) => null,
+  setScreen: (_: ScreenAction) => null,
 };
 
-export type VytState = YoutubeVideoPayload;
+export interface PreviewState {
+  videoQuality: VideoQuality;
+  screen: ScreenAction;
+  fileType: FileType;
+}
 
-export const VYT_INITIAL_DATA: YoutubeVideoPayload = {
-  id: '',
-  title: '',
-  duration: '',
-  link: '',
-  thumbnail: {
-    url: '',
-    width: 0,
-    height: 0,
-  },
-  extensions: {
-    audio: '',
-    video: '',
-  },
+export const PREVIEW_INITIAL_VALUES: PreviewState = {
+  videoQuality: VideoQuality.DEFAULT,
+  fileType: FileType.AUDIO_ONLY,
+  screen: ScreenAction.PREVIEW,
+};
+
+export type VytState = {
+  data?: YoutubeVideoPayload;
+  preview: PreviewState;
+};
+
+export const VYT_INITIAL_DATA: VytState = {
+  data: undefined,
+  preview: PREVIEW_INITIAL_VALUES,
 };
 
 export type VytActions = {
-  type: 'PERSIST' | 'CLEAR';
-  payload: VytState | undefined;
+  type: 'PERSIST' | 'CLEAR' | 'SET_VIDEO_QUALITY' | 'SET_FILE_TYPE' | 'SET_SCREEN';
+  payload: VytState | YoutubeVideoPayload | VideoQuality | ScreenAction | FileType | undefined;
 };
 
-export function vytReducer(state: VytState, action: VytActions): VytState | undefined {
+export function vytReducer(state: VytState, action: VytActions): VytState {
   switch (action.type) {
     case 'PERSIST':
-      return action.payload;
+      return {
+        ...state,
+        data: action.payload as YoutubeVideoPayload,
+      };
 
     case 'CLEAR':
-      return undefined;
+      return VYT_INITIAL_DATA;
+
+    case 'SET_VIDEO_QUALITY':
+      return {
+        ...state,
+        preview: {
+          ...state.preview,
+          videoQuality: action.payload as VideoQuality,
+        },
+      };
+
+    case 'SET_FILE_TYPE':
+      return {
+        ...state,
+        preview: {
+          ...state.preview,
+          fileType: action.payload as FileType,
+        },
+      };
+
+    case 'SET_SCREEN':
+      return {
+        ...state,
+        preview: {
+          ...state.preview,
+          screen: action.payload as ScreenAction,
+        },
+      };
 
     default:
       return state;
@@ -52,11 +97,11 @@ export function vytReducer(state: VytState, action: VytActions): VytState | unde
 }
 
 export function vytReducerMethods(dispatch: React.Dispatch<VytActions>, storage: VytcAsyncStorageProvider): VytcContextYoutubeStateMethods {
-  const persist = async (data: YoutubeVideoPayload) => {
-    await storage.setItem(LOCAL_STORAGE_KEYS.VYT, JSON.stringify(data));
+  const persist = async (payload: YoutubeVideoPayload) => {
+    await storage.setItem(LOCAL_STORAGE_KEYS.VYT, JSON.stringify(payload));
     dispatch({
       type: 'PERSIST',
-      payload: data,
+      payload,
     });
   };
 
@@ -68,5 +113,27 @@ export function vytReducerMethods(dispatch: React.Dispatch<VytActions>, storage:
     });
   };
 
-  return { persist, clear };
+  // Preview Actions
+  const setVideoQuality = (value: VideoQuality) => {
+    dispatch({
+      type: 'SET_VIDEO_QUALITY',
+      payload: value,
+    });
+  };
+
+  const setFileType = (value: FileType) => {
+    dispatch({
+      type: 'SET_FILE_TYPE',
+      payload: value,
+    });
+  };
+
+  const setScreen = (value: ScreenAction) => {
+    dispatch({
+      type: 'SET_SCREEN',
+      payload: value,
+    });
+  };
+
+  return { persist, clear, setVideoQuality, setFileType, setScreen };
 }

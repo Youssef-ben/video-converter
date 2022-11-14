@@ -48,6 +48,7 @@
     // Eslint
     "curly": "error",
     "no-var": "error",
+    "no-shadow": "off",
     "camelcase": "warn",
     "no-console": "warn",
     "no-nested-ternary": "warn",
@@ -68,7 +69,7 @@
     // TypeScript
     "@typescript-eslint/indent": "off",
     "@typescript-eslint/ban-types": "warn",
-    "@typescript-eslint/no-shadow": "error",
+    "@typescript-eslint/no-shadow": "off",
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/ban-ts-comment": "error",
     "@typescript-eslint/no-explicit-any": "error",
