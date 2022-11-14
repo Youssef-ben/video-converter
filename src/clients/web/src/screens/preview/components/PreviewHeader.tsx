@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import type { DropdownItemProps } from 'semantic-ui-react';
+import type { DropdownItemProps, DropdownProps } from 'semantic-ui-react';
 import { Dropdown, Grid, Label, Popup } from 'semantic-ui-react';
 
 import { useAppContext } from 'common/store/vytc-context/provider';
@@ -16,9 +16,7 @@ const translations = {
 
 function PreviewHeader() {
   const { t } = useTranslation();
-  const {
-    vyt: { data, preview },
-  } = useAppContext();
+  const { vyt, setVideoQuality } = useAppContext();
   const [videoQualityOptions, setVideoQualityOptions] = useState<DropdownItemProps[]>([]);
 
   useEffect(() => {
@@ -41,18 +39,22 @@ function PreviewHeader() {
     ]);
   }, [t]);
 
+  const onVideoQualityChange = (event: React.SyntheticEvent<HTMLElement>, { value }: DropdownProps) => {
+    setVideoQuality(value as VideoQuality);
+  };
+
   return (
     <>
       <Grid.Column className="right-padding-none" mobile={16} tablet={10} computer={12}>
         <Popup
-          content={data?.title}
+          content={vyt?.data?.title}
           className="popup-note video-title-note"
           header={t(translations.popupVideoTitle)}
-          trigger={<Label className="video-title">{data?.title}</Label>}
+          trigger={<Label className="video-title">{vyt?.data?.title}</Label>}
         />
       </Grid.Column>
 
-      {preview.screen === ScreenAction.PREVIEW && (
+      {vyt?.preview.screen === ScreenAction.PREVIEW && (
         <Grid.Column className="left-padding-none" mobile={16} tablet={6} computer={4}>
           <Popup
             header="Note"
@@ -65,8 +67,9 @@ function PreviewHeader() {
                 className="icon video-quality"
                 labeled
                 icon="setting"
-                defaultValue={preview.videoQuality}
                 options={videoQualityOptions}
+                onChange={onVideoQualityChange}
+                defaultValue={vyt?.preview.videoQuality}
                 text={t(translations.videoQualityLabel)}
               />
             }
