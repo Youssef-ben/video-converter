@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import type { DownloadProgressEvent } from 'common/types/clients/websockets-events';
+import type { DownloadProgressEvent } from 'common/types/clients/websocket-events';
 
 interface ProgressBarProps extends DownloadProgressEvent {
   display: boolean;
