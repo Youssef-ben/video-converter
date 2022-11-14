@@ -18,7 +18,7 @@ export const useWebSocket = (): Socket => useContext(WSContext) as Socket;
 
 interface WsProviderProps {
   children: JSX.Element;
-  toastCallback: (title: string, message: string, error: 'error' | 'success') => void;
+  toastCallback: (title: string, message: string, state: 'error' | 'success') => void;
 }
 export function WsProvider({ children, toastCallback }: WsProviderProps) {
   const { auth, signOut } = useAppContext();

@@ -11,6 +11,7 @@ import App from 'App';
 import { VytcContextProvider } from 'common/store/vytc-context/provider';
 import type { VytcAsyncStorageProvider } from 'common/store/vytc-context/types';
 import { WsProvider } from 'common/store/websocket-context/provider';
+import ShowToast from 'components/ShowToast';
 
 import { setTranslation } from './common/translations';
 
@@ -31,11 +32,7 @@ root.render(
   // <React.StrictMode>
   <VytcContextProvider storage={appStorage}>
     <BrowserRouter>
-      <WsProvider
-        toastCallback={() => {
-          console.log('Alert');
-        }}
-      >
+      <WsProvider toastCallback={ShowToast}>
         <App />
       </WsProvider>
     </BrowserRouter>

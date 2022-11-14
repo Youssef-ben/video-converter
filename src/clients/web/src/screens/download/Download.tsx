@@ -29,7 +29,7 @@ function Download() {
   });
 
   // Select Screen to display
-  let partialScreen = <DownloadConversion />;
+  let partialScreen: JSX.Element;
   switch (vyt?.download.screen) {
     case ScreenAction.PROGRESS:
       partialScreen = <DownloadProgress />;
@@ -37,6 +37,10 @@ function Download() {
 
     case ScreenAction.DOWNLOAD:
       partialScreen = <StartDownload downloadLink="/test" />;
+      break;
+
+    default:
+      partialScreen = <DownloadConversion />;
       break;
   }
 
