@@ -39,7 +39,7 @@ function PreviewHeader() {
     ]);
   }, [t]);
 
-  const onVideoQualityChange = (event: React.SyntheticEvent<HTMLElement>, { value }: DropdownProps) => {
+  const onVideoQualityChangeHandler = (event: React.SyntheticEvent<HTMLElement>, { value }: DropdownProps) => {
     setVideoQuality(value as VideoQuality);
   };
 
@@ -68,7 +68,7 @@ function PreviewHeader() {
                 labeled
                 icon="setting"
                 options={videoQualityOptions}
-                onChange={onVideoQualityChange}
+                onChange={onVideoQualityChangeHandler}
                 defaultValue={vyt?.preview.videoQuality}
                 text={t(translations.videoQualityLabel)}
               />
