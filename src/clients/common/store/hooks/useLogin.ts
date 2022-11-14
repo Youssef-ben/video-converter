@@ -4,71 +4,23 @@ import { useTranslation } from 'react-i18next';
 
 import type { LoginPayload, LoginRequestPayload } from 'common/types/server';
 import { SERVER_URLS } from 'common/utils/constants';
-import { AxiosPost } from 'common/utils/http';
+import { axiosGet, axiosPost } from 'common/utils/http';
 
 import type { InputError } from '../../types/clients/InputError';
 import { useAppContext } from '../vytc-context/provider';
 
 interface LoginState {
   value: string;
+  loading: boolean;
   error?: InputError;
 }
-
-export interface Welcome {
-  version: string;
-  release_date: Date;
-  name: string;
-  copyright: string;
-}
+const INITIAL_VALUES: LoginState = { value: '', loading: false };
 
 const useLogin = () => {
   const { t } = useTranslation();
-  const { connect } = useAppContext();
+  const { connect, refresh } = useAppContext();
 
-  const [state, setState] = useState<LoginState>({ value: '' });
-
-  const connectUser = async (): Promise<boolean> => {
-    if (!state.value) {
-      setState((current) => ({
-        ...current,
-        error: {
-          content: t('app.login.err.password_required'),
-          pointing: 'below',
-        },
-      }));
-      return false;
-    }
-
-    const { error, data } = await AxiosPost<LoginRequestPayload, LoginPayload>(SERVER_URLS.security_login, {
-      passphrase: state.value,
-    });
-
-    if (error) {
-      setState({
-        value: '',
-        error: {
-          content: t(error.type),
-          fromServer: true,
-        },
-      });
-      return false;
-    }
-    if (!data) {
-      setState({
-        value: '',
-        error: {
-          content: `${t('app.err.unhandled')} - ${t('app.err.unhandled_desc')}`,
-          fromServer: true,
-        },
-      });
-      return false;
-    }
-
-    // Set Access Token and connect
-    connect(data?.accessToken);
-    setState({ value: '' });
-    return true;
-  };
+  const [state, setState] = useState<LoginState>(INITIAL_VALUES);
 
   const onPasswordChange = (value: string) => {
     setState((current) => ({
@@ -77,7 +29,57 @@ const useLogin = () => {
     }));
   };
 
-  return { login: state, connectUser, onPasswordChange };
+  const connectUser = async (): Promise<boolean> => {
+    setState((current) => ({ ...current, loading: true }));
+
+    // Validate the password is not empty.
+    if (!state.value) {
+      setState((current) => ({
+        ...current,
+        loading: false,
+        error: {
+          content: t('app.login.err.password_required'),
+          pointing: 'below',
+        },
+      }));
+      return false;
+    }
+
+    // Call the Login API.
+    const { error, data } = await axiosPost<LoginRequestPayload, LoginPayload>(SERVER_URLS.securityLogin, {
+      passphrase: state.value,
+    });
+
+    // Check for errors
+    if (error || !data) {
+      const errorContent = !data ? t('app.err.unhandled_error.desc') : t(error?.type as string);
+
+      setState({
+        value: '',
+        loading: false,
+        error: {
+          content: errorContent,
+          fromServer: true,
+        },
+      });
+      return false;
+    }
+
+    // Connect and reset values.
+    connect(data?.accessToken);
+    setState(INITIAL_VALUES);
+    return true;
+  };
+
+  const refreshToken = async () => {
+    // Call the Login API.
+    const { data } = await axiosGet<LoginPayload>(SERVER_URLS.securityRefresh);
+    if (data) {
+      refresh(data.accessToken);
+    }
+  };
+
+  return { login: state, connectUser, refreshToken, onPasswordChange };
 };
 
 export default useLogin;
