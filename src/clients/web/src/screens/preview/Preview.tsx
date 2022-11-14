@@ -17,22 +17,20 @@ import PreviewHeader from './components/PreviewHeader';
 
 function Preview() {
   const navigate = useNavigate();
-  const {
-    vyt: { data, preview },
-  } = useAppContext();
+  const { vyt } = useAppContext();
 
   const [loadingPlayer, setLoadingPlayer] = useState(true);
 
   // If no data, return to home
   useEffect(() => {
-    if (!data) {
+    if (!vyt?.data) {
       navigate(APP_ROUTES.PRIV_HOME);
     }
   });
 
   // Select Screen to display
   let partialScreen = <PreviewConversion />;
-  switch (preview.screen) {
+  switch (vyt?.preview.screen) {
     case ScreenAction.PROGRESS:
       partialScreen = <PreviewProgress />;
       break;
@@ -58,7 +56,7 @@ function Preview() {
             </div>
           )}
 
-          <ReactPlayer url={data?.link} width="100%" height="100%" className="react-player" controls onReady={() => setLoadingPlayer(false)} />
+          <ReactPlayer url={vyt?.data?.link} width="100%" height="100%" className="react-player" controls onReady={() => setLoadingPlayer(false)} />
         </div>
       </Grid.Row>
 
