@@ -8,13 +8,13 @@ import { useAppContext } from 'common/store/vytc-context/provider';
 import { ScreenAction, VideoQuality } from 'common/store/vytc-context/types';
 
 const translations = {
-  popupVideoTitle: 'app.preview.header.popup.video.title',
-  videoQualityLabel: 'app.preview.header.video_quality',
-  popupVideoQualityLabel: 'app.preview.header.popup.video_quality.label',
-  qualityText: 'app.preview.header.video_quality',
+  popupVideoTitle: 'app.download.header.popup.video.title',
+  videoQualityLabel: 'app.download.header.video_quality',
+  popupVideoQualityLabel: 'app.download.header.popup.video_quality.label',
+  qualityText: 'app.download.header.video_quality',
 };
 
-function PreviewHeader() {
+function DownloadHeader() {
   const { t } = useTranslation();
   const { vyt, setVideoQuality } = useAppContext();
   const [videoQualityOptions, setVideoQualityOptions] = useState<DropdownItemProps[]>([]);
@@ -54,7 +54,7 @@ function PreviewHeader() {
         />
       </Grid.Column>
 
-      {vyt?.preview.screen === ScreenAction.PREVIEW && (
+      {vyt?.download.screen === ScreenAction.PREVIEW && (
         <Grid.Column className="left-padding-none" mobile={16} tablet={6} computer={4}>
           <Popup
             header="Note"
@@ -69,7 +69,7 @@ function PreviewHeader() {
                 icon="setting"
                 options={videoQualityOptions}
                 onChange={onVideoQualityChangeHandler}
-                defaultValue={vyt?.preview.videoQuality}
+                defaultValue={vyt?.download.videoQuality}
                 text={t(translations.videoQualityLabel)}
               />
             }
@@ -80,4 +80,4 @@ function PreviewHeader() {
   );
 }
 
-export default PreviewHeader;
+export default DownloadHeader;

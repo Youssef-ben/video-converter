@@ -10,12 +10,12 @@ import { useAppContext } from 'common/store/vytc-context/provider';
 import { ScreenAction } from 'common/store/vytc-context/types';
 import APP_ROUTES from 'navigation/navigation-constants';
 
-import PreviewConversion from './components/footer/PreviewConversion';
-import PreviewDownload from './components/footer/PreviewDownload';
-import PreviewProgress from './components/footer/PreviewProgress';
-import PreviewHeader from './components/PreviewHeader';
+import DownloadHeader from './components/DownloadHeader';
+import DownloadConversion from './components/footer/DownloadConversion';
+import DownloadProgress from './components/footer/DownloadProgress';
+import StartDownload from './components/footer/StartDownload';
 
-function Preview() {
+function Download() {
   const navigate = useNavigate();
   const { vyt } = useAppContext();
 
@@ -29,21 +29,21 @@ function Preview() {
   });
 
   // Select Screen to display
-  let partialScreen = <PreviewConversion />;
-  switch (vyt?.preview.screen) {
+  let partialScreen = <DownloadConversion />;
+  switch (vyt?.download.screen) {
     case ScreenAction.PROGRESS:
-      partialScreen = <PreviewProgress />;
+      partialScreen = <DownloadProgress />;
       break;
 
     case ScreenAction.DOWNLOAD:
-      partialScreen = <PreviewDownload downloadLink="/test" />;
+      partialScreen = <StartDownload downloadLink="/test" />;
       break;
   }
 
   return (
-    <Grid columns={2} className="preview-convert">
+    <Grid columns={2} className="download-convert">
       <Grid.Row className="title">
-        <PreviewHeader />
+        <DownloadHeader />
       </Grid.Row>
 
       <Grid.Row>
@@ -66,4 +66,4 @@ function Preview() {
   );
 }
 
-export default Preview;
+export default Download;

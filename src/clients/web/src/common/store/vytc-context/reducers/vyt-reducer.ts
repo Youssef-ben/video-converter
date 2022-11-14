@@ -40,12 +40,12 @@ export const PREVIEW_INITIAL_VALUES: PreviewState = {
 
 export type VytState = {
   data?: YoutubeVideoPayload;
-  preview: PreviewState;
+  download: PreviewState;
 };
 
 export const VYT_INITIAL_DATA: VytState = {
   data: undefined,
-  preview: PREVIEW_INITIAL_VALUES,
+  download: PREVIEW_INITIAL_VALUES,
 };
 
 export type VytActions = {
@@ -67,8 +67,8 @@ export function vytReducer(state: VytState, action: VytActions): VytState {
     case 'SET_VIDEO_QUALITY':
       return {
         ...state,
-        preview: {
-          ...state.preview,
+        download: {
+          ...state.download,
           videoQuality: action.payload as VideoQuality,
         },
       };
@@ -76,8 +76,8 @@ export function vytReducer(state: VytState, action: VytActions): VytState {
     case 'SET_FILE_TYPE':
       return {
         ...state,
-        preview: {
-          ...state.preview,
+        download: {
+          ...state.download,
           fileType: action.payload as FileType,
         },
       };
@@ -85,8 +85,8 @@ export function vytReducer(state: VytState, action: VytActions): VytState {
     case 'SET_SCREEN':
       return {
         ...state,
-        preview: {
-          ...state.preview,
+        download: {
+          ...state.download,
           screen: action.payload as ScreenAction,
         },
       };

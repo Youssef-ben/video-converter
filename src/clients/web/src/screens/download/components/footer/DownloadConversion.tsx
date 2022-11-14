@@ -5,12 +5,12 @@ import { useAppContext } from 'common/store/vytc-context/provider';
 import { FileType, ScreenAction } from 'common/store/vytc-context/types';
 
 const translations = {
-  btnDownload: 'app.preview.convert',
-  btnMp3: 'app.preview.convert.audio',
-  btnMp4: 'app.preview.convert.video',
+  btnDownload: 'app.download.convert',
+  btnMp3: 'app.download.convert.audio',
+  btnMp4: 'app.download.convert.video',
 };
 
-function PreviewConversion() {
+function DownloadConversion() {
   const { t } = useTranslation();
   const { setScreen, setFileType } = useAppContext();
 
@@ -45,4 +45,4 @@ function PreviewConversion() {
   );
 }
 
-export default PreviewConversion;
+export default DownloadConversion;

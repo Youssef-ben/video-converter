@@ -17,21 +17,21 @@ export default {
     'app.lookup.err.invalid_url': "The url you've entered is invalid, please re-try with a valid value!",
 
     // Preview Page
-    'app.preview.header.popup.video.title': 'Title',
-    'app.preview.header.video_quality': 'Quality',
-    'app.preview.header.video_quality.highest': 'Highest',
-    'app.preview.header.video_quality.default': 'Medium',
-    'app.preview.header.video_quality.lowest': 'Lowest',
-    'app.preview.header.popup.video_quality.label': 'The higher the quality, the longer it will take to convert and download!',
+    'app.download.header.popup.video.title': 'Title',
+    'app.download.header.video_quality': 'Quality',
+    'app.download.header.video_quality.highest': 'Highest',
+    'app.download.header.video_quality.default': 'Medium',
+    'app.download.header.video_quality.lowest': 'Lowest',
+    'app.download.header.popup.video_quality.label': 'The higher the quality, the longer it will take to convert and download!',
 
-    'app.preview.convert': 'DOWNLOAD AS',
-    'app.preview.convert.audio': 'AUDIO',
-    'app.preview.convert.video': 'VIDEO',
+    'app.download.convert': 'DOWNLOAD AS',
+    'app.download.convert.audio': 'AUDIO',
+    'app.download.convert.video': 'VIDEO',
 
-    'app.preview.progress.btn': 'Cancel',
+    'app.download.progress.btn': 'Cancel',
 
-    'app.preview.download': 'Your download will start automatically, please wait...',
-    'app.preview.download.btn': 'Finish',
+    'app.download.download': 'Your download will start automatically, please wait...',
+    'app.download.download.btn': 'Finish',
 
     // Not Found page
     'app.page.not_found.title': 'Oh no!!',

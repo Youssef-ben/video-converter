@@ -6,9 +6,9 @@ import { ScreenAction } from 'common/store/vytc-context/types';
 import ProgressBar from 'components/ProgressBar';
 
 const translations = {
-  button: 'app.preview.progress.btn',
+  button: 'app.download.progress.btn',
 };
-function PreviewProgress() {
+function DownloadProgress() {
   const { t } = useTranslation();
   const { setScreen } = useAppContext();
 
@@ -22,4 +22,4 @@ function PreviewProgress() {
   );
 }
 
-export default PreviewProgress;
+export default DownloadProgress;

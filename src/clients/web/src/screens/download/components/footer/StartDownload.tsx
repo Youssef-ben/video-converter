@@ -8,14 +8,14 @@ import { useAppContext } from 'common/store/vytc-context/provider';
 import IframeDownloader from './iframe_downloader';
 
 const translations = {
-  text: 'app.preview.download',
-  button: 'app.preview.download.btn',
+  text: 'app.download.download',
+  button: 'app.download.download.btn',
 };
 
 interface PreviewDownloadProps {
   downloadLink: string;
 }
-function PreviewDownload({ downloadLink }: PreviewDownloadProps) {
+function StartDownload({ downloadLink }: PreviewDownloadProps) {
   const { t } = useTranslation();
   const { clear } = useAppContext();
   const [downloadStarted, setDownloadStarted] = useState(false);
@@ -39,7 +39,7 @@ function PreviewDownload({ downloadLink }: PreviewDownloadProps) {
     </Grid.Column>
   ) : (
     <Grid.Column mobile={16} tablet={16} computer={16}>
-      {t('app.preview.download')}
+      {t('app.download.download')}
     </Grid.Column>
   );
 
@@ -51,4 +51,4 @@ function PreviewDownload({ downloadLink }: PreviewDownloadProps) {
   );
 }
 
-export default PreviewDownload;
+export default StartDownload;

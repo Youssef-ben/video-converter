@@ -18,21 +18,21 @@ export default {
     'app.lookup.err.invalid_url': "L'url que vous avez entré n'est pas valide, veuillez réessayer avec une valeur valide !",
 
     // Preview Page
-    'app.preview.header.popup.video.title': 'Titre',
-    'app.preview.header.video_quality': 'Qualité',
-    'app.preview.header.video_quality.highest': 'Haute qualité',
-    'app.preview.header.video_quality.default': 'Moyenne',
-    'app.preview.header.video_quality.lowest': 'Faible qualité',
-    'app.preview.header.popup.video_quality.label': 'Plus la qualité est élevée, plus la conversion et le téléchargement seront longs !',
+    'app.download.header.popup.video.title': 'Titre',
+    'app.download.header.video_quality': 'Qualité',
+    'app.download.header.video_quality.highest': 'Haute qualité',
+    'app.download.header.video_quality.default': 'Moyenne',
+    'app.download.header.video_quality.lowest': 'Faible qualité',
+    'app.download.header.popup.video_quality.label': 'Plus la qualité est élevée, plus la conversion et le téléchargement seront longs !',
 
-    'app.preview.convert': 'TÉLÉCHARGER',
-    'app.preview.convert.audio': 'AUDIO',
-    'app.preview.convert.video': 'VIDÉO',
+    'app.download.convert': 'TÉLÉCHARGER',
+    'app.download.convert.audio': 'AUDIO',
+    'app.download.convert.video': 'VIDÉO',
 
-    'app.preview.progress.btn': 'Annuler',
+    'app.download.progress.btn': 'Annuler',
 
-    'app.preview.download': 'Votre téléchargement va démarrer automatiquement, veuillez patienter...',
-    'app.preview.download.btn': 'Terminer',
+    'app.download.download': 'Votre téléchargement va démarrer automatiquement, veuillez patienter...',
+    'app.download.download.btn': 'Terminer',
 
     // Not Found page
     'app.page.not_found.title': 'Oh non!!',
