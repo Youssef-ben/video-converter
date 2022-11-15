@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -15,8 +15,15 @@ import type { RootStackParamList } from './types';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
-  const { auth } = useAppContext();
+  const { auth, clear, signOut } = useAppContext();
   const { themeStyle } = useAppThemeColor();
+
+  // TODO: Remove the following line before publishing (Testing only)
+  useEffect(() => {
+    clear();
+    signOut();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const LefHeaderLogo = useCallback(() => {
     return <Image style={styles.logo} resizeMode="contain" source={require('../assets/logo.png')} />;
