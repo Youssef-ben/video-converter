@@ -7,7 +7,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { VytcContextProvider } from 'common/store/vytc-context/provider';
 import { setTranslation } from 'common/translations';
-import { useAppThemeColor } from 'components/theme/Index';
+import { useAppThemeColor } from 'components/theme';
 import useResourcesLoader from 'hooks/useResourcesLoader';
 import AppNavigation from 'navigation/Navigation';
 import RNLanguageDetector from 'utils/i18next.languageDetector';

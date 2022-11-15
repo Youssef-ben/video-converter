@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 import { ActivityIndicator, StyleSheet, useWindowDimensions } from 'react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
 
-import { useAppThemeColor } from 'components/theme/Index';
-import { AppButton, AppText, AppView } from 'components/ui';
+import { useAppThemeColor } from 'components/theme';
+import { AppText, AppView } from 'components/ui';
+
+import DownloadConversion from './components/DownloadConversion';
 
 const DownloadNew = () => {
   const { width } = useWindowDimensions();
@@ -37,25 +39,7 @@ const DownloadNew = () => {
         />
       </AppView>
 
-      <AppView style={[styles.footerContainer]}>
-        {videoLoaded && (
-          <AppView style={[styles.buttons]}>
-            <AppButton
-              text="DOWNLOAD AS AUDIO"
-              onPress={() => {
-                /* */
-              }}
-            />
-            <AppButton
-              type="secondary"
-              text="DOWNLOAD AS VIDEO"
-              onPress={() => {
-                /* */
-              }}
-            />
-          </AppView>
-        )}
-      </AppView>
+      <AppView style={[styles.footerContainer]}>{videoLoaded && <DownloadConversion />}</AppView>
     </AppView>
   );
 };
@@ -102,8 +86,8 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 10,
   },
-  buttons: {
-    justifyContent: 'space-between',
-    height: 85,
+
+  separator: {
+    height: 10,
   },
 });
