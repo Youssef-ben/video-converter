@@ -4,7 +4,7 @@ FROM node:16-alpine as BUILD-WEB-CLIENT-STAGE
 WORKDIR /app
 
 # Custom cache invalidation
-COPY ./src/clients/webapp .
+COPY ./src/clients/web .
 
 # Install dependencies
 RUN yarn
