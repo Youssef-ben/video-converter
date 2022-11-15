@@ -42,6 +42,9 @@ export default {
     // Websocket - From Server
     'ws.downloading': 'Preparing...',
     'ws.success': 'Success',
+
+    'ws.err.connection_error': "Connection Error. Couldn't connect to the the server, please wait and try to connect again!",
+    'ws.err.connection_closed': 'Disconnected. The Connection expired or the server closed the connection, please wait and try to connect again!',
     'ws.err.connection_lost': 'The connection to the server was lost, trying to reconnect...',
     'ws.err.fields_required': 'One or more fields are required!',
 
@@ -65,7 +68,8 @@ export default {
       'An error occurred while trying to handle your request. Please reload the page and if the problem persists, contact the team!',
 
     // Api Errors
-    'api.err.validation': 'Invalid password, Please check that you specified a valid passphrase and try again!',
+    'api.err.security.invalid_passphrase': 'Invalid password!',
     'api.err.worker.invalid_url': "The url you've entered is invalid, please re-try with a valid value!",
+    'api.err.validation': 'Invalid password, Please check that you specified a valid passphrase and try again!',
   },
 };

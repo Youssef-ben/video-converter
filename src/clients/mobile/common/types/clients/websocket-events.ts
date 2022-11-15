@@ -8,7 +8,6 @@ export const WsEvents = {
   Disconnect: 'disconnect',
   ServerError: 'SERVER_ERROR',
 
-  Welcome: 'WELCOME',
   StartDownload: 'START_DOWNLOAD',
   DownloadProgress: 'DOWNLOAD_PROGRESS',
   DownloadFinished: 'DOWNLOAD_FINISHED',
