@@ -1,35 +1,60 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { ActivityIndicator, StyleSheet, useWindowDimensions } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
 
-import { useAppThemeColor } from 'components/theme';
+import { useAppContext } from 'common/store/vytc-context/provider';
+import { ScreenAction } from 'common/store/vytc-context/types';
 import { AppText, AppView } from 'components/ui';
+import AppLoader from 'components/ui/AppLoader';
+import { useAppNavigation } from 'navigation/types';
 
 import DownloadConversion from './components/DownloadConversion';
+import DownloadFinished from './components/DownloadFinished';
+import DownloadProgress from './components/DownloadProgress';
 
 const DownloadNew = () => {
+  const navigation = useAppNavigation();
   const { width } = useWindowDimensions();
-  const { themeStyle } = useAppThemeColor();
+  const { vyt, clear } = useAppContext();
 
   const [videoLoaded, setVideoLoaded] = useState(false);
 
-  const text = 'Adagios - The Most Relaxing Classical Music';
+  // If no data, return to home
+  useEffect(() => {
+    if (!vyt?.data) {
+      clear();
+      navigation.goBack();
+    }
+  }, [vyt]);
+
+  // Select Screen to display
+  let partialScreen: JSX.Element;
+  switch (vyt?.download.screen) {
+    case ScreenAction.PROGRESS:
+      partialScreen = <DownloadProgress />;
+      break;
+
+    case ScreenAction.DOWNLOAD:
+      partialScreen = <DownloadFinished />;
+      break;
+
+    default:
+      partialScreen = <DownloadConversion />;
+      break;
+  }
+
   return (
     <AppView style={[styles.root]}>
-      <AppView style={[styles.titleContainer]}>{videoLoaded && <AppText style={[styles.titleText]}>{text}</AppText>}</AppView>
+      <AppView style={[styles.titleContainer]}>{videoLoaded && <AppText style={[styles.titleText]}>{vyt.data?.title}</AppText>}</AppView>
 
       <AppView style={[styles.videoContainer]}>
-        {!videoLoaded && (
-          <AppView style={styles.loading}>
-            <ActivityIndicator size="large" color={themeStyle.color} />
-          </AppView>
-        )}
+        {!videoLoaded && <AppLoader />}
 
         <YoutubePlayer
           height={210}
           width={width - 20}
-          videoId={'2N4SjqaKPA8'}
+          videoId={vyt.data?.id}
           webViewProps={{
             renderToHardwareTextureAndroid: true,
           }}
@@ -39,7 +64,7 @@ const DownloadNew = () => {
         />
       </AppView>
 
-      <AppView style={[styles.footerContainer]}>{videoLoaded && <DownloadConversion />}</AppView>
+      <AppView style={[styles.footerContainer]}>{videoLoaded && partialScreen}</AppView>
     </AppView>
   );
 };
@@ -52,15 +77,6 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingHorizontal: 15,
     justifyContent: 'space-between',
-  },
-  loading: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 
   titleContainer: {
@@ -85,9 +101,5 @@ const styles = StyleSheet.create({
   footerContainer: {
     flex: 1,
     marginTop: 10,
-  },
-
-  separator: {
-    height: 10,
   },
 });

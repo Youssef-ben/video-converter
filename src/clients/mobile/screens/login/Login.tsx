@@ -40,6 +40,8 @@ const Login = () => {
         />
 
         <AppButton
+          loading={login.loading}
+          disabled={login.loading}
           style={styles.formButton}
           text={t(translations.button)}
           onPress={async () => {

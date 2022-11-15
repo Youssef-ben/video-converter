@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { StackActions } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
 
@@ -22,9 +21,10 @@ const Home = () => {
 
   const searchHandler = async () => {
     const result = await search();
-
     if (result) {
-      navigation.dispatch(StackActions.push('Download'));
+      setTimeout(() => {
+        navigation.navigate('Download');
+      }, 100);
     }
   };
 
@@ -49,7 +49,13 @@ const Home = () => {
         />
 
         <AppView style={styles.formButtonContainer}>
-          <AppButton style={styles.formButton} text={t(translations.btnSearch)} onPress={searchHandler} />
+          <AppButton
+            loading={lookup.loading}
+            disabled={lookup.loading}
+            style={styles.formButton}
+            text={t(translations.btnSearch)}
+            onPress={async () => await searchHandler()}
+          />
         </AppView>
       </AppView>
     </AppView>

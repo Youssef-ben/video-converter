@@ -5,16 +5,18 @@ import { Pressable, StyleSheet } from 'react-native';
 
 import { TransparentColor } from '../theme/AppThemeStyle';
 import { useAppThemeColor } from '../theme/useAppThemeColor';
+import AppLoader from './AppLoader';
 import { AppText } from './AppText';
 
 interface AppButtonProps {
   text: string;
   style?: ViewStyle;
-  type?: 'primary' | 'secondary';
   disabled?: boolean;
+  loading?: boolean;
+  type?: 'primary' | 'secondary';
   onPress: () => void;
 }
-export const AppButton = ({ text, style, type = 'primary', disabled = false, onPress }: AppButtonProps) => {
+export const AppButton = ({ text, style, loading = false, type = 'primary', disabled = false, onPress }: AppButtonProps) => {
   const { themeStyle } = useAppThemeColor();
   const isSecondary = type === 'secondary';
 
@@ -39,6 +41,7 @@ export const AppButton = ({ text, style, type = 'primary', disabled = false, onP
   return (
     <Pressable disabled={disabled} style={[wrapperStyle]} onPress={onPress} android_ripple={textColor}>
       <AppText style={textStyle}>{text}</AppText>
+      {loading && <AppLoader />}
     </Pressable>
   );
 };

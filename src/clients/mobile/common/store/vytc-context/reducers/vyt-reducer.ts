@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import type { YoutubeVideoPayload } from 'common/types/server';
 import { LOCAL_STORAGE_KEYS } from 'common/utils/constants';
 
@@ -28,14 +26,14 @@ export const VYT_CONTEXT_METHODS: VytcContextYoutubeStateMethods = {
   setDownloadLink: (_: string) => null,
 };
 
-export interface PreviewState {
+export interface DownloadState {
   videoQuality: VideoQuality;
   screen: ScreenAction;
   fileType: FileType;
   downloadLink: string;
 }
 
-export const PREVIEW_INITIAL_VALUES: PreviewState = {
+export const DOWNLOAD_INITIAL_VALUES: DownloadState = {
   videoQuality: VideoQuality.DEFAULT,
   fileType: FileType.AUDIO_ONLY,
   screen: ScreenAction.PREVIEW,
@@ -44,12 +42,12 @@ export const PREVIEW_INITIAL_VALUES: PreviewState = {
 
 export type VytState = {
   data?: YoutubeVideoPayload;
-  download: PreviewState;
+  download: DownloadState;
 };
 
 export const VYT_INITIAL_DATA: VytState = {
   data: undefined,
-  download: PREVIEW_INITIAL_VALUES,
+  download: DOWNLOAD_INITIAL_VALUES,
 };
 
 export type VytActions = {
