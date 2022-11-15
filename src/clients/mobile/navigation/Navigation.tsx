@@ -4,6 +4,7 @@ import { DarkTheme, DefaultTheme, NavigationContainer, StackActions } from '@rea
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Image, StyleSheet } from 'react-native';
 
+import useLogin from 'common/store/hooks/useLogin';
 import { useAppContext } from 'common/store/vytc-context/provider';
 import { setupAxiosRequestInterceptor } from 'common/utils/http';
 import { useAppThemeColor } from 'components/theme/useAppThemeColor';
@@ -15,11 +16,14 @@ import type { RootStackParamList } from './types';
 import { useAppNavigation } from './types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
+let timeInterval: NodeJS.Timer;
+const TIME_INTERVAL = 20 * 60 * 1000; // 20 Minutes after which we should refresh the token.
 
 function RootNavigator() {
   const store = useAppContext();
   const { themeStyle } = useAppThemeColor();
   const navigation = useAppNavigation();
+  const { refreshToken } = useLogin();
 
   // Setup Axios Interceptor for the Request.
   useEffect(() => {
@@ -28,6 +32,17 @@ function RootNavigator() {
       navigation: () => navigation.dispatch(StackActions.replace('Login')),
     });
   }, []);
+
+  // Refresh token only when connected
+  useEffect(() => {
+    if (timeInterval || !store.auth.isAuthenticated) {
+      return;
+    }
+
+    timeInterval = setInterval(async () => {
+      refreshToken();
+    }, TIME_INTERVAL);
+  }, [store, refreshToken]);
 
   // TODO: Remove the following line before publishing (Testing only)
   useEffect(() => {
