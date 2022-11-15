@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/ban-types */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { createContext, useCallback, useContext } from 'react';
 
 import { useTranslation } from 'react-i18next';
@@ -36,8 +35,12 @@ export function WsProvider({ children, toastCallback }: WsProviderProps) {
       wsInstance?.disconnect();
       wsInstance = null;
 
-      document.getElementsByClassName('closed-connection').item(0)?.classList.remove('hidden');
-      (document.getElementsByClassName('app-error-message').item(0) as Element).innerHTML = message;
+      try {
+        document.getElementsByClassName('closed-connection').item(0)?.classList.remove('hidden');
+        (document.getElementsByClassName('app-error-message').item(0) as Element).innerHTML = message;
+      } catch (error) {
+        toastCallback(`Connection ${state}!`, message, 'error');
+      }
     },
     [signOut, clear]
   );
@@ -58,7 +61,12 @@ export function WsProvider({ children, toastCallback }: WsProviderProps) {
 
     wsInstance.on(WsEvents.Connect, () => {
       console.log('[INF] - Connection opened!');
-      document.getElementsByClassName('closed-connection').item(0)?.classList.add('hidden');
+
+      try {
+        document.getElementsByClassName('closed-connection').item(0)?.classList.add('hidden');
+      } catch (error) {
+        /* Nothing to handle*/
+      }
     });
 
     wsInstance.on(WsEvents.ConnectError, () => {

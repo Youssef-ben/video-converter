@@ -17,7 +17,7 @@ export default {
     'app.lookup.err.value_required': 'Entrée invalide, Veuillez spécifier un URL Youtube valide et réessayer !',
     'app.lookup.err.invalid_url': "L'url que vous avez entré n'est pas valide, veuillez réessayer avec une valeur valide !",
 
-    // Preview Page
+    // Download Page
     'app.download.header.popup.video.title': 'Titre',
     'app.download.header.video_quality': 'Qualité',
     'app.download.header.video_quality.highest': 'Haute qualité',

@@ -16,7 +16,7 @@ export default {
     'app.lookup.err.value_required': 'Invalid Entry, Please specify a Youtube URL and try again!',
     'app.lookup.err.invalid_url': "The url you've entered is invalid, please re-try with a valid value!",
 
-    // Preview Page
+    // Download Page
     'app.download.header.popup.video.title': 'Title',
     'app.download.header.video_quality': 'Quality',
     'app.download.header.video_quality.highest': 'Highest',
