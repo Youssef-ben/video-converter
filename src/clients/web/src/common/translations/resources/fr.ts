@@ -41,9 +41,14 @@ export default {
     'app.page.not_found.back_btn': "Page d'accueil",
 
     // Websocket - From Server
-    'ws.err.connection_lost': 'La connexion au serveur a été perdue, tentatives de reconnexion...',
     'ws.success': 'Succès',
     'ws.err.fields_required': 'Un ou plusieurs champs sont obligatoires !',
+
+    'ws.err.connection_error':
+      'Erreur de connexion. Impossible de se connecter au serveur, veuillez patienter et essayer de vous connecter à nouveau !',
+    'ws.err.connection_closed':
+      'Déconnecté. La connexion a expiré ou le serveur a fermé la connexion, veuillez patienter et essayer de vous connecter à nouveau !',
+    'ws.err.connection_lost': 'La connexion au serveur a été perdue, tentatives de reconnexion...',
 
     'ws.downloading': 'Configuration...',
     'ws.fetching.video': 'Récupération de la vidéo depuis youtube...',
@@ -66,7 +71,8 @@ export default {
       "Une erreur s'est produite lors du traitement de votre demande. Veuillez recharger la page, et si le problème persiste, veuillez contacter l'équipe !",
 
     // Api Errors
-    'api.err.validation': 'Mot de passe incorrect, Veuillez vérifier que vous avez spécifié un mot de passe valide et réessayez!',
+    'api.err.security.invalid_passphrase': 'Mot de passe invalide !',
     'api.err.worker.invalid_url': "L'url que vous avez entré n'est pas valide, veuillez réessayer avec une valeur valide !",
+    'api.err.validation': 'Mot de passe incorrect, Veuillez vérifier que vous avez spécifié un mot de passe valide et réessayez!',
   },
 };

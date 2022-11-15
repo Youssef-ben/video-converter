@@ -14,12 +14,19 @@
   }
 }
 
-.negative.message.app-error {
-  font-weight: bold;
-  margin-bottom: 0.5em;
-  padding: 0.5em 1em !important;
-  color: $input-border-color-error !important;
-  background: $input-border-background-error !important;
+.app-error {
+  .negative.message {
+    margin-bottom: 0em;
+    border-radius: 0px !important;
+    font-weight: bold !important;
+    padding: 0.5em 1em !important;
+    color: $input-border-color-error !important;
+    background: $input-border-background-error !important;
+  }
+
+  .app-error-message {
+    font-weight: bold !important;
+  }
 }
 
 // Input background and border color

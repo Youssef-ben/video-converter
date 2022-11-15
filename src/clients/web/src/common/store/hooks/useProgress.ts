@@ -15,23 +15,18 @@ import { useWebSocket } from '../websocket-context/provider';
 export function useProgress() {
   const { t } = useTranslation();
   const ws = useWebSocket();
-  const { vyt, setScreen, setDownloadLink, clear } = useAppContext();
+  const { vyt, setScreen, setDownloadLink } = useAppContext();
 
   const [downloadError, setDownloadError] = useState(false);
   const [progress, setProgress] = useState<DownloadProgressEvent>({ key: '0', progress: 0, text: 'ws.downloading' });
 
   // Register the Ws Events.
   useEffect(() => {
-    ws.removeAllListeners(WsEvents.ServerError);
-    ws.on(WsEvents.ServerError, () => {
+    const progressServerError = () => {
       setDownloadError(true);
-    });
-
-    ws.removeAllListeners(WsEvents.Disconnect);
-    ws.on(WsEvents.Disconnect, () => {
-      clear();
-      setDownloadError(true);
-    });
+    };
+    ws.removeListener(WsEvents.ServerError, progressServerError);
+    ws.on(WsEvents.ServerError, progressServerError);
 
     // Register Download progress.
     ws.removeAllListeners(WsEvents.DownloadProgress);

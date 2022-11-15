@@ -1,6 +1,6 @@
 import { toast } from 'react-semantic-toasts';
 
-const ShowToast = (title: string, message: string, state: 'error' | 'success'): void => {
+const ShowToast = (title: string, message: string, state: 'error' | 'success' | 'warning'): void => {
   toast({
     title,
     time: 4000,

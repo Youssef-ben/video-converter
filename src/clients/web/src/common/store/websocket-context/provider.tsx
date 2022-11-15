@@ -1,10 +1,13 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createContext, useContext } from 'react';
+import { createContext, useCallback, useContext } from 'react';
 
+import { useTranslation } from 'react-i18next';
 import type { Socket } from 'socket.io-client';
 import { io } from 'socket.io-client';
+
+import type ErrorApiResponse from 'common/types/server/response/error.api.response';
 
 import { WsEvents } from '../../types/clients/websocket-events';
 import { SERVER_URLS } from '../../utils/constants';
@@ -18,10 +21,26 @@ export const useWebSocket = (): Socket => useContext(WSContext) as Socket;
 
 interface WsProviderProps {
   children: JSX.Element;
-  toastCallback: (title: string, message: string, state: 'error' | 'success') => void;
+  toastCallback: (title: string, message: string, state: 'error' | 'success' | 'warning') => void;
 }
 export function WsProvider({ children, toastCallback }: WsProviderProps) {
-  const { auth, signOut } = useAppContext();
+  const { t } = useTranslation();
+  const { auth, signOut, clear } = useAppContext();
+
+  const disconnectFormWebsocket = useCallback(
+    (state: 'Closed' | 'Error', message: string) => {
+      console.warn(`[WAR] - Connection ${state}!`);
+      clear();
+      signOut();
+
+      wsInstance?.disconnect();
+      wsInstance = null;
+
+      document.getElementsByClassName('closed-connection').item(0)?.classList.remove('hidden');
+      (document.getElementsByClassName('app-error-message').item(0) as Element).innerHTML = message;
+    },
+    [signOut, clear]
+  );
 
   // Only set the websocket instance.
   if (!wsInstance && auth.isAuthenticated) {
@@ -31,7 +50,7 @@ export function WsProvider({ children, toastCallback }: WsProviderProps) {
       reconnection: true,
       reconnectionDelay: 1000,
       reconnectionDelayMax: 5000,
-      reconnectionAttempts: 5,
+      reconnectionAttempts: 3,
       query: {
         access_token: auth.accessToken,
       },
@@ -42,19 +61,17 @@ export function WsProvider({ children, toastCallback }: WsProviderProps) {
       document.getElementsByClassName('closed-connection').item(0)?.classList.add('hidden');
     });
 
-    wsInstance.on(WsEvents.Disconnect, () => {
-      console.log('[WAR] - Connection closed!');
-      toastCallback('Disconnected', 'The Connection expired, please try to connect again!', 'error');
-      signOut();
-    });
-
     wsInstance.on(WsEvents.ConnectError, () => {
-      console.log('[WAR] - Connection error!');
-      document.getElementsByClassName('closed-connection').item(0)?.classList.remove('hidden');
+      disconnectFormWebsocket('Error', t('ws.err.connection_error'));
     });
 
-    wsInstance.on(WsEvents.ServerError, (err: any) => {
+    wsInstance.on(WsEvents.Disconnect, () => {
+      disconnectFormWebsocket('Closed', t('ws.err.connection_closed'));
+    });
+
+    wsInstance.on(WsEvents.ServerError, (err: ErrorApiResponse) => {
       console.error(err);
+      toastCallback('Server Error', t(err.type), 'error');
     });
   }
 
