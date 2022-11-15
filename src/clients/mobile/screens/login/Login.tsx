@@ -8,14 +8,15 @@ import Logo from 'components/Logo';
 import { AppButton, AppInput, AppText, AppView } from 'components/ui';
 import { scale } from 'utils/TextScale';
 
+const translations = {
+  placeholder: 'app.login.placeholder.password',
+  button: 'app.login.btn',
+};
+
 const Login = () => {
   const { login, connectUser, onPasswordChange } = useLogin();
 
   const { t } = useTranslation();
-  const text = {
-    placeholder: 'app.login.placeholder.password',
-    button: 'app.login.btn',
-  };
 
   return (
     <AppView style={[styles.root]}>
@@ -33,14 +34,14 @@ const Login = () => {
           input={{
             value: login.value,
             secureTextEntry: true,
-            placeholder: t(text.placeholder),
+            placeholder: t(translations.placeholder),
             onChangeText: onPasswordChange,
           }}
         />
 
         <AppButton
           style={styles.formButton}
-          text={t(text.button)}
+          text={t(translations.button)}
           onPress={async () => {
             await connectUser();
           }}

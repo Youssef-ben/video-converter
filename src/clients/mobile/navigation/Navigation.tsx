@@ -1,27 +1,38 @@
 import React, { useCallback, useEffect } from 'react';
 
-import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
+import { DarkTheme, DefaultTheme, NavigationContainer, StackActions } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Image, StyleSheet } from 'react-native';
 
 import { useAppContext } from 'common/store/vytc-context/provider';
+import { setupAxiosRequestInterceptor } from 'common/utils/http';
 import { useAppThemeColor } from 'components/theme/useAppThemeColor';
 import DownloadNew from 'screens/download/Download';
 import Home from 'screens/home/Home';
 import Login from 'screens/login/Login';
 
 import type { RootStackParamList } from './types';
+import { useAppNavigation } from './types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
-  const { auth, clear, signOut } = useAppContext();
+  const store = useAppContext();
   const { themeStyle } = useAppThemeColor();
+  const navigation = useAppNavigation();
+
+  // Setup Axios Interceptor for the Request.
+  useEffect(() => {
+    setupAxiosRequestInterceptor({
+      ...store,
+      navigation: () => navigation.dispatch(StackActions.replace('Login')),
+    });
+  }, []);
 
   // TODO: Remove the following line before publishing (Testing only)
   useEffect(() => {
-    clear();
-    signOut();
+    store.clear();
+    store.signOut();
   }, []);
 
   const LefHeaderLogo = useCallback(() => {
@@ -43,12 +54,12 @@ function RootNavigator() {
         headerLeft: () => LefHeaderLogo(),
       }}
     >
-      {!auth.isAuthenticated ? (
+      {!store.auth.isAuthenticated ? (
         <Stack.Screen
           name="Login"
           component={Login}
           options={{
-            animationTypeForReplace: !auth.isAuthenticated ? 'pop' : 'push',
+            animationTypeForReplace: !store.auth.isAuthenticated ? 'pop' : 'push',
           }}
         />
       ) : (

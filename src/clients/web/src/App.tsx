@@ -14,10 +14,9 @@ let timeInterval: NodeJS.Timer;
 const TIME_INTERVAL = 20 * 60 * 1000; // 20 Minutes after which we should refresh the token.
 
 function App() {
-  const store = useAppContext();
   const navigate = useNavigate();
+  const store = useAppContext();
   const { refreshToken } = useLogin();
-  const { auth } = useAppContext();
 
   // Setup Axios Interceptor for the Request.
   useEffect(() => {
@@ -25,19 +24,19 @@ function App() {
       ...store,
       navigation: () => navigate(APP_ROUTES.PUB_LOGIN),
     });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   // Refresh token only when connected
   useEffect(() => {
     // Start only one interval, and only when connected.
-    if (timeInterval || !auth.isAuthenticated) {
+    if (timeInterval || !store.auth.isAuthenticated) {
       return;
     }
 
     timeInterval = setInterval(async () => {
       refreshToken();
     }, TIME_INTERVAL);
-  }, [auth, refreshToken]);
+  }, [store, refreshToken]);
 
   return (
     <>
