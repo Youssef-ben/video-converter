@@ -1,6 +1,8 @@
 import type { TextProps } from 'react-native';
 import { Text } from 'react-native';
 
+import { scale } from 'utils/TextScale';
+
 import { TransparentColor } from '../theme/AppThemeStyle';
 import { useAppThemeColor } from '../theme/useAppThemeColor';
 
@@ -13,6 +15,7 @@ export const AppText = ({ hasError = false, style, ...otherProps }: AppTextProps
   const elementStyle = [
     themeStyle,
     {
+      fontSize: scale(13),
       backgroundColor: TransparentColor,
     },
     style,

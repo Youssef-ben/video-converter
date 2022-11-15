@@ -34,7 +34,7 @@ const Home = () => {
             style={styles.formButton}
             text="Search"
             onPress={() => {
-              navigation.dispatch(StackActions.push('Preview'));
+              navigation.dispatch(StackActions.push('Download'));
             }}
           />
         </AppView>

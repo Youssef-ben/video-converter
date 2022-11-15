@@ -6,9 +6,9 @@ import { Image, StyleSheet } from 'react-native';
 
 import { useAppContext } from 'common/store/vytc-context/provider';
 import { useAppThemeColor } from 'components/theme/useAppThemeColor';
+import DownloadNew from 'screens/download/Download';
 import Home from 'screens/home/Home';
 import Login from 'screens/login/Login';
-import Preview from 'screens/preview/Preview';
 
 import type { RootStackParamList } from './types';
 
@@ -22,7 +22,6 @@ function RootNavigator() {
   useEffect(() => {
     clear();
     signOut();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const LefHeaderLogo = useCallback(() => {
@@ -55,7 +54,7 @@ function RootNavigator() {
       ) : (
         <>
           <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Preview" component={Preview} />
+          <Stack.Screen name="Download" component={DownloadNew} />
         </>
       )}
     </Stack.Navigator>

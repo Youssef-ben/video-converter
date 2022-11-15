@@ -27,6 +27,7 @@ const Login = () => {
             {login.error.content}
           </AppText>
         )}
+
         <AppInput
           isInvalid={!!login.error}
           input={{
