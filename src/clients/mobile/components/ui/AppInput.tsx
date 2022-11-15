@@ -6,17 +6,17 @@ import { TextInput } from 'react-native-gesture-handler';
 
 import { TransparentColor } from '../theme/AppThemeStyle';
 import { useAppThemeColor } from '../theme/useAppThemeColor';
-import { ThemeText } from './ThemeText';
-import { ThemeView } from './ThemeView';
+import { AppText } from './AppText';
+import { AppView } from './AppView';
 
-type ThemeInputProps = {
+type AppInputProps = {
   label?: string;
   isInvalid?: boolean;
   input?: TextInputProps;
   wrapper?: ViewProps;
 };
 
-export const ThemeInput = ({ label, isInvalid = false, input, wrapper }: ThemeInputProps) => {
+export const AppInput = ({ label, isInvalid = false, input, wrapper }: AppInputProps) => {
   const { themeStyle, isDarkMode } = useAppThemeColor();
 
   const containerStyle = {
@@ -43,8 +43,8 @@ export const ThemeInput = ({ label, isInvalid = false, input, wrapper }: ThemeIn
 
   return (
     <>
-      <ThemeView {...wrapper} style={[containerStyle, styles.container, wrapper?.style]}>
-        {label && <ThemeText style={[styles.label]}>{label}</ThemeText>}
+      <AppView {...wrapper} style={[containerStyle, styles.container, wrapper?.style]}>
+        {label && <AppText style={[styles.label]}>{label}</AppText>}
 
         <TextInput
           {...input}
@@ -52,7 +52,7 @@ export const ThemeInput = ({ label, isInvalid = false, input, wrapper }: ThemeIn
           style={[inputStyle, styles.input, input?.style]}
           placeholder={input?.placeholder || 'Enter your text...'}
         />
-      </ThemeView>
+      </AppView>
     </>
   );
 };
@@ -66,7 +66,8 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
   },
   input: {
-    paddingTop: 2,
+    paddingTop: 3,
+    paddingBottom: 3,
   },
   label: {
     fontSize: 12,

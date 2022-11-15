@@ -5,7 +5,7 @@ import { StyleSheet } from 'react-native';
 
 import useLogin from 'common/store/hooks/useLogin';
 import Logo from 'components/Logo';
-import { ThemeButton, ThemeInput, ThemeText, ThemeView } from 'components/ui';
+import { AppButton, AppInput, AppText, AppView } from 'components/ui';
 import { scale } from 'utils/TextScale';
 
 const Login = () => {
@@ -18,16 +18,16 @@ const Login = () => {
   };
 
   return (
-    <ThemeView style={[styles.root]}>
+    <AppView style={[styles.root]}>
       <Logo source={require('../../assets/logo.png')} />
 
-      <ThemeView style={styles.formContainer}>
+      <AppView style={styles.formContainer}>
         {login.error && (
-          <ThemeText style={styles.error} hasError>
+          <AppText style={styles.error} hasError>
             {login.error.content}
-          </ThemeText>
+          </AppText>
         )}
-        <ThemeInput
+        <AppInput
           isInvalid={!!login.error}
           input={{
             value: login.value,
@@ -37,15 +37,15 @@ const Login = () => {
           }}
         />
 
-        <ThemeButton
+        <AppButton
           style={styles.formButton}
           text={t(text.button)}
           onPress={async () => {
             await connectUser();
           }}
         />
-      </ThemeView>
-    </ThemeView>
+      </AppView>
+    </AppView>
   );
 };
 

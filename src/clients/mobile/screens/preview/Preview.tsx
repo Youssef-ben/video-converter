@@ -3,15 +3,15 @@ import React from 'react';
 import { StyleSheet, useWindowDimensions } from 'react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
 
-import { ThemeButton, ThemeText, ThemeView } from 'components/ui';
+import { AppButton, AppText, AppView } from 'components/ui';
 
 const Preview = () => {
   const { width } = useWindowDimensions();
 
   const videoContainerOffset = width < 400 ? 20 : 40;
   return (
-    <ThemeView style={[styles.root]}>
-      <ThemeView hasBorders style={[styles.youtubeContainer]}>
+    <AppView style={[styles.root]}>
+      <AppView hasBorders style={[styles.youtubeContainer]}>
         <YoutubePlayer
           height={210}
           width={width - videoContainerOffset}
@@ -20,17 +20,30 @@ const Preview = () => {
             renderToHardwareTextureAndroid: true,
           }}
         />
-      </ThemeView>
+      </AppView>
 
-      <ThemeView>
-        <ThemeText style={styles.youtubeTitle}>
+      <AppView>
+        <AppText style={styles.youtubeTitle}>
           Gentle music, calms the nervous system and pleases the soul - healing music for the heart and blood
-        </ThemeText>
+        </AppText>
 
-        <ThemeButton style={styles.formButton} text="DOWNLOAD AS AUDIO" onPress={() => {}} />
-        <ThemeButton type="secondary" style={styles.formButton} text="DOWNLOAD AS VIDEO" onPress={() => {}} />
-      </ThemeView>
-    </ThemeView>
+        <AppButton
+          style={styles.formButton}
+          text="DOWNLOAD AS AUDIO"
+          onPress={() => {
+            /* */
+          }}
+        />
+        <AppButton
+          type="secondary"
+          style={styles.formButton}
+          text="DOWNLOAD AS VIDEO"
+          onPress={() => {
+            /* */
+          }}
+        />
+      </AppView>
+    </AppView>
   );
 };
 

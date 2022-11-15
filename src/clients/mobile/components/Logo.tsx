@@ -2,7 +2,7 @@ import type { ImageSourcePropType } from 'react-native';
 import { Image, StyleSheet, useWindowDimensions } from 'react-native';
 
 import { useAppThemeColor } from './theme/useAppThemeColor';
-import { ThemeView } from './ui';
+import { AppView } from './ui';
 
 interface LogoProps {
   source: ImageSourcePropType;
@@ -26,9 +26,9 @@ const Logo = ({ source, dimension }: LogoProps) => {
   };
 
   return (
-    <ThemeView style={styles.imageContainer}>
+    <AppView style={styles.imageContainer}>
       <Image style={styles.image} resizeMode="center" source={source} />
-    </ThemeView>
+    </AppView>
   );
 };
 

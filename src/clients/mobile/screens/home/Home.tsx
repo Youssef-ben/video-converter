@@ -4,22 +4,22 @@ import { StackActions } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
 
 import Logo from 'components/Logo';
-import { ThemeButton, ThemeInput, ThemeText, ThemeView } from 'components/ui';
+import { AppButton, AppInput, AppText, AppView } from 'components/ui';
 import { useAppNavigation } from 'navigation/types';
 
 const Home = () => {
   const navigation = useAppNavigation();
 
   return (
-    <ThemeView style={[styles.root]}>
+    <AppView style={[styles.root]}>
       <Logo source={require('../../assets/logo.png')} />
 
-      <ThemeView style={styles.formContainer}>
-        <ThemeText style={styles.formLabel}>
+      <AppView style={styles.formContainer}>
+        <AppText style={styles.formLabel}>
           Download any youtube video as an audio or video format. All you need to do is copy the link in the box bellow.
-        </ThemeText>
+        </AppText>
 
-        <ThemeInput
+        <AppInput
           input={{
             placeholder: 'https://www.youtube.com/watch?v=2N4SjqaKPA8',
             style: {
@@ -29,17 +29,17 @@ const Home = () => {
           }}
         />
 
-        <ThemeView style={styles.formButtonContainer}>
-          <ThemeButton
+        <AppView style={styles.formButtonContainer}>
+          <AppButton
             style={styles.formButton}
             text="Search"
             onPress={() => {
               navigation.dispatch(StackActions.push('Preview'));
             }}
           />
-        </ThemeView>
-      </ThemeView>
-    </ThemeView>
+        </AppView>
+      </AppView>
+    </AppView>
   );
 };
 

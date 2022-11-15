@@ -1,6 +1,6 @@
-import { ThemeButton } from 'components/ui/ThemeButton';
-import { ThemeInput } from 'components/ui/ThemeInput';
-import { ThemeText } from 'components/ui/ThemeText';
-import { ThemeView } from 'components/ui/ThemeView';
+import { AppButton } from 'components/ui/AppButton';
+import { AppInput } from 'components/ui/AppInput';
+import { AppText } from 'components/ui/AppText';
+import { AppView } from 'components/ui/AppView';
 
-export { ThemeButton, ThemeInput, ThemeText, ThemeView };
+export { AppButton, AppInput, AppText, AppView };

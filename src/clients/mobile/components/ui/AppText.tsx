@@ -4,10 +4,10 @@ import { Text } from 'react-native';
 import { TransparentColor } from '../theme/AppThemeStyle';
 import { useAppThemeColor } from '../theme/useAppThemeColor';
 
-interface ThemeTextProps extends TextProps {
+interface AppTextProps extends TextProps {
   hasError?: boolean;
 }
-export const ThemeText = ({ hasError = false, style, ...otherProps }: ThemeTextProps) => {
+export const AppText = ({ hasError = false, style, ...otherProps }: AppTextProps) => {
   const { themeStyle } = useAppThemeColor();
 
   const elementStyle = [
@@ -19,7 +19,6 @@ export const ThemeText = ({ hasError = false, style, ...otherProps }: ThemeTextP
     hasError && {
       marginBottom: 8,
       paddingVertical: 4,
-      fontWeight: '800',
       paddingHorizontal: 10,
       color: themeStyle.Error,
     },

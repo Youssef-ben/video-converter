@@ -5,11 +5,11 @@ import { View } from 'react-native';
 
 import { useAppThemeColor } from '../theme/useAppThemeColor';
 
-type ThemeViewProps = ViewProps & {
+type AppViewProps = ViewProps & {
   hasBorders?: boolean;
 };
 
-export const ThemeView = ({ style, hasBorders, ...otherProps }: ThemeViewProps) => {
+export const AppView = ({ style, hasBorders, ...otherProps }: AppViewProps) => {
   const { themeStyle } = useAppThemeColor();
   const borderStyle = { borderWidth: hasBorders ? 1 : 0 };
 

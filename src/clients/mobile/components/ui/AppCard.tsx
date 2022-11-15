@@ -5,16 +5,16 @@ import { Image, Platform, Pressable, StyleSheet } from 'react-native';
 
 import { TransparentColor } from '../theme/AppThemeStyle';
 import { useAppThemeColor } from '../theme/useAppThemeColor';
-import { ThemeText } from './ThemeText';
-import { ThemeView } from './ThemeView';
+import { AppText } from './AppText';
+import { AppView } from './AppView';
 
-interface ThemCardProps {
+interface AppCardProps {
   logo?: ImageSourcePropType;
   title?: string;
   content?: string;
   hasBorder?: boolean;
 }
-const ThemeCard = ({ logo, title, content, hasBorder = true }: ThemCardProps) => {
+const AppCard = ({ logo, title, content, hasBorder = true }: AppCardProps) => {
   const { themeStyle } = useAppThemeColor();
 
   styles.card = {
@@ -32,24 +32,29 @@ const ThemeCard = ({ logo, title, content, hasBorder = true }: ThemCardProps) =>
   };
 
   return (
-    <ThemeView style={styles.card}>
-      <Pressable android_ripple={{ color: themeStyle.color }} onPress={() => {}}>
+    <AppView style={styles.card}>
+      <Pressable
+        android_ripple={{ color: themeStyle.color }}
+        onPress={() => {
+          /* */
+        }}
+      >
         {logo && (
-          <ThemeView style={styles.imageContainer}>
+          <AppView style={styles.imageContainer}>
             <Image resizeMode="contain" source={logo} style={styles.image} />
-          </ThemeView>
+          </AppView>
         )}
 
-        <ThemeView style={styles.bodyContainer}>
-          {title && <ThemeText style={styles.title}>{title}</ThemeText>}
-          {content && <ThemeText style={styles.content}>{content}</ThemeText>}
-        </ThemeView>
+        <AppView style={styles.bodyContainer}>
+          {title && <AppText style={styles.title}>{title}</AppText>}
+          {content && <AppText style={styles.content}>{content}</AppText>}
+        </AppView>
       </Pressable>
-    </ThemeView>
+    </AppView>
   );
 };
 
-export default ThemeCard;
+export default AppCard;
 
 const styles = StyleSheet.create({
   card: {
