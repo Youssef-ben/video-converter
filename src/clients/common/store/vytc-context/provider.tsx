@@ -73,7 +73,7 @@ export function VytcContextProvider({ children, storage }: VytcProviderProps) {
     };
 
     fetchLocalStorageData();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   // Initialize the Methods of the Context.
   const providerState = useMemo(

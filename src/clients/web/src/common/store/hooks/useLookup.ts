@@ -47,6 +47,7 @@ function useLookup() {
 
     // Validate the youtube URL.
     const errorMsg = validate();
+
     if (errorMsg) {
       setState((current) => ({
         ...current,

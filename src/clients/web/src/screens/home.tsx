@@ -11,7 +11,7 @@ import APP_ROUTES from 'navigation/navigation-constants';
 
 const translations = {
   description: 'app.lookup.description',
-  btn_search: 'app.lookup.btn',
+  btnSearch: 'app.lookup.btn',
 };
 
 function Home() {
@@ -54,7 +54,7 @@ function Home() {
         </Form.Field>
 
         <Button primary floated="right" className="floated-button" loading={lookup.loading} disabled={lookup.loading} onClick={searchHandler}>
-          {t(translations.btn_search)}
+          {t(translations.btnSearch)}
         </Button>
       </Form>
     </>

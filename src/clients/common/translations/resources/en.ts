@@ -71,5 +71,7 @@ export default {
     'api.err.security.invalid_passphrase': 'Invalid password!',
     'api.err.worker.invalid_url': "The url you've entered is invalid, please re-try with a valid value!",
     'api.err.validation': 'Invalid password, Please check that you specified a valid passphrase and try again!',
+    'api.err.unexpected_error':
+      'An error occurred while trying to handle your request. Please reload the page and if the problem persists, contact the team!',
   },
 };
