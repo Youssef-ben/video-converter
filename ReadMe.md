@@ -14,22 +14,15 @@
 
 ## Purpose
 
-The idea of this project came from the fact that most of the free tools that exist
-on the internet have some restrictions like the length of the video, must watch ads,
-or a confusion UI with a lot of download buttons. With this, the need to create a
-free tool that has none of the inconvenience or restrictions like the others became
-stronger.
+The idea of this project came from the fact that most of the free tools that exist on the have some restrictions like the length of the video, must watch ads, or a confusion UI with a lot of download buttons. With this, the need to create a free tool that has none of the inconvenience or restrictions like the others became stronger.
 
-The **Videos and youtube converter** is a web/server application that will allows
-you to download youtube videos as `MP4s` or convert them to `MP3s` without any restriction.
+The **Videos and youtube converter** is a web/server application that will allows you to download youtube videos as `MP4s` or convert them to `MP3s` without any restriction.
 
 ## Disclaimer
 
-This application should be used for **non-copyrighted** and open-source videos only
-and should be for personal use only.
+This application should be used for **non-copyrighted** and open-source videos only and should be for personal use only.
 
-If you wish to use any copyrighted videos from Youtube you must obtain expressed
-permission from the copyright owner.
+If you wish to use any copyrighted videos from Youtube you must obtain expressed permission from the copyright owner.
 
 ## Future Improvements
 
@@ -170,8 +163,22 @@ yarn start
 
 ## Preview
 
+### Web application
+
 ![Preview login](assets/images/screenshots/1.login.png)
 ![Preview video search](assets/images/screenshots/2.home.png)
 ![Preview video preview](assets/images/screenshots/3.download.png)
 ![Preview download](assets/images/screenshots/4.download-progress.png)
 ![Preview download finished](assets/images/screenshots/5.download-finished.png)
+
+### Mobile application
+
+The mobile application had two themes Light and Dark.
+
+<p align="center">
+  <img align="center" width="30%" height="30%" style="margin-bottom:15px" src="./assets/images/screenshots/1.mobile.login.png"/>
+  <img align="center" width="30%" height="30%" style="margin-bottom:15px" src="./assets/images/screenshots/2.mobile.home.png"/>
+  <img align="center" width="30%" height="30%" style="margin-bottom:15px" src="./assets/images/screenshots/3.mobile.download.png"/>
+  <img align="center" width="30%" height="30%" style="margin-bottom:15px" src="./assets/images/screenshots/4.mobile.download.progress.png"/>
+  <img align="center" width="30%" height="30%" style="margin-bottom:15px" src="./assets/images/screenshots/5.mobile.download.finshed.png"/>
+</p>
