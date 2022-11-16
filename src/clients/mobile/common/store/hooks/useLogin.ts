@@ -14,7 +14,7 @@ interface LoginState {
   loading: boolean;
   error?: InputError;
 }
-const INITIAL_VALUES: LoginState = { value: '#Vytc22', loading: false };
+const INITIAL_VALUES: LoginState = { value: '', loading: false };
 
 const useLogin = () => {
   const { t } = useTranslation();

@@ -34,6 +34,9 @@ export default {
     'app.download.download.started': 'Downloading, please wait...',
     'app.download.download.btn': 'Finish',
 
+    'app.download.mobile.finished.title': 'Success!',
+    'app.download.mobile.finished.message': 'File downloaded successfully!',
+
     // Not Found page
     'app.page.not_found.title': 'Oh no!!',
     'app.page.not_found.subtitle': 'You’re either misspelling the URL or ',

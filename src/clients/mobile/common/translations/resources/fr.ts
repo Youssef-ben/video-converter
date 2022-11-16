@@ -35,6 +35,9 @@ export default {
     'app.download.download.started': 'Téléchargement en cours, veuillez patienter...',
     'app.download.download.btn': 'Terminer',
 
+    'app.download.mobile.finished.title': 'Succès!',
+    'app.download.mobile.finished.message': 'Fichier téléchargé avec succès !',
+
     // Not Found page
     'app.page.not_found.title': 'Oh non!!',
     'app.page.not_found.subtitle': "Soit vous avez mal orthographié l'URL.",

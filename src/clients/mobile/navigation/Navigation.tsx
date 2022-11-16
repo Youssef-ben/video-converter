@@ -44,12 +44,6 @@ function RootNavigator() {
     }, TIME_INTERVAL);
   }, [store, refreshToken]);
 
-  // TODO: Remove the following line before publishing (Testing only)
-  useEffect(() => {
-    store.clear();
-    store.signOut();
-  }, []);
-
   const LefHeaderLogo = useCallback(() => {
     return <Image style={styles.logo} resizeMode="contain" source={require('../assets/logo.png')} />;
   }, []);

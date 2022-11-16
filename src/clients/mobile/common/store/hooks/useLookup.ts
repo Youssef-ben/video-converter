@@ -15,7 +15,7 @@ interface LookupState {
   loading: boolean;
   error?: InputError;
 }
-const INITIAL_VALUES: LookupState = { value: 'https://www.youtube.com/watch?v=_fbq8RaKlxI', loading: false };
+const INITIAL_VALUES: LookupState = { value: '', loading: false };
 
 function useLookup() {
   const { t } = useTranslation();
