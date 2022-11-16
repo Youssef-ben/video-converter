@@ -64,14 +64,12 @@ generate-env: ## Generate a (.env) file based on the (.env.example) file..
 	@cp ./.env.example ./.env
 	@cp ./src/server/.env.example ./src/server/.env
 	@cp ./src/clients/web/.env.example ./src/clients/web/.env
+	@cp ./src/clients/mobile/.env.example ./src/clients/mobile/.env
 	@echo "[INF] - Done."
 
 clean-projects:
 	@echo "[INF] - Cleaning the project dependencies..."
-
-	@echo "[DBG] - Cleaning {Clients}..."
-	@rm -rf ./src/clients/node_modules
-	
+ 
 	@echo "[DBG] - Cleaning {Clients/Common}..."
 	@rm -rf ./src/clients/common/node_modules
 	
@@ -80,6 +78,9 @@ clean-projects:
 	
 	@echo "[DBG] - Cleaning {Clients/Mobile}..."
 	@rm -rf ./src/clients/mobile/node_modules
+
+	@echo "[DBG] - Cleaning {Server}..."
+	@rm -rf ./src/server/node_modules
 
 	@echo "[INF] - Done."
 
