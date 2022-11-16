@@ -172,6 +172,6 @@ yarn start
 
 ![Preview login](assets/images/screenshots/1.login.png)
 ![Preview video search](assets/images/screenshots/2.home.png)
-![Preview video preview](assets/images/screenshots/3.donwload.png)
+![Preview video preview](assets/images/screenshots/3.download.png)
 ![Preview download](assets/images/screenshots/4.download-progress.png)
 ![Preview download finished](assets/images/screenshots/5.download-finished.png)
