@@ -65,7 +65,7 @@ export function WsProvider({ children, toastCallback }: WsProviderProps) {
       try {
         document.getElementsByClassName('closed-connection').item(0)?.classList.add('hidden');
       } catch (error) {
-        /* Nothing to handle*/
+        /* Nothing to handle */
       }
     });
 

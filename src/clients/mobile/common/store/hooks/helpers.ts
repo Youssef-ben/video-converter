@@ -42,7 +42,9 @@ export const isValidYoutubeUrl = (link: string): boolean => {
 
     if (!id && parsed.hostname !== mobileYoutubeLink) {
       return false;
-    } else if (!id && parsed.hostname === mobileYoutubeLink) {
+    }
+
+    if (!id && parsed.hostname === mobileYoutubeLink) {
       id = (parsed.path as string).substring(1, 13);
     }
 

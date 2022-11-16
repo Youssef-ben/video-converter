@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { YoutubeVideoPayload } from 'common/types/server';
 import { LOCAL_STORAGE_KEYS } from 'common/utils/constants';
 

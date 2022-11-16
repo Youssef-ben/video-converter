@@ -1,20 +1,20 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
-import type { LoginPayload, LoginRequestPayload } from "common/types/server";
-import { SERVER_URLS } from "common/utils/constants";
-import { axiosGet, axiosPost } from "common/utils/http";
+import type { LoginPayload, LoginRequestPayload } from 'common/types/server';
+import { SERVER_URLS } from 'common/utils/constants';
+import { axiosGet, axiosPost } from 'common/utils/http';
 
-import type { InputError } from "../../types/clients/InputError";
-import { useAppContext } from "../vytc-context/provider";
+import type { InputError } from '../../types/clients/InputError';
+import { useAppContext } from '../vytc-context/provider';
 
 interface LoginState {
   value: string;
   loading: boolean;
   error?: InputError;
 }
-const INITIAL_VALUES: LoginState = { value: "", loading: false };
+const INITIAL_VALUES: LoginState = { value: '', loading: false };
 
 const useLogin = () => {
   const { t } = useTranslation();
@@ -38,30 +38,24 @@ const useLogin = () => {
         ...current,
         loading: false,
         error: {
-          content: t("app.login.err.password_required"),
-          pointing: "below",
+          content: t('app.login.err.password_required'),
+          pointing: 'below',
         },
       }));
       return false;
     }
 
     // Call the Login API.
-    const { error, data } = await axiosPost<LoginRequestPayload, LoginPayload>(
-      SERVER_URLS.securityLogin,
-      {
-        passphrase: state.value,
-      }
-    );
+    const { error, data } = await axiosPost<LoginRequestPayload, LoginPayload>(SERVER_URLS.securityLogin, {
+      passphrase: state.value,
+    });
 
     // Check for errors
     if (error || !data) {
-      const errorContent =
-        !data && !error
-          ? t("app.err.unhandled_error.desc")
-          : t(error?.type as string);
+      const errorContent = !data && !error ? t('app.err.unhandled_error.desc') : t(error?.type as string);
 
       setState({
-        value: "",
+        value: '',
         loading: false,
         error: {
           content: errorContent,

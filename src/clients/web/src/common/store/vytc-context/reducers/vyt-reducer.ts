@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-
 import type { YoutubeVideoPayload } from 'common/types/server';
 import { LOCAL_STORAGE_KEYS } from 'common/utils/constants';
 
@@ -15,6 +14,8 @@ export interface VytcContextYoutubeStateMethods {
   setFileType: (data: FileType) => void;
   setScreen: (data: ScreenAction) => void;
   setDownloadLink: (url: string) => void;
+  appPermissions: (directory?: string) => Promise<string>;
+  clearAppPermissions: () => void;
 }
 
 export const VYT_CONTEXT_METHODS: VytcContextYoutubeStateMethods = {
@@ -26,16 +27,18 @@ export const VYT_CONTEXT_METHODS: VytcContextYoutubeStateMethods = {
   setFileType: (_: FileType) => null,
   setScreen: (_: ScreenAction) => null,
   setDownloadLink: (_: string) => null,
+  appPermissions: (directory?: string) => Promise.resolve(`${directory}`),
+  clearAppPermissions: () => null,
 };
 
-export interface PreviewState {
+export interface DownloadState {
   videoQuality: VideoQuality;
   screen: ScreenAction;
   fileType: FileType;
   downloadLink: string;
 }
 
-export const PREVIEW_INITIAL_VALUES: PreviewState = {
+export const DOWNLOAD_INITIAL_VALUES: DownloadState = {
   videoQuality: VideoQuality.DEFAULT,
   fileType: FileType.AUDIO_ONLY,
   screen: ScreenAction.PREVIEW,
@@ -44,12 +47,12 @@ export const PREVIEW_INITIAL_VALUES: PreviewState = {
 
 export type VytState = {
   data?: YoutubeVideoPayload;
-  download: PreviewState;
+  download: DownloadState;
 };
 
 export const VYT_INITIAL_DATA: VytState = {
   data: undefined,
-  download: PREVIEW_INITIAL_VALUES,
+  download: DOWNLOAD_INITIAL_VALUES,
 };
 
 export type VytActions = {
@@ -160,5 +163,19 @@ export function vytReducerMethods(dispatch: React.Dispatch<VytActions>, storage:
     });
   };
 
-  return { persist, clear, setVideoQuality, setFileType, setScreen, setDownloadLink };
+  const appPermissions = async (directory?: string) => {
+    if (!directory) {
+      const result = await storage.getItem(LOCAL_STORAGE_KEYS.PERMISSIONS);
+      return result || '';
+    }
+
+    await storage.setItem(LOCAL_STORAGE_KEYS.PERMISSIONS, directory);
+    return directory;
+  };
+
+  const clearAppPermissions = async () => {
+    await storage.removeItem(LOCAL_STORAGE_KEYS.PERMISSIONS);
+  };
+
+  return { persist, clear, setVideoQuality, setFileType, setScreen, setDownloadLink, appPermissions, clearAppPermissions };
 }

@@ -8,7 +8,6 @@ The following is the list of packages that need to be installed when converting 
 - axios-case-converter
 - socket.io-client
 - react-use-websocket
-- url
 
 ## Setup
 
@@ -28,7 +27,7 @@ setTranslation(RNLanguageDetector);
 useEffect(() => {
   setupAxiosRequestInterceptor({
     ...store,
-    navigation: () => navigation.dispatch(StackActions.replace("Login")),
+    navigation: () => navigation.dispatch(StackActions.replace('Login')),
   });
 }, []);
 ```
