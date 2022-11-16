@@ -1,19 +1,17 @@
 import React from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { Button, StyleSheet, useWindowDimensions } from 'react-native';
-import * as Progress from 'react-native-progress';
+import { Button, StyleSheet } from 'react-native';
 
 import { useProgress } from 'common/store/hooks/useProgress';
 import { useAppContext } from 'common/store/vytc-context/provider';
 import { ScreenAction } from 'common/store/vytc-context/types';
+import ProgressBar from 'components/ProgressBar';
 import { useAppThemeColor } from 'components/theme';
-import { AppText, AppView } from 'components/ui';
-import { scale } from 'utils/TextScale';
+import { AppView } from 'components/ui';
 
 const DownloadProgress = () => {
   const { t } = useTranslation();
-  const { width } = useWindowDimensions();
   const { themeStyle } = useAppThemeColor();
   const { setScreen } = useAppContext();
   const { progress, onCancel } = useProgress();
@@ -25,18 +23,7 @@ const DownloadProgress = () => {
 
   return (
     <AppView>
-      <Progress.Bar
-        width={width - 31}
-        borderRadius={2}
-        progress={progress.progress / 100}
-        style={styles.progressBar}
-        color={themeStyle.color}
-        unfilledColor={themeStyle.backgroundColor}
-      />
-      <AppView style={styles.progressInfo}>
-        <AppText style={styles.progressInfoText}>{t(progress.text)}</AppText>
-        <AppText style={styles.progressInfoText}>{progress.progress}%</AppText>
-      </AppView>
+      <ProgressBar text={t(progress.text)} progress={progress.progress} />
 
       <AppView style={styles.buttonContainer}>
         <AppView style={styles.cancelButton}>
@@ -50,16 +37,6 @@ const DownloadProgress = () => {
 export default DownloadProgress;
 
 const styles = StyleSheet.create({
-  progressBar: {
-    elevation: 5,
-  },
-  progressInfo: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  progressInfoText: {
-    fontSize: scale(10),
-  },
   buttonContainer: {
     marginTop: 10,
     justifyContent: 'flex-end',

@@ -19,7 +19,7 @@ const INITIAL_VALUES: LookupState = { value: 'https://www.youtube.com/watch?v=_f
 
 function useLookup() {
   const { t } = useTranslation();
-  const { persist } = useAppContext();
+  const { clear, persist } = useAppContext();
 
   const [state, setState] = useState<LookupState>(INITIAL_VALUES);
 
@@ -77,6 +77,9 @@ function useLookup() {
       }));
       return false;
     }
+
+    // Reset the vyt object
+    clear();
 
     // Save video details to storage.
     persist(data as YoutubeVideoPayload);

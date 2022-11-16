@@ -18,6 +18,7 @@ function DownloadProgress() {
     onCancel();
     setScreen(ScreenAction.PREVIEW);
   };
+
   return (
     <Grid.Column mobile={16} tablet={16} computer={16}>
       <ProgressBar display key={progress.key} text={t(progress.text)} progress={progress.progress} />

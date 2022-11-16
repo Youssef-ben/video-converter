@@ -32,6 +32,7 @@ export default {
     'app.download.progress.btn': 'Annuler',
 
     'app.download.download': 'Votre téléchargement va démarrer automatiquement, veuillez patienter...',
+    'app.download.download.started': 'Téléchargement en cours, veuillez patienter...',
     'app.download.download.btn': 'Terminer',
 
     // Not Found page

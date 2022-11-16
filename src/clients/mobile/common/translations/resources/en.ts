@@ -31,6 +31,7 @@ export default {
     'app.download.progress.btn': 'Cancel',
 
     'app.download.download': 'Your download will start automatically, please wait...',
+    'app.download.download.started': 'Downloading, please wait...',
     'app.download.download.btn': 'Finish',
 
     // Not Found page
