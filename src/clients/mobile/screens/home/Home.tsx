@@ -1,26 +1,45 @@
 import React from 'react';
 
-import { StackActions } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
 
+import useLookup from 'common/store/hooks/useLookup';
 import Logo from 'components/Logo';
-import { ThemeButton, ThemeInput, ThemeText, ThemeView } from 'components/ui';
+import { AppButton, AppInput, AppText, AppView } from 'components/ui';
 import { useAppNavigation } from 'navigation/types';
 
+const translations = {
+  description: 'app.lookup.description',
+  btnSearch: 'app.lookup.btn',
+};
+
 const Home = () => {
+  const { t } = useTranslation();
   const navigation = useAppNavigation();
 
+  const { lookup, search, onSearchUrlChange } = useLookup();
+
+  const searchHandler = async () => {
+    const result = await search();
+    if (result) {
+      setTimeout(() => {
+        navigation.navigate('Download');
+      }, 100);
+    }
+  };
+
   return (
-    <ThemeView style={[styles.root]}>
+    <AppView style={[styles.root]}>
       <Logo source={require('../../assets/logo.png')} />
 
-      <ThemeView style={styles.formContainer}>
-        <ThemeText style={styles.formLabel}>
-          Download any youtube video as an audio or video format. All you need to do is copy the link in the box bellow.
-        </ThemeText>
+      <AppView style={styles.formContainer}>
+        <AppText style={styles.formLabel}>{t(translations.description)}</AppText>
 
-        <ThemeInput
+        <AppInput
+          isInvalid={!!lookup.error}
           input={{
+            value: lookup.value,
+            onChangeText: onSearchUrlChange,
             placeholder: 'https://www.youtube.com/watch?v=2N4SjqaKPA8',
             style: {
               paddingTop: 5,
@@ -29,17 +48,17 @@ const Home = () => {
           }}
         />
 
-        <ThemeView style={styles.formButtonContainer}>
-          <ThemeButton
+        <AppView style={styles.formButtonContainer}>
+          <AppButton
+            loading={lookup.loading}
+            disabled={lookup.loading}
             style={styles.formButton}
-            text="Search"
-            onPress={() => {
-              navigation.dispatch(StackActions.push('Preview'));
-            }}
+            text={t(translations.btnSearch)}
+            onPress={async () => await searchHandler()}
           />
-        </ThemeView>
-      </ThemeView>
-    </ThemeView>
+        </AppView>
+      </AppView>
+    </AppView>
   );
 };
 

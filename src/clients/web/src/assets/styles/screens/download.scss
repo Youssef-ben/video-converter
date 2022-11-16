@@ -1,0 +1,114 @@
+/* Youtube Downloader Preview */
+.yt-content {
+  padding: 1.5em;
+  font-size: 1.1em;
+
+  p {
+    margin-bottom: 1.5em;
+  }
+}
+
+@media only screen and (max-width: 340px) {
+  .yt-content {
+    font-size: 0.9em;
+
+    h1 {
+      font-size: 2em;
+    }
+  }
+}
+
+/* Video Preview */
+.player-wrapper {
+  position: relative;
+  border-radius: 5px;
+  padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
+  margin-bottom: 1.5em;
+  width: 100% !important;
+  height: 100% !important;
+  margin-left: 0.9em !important;
+  margin-right: 0.9em !important;
+  box-shadow: 0 0 10px rgb(0 0 0 / 0.2);
+
+  .loading-image {
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+    overflow: hidden;
+    border-radius: 5px;
+  }
+
+  .react-player {
+    top: 0;
+    left: 0;
+    position: absolute;
+
+    iframe {
+      border-radius: 5px !important;
+    }
+  }
+}
+
+.ui.download-convert {
+  .disabled {
+    opacity: 0.7 !important;
+  }
+
+  .buttons-group {
+    justify-content: space-between;
+    padding-top: 0.5em;
+  }
+
+  .title {
+    padding-bottom: 0em;
+  }
+}
+
+.no-event-link {
+  color: white;
+
+  &:hover {
+    color: white;
+  }
+}
+
+.video-title {
+  width: 100%;
+  text-align: justify !important;
+  font-size: 13.5px !important;
+  line-height: 1.2rem !important;
+  font-family: $nunito-font !important;
+  background-color: $input-background !important;
+  border: 1px solid $input-border-color !important;
+
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.popup-note {
+  text-align: justify !important;
+  font-size: 13px !important;
+  background-color: $input-background !important;
+
+  &::before {
+    background-color: $input-background !important;
+  }
+
+  &.video-title-note {
+    max-width: 71vh !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .popup-note {
+    max-width: 50vh !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .video-quality {
+    margin-top: 0.8em !important;
+  }
+}

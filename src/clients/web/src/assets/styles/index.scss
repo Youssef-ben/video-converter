@@ -1,0 +1,17 @@
+/********** CUSTOM CSS **********/
+@import './variables.scss';
+@import './global.scss';
+
+// /*** COMPONENTS ***/
+@import './components/appLogo.scss';
+@import './components/buttons.scss';
+@import './components/footer.scss';
+@import './components/header.scss';
+@import './components/inputs.scss';
+@import './components/progressBar.scss';
+
+// /*** PAGES ***/
+@import './screens/login.scss';
+@import './screens/notFound.scss';
+@import './screens/download.scss';
+@import './screens/screenWrapper.scss';

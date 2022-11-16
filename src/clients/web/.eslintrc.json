@@ -1,0 +1,131 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["react", "import", "@typescript-eslint"],
+
+  "extends": [
+    "airbnb",
+    "prettier",
+    "plugin:react/recommended", // Uses the recommended rules from @eslint-plugin-react.
+    "plugin:import/typescript",
+    "plugin:import/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended", // Uses the recommended rules from @typescript-eslint/eslint-plugin.
+    "plugin:@typescript-eslint/eslint-recommended"
+  ],
+
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true, // Don't allow for the parsing of JSX
+      "tsx": true // Allows for the parsing of JSX
+    }
+  },
+
+  "settings": {
+    "import/ignore": ["node_modules"],
+
+    "react": {
+      "version": "detect" // Tells eslint-plugin-react to automatically detect the version of React to use
+    },
+
+    "import/resolver": {
+      "node": {
+        "paths": [".", "./src"],
+        "extensions": [".tsx", ".ts"]
+      },
+
+      "typescript": {
+        "alwaysTryTypes": true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+
+        // use <root>/path/to/folder/tsconfig.json
+        "project": "./tsconfig.json"
+      }
+    }
+  },
+
+  "rules": {
+    // Eslint
+    "curly": "error",
+    "no-var": "error",
+    "no-shadow": "off",
+    "camelcase": "warn",
+    "no-console": "warn",
+    "no-nested-ternary": "warn",
+    "prefer-destructuring": "warn",
+    "react/require-default-props": "off",
+
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "never"
+      }
+    ],
+
+    // TypeScript
+    "@typescript-eslint/indent": "off",
+    "@typescript-eslint/ban-types": "warn",
+    "@typescript-eslint/no-shadow": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/ban-ts-comment": "error",
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/consistent-type-imports": "error",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+
+    // React-Hooks
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "off",
+
+    // React
+    "react/prop-types": "off",
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [
+      "warn",
+      {
+        "extensions": [".jsx", ".js", ".tsx", ".ts"]
+      }
+    ],
+
+    // Import
+    "import/named": "error",
+    "import/default": "error",
+    "import/namespace": "error",
+    "import/no-deprecated": "error",
+    "import/no-duplicates": "error",
+    "import/no-unused-modules": "off",
+    "import/no-named-as-default": "warn",
+    "import/prefer-default-export": "off",
+    "import/no-useless-path-segments": "error",
+    "import/no-extraneous-dependencies": "warn",
+    "import/no-named-as-default-member": "warn",
+    "import/no-anonymous-default-export": "error",
+    "import/no-cycle": ["error", { "ignoreExternal": true }],
+    "import/extensions": ["error", "never", { "svg": "always" }],
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal", ["parent", "sibling"]],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  }
+}

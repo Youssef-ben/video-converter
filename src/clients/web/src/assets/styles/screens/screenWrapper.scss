@@ -1,0 +1,23 @@
+.app-content {
+  margin-top: 0.1em;
+  background-color: $secondary-background-color;
+  height: calc(100vh - 45px);
+  max-height: calc(100vh - 45px);
+  min-width: 290px;
+  text-align: justify;
+
+  .yt-content {
+    padding: 1.5em;
+    font-size: 1.1em;
+  }
+
+  @media only screen and (max-width: 340px) {
+    .yt-content {
+      font-size: 0.9em;
+
+      h1 {
+        font-size: 2em;
+      }
+    }
+  }
+}

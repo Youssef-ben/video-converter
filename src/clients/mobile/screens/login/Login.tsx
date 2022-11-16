@@ -1,40 +1,55 @@
 import React from 'react';
 
-import { StackActions } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
 
-import { useAppContext } from 'common/store/vytc-context/provider';
+import useLogin from 'common/store/hooks/useLogin';
 import Logo from 'components/Logo';
-import { ThemeButton, ThemeInput, ThemeView } from 'components/ui';
-import { useAppNavigation } from 'navigation/types';
+import { AppButton, AppInput, AppText, AppView } from 'components/ui';
+import { scale } from 'utils/TextScale';
+
+const translations = {
+  placeholder: 'app.login.placeholder.password',
+  button: 'app.login.btn',
+};
 
 const Login = () => {
-  const navigation = useAppNavigation();
+  const { login, connectUser, onPasswordChange } = useLogin();
+
   const { t } = useTranslation();
-  const { connect } = useAppContext();
 
   return (
-    <ThemeView style={[styles.root]}>
+    <AppView style={[styles.root]}>
       <Logo source={require('../../assets/logo.png')} />
 
-      <ThemeView style={styles.formContainer}>
-        <ThemeInput
+      <AppView style={styles.formContainer}>
+        {login.error && (
+          <AppText style={styles.error} hasError>
+            {login.error.content}
+          </AppText>
+        )}
+
+        <AppInput
+          isInvalid={!!login.error}
           input={{
-            placeholder: t('app.login.password'),
+            value: login.value,
+            secureTextEntry: true,
+            placeholder: t(translations.placeholder),
+            onChangeText: onPasswordChange,
           }}
         />
 
-        <ThemeButton
+        <AppButton
+          loading={login.loading}
+          disabled={login.loading}
           style={styles.formButton}
-          text={t('app.login.btn')}
-          onPress={() => {
-            connect('YoDude');
-            navigation.dispatch(StackActions.replace('Home'));
+          text={t(translations.button)}
+          onPress={async () => {
+            await connectUser();
           }}
         />
-      </ThemeView>
-    </ThemeView>
+      </AppView>
+    </AppView>
   );
 };
 
@@ -51,8 +66,12 @@ const styles = StyleSheet.create({
   formContainer: {
     marginTop: '10%',
     marginHorizontal: 10,
+    maxWidth: '90%',
   },
   formButton: {
     marginTop: 15,
+  },
+  error: {
+    fontSize: scale(14),
   },
 });

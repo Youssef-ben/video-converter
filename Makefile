@@ -51,7 +51,7 @@ open-server: ## Opens vsCode editor on the {Server} folder.
 	$(shell code ./src/server/)
 
 open-web: ## Opens vsCode editor on the {Client} folder.
-	$(shell code ./src/clients/webapp)
+	$(shell code ./src/clients/web)
 
 open-mobile: ## Opens vsCode editor on the {Client} folder.
 	$(shell code ./src/clients/mobile/)

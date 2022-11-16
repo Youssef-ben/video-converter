@@ -4,8 +4,8 @@ const DarkColor = '#323232';
 const DarkHeaderColor = '#464646';
 
 const InputBorderColor = '#737373';
-const ErrorColor = '#d74946';
-const ErrorBackground = '#f5bbbb';
+const ErrorColor = '#9f3a38';
+const ErrorBackground = '#ffe0e0';
 
 export const appFontName = 'Nunito';
 export const TransparentColor = 'transparent';

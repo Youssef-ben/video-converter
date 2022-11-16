@@ -1,20 +1,48 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
-import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
+import { DarkTheme, DefaultTheme, NavigationContainer, StackActions } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Image, StyleSheet } from 'react-native';
 
+import useLogin from 'common/store/hooks/useLogin';
+import { useAppContext } from 'common/store/vytc-context/provider';
+import { setupAxiosRequestInterceptor } from 'common/utils/http';
 import { useAppThemeColor } from 'components/theme/useAppThemeColor';
+import DownloadNew from 'screens/download/Download';
 import Home from 'screens/home/Home';
 import Login from 'screens/login/Login';
-import Preview from 'screens/preview/Preview';
 
 import type { RootStackParamList } from './types';
+import { useAppNavigation } from './types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
+let timeInterval: NodeJS.Timer;
+const TIME_INTERVAL = 20 * 60 * 1000; // 20 Minutes after which we should refresh the token.
 
 function RootNavigator() {
+  const store = useAppContext();
   const { themeStyle } = useAppThemeColor();
+  const navigation = useAppNavigation();
+  const { refreshToken } = useLogin();
+
+  // Setup Axios Interceptor for the Request.
+  useEffect(() => {
+    setupAxiosRequestInterceptor({
+      ...store,
+      navigation: () => navigation.dispatch(StackActions.replace('Login')),
+    });
+  }, []);
+
+  // Refresh token only when connected
+  useEffect(() => {
+    if (timeInterval || !store.auth.isAuthenticated) {
+      return;
+    }
+
+    timeInterval = setInterval(async () => {
+      refreshToken();
+    }, TIME_INTERVAL);
+  }, [store, refreshToken]);
 
   const LefHeaderLogo = useCallback(() => {
     return <Image style={styles.logo} resizeMode="contain" source={require('../assets/logo.png')} />;
@@ -35,9 +63,20 @@ function RootNavigator() {
         headerLeft: () => LefHeaderLogo(),
       }}
     >
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Preview" component={Preview} />
+      {!store.auth.isAuthenticated ? (
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{
+            animationTypeForReplace: !store.auth.isAuthenticated ? 'pop' : 'push',
+          }}
+        />
+      ) : (
+        <>
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Download" component={DownloadNew} />
+        </>
+      )}
     </Stack.Navigator>
   );
 }

@@ -64,6 +64,6 @@ describe('Worker endpoints', function () {
 
     const data: ErrorApiResponse = res.body;
     expect(data.code).to.equal(400);
-    expect(data.type).to.equal('api.err.downloader.invalid_url');
+    expect(data.type).to.equal('api.err.worker.invalid_url');
   });
 });
