@@ -173,7 +173,7 @@ yarn start
 
 ### Mobile application
 
-The mobile application had two themes Light and Dark.
+The mobile application has two themes `Light` and `Dark`.
 
 <p align="center">
   <img align="center" width="30%" height="30%" style="margin-bottom:15px" src="./assets/images/screenshots/1.mobile.login.png"/>
