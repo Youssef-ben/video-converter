@@ -6,6 +6,11 @@ WORKDIR /app
 # Custom cache invalidation
 COPY ./src/clients/web .
 
+## Remove the .env if was copied, and create the new one
+## to allow automatic url setting.
+RUN rm -rf .env
+RUN cp .env.example .env 
+
 # Install dependencies
 RUN yarn
 RUN yarn build
@@ -22,6 +27,8 @@ RUN curl -sf https://gobinaries.com/tj/node-prune | sh
 
 # Copy all in the build stage
 COPY ./src/server/ .
+RUN rm -rf .env
+RUN cp .env.example .env 
 
 # Tests and build the project.
 RUN yarn

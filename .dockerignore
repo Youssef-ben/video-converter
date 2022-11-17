@@ -5,6 +5,7 @@ node_modules
 
 ## Client
 build
+.env
 
 
 ## Server
