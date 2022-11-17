@@ -31,6 +31,10 @@ endef
 build-image: ## Build the api server docker image.
 	$(call run_compose,Building the {vytc} docker image..., build --no-cache --force-rm --compress --progress=plain $(SERVER_CONTAINER_NAME))
 
+	@echo "Cleaning up the images after build..."
+	@docker image prune -f
+	@echo "Done."
+
 start: ## Starts the API Server container.
 	$(call run_compose,Starting the {vytc} container..., up -d $(SERVER_CONTAINER_NAME)) > /dev/null
 	$(call show_container_url,API server,http://localhost:$(SERVER_PORT))
