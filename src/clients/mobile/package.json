@@ -31,7 +31,6 @@
     "vytc"
   ],
   "scripts": {
-    "texts": "dotenv",
     "start": "expo start -c",
     "android": "yarn start --android",
     "ios": "yarn start --ios",

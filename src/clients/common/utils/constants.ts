@@ -1,3 +1,5 @@
+import { getUrl } from './helpers';
+
 export const VIDEO_PLACEHOLDER = process.env.REACT_APP_VID_PLACEHOLDER || 'https://www.youtube.com/watch?v=2N4SjqaKPA8';
 
 export const LOCAL_STORAGE_KEYS = {
@@ -7,10 +9,10 @@ export const LOCAL_STORAGE_KEYS = {
 };
 
 export const SERVER_URLS = {
-  wsBase: process.env.REACT_APP_WS_SERVER_URL || 'ws://localhost:3000',
+  wsBase: getUrl(true),
   wsUri: '/vytc',
 
-  base: process.env.REACT_APP_SERVER_URL || 'http://localhost:3000',
+  base: getUrl(),
   workerFetch: '/worker/fetch',
 
   securityLogin: '/security/login',

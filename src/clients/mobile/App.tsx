@@ -3,6 +3,7 @@
 import React, { useCallback } from 'react';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Constants from 'expo-constants';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, ToastAndroid } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -14,6 +15,10 @@ import { useAppThemeColor } from 'components/theme';
 import useResourcesLoader from 'hooks/useResourcesLoader';
 import AppNavigation from 'navigation/Navigation';
 import RNLanguageDetector from 'utils/i18next.languageDetector';
+
+// Setup the env variables required by the SERVER_URLS in common constants.
+process.env.REACT_APP_SERVER_URL = Constants.expoConfig?.extra?.REACT_APP_SERVER_URL;
+process.env.REACT_APP_WS_SERVER_URL = Constants.expoConfig?.extra?.REACT_APP_WS_SERVER_URL;
 
 // Set Translation for the APP.
 setTranslation(RNLanguageDetector);

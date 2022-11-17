@@ -47,7 +47,7 @@ export function WsProvider({ children, toastCallback }: WsProviderProps) {
 
   // Only set the websocket instance.
   if (!wsInstance && auth.isAuthenticated) {
-    wsInstance = io(SERVER_URLS.wsBase, {
+    wsInstance = io(SERVER_URLS.wsBase || '', {
       path: SERVER_URLS.wsUri,
       forceNew: true,
       reconnection: true,
