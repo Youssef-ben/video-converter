@@ -1,0 +1,28 @@
+version: "3.8"
+
+networks:
+  vytc-network:
+    name: vytc-network
+
+services:
+  ## REST API SERVER
+  vytc-server:
+    image: ${SERVER_IMAGE_NAME}
+    container_name: ${SERVER_CONTAINER_NAME}
+
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile
+      target: PRODUCTION
+
+    ports:
+      - ${SERVER_PORT}:3000
+
+    networks:
+      - vytc-network
+
+    volumes:
+      - "../src/server/src/config/config.json:/usr/api/src/config/config.json"
+      - "../src/server/src/config/config.${NODE_ENV}.json:/usr/api/src/config/config.${NODE_ENV}.json"
+      - "../src/server/.env:/usr/api/.env"
+      - "./tmp:/tmp/vytc"

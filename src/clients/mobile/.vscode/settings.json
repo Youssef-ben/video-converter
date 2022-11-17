@@ -1,0 +1,42 @@
+{
+  // Always use LF ending for the files.
+  "files.eol": "\n",
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.formatOnSave": true,
+  "editor.hover.enabled": true,
+  "editor.tabCompletion": "on",
+  "editor.snippetSuggestions": "top",
+  "editor.suggest.insertMode": "replace",
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+
+  // Activate if ever want to also run global Prettier.
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // Configure ESLint plugin to run on save.
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.organizeImports": true
+  },
+
+  "eslint.validate": ["typescript", "typescriptreact"],
+
+  "[markdown]": {
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    }
+  },
+
+  "cSpell.fixSpellingWithRenameProvider": true,
+  "cSpell.advanced.feature.useReferenceProviderWithRename": true,
+  "cSpell.advanced.feature.useReferenceProviderRemove": "/^#+\\s/",
+  "cSpell.ignorePaths": ["package-lock.json", "node_modules", " **/*/fr.ts"],
+  "cSpell.words": ["languagedetector"]
+}

@@ -1,0 +1,127 @@
+// key-frames
+@keyframes floating {
+  from {
+    transform: translateY(0px);
+  }
+
+  65% {
+    transform: translateY(15px);
+  }
+
+  to {
+    transform: translateY(-0px);
+  }
+}
+
+.page-not-found {
+  margin: 0;
+  height: calc(90vh - 43px);
+  overflow: hidden;
+  background-attachment: fixed;
+  background-image: url('../../images/404/star.svg'), linear-gradient(to bottom, $primary-color, $primary-background-color);
+
+  .mars {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 30vmin;
+    position: absolute;
+    background-size: cover !important;
+    background: url('../../images/404/mars.svg') no-repeat bottom center;
+  }
+
+  .logo-404 {
+    left: 0;
+    right: 0;
+    top: 16vmin;
+    width: 30vmin;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+
+    @include breakpoint(mobile) {
+      top: 45vmin;
+    }
+  }
+
+  .meteor {
+    top: 16vmin;
+    right: 2vmin;
+    position: absolute;
+  }
+
+  .title {
+    color: white;
+    font-size: 5vmin;
+    font-weight: 600;
+    margin-top: 31vmin;
+    text-align: center;
+    font-family: $nunito-font;
+
+    @include breakpoint(mobile) {
+      margin-top: 65vmin;
+    }
+  }
+
+  .subtitle {
+    color: white;
+    font-family: $nunito-font;
+    font-weight: 400;
+    text-align: center;
+    font-size: 3.5vmin;
+    margin-top: -1vmin;
+    margin-bottom: 5vmin;
+
+    @include breakpoint(mobile) {
+      margin-bottom: 9vmin;
+    }
+  }
+
+  .astronaut {
+    position: absolute;
+    top: 5vmin;
+    left: 1vmin;
+    height: 25vmin;
+    animation: floating 3s infinite ease-in-out;
+
+    @include breakpoint(mobile) {
+      top: 12vmin;
+    }
+  }
+
+  .spaceship {
+    position: absolute;
+    bottom: 15vmin;
+    right: 5vmin;
+
+    @include breakpoint(mobile) {
+      width: 45vmin;
+      bottom: 18vmin;
+    }
+  }
+
+  .go-back-wrapper {
+    margin: auto;
+    width: 50%;
+    text-align: center;
+
+    .btn-back {
+      border: 1px solid $secondary-color;
+      color: $secondary-color;
+      height: 5vmin;
+      padding: 12px;
+      font-family: $nunito-font;
+      text-decoration: none;
+      border-radius: 5px;
+
+      &:hover {
+        background: $secondary-color;
+        color: $primary-color;
+      }
+
+      @include breakpoint(mobile) {
+        font-size: 3.5vmin;
+      }
+    }
+  }
+}

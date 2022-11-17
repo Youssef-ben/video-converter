@@ -1,0 +1,34 @@
+{
+  "files.eol": "\n",
+
+  // tell the ESLint plugin to run on save
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+
+  "eslint.validate": ["typescript", "javascript"],
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "cSpell.words": [
+    "APPDATA",
+    "asar",
+    "asynciterable",
+    "audioonly",
+    "camelcase",
+    "Ffprobe",
+    "HHMM",
+    "highestaudio",
+    "highestvideo",
+    "highres",
+    "lowestaudio",
+    "lowestvideo",
+    "middlewares",
+    "snakecase",
+    "timemark",
+    "tsoa",
+    "videoonly",
+    "vytc",
+    "webm",
+    "youtu",
+    "ytdl"
+  ]
+}

@@ -1,0 +1,69 @@
+// Border color for the focused input that has an error
+.error.field {
+  .ui.pointing.below {
+    background: $input-border-background-error !important;
+  }
+
+  input {
+    border-color: $input-border-color-error !important;
+    background-color: $input-border-background-error !important;
+
+    &:focus {
+      border-color: $input-border-color-error !important;
+    }
+  }
+}
+
+.app-error {
+  .negative.message {
+    margin-bottom: 0em;
+    border-radius: 0px !important;
+    font-weight: bold !important;
+    padding: 0.5em 1em !important;
+    color: $input-border-color-error !important;
+    background: $input-border-background-error !important;
+  }
+
+  .app-error-message {
+    font-weight: bold !important;
+  }
+}
+
+// Input background and border color
+input {
+  background: $input-background !important;
+  border-color: $input-border-color !important;
+
+  &:focus {
+    border-color: $primary-background-color !important;
+  }
+}
+
+// Placeholder for the inputs
+::placeholder {
+  color: gray !important;
+  opacity: 0.7 !important; /* Firefox */
+}
+
+.dropdown {
+  height: 34px !important;
+  padding-top: 0.6em !important;
+  color: $primary-color !important;
+  background: $secondary-background-color !important;
+  border: 1px solid $input-border-color !important;
+
+  &:hover {
+    color: $primary-background-color !important;
+    background: $secondary-color !important;
+  }
+  &:focus {
+    border-color: $primary-background-color !important;
+  }
+
+  .menu.visible {
+    background: $input-background !important;
+  }
+  .menu > .selected {
+    background: $secondary-color !important;
+  }
+}
