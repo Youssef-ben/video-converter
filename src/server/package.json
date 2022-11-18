@@ -52,7 +52,7 @@
     "ffmpeg-static": "^5.0.0",
     "ffprobe-static": "^3.0.0",
     "fluent-ffmpeg": "^2.1.2",
-    "fs-extra": "^10.0.0",
+    "fs-extra": "^10.1.0",
     "helmet": "^6.0.0",
     "js-guid": "^1.0.0",
     "jsonwebtoken": "^8.5.1",
