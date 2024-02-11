@@ -2,8 +2,8 @@ import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 import { useAppContext } from 'common/store/vytc-context/provider';
 import Download from 'screens/download/Download';
-import Home from 'screens/Home';
-import Login from 'screens/Login';
+import Home from 'screens/home';
+import Login from 'screens/login';
 import PageNotFound from 'screens/PageNotFound';
 import ScreenWrapper from 'screens/ScreenWrapper';
 

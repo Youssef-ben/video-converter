@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import type { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import axios from 'axios';
 import applyCaseMiddleware from 'axios-case-converter';
 
@@ -35,7 +35,7 @@ export const setupAxiosRequestInterceptor = ({ storage, navigation }: Intercepto
   }
 
   interceptorIndex = AppHttp.interceptors.request.use(
-    async (config: AxiosRequestConfig) => {
+    async (config: InternalAxiosRequestConfig) => {
       // If public URL, nothing to do.
       if (config.url?.includes(SERVER_URLS.securityLogin) || config.url?.includes(SERVER_URLS.server)) {
         return config;
@@ -50,11 +50,7 @@ export const setupAxiosRequestInterceptor = ({ storage, navigation }: Intercepto
 
       // Add the authorization header
       const newConfig = { ...config };
-
-      newConfig.headers = {
-        ...newConfig.headers,
-        Authorization: `Bearer ${accessToken}`,
-      };
+      newConfig.headers.Authorization = `Bearer ${accessToken}`;
 
       return newConfig;
     },

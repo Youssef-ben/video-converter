@@ -4,16 +4,13 @@
 
 import httpServer from '../../src/startup';
 import { expect } from 'chai';
-import supertest from 'supertest';
+import request from 'supertest';
 import { runLogin, workerFetchObject } from './test.helpers';
 import { YoutubeVideoDetails } from '../../src/models/vytc/video_details.model';
 import { ApiResponse } from '../../src/models/response/api.response';
 import { ErrorApiResponse } from '../../src/models/response/error.api.response';
 
 describe('Worker endpoints', function () {
-  // Define the request to be used
-  let request: supertest.SuperAgentTest;
-
   let accessToken = 'Bearer';
 
   const URLS = {
@@ -21,9 +18,7 @@ describe('Worker endpoints', function () {
   };
 
   before(async function () {
-    request = supertest.agent(httpServer);
-
-    const data: any = await runLogin(request);
+    const data: any = await runLogin(request(httpServer));
 
     expect(data.result).to.not.be.empty;
     expect(data.code).to.be.equal(200);
@@ -33,7 +28,7 @@ describe('Worker endpoints', function () {
   });
 
   it('Fetch - Youtube video details', async function () {
-    const res = await request.get(URLS.fetch).set({ Authorization: accessToken }).query({ videoUrl: 'https://www.youtube.com/watch?v=2N4SjqaKPA8' }).send();
+    const res = await request(httpServer).get(URLS.fetch).set({ Authorization: accessToken }).query({ videoUrl: 'https://www.youtube.com/watch?v=2N4SjqaKPA8' }).send();
 
     expect(res.body).to.be.an('object');
     expect(res.body).to.not.be.empty;
@@ -46,7 +41,7 @@ describe('Worker endpoints', function () {
   });
 
   it('Fetch - Youtube video details - Parameter required', async function () {
-    const res = await request.get(URLS.fetch).set({ Authorization: accessToken }).query({ invalidParam: 'https://www.youtube.com/watch?v=2N4SjqaKPA8' }).send();
+    const res = await request(httpServer).get(URLS.fetch).set({ Authorization: accessToken }).query({ invalidParam: 'https://www.youtube.com/watch?v=2N4SjqaKPA8' }).send();
 
     expect(res.body).to.be.an('object');
     expect(res.body).to.not.be.empty;
@@ -57,7 +52,7 @@ describe('Worker endpoints', function () {
   });
 
   it('Fetch - Youtube video details - Invalid Youtube URL', async function () {
-    const res = await request.get(URLS.fetch).set({ Authorization: accessToken }).query({ videoUrl: 'invalid-url' }).send();
+    const res = await request(httpServer).get(URLS.fetch).set({ Authorization: accessToken }).query({ videoUrl: 'invalid-url' }).send();
 
     expect(res.body).to.be.an('object');
     expect(res.body).to.not.be.empty;

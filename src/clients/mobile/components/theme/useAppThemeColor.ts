@@ -12,6 +12,7 @@ export const useAppThemeColor = () => {
   return {
     mode: appTheme,
     themeStyle: AppThemeStyle[appTheme],
+    themeExtras: AppThemeStyle.extraStyles,
 
     isDarkMode: () => appTheme === 'dark',
     isLightMode: () => appTheme === 'light',

@@ -4,15 +4,12 @@
 
 import httpServer from '../../src/startup';
 import { expect } from 'chai';
-import supertest from 'supertest';
+import request from 'supertest';
 import { ApiResponse } from '../../src/models/response/api.response';
 import { runLogin } from './test.helpers';
 import { ErrorApiResponse } from '../../src/models/response/error.api.response';
 
 describe('Security endpoints', function () {
-  // Define the request to be used
-  let request: supertest.SuperAgentTest;
-
   let accessToken = 'Bearer';
 
   const URLS = {
@@ -20,12 +17,8 @@ describe('Security endpoints', function () {
     logout: '/security/logout',
   };
 
-  before(function () {
-    request = supertest.agent(httpServer);
-  });
-
   it('Login', async function () {
-    const data: any = await runLogin(request);
+    const data: any = await runLogin(request(httpServer));
 
     expect(data.result).to.not.be.empty;
     expect(data.code).to.be.equal(200);
@@ -35,7 +28,7 @@ describe('Security endpoints', function () {
   });
 
   it('Login - Passphrase - Invalid', async function () {
-    const data = (await runLogin(request, 'invalid_passphrase')) as ErrorApiResponse;
+    const data = (await runLogin(request(httpServer), 'invalid_passphrase')) as ErrorApiResponse;
 
     expect(data.errors).to.not.be.empty;
     expect(data.code).to.be.equal(400);
@@ -44,7 +37,7 @@ describe('Security endpoints', function () {
 
   it('Refresh', async function () {
     // Prepare
-    const res = await request.get(URLS.refresh).set({ Authorization: accessToken }).send();
+    const res = await request(httpServer).get(URLS.refresh).set({ Authorization: accessToken }).send();
 
     expect(res.body).to.be.an('object');
     expect(res.body).to.not.be.empty;
@@ -58,7 +51,7 @@ describe('Security endpoints', function () {
 
   it('Logout', async function () {
     // Prepare
-    const res = await request.delete(URLS.logout).set({ Authorization: accessToken }).send();
+    const res = await request(httpServer).delete(URLS.logout).set({ Authorization: accessToken }).send();
 
     expect(res.body).to.be.an('object');
     expect(res.body).to.not.be.empty;
@@ -68,7 +61,7 @@ describe('Security endpoints', function () {
   });
 
   it('UnAuthorized', async function () {
-    const res = await request.get(URLS.refresh).set({ Authorization: accessToken }).send();
+    const res = await request(httpServer).get(URLS.refresh).set({ Authorization: accessToken }).send();
 
     expect(res.body).to.be.an('object');
     expect(res.body).to.not.be.empty;
@@ -78,7 +71,7 @@ describe('Security endpoints', function () {
   });
 
   it('UnAuthorized - No Access Token', async function () {
-    const res = await request.get(URLS.refresh).send();
+    const res = await request(httpServer).get(URLS.refresh).send();
 
     expect(res.body).to.be.an('object');
     expect(res.body).to.not.be.empty;

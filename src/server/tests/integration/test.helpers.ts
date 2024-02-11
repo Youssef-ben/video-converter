@@ -23,7 +23,7 @@ export const workerFetchObject = {
   extensions: { audio: 'webm', video: 'mp4' },
 };
 
-export const runLogin = async (request: supertest.SuperAgentTest, passphrase?: string): Promise<ApiResponse<TestLoginResponseDto> | ErrorApiResponse> => {
+export const runLogin = async (request: any, passphrase?: string): Promise<ApiResponse<TestLoginResponseDto> | ErrorApiResponse> => {
   // Prepare
   const login: LoginDto = {
     passphrase: passphrase || 'api&test@',

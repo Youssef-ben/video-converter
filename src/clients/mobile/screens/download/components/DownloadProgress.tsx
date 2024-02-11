@@ -12,7 +12,7 @@ import { AppView } from 'components/ui';
 
 const DownloadProgress = () => {
   const { t } = useTranslation();
-  const { themeStyle } = useAppThemeColor();
+  const { themeExtras } = useAppThemeColor();
   const { setScreen } = useAppContext();
   const { progress, onCancel } = useProgress();
 
@@ -27,7 +27,7 @@ const DownloadProgress = () => {
 
       <AppView style={styles.buttonContainer}>
         <AppView style={styles.cancelButton}>
-          <Button onPress={onCancelHandler} color={themeStyle.Error} title={t('app.download.progress.btn')} />
+          <Button onPress={onCancelHandler} color={themeExtras.error} title={t('app.download.progress.btn')} />
         </AppView>
       </AppView>
     </AppView>

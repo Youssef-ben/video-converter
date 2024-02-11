@@ -4,24 +4,17 @@
 
 import httpServer from '../../src/startup';
 import { expect } from 'chai';
-import supertest from 'supertest';
+import request from 'supertest';
 import { ErrorApiResponse } from '../../src/models/response/error.api.response';
 import { Guid } from 'js-guid';
 
 describe('Downloader endpoints', function () {
-  // Define the request to be used
-  let request: supertest.SuperAgentTest;
-
   const URLS = {
     download: '/downloader',
   };
 
-  before(async function () {
-    request = supertest.agent(httpServer);
-  });
-
   it('Download - Invalid parameters', async function () {
-    const res = await request
+    const res = await request(httpServer)
       .get(URLS.download)
       .query({
         key: '',
@@ -50,7 +43,7 @@ describe('Downloader endpoints', function () {
   });
 
   it('Download - Invalid parameters - File type Not supported', async function () {
-    const res = await request
+    const res = await request(httpServer)
       .get(URLS.download)
       .query({
         key: Guid.newGuid().toString(),
@@ -69,7 +62,7 @@ describe('Downloader endpoints', function () {
   });
 
   it('Download - Invalid parameters - Invalid Guid for key', async function () {
-    const res = await request
+    const res = await request(httpServer)
       .get(URLS.download)
       .query({
         key: '<invalid-key>',
@@ -88,7 +81,7 @@ describe('Downloader endpoints', function () {
   });
 
   it('Download - Invalid parameters - File not found', async function () {
-    const res = await request
+    const res = await request(httpServer)
       .get(URLS.download)
       .query({
         key: Guid.newGuid().toString(),

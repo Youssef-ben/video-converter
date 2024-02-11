@@ -21,7 +21,7 @@ const TIME_INTERVAL = 20 * 60 * 1000; // 20 Minutes after which we should refres
 
 function RootNavigator() {
   const store = useAppContext();
-  const { themeStyle } = useAppThemeColor();
+  const { themeStyle, themeExtras, isDarkMode } = useAppThemeColor();
   const navigation = useAppNavigation();
   const { refreshToken } = useLogin();
 
@@ -55,7 +55,7 @@ function RootNavigator() {
         headerBackVisible: true,
         headerTintColor: themeStyle.color,
         headerStyle: {
-          backgroundColor: themeStyle.headerBackgroundColor,
+          backgroundColor: themeExtras.headerBackgroundColor(isDarkMode()),
         },
         headerTitleStyle: {
           fontWeight: 'bold',

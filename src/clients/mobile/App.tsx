@@ -14,6 +14,7 @@ import { setTranslation } from 'common/translations';
 import { useAppThemeColor } from 'components/theme';
 import useResourcesLoader from 'hooks/useResourcesLoader';
 import AppNavigation from 'navigation/Navigation';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import RNLanguageDetector from 'utils/i18next.languageDetector';
 
 // Setup the env variables required by the SERVER_URLS in common constants.
@@ -36,14 +37,16 @@ export default function App() {
   }
 
   return (
-    <SafeAreaProvider style={[themeStyle, styles.container]}>
-      <VytcContextProvider storage={AsyncStorage}>
-        <WsProvider toastCallback={showToast}>
-          <AppNavigation />
-        </WsProvider>
-      </VytcContextProvider>
+    <SafeAreaProvider style={[themeStyle, styles.container]}>      
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <VytcContextProvider storage={AsyncStorage}>
+          <WsProvider toastCallback={showToast}>
+            <AppNavigation />
+          </WsProvider>
+        </VytcContextProvider>
 
-      <StatusBar style="auto" />
+        <StatusBar style="auto" />
+      </GestureHandlerRootView>
     </SafeAreaProvider>
   );
 }
