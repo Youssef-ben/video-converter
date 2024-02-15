@@ -1,9 +1,10 @@
 import { useState } from 'react';
 
+import { useTranslation } from 'react-i18next';
+
 import type { YoutubeVideoPayload } from 'common/types/server';
 import { SERVER_URLS } from 'common/utils/constants';
 import { axiosGet } from 'common/utils/http';
-import { useTranslation } from 'react-i18next';
 
 import { isValidYoutubeUrl } from './helpers';
 import type { InputError } from '../../types/clients/InputError';
