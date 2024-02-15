@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // Framework Imports
+import fsExtra from 'fs-extra';
 import express from 'express';
 require('express-async-errors'); // Required to handle errors for the async routes/methods.
 import cors from 'cors';
@@ -100,7 +101,9 @@ app.use(globalErrorsHandlerMiddleware);
  */
 const start_server = async (): Promise<HttpServer> => {
   if (fs.existsSync(SERVER_TEMP_FOLDER)) {
-    fs.rmSync(SERVER_TEMP_FOLDER, { recursive: true });
+    logger.info(`Clearing data from the temporary folder (${SERVER_TEMP_FOLDER})`);
+    fs.rmSync(SERVER_TEMP_FOLDER, { recursive: true, force: true });
+    await fsExtra.emptyDir(SERVER_TEMP_FOLDER);
   }
 
   fs.mkdir(SERVER_TEMP_FOLDER, { recursive: true }, (err: NodeJS.ErrnoException | null, _?: string) => {

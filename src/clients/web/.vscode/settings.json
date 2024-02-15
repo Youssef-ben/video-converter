@@ -21,8 +21,8 @@
 
   // Configure ESLint plugin to run on save.
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.organizeImports": true
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
   },
 
   "eslint.validate": ["typescript", "typescriptreact"],

@@ -17,14 +17,14 @@ type AppInputProps = {
 };
 
 export const AppInput = ({ label, isInvalid = false, input, wrapper }: AppInputProps) => {
-  const { themeStyle, isDarkMode } = useAppThemeColor();
+  const { themeStyle, themeExtras, isDarkMode } = useAppThemeColor();
 
   const containerStyle = {
-    borderColor: isInvalid ? themeStyle.Error : themeStyle.InputBorderColor,
+    borderColor: isInvalid ? themeExtras.error : themeExtras.inputBorderColor,
     borderTopWidth: isInvalid ? 1 : 0,
     borderLeftWidth: isInvalid ? 1 : 0,
     borderRightWidth: isInvalid ? 1 : 0,
-    backgroundColor: isInvalid ? themeStyle.ErrorBackground : themeStyle.InputBackgroundColor,
+    backgroundColor: isInvalid ? themeExtras.errorBackground : themeExtras.InputBackgroundColor(isDarkMode()),
   };
 
   const inputStyle = {
@@ -48,7 +48,7 @@ export const AppInput = ({ label, isInvalid = false, input, wrapper }: AppInputP
 
         <TextInput
           {...input}
-          placeholderTextColor={themeStyle.InputPlaceholderColor}
+          placeholderTextColor={themeExtras.inputPlaceholderColor}
           style={[inputStyle, styles.input, input?.style]}
           placeholder={input?.placeholder || 'Enter your text...'}
         />

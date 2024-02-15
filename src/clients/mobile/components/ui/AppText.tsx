@@ -10,7 +10,7 @@ interface AppTextProps extends TextProps {
   hasError?: boolean;
 }
 export const AppText = ({ hasError = false, style, ...otherProps }: AppTextProps) => {
-  const { themeStyle } = useAppThemeColor();
+  const { themeStyle, themeExtras } = useAppThemeColor();
 
   const elementStyle = [
     themeStyle,
@@ -23,7 +23,7 @@ export const AppText = ({ hasError = false, style, ...otherProps }: AppTextProps
       marginBottom: 8,
       paddingVertical: 4,
       paddingHorizontal: 10,
-      color: themeStyle.Error,
+      color: themeExtras.error,
     },
   ];
 

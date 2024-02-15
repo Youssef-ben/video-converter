@@ -4,7 +4,10 @@ import { BaseCustomError, ErrorDetails } from './base.error';
 export class ApplicationError extends BaseCustomError {
   statusCode = 400;
 
-  constructor(public message: string, public error_type: string) {
+  constructor(
+    public message: string,
+    public error_type: string
+  ) {
     super(message || 'Unexpected application error!');
 
     this.error_type = error_type || 'api.err.unexpected_error';

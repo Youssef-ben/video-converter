@@ -1,7 +1,7 @@
 const LightColor = '#d0d0c0';
-const LightHeaderColor = '#d9d9cc';
+export const LightHeaderColor = '#d9d9cc';
 const DarkColor = '#323232';
-const DarkHeaderColor = '#464646';
+export const DarkHeaderColor = '#464646';
 
 const InputBorderColor = '#737373';
 const ErrorColor = '#9f3a38';
@@ -14,38 +14,29 @@ export const AppThemeStyle = {
   light: {
     color: DarkColor,
     backgroundColor: LightColor,
-    headerBackgroundColor: LightHeaderColor,
     fontFamily: appFontName,
     borderRadius: 3,
     borderColor: DarkColor,
     shadowColor: DarkColor,
-    Error: ErrorColor,
-    ErrorBackground: ErrorBackground,
-
-    buttonTextColor: LightColor,
-    buttonBackground: DarkColor,
-
-    InputBorderColor: InputBorderColor,
-    InputPlaceholderColor: InputBorderColor,
-    InputBackgroundColor: LightHeaderColor,
   },
 
   dark: {
     color: LightColor,
     backgroundColor: DarkColor,
-    headerBackgroundColor: DarkHeaderColor,
     fontFamily: appFontName,
     borderRadius: 3,
     borderColor: LightColor,
     shadowColor: LightColor,
-    Error: ErrorColor,
-    ErrorBackground: ErrorBackground,
+  },
+  extraStyles: {
+    error: ErrorColor,
+    errorBackground: ErrorBackground,
+    inputBorderColor: InputBorderColor,
+    inputPlaceholderColor: InputBorderColor,
 
-    buttonTextColor: DarkColor,
-    buttonBackground: LightColor,
-
-    InputBorderColor: InputBorderColor,
-    InputPlaceholderColor: InputBorderColor,
-    InputBackgroundColor: '#464646',
+    buttonTextColor: (isDarkTheme: boolean) => (isDarkTheme ? DarkColor : LightColor),
+    buttonBackground: (isDarkTheme: boolean) => (isDarkTheme ? LightColor : DarkColor),
+    InputBackgroundColor: (isDarkTheme: boolean) => (isDarkTheme ? '#464646' : LightHeaderColor),
+    headerBackgroundColor: (isDarkTheme: boolean) => (isDarkTheme ? DarkHeaderColor : LightHeaderColor),
   },
 };

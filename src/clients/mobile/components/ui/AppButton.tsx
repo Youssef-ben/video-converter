@@ -17,16 +17,15 @@ interface AppButtonProps {
   onPress: () => void;
 }
 export const AppButton = ({ text, style, loading = false, type = 'primary', disabled = false, onPress }: AppButtonProps) => {
-  const { themeStyle } = useAppThemeColor();
+  const { themeStyle, themeExtras, isDarkMode } = useAppThemeColor();
   const isSecondary = type === 'secondary';
 
   // Style for the pressable
   const wrapperStyle = [
-    themeStyle,
     styles.container,
     {
-      borderColor: themeStyle.buttonBackground,
-      backgroundColor: isSecondary ? themeStyle.backgroundColor : themeStyle.buttonBackground,
+      borderColor: themeExtras.buttonBackground(isDarkMode()),
+      backgroundColor: isSecondary ? themeStyle.backgroundColor : themeExtras.buttonBackground(isDarkMode()),
       opacity: disabled ? 0.5 : 1,
     },
     style,
@@ -34,9 +33,9 @@ export const AppButton = ({ text, style, loading = false, type = 'primary', disa
 
   // Style for the text
   const textColor = {
-    color: isSecondary ? themeStyle.buttonBackground : themeStyle.buttonTextColor,
+    color: isSecondary ? themeExtras.buttonBackground(isDarkMode()) : themeExtras.buttonTextColor(isDarkMode()),
   };
-  const textStyle = [themeStyle, styles.text, textColor];
+  const textStyle = [styles.text, textColor];
 
   return (
     <Pressable disabled={disabled} style={[wrapperStyle]} onPress={onPress} android_ripple={textColor}>
