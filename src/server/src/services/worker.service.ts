@@ -1,4 +1,4 @@
-import ytdl, { MoreVideoDetails, videoInfo } from 'ytdl-core';
+import ytdl, { MoreVideoDetails, videoInfo } from '@distube/ytdl-core';
 import sanitize from 'sanitize-filename';
 
 // Custom

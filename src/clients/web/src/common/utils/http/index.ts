@@ -27,8 +27,9 @@ const AppHttp = applyCaseMiddleware(
 
 // Interceptors
 interface InterceptorProps extends VytcContextState {
-  navigation: Function; // eslint-disable-line @typescript-eslint/ban-types
+  navigation: () => void;
 }
+
 export const setupAxiosRequestInterceptor = ({ storage, navigation }: InterceptorProps) => {
   if (interceptorIndex) {
     return;

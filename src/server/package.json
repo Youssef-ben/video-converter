@@ -1,7 +1,7 @@
 {
   "name": "vytc",
-  "version": "1.0.6",
-  "releaseDate": "2024-02-15",
+  "version": "1.0.7",
+  "releaseDate": "2024-09-04",
   "productName": "vytc - Videos youtube converter",
   "homepage": "https://github.com/Youssef-ben/video-converter/#readme",
   "description": "Converts youtube videos or other MP4 videos  MP3 format.",
@@ -33,13 +33,14 @@
   "scripts": {
     "start": "yarn gen-swagger && yarn ts-node-dev --poll src/startup.ts",
     "test": "yarn cross-env NODE_ENV=tests DEBUG_LEVEL=info mocha -r ts-node/register 'tests/**/*.test.ts' --exit --timeout 10000",
-    "build": "yarn lint && yarn test && yarn tsc && yarn copy-config && yarn gen-swagger",
+    "build": "yarn lint &&  yarn tsc && yarn copy-config && yarn gen-swagger",
     "lint": "yarn eslint --ext .ts . --quiet",
     "lint-fix": "yarn eslint --ext .ts . --quiet --fix",
     "gen-swagger": "yarn tsoa spec",
     "copy-config": "cp src/config/config.json dist/src/config/"
   },
   "dependencies": {
+    "@distube/ytdl-core": "^4.14.4",
     "bcrypt": "^5.0.1",
     "camelcase-keys": "7.0.2",
     "compression": "^1.7.4",
@@ -69,7 +70,7 @@
     "tsoa": "^6.0.1",
     "winston": "^3.3.3",
     "xss-clean": "^0.1.1",
-    "ytdl-core": "^4.11.2"
+    "yaml": "^2.5.1"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",

@@ -63,7 +63,7 @@ open-mobile: ## Opens vsCode editor on the {Client} folder.
 open-common: ## Opens vsCode editor on the {Mobile} folder.
 	$(shell code ./src/clients/common/)
 
-generate-env: ## Generate a (.env) file based on the (.env.example) file..
+generate-env: ## Generate a (.env) file based on the (.env.example) file.
 	@echo "[INF] - Generating (.env) file for each project..."
 	@cp ./.env.example ./.env
 	@cp ./src/server/.env.example ./src/server/.env
@@ -71,7 +71,7 @@ generate-env: ## Generate a (.env) file based on the (.env.example) file..
 	@cp ./src/clients/mobile/.env.example ./src/clients/mobile/.env
 	@echo "[INF] - Done."
 
-clean-projects:
+clean-projects: ## Clean the projects node modules and other folders and files.
 	@echo "[INF] - Cleaning the project dependencies..."
  
 	@echo "[DBG] - Cleaning {Clients/Common}..."

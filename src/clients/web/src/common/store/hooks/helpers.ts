@@ -54,7 +54,7 @@ export const isValidYoutubeUrl = (link: string): boolean => {
     }
 
     return true;
-  } catch (error) {
+  } catch {
     return false;
   }
 };

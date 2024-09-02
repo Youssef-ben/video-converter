@@ -110,7 +110,7 @@ class FFmpegService {
           throw new ApplicationError(err.message, WsMessages.WsErrorConverting);
         })
         .on('progress', function (progress) {
-          progressValue = baseProgress + Math.floor(progress.percent / 4);
+          progressValue = baseProgress + Math.floor((progress?.percent ?? 0) / 4);
 
           // Update the UI state.
           if (progressCallback)
