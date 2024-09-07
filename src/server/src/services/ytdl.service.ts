@@ -1,5 +1,5 @@
 import { createWriteStream } from 'fs-extra';
-import ytdl, { getVideoID } from 'ytdl-core';
+import ytdl, { getVideoID } from '@distube/ytdl-core';
 import { GetYoutubeFile } from '../models/vytc/downloaded_video_result.model';
 import { FileType } from '../models/vytc/file_extensions.enum';
 import { DownloadProgressEvent, WsMessages } from '../models/vytc/websocket.events';

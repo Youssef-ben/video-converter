@@ -1,7 +1,7 @@
 const isWebApp = () => {
   try {
     return !!window.location.href;
-  } catch (error) {
+  } catch {
     return false;
   }
 };

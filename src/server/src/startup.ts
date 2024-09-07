@@ -101,8 +101,14 @@ app.use(globalErrorsHandlerMiddleware);
  */
 const start_server = async (): Promise<HttpServer> => {
   if (fs.existsSync(SERVER_TEMP_FOLDER)) {
-    logger.info(`Clearing data from the temporary folder (${SERVER_TEMP_FOLDER})`);
-    fs.rmSync(SERVER_TEMP_FOLDER, { recursive: true, force: true });
+    try {
+      logger.info(`Clearing data from the temporary folder (${SERVER_TEMP_FOLDER})`);
+      fs.rmSync(SERVER_TEMP_FOLDER, { recursive: true, force: true });
+      logger.info(`Successfully deleted (${SERVER_TEMP_FOLDER})`);
+    } catch (error: unknown) {
+      logger.error(`Error deleting (${SERVER_TEMP_FOLDER}): ${error}`);
+    }
+
     await fsExtra.emptyDir(SERVER_TEMP_FOLDER);
   }
 

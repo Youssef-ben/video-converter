@@ -38,7 +38,7 @@ export function WsProvider({ children, toastCallback }: WsProviderProps) {
       try {
         document.getElementsByClassName('closed-connection').item(0)?.classList.remove('hidden');
         (document.getElementsByClassName('app-error-message').item(0) as Element).innerHTML = message;
-      } catch (error) {
+      } catch {
         toastCallback(`Connection ${state}!`, message, 'error');
       }
     },
@@ -64,7 +64,7 @@ export function WsProvider({ children, toastCallback }: WsProviderProps) {
 
       try {
         document.getElementsByClassName('closed-connection').item(0)?.classList.add('hidden');
-      } catch (error) {
+      } catch {
         /* Nothing to handle */
       }
     });
